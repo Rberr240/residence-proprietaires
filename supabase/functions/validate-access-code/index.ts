@@ -61,7 +61,6 @@ function wait(milliseconds: number): Promise<void> {
 export default {
   fetch: withSupabase<Database>(
     { auth: "publishable" },
-
     async (req, ctx) => {
       if (req.method !== "POST") {
         return Response.json(
@@ -151,12 +150,10 @@ export default {
         );
       }
 
-      const expired =
-        data?.expires_at &&
+      const expired = data?.expires_at &&
         new Date(data.expires_at).getTime() <= Date.now();
 
-      const unavailable =
-        !data ||
+      const unavailable = !data ||
         !data.active ||
         Boolean(data.used_at) ||
         Boolean(expired) ||
