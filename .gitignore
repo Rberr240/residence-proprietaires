@@ -1,0 +1,27 @@
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Secrets
+secrets/
+*.key
+*.pem
+
+# Dependencies
+node_modules/
+
+# Supabase local files
+.supabase/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Logs
+*.log
