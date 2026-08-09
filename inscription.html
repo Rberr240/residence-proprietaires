@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Inscription des propriétaires de la résidence Mirador Golf"
+    >
+
+    <title>Mirador Golf | Inscription propriétaire</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/form.css">
+</head>
+
+<body>
+
+    <main class="registration-page">
+
+        <section class="registration-card">
+
+            <header class="registration-header">
+
+                <div class="small-logo">
+                    MG
+                </div>
+
+                <div>
+
+                    <p class="residence-name">
+                        MIRADOR GOLF
+                    </p>
+
+                    <h1>
+                        Informations du propriétaire
+                    </h1>
+
+                </div>
+
+            </header>
+
+
+            <div class="apartment-status">
+
+                <div>
+                    <span class="status-label">
+                        Appartement
+                    </span>
+
+                    <strong id="apartmentNumber">
+                        —
+                    </strong>
+                </div>
+
+                <span class="verified-badge">
+                  ✓ Code vérifié
+                </span>
+
+            </div>
+
+
+            <div class="intro">
+
+                <h2>
+                    Vos coordonnées
+                </h2>
+
+                <p>
+                    Ces informations permettront de vous contacter
+                    concernant les réunions et communications liées
+                    à la résidence.
+                </p>
+
+            </div>
+
+
+            <form id="ownerForm">
+
+                <div class="form-grid">
+
+                    <div class="field">
+
+                        <label for="lastName">
+                            Nom *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="lastName"
+                            name="lastName"
+                            autocomplete="family-name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="firstName">
+                            Prénom *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="firstName"
+                            name="firstName"
+                            autocomplete="given-name"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="field">
+
+                        <label for="phone">
+                            Téléphone *
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="+212 6 XX XX XX XX"
+                            autocomplete="tel"
+                            required
+                        >
+
+                        <small>
+                            Numéro utilisé pour les communications
+                            de la résidence.
+                        </small>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="whatsapp">
+                            WhatsApp
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="whatsapp"
+                            name="whatsapp"
+                            placeholder="+212 6 XX XX XX XX"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="email">
+                        Adresse email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="nom@exemple.com"
+                        autocomplete="email"
+                    >
+
+                </div>
+
+
+                <div class="form-section">
+
+                    <h3>
+                        Prochaine réunion
+                    </h3>
+
+                    <p class="section-description">
+                        Pensez-vous participer à la prochaine
+                        réunion des propriétaires ?
+                    </p>
+
+
+                    <div class="radio-group">
+
+                        <label class="choice-card">
+
+                            <input
+                                type="radio"
+                                name="attendance"
+                                value="yes"
+                            >
+
+                            <span>
+                                Oui
+                            </span>
+
+                        </label>
+
+
+                        <label class="choice-card">
+
+                            <input
+                                type="radio"
+                                name="attendance"
+                                value="no"
+                            >
+
+                            <span>
+                                Non
+                            </span>
+
+                        </label>
+
+
+                        <label class="choice-card">
+
+                            <input
+                                type="radio"
+                                name="attendance"
+                                value="maybe"
+                            >
+
+                            <span>
+                                À confirmer
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-section">
+
+                    <h3>
+                        Disponibilités
+                    </h3>
+
+                    <p class="section-description">
+                        Sélectionnez les créneaux qui vous conviennent.
+                    </p>
+
+
+                    <div class="checkbox-grid">
+
+                        <label class="choice-card">
+
+                            <input
+                                type="checkbox"
+                                name="availability"
+                                value="morning"
+                            >
+
+                            <span>
+                                Matin
+                            </span>
+
+                        </label>
+
+
+                        <label class="choice-card">
+
+                            <input
+                                type="checkbox"
+                                name="availability"
+                                value="afternoon"
+                            >
+
+                            <span>
+                                Après-midi
+                            </span>
+
+                        </label>
+
+
+                        <label class="choice-card">
+
+                            <input
+                                type="checkbox"
+                                name="availability"
+                                value="evening"
+                            >
+
+                            <span>
+                                Soir
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="subject">
+                        Sujet que vous souhaitez aborder
+                    </label>
+
+                    <textarea
+                        id="subject"
+                        name="subject"
+                        rows="5"
+                        maxlength="1000"
+                        placeholder="Exemple : entretien, sécurité, ascenseur, espaces communs..."
+                    ></textarea>
+
+                    <div class="character-count">
+                        <span id="characterCount">0</span>/1000
+                    </div>
+
+                </div>
+
+
+                <label class="consent-box">
+
+                    <input
+                        type="checkbox"
+                        id="consent"
+                        name="consent"
+                        required
+                    >
+
+                    <span>
+                        J'accepte que mes coordonnées soient utilisées
+                        uniquement pour les communications et
+                        l'organisation liées à la résidence Mirador Golf.
+                    </span>
+
+                </label>
+
+
+                <p
+                    id="formMessage"
+                    class="form-message"
+                    aria-live="polite"
+                ></p>
+
+
+                <button
+                    type="submit"
+                    class="submit-button"
+                >
+                    Enregistrer mes informations
+                    <span>→</span>
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <footer class="registration-footer">
+
+            <span>
+                🔒 Données confidentielles
+            </span>
+
+            <a href="confidentialite.html">
+                Politique de confidentialité
+            </a>
+
+        </footer>
+
+    </main>
+
+
+    <script src="assets/js/inscription.js"></script>
+
+</body>
+
+</html>
