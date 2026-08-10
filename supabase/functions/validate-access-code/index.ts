@@ -52,6 +52,16 @@ async function hmacSha256Hex(
     .join("");
 }
 
+function createRandomToken(): string {
+  const bytes = new Uint8Array(32);
+
+  crypto.getRandomValues(bytes);
+
+  return Array.from(bytes)
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
+}
+
 function wait(milliseconds: number): Promise<void> {
   return new Promise((resolve) => {
     setTimeout(resolve, milliseconds);
@@ -73,11 +83,13 @@ export default {
         );
       }
 
-      const pepper = Deno.env.get("ACCESS_CODE_PEPPER");
+      const accessCodePepper = Deno.env.get("ACCESS_CODE_PEPPER");
 
-      if (!pepper) {
+      const sessionPepper = Deno.env.get("REGISTRATION_SESSION_PEPPER");
+
+      if (!accessCodePepper || !sessionPepper) {
         console.error(
-          "ACCESS_CODE_PEPPER is not configured.",
+          "Required security secrets are not configured.",
         );
 
         return Response.json(
@@ -113,16 +125,18 @@ export default {
 
       const codeHash = await hmacSha256Hex(
         code,
-        pepper,
+        accessCodePepper,
       );
 
       const { data, error } = await ctx.supabaseAdmin
         .from("access_codes")
         .select(`
+          id,
           active,
           used_at,
           expires_at,
           apartment:apartments!access_codes_apartment_id_fkey (
+            id,
             apartment_number,
             building:buildings!apartments_building_id_fkey (
               code,
@@ -150,13 +164,14 @@ export default {
         );
       }
 
-      const expired = data?.expires_at &&
-        new Date(data.expires_at).getTime() <= Date.now();
+      const expired = data?.expires_at
+        ? new Date(data.expires_at).getTime() <= Date.now()
+        : false;
 
       const unavailable = !data ||
         !data.active ||
         Boolean(data.used_at) ||
-        Boolean(expired) ||
+        expired ||
         !data.apartment;
 
       if (unavailable) {
@@ -189,15 +204,100 @@ export default {
         );
       }
 
-      return Response.json({
-        valid: true,
+      /*
+       * Only keep the latest unconsumed registration
+       * session for this access code.
+       */
+      const { error: cleanupError } = await ctx.supabaseAdmin
+        .from("registration_sessions")
+        .delete()
+        .eq("access_code_id", data.id)
+        .is("consumed_at", null);
 
-        apartment: {
-          number: apartment.apartment_number,
-          buildingCode: building.code,
-          buildingName: building.name,
+      if (cleanupError) {
+        console.error(
+          "Registration session cleanup failed:",
+          cleanupError.message,
+        );
+
+        return Response.json(
+          {
+            valid: false,
+            message: "Service temporairement indisponible.",
+          },
+          {
+            status: 500,
+          },
+        );
+      }
+
+      /*
+       * 32 random bytes = 256-bit temporary token.
+       *
+       * The browser receives this token.
+       * PostgreSQL receives ONLY its HMAC hash.
+       */
+      const sessionToken = createRandomToken();
+
+      const tokenHash = await hmacSha256Hex(
+        sessionToken,
+        sessionPepper,
+      );
+
+      /*
+       * Registration session validity:
+       * 15 minutes.
+       */
+      const expiresAt = new Date(
+        Date.now() + 15 * 60 * 1000,
+      ).toISOString();
+
+      const { error: sessionError } = await ctx.supabaseAdmin
+        .from("registration_sessions")
+        .insert({
+          apartment_id: apartment.id,
+          access_code_id: data.id,
+          token_hash: tokenHash,
+          expires_at: expiresAt,
+        });
+
+      if (sessionError) {
+        console.error(
+          "Registration session creation failed:",
+          sessionError.message,
+        );
+
+        return Response.json(
+          {
+            valid: false,
+            message: "Service temporairement indisponible.",
+          },
+          {
+            status: 500,
+          },
+        );
+      }
+
+      return Response.json(
+        {
+          valid: true,
+
+          sessionToken,
+
+          expiresAt,
+
+          apartment: {
+            number: apartment.apartment_number,
+            buildingCode: building.code,
+            buildingName: building.name,
+          },
         },
-      });
+        {
+          headers: {
+            "Cache-Control": "no-store",
+          },
+        },
+      );
     },
   ),
 };
