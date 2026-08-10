@@ -1,45 +1,92 @@
 const accessForm = document.getElementById("accessForm");
 const accessCodeInput = document.getElementById("accessCode");
 const errorMessage = document.getElementById("errorMessage");
+const submitButton = accessForm.querySelector('button[type="submit"]');
 
 accessCodeInput.addEventListener("input", () => {
+  let value = accessCodeInput.value;
 
-    let value = accessCodeInput.value;
+  value = value.toUpperCase();
+  value = value.replace(/\s+/g, "");
 
-    value = value.toUpperCase();
-
-    value = value.replace(/\s+/g, "");
-
-    accessCodeInput.value = value;
-
-    errorMessage.textContent = "";
+  accessCodeInput.value = value;
+  errorMessage.textContent = "";
 });
 
+accessForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
 
-accessForm.addEventListener("submit", (event) => {
+  const code = accessCodeInput.value.trim();
 
-    event.preventDefault();
+  if (!/^[A-Z0-9-]{8,32}$/.test(code)) {
+    errorMessage.textContent =
+      "Veuillez entrer un code d'accès valide.";
+    return;
+  }
 
-    const code = accessCodeInput.value.trim();
+  errorMessage.textContent = "";
 
-    if (code.length < 4) {
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.textContent = "Vérification...";
+  }
 
-        errorMessage.textContent =
-            "Veuillez entrer un code d'accès valide.";
+  try {
+    const response = await fetch(
+      `${FUNCTIONS_URL}/validate-access-code`,
+      {
+        method: "POST",
+        headers: {
+          apikey: SUPABASE_PUBLISHABLE_KEY,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          code,
+        }),
+      },
+    );
 
-        return;
+    const result = await response.json();
+
+    if (!response.ok || !result.valid) {
+      errorMessage.textContent =
+        result.message ||
+        "Code d'accès invalide ou indisponible.";
+      return;
     }
 
-    /*
-        Pour le moment, nous ne vérifions PAS
-        réellement le code.
+    if (
+      typeof result.sessionToken !== "string" ||
+      result.sessionToken.length !== 64
+    ) {
+      throw new Error("Invalid registration session.");
+    }
 
-        La connexion à Supabase sera réalisée
-        dans une étape suivante.
-    */
+    sessionStorage.setItem(
+      "miradorRegistrationToken",
+      result.sessionToken,
+    );
 
-    console.log("Code saisi :", code);
+    sessionStorage.setItem(
+      "miradorApartment",
+      JSON.stringify(result.apartment),
+    );
+
+    sessionStorage.setItem(
+      "miradorSessionExpiresAt",
+      result.expiresAt,
+    );
+
+    window.location.href = "inscription.html";
+  } catch (error) {
+    console.error("Access validation failed:", error);
 
     errorMessage.textContent =
-        "La vérification sécurisée sera activée prochainement.";
+      "Impossible de vérifier le code pour le moment. Veuillez réessayer.";
+  } finally {
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.textContent = "Continuer";
+    }
+  }
 });
