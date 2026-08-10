@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Mirador Golf | Informations propriétaire</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/form.css">
+</head>
+
+<body>
+
+<main class="registration-page">
+
+<section class="registration-card">
+
+<header class="registration-header">
+
+    <div class="small-logo">MG</div>
+
+    <div>
+        <p class="residence-name">MIRADOR GOLF</p>
+
+        <h1>
+            Informations du propriétaire
+        </h1>
+    </div>
+
+</header>
+
+<div class="intro">
+
+    <h2>Vos coordonnées</h2>
+
+    <p>
+        Merci de renseigner vos informations afin de faciliter
+        les communications et l'organisation des réunions
+        de la résidence Mirador Golf.
+    </p>
+
+</div>
+
+<form id="collectForm">
+
+<div class="form-grid">
+
+    <div class="field">
+
+        <label for="building">
+            Bloc *
+        </label>
+
+        <select id="building" required>
+            <option value="">Sélectionnez</option>
+            <option value="A">Bloc A</option>
+            <option value="B">Bloc B</option>
+            <option value="C">Bloc C</option>
+            <option value="D">Bloc D</option>
+            <option value="E">Bloc E</option>
+            <option value="F">Bloc F</option>
+            <option value="H">Bloc H</option>
+            <option value="I">Bloc I</option>
+            <option value="J">Bloc J</option>
+            <option value="K">Bloc K</option>
+            <option value="HOTEL">Hôtel</option>
+        </select>
+
+    </div>
+
+    <div class="field">
+
+        <label for="apartment">
+            Appartement *
+        </label>
+
+        <input
+            id="apartment"
+            type="text"
+            required
+            maxlength="30"
+            placeholder="Exemple : 12"
+        >
+
+    </div>
+
+</div>
+
+<div class="form-grid">
+
+    <div class="field">
+
+        <label for="lastName">
+            Nom *
+        </label>
+
+        <input
+            id="lastName"
+            type="text"
+            required
+            autocomplete="family-name"
+        >
+
+    </div>
+
+    <div class="field">
+
+        <label for="firstName">
+            Prénom *
+        </label>
+
+        <input
+            id="firstName"
+            type="text"
+            required
+            autocomplete="given-name"
+        >
+
+    </div>
+
+</div>
+
+<div class="form-grid">
+
+    <div class="field">
+
+        <label for="phone">
+            Téléphone *
+        </label>
+
+        <input
+            id="phone"
+            type="tel"
+            required
+            autocomplete="tel"
+            placeholder="+212 6 XX XX XX XX"
+        >
+
+    </div>
+
+    <div class="field">
+
+        <label for="whatsapp">
+            WhatsApp
+        </label>
+
+        <input
+            id="whatsapp"
+            type="tel"
+            placeholder="+212 6 XX XX XX XX"
+        >
+
+    </div>
+
+</div>
+
+<div class="field">
+
+    <label for="email">
+        Adresse email
+    </label>
+
+    <input
+        id="email"
+        type="email"
+        autocomplete="email"
+        placeholder="nom@exemple.com"
+    >
+
+</div>
+
+<div class="form-section">
+
+    <h3>Prochaine réunion</h3>
+
+    <p class="section-description">
+        Pensez-vous participer ?
+    </p>
+
+    <div class="radio-group">
+
+        <label class="choice-card">
+            <input
+                type="radio"
+                name="attendance"
+                value="yes"
+            >
+            <span>Oui</span>
+        </label>
+
+        <label class="choice-card">
+            <input
+                type="radio"
+                name="attendance"
+                value="no"
+            >
+            <span>Non</span>
+        </label>
+
+        <label class="choice-card">
+            <input
+                type="radio"
+                name="attendance"
+                value="maybe"
+            >
+            <span>À confirmer</span>
+        </label>
+
+    </div>
+
+</div>
+
+<div class="form-section">
+
+    <h3>Disponibilités</h3>
+
+    <div class="checkbox-grid">
+
+        <label class="choice-card">
+            <input
+                type="checkbox"
+                name="availability"
+                value="morning"
+            >
+            <span>Matin</span>
+        </label>
+
+        <label class="choice-card">
+            <input
+                type="checkbox"
+                name="availability"
+                value="afternoon"
+            >
+            <span>Après-midi</span>
+        </label>
+
+        <label class="choice-card">
+            <input
+                type="checkbox"
+                name="availability"
+                value="evening"
+            >
+            <span>Soir</span>
+        </label>
+
+    </div>
+
+</div>
+
+<div class="field">
+
+    <label for="subject">
+        Sujet que vous souhaitez aborder
+    </label>
+
+    <textarea
+        id="subject"
+        rows="5"
+        maxlength="1000"
+        placeholder="Entretien, sécurité, espaces communs..."
+    ></textarea>
+
+</div>
+
+<label class="consent-box">
+
+    <input
+        type="checkbox"
+        id="consent"
+        required
+    >
+
+    <span>
+        J'accepte que mes coordonnées soient utilisées
+        uniquement pour les communications et
+        l'organisation liées à la résidence Mirador Golf.
+    </span>
+
+</label>
+
+<p
+    id="formMessage"
+    class="form-message"
+    aria-live="polite"
+></p>
+
+<button
+    id="submitButton"
+    type="submit"
+    class="submit-button"
+>
+    Envoyer mes informations →
+</button>
+
+</form>
+
+</section>
+
+</main>
+
+<script src="assets/js/config.js"></script>
+
+<script>
+const form = document.getElementById("collectForm");
+const message = document.getElementById("formMessage");
+const button = document.getElementById("submitButton");
+
+form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    message.textContent = "";
+
+    const attendance =
+        document.querySelector(
+            'input[name="attendance"]:checked'
+        )?.value ?? null;
+
+    const availability =
+        Array.from(
+            document.querySelectorAll(
+                'input[name="availability"]:checked'
+            )
+        ).map(input => input.value);
+
+    const payload = {
+        building_code:
+            document.getElementById("building").value,
+
+        apartment_number:
+            document.getElementById("apartment").value.trim(),
+
+        first_name:
+            document.getElementById("firstName").value.trim(),
+
+        last_name:
+            document.getElementById("lastName").value.trim(),
+
+        phone:
+            document.getElementById("phone").value.trim(),
+
+        whatsapp:
+            document.getElementById("whatsapp").value.trim() || null,
+
+        email:
+            document.getElementById("email").value.trim() || null,
+
+        attendance,
+
+        availability,
+
+        subject:
+            document.getElementById("subject").value.trim() || null,
+
+        consent:
+            document.getElementById("consent").checked
+    };
+
+    button.disabled = true;
+    button.textContent = "Envoi en cours...";
+
+    try {
+
+        const response = await fetch(
+            `${SUPABASE_URL}/rest/v1/owner_submissions`,
+            {
+                method: "POST",
+
+                headers: {
+                    apikey: SUPABASE_PUBLISHABLE_KEY,
+                    "Content-Type": "application/json",
+                    Prefer: "return=minimal"
+                },
+
+                body: JSON.stringify(payload)
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                `HTTP ${response.status}`
+            );
+        }
+
+        window.location.href =
+            "confirmation.html";
+
+    } catch (error) {
+
+        console.error(error);
+
+        message.textContent =
+            "Impossible d'envoyer les informations. Veuillez réessayer.";
+
+        button.disabled = false;
+        button.textContent =
+            "Envoyer mes informations →";
+    }
+});
+</script>
+
+</body>
+</html>
