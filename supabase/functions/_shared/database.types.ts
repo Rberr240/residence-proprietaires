@@ -301,7 +301,18 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      register_owner_with_session: {
+        Args: {
+          p_consent?: boolean
+          p_email?: string
+          p_first_name: string
+          p_last_name: string
+          p_phone: string
+          p_token_hash: string
+          p_whatsapp?: string
+        }
+        Returns: Json
+      }
     }
     Enums: {
       [_ in never]: never

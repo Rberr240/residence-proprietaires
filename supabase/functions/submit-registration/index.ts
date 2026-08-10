@@ -18,7 +18,10 @@ async function hmacSha256Hex(
   const key = await crypto.subtle.importKey(
     "raw",
     encoder.encode(secret),
-    { name: "HMAC", hash: "SHA-256" },
+    {
+      name: "HMAC",
+      hash: "SHA-256",
+    },
     false,
     ["sign"],
   );
@@ -35,7 +38,9 @@ async function hmacSha256Hex(
 }
 
 function cleanOptional(value: unknown): string | null {
-  if (typeof value !== "string") return null;
+  if (typeof value !== "string") {
+    return null;
+  }
 
   const cleaned = value.trim();
 
@@ -45,17 +50,22 @@ function cleanOptional(value: unknown): string | null {
 export default {
   fetch: withSupabase<Database>(
     { auth: "publishable" },
-
     async (req, ctx) => {
       if (req.method !== "POST") {
         return Response.json(
-          { success: false, message: "Method not allowed" },
-          { status: 405 },
+          {
+            success: false,
+            message: "Method not allowed",
+          },
+          {
+            status: 405,
+          },
         );
       }
 
-      const sessionPepper =
-        Deno.env.get("REGISTRATION_SESSION_PEPPER");
+      const sessionPepper = Deno.env.get(
+        "REGISTRATION_SESSION_PEPPER",
+      );
 
       if (!sessionPepper) {
         console.error(
@@ -67,7 +77,9 @@ export default {
             success: false,
             message: "Service temporairement indisponible.",
           },
-          { status: 500 },
+          {
+            status: 500,
+          },
         );
       }
 
@@ -81,14 +93,15 @@ export default {
             success: false,
             message: "Données invalides.",
           },
-          { status: 400 },
+          {
+            status: 400,
+          },
         );
       }
 
-      const sessionToken =
-        typeof body.sessionToken === "string"
-          ? body.sessionToken.trim().toLowerCase()
-          : "";
+      const sessionToken = typeof body.sessionToken === "string"
+        ? body.sessionToken.trim().toLowerCase()
+        : "";
 
       if (!/^[0-9a-f]{64}$/.test(sessionToken)) {
         return Response.json(
@@ -96,28 +109,24 @@ export default {
             success: false,
             message: "Session invalide ou expirée.",
           },
-          { status: 400 },
+          {
+            status: 400,
+          },
         );
       }
 
-      const firstName =
-        typeof body.firstName === "string"
-          ? body.firstName.trim()
-          : "";
+      const firstName = typeof body.firstName === "string"
+        ? body.firstName.trim()
+        : "";
 
-      const lastName =
-        typeof body.lastName === "string"
-          ? body.lastName.trim()
-          : "";
+      const lastName = typeof body.lastName === "string"
+        ? body.lastName.trim()
+        : "";
 
-      const phone =
-        typeof body.phone === "string"
-          ? body.phone.trim()
-          : "";
+      const phone = typeof body.phone === "string" ? body.phone.trim() : "";
 
       const whatsapp = cleanOptional(body.whatsapp);
       const email = cleanOptional(body.email);
-
       const consent = body.consent === true;
 
       const tokenHash = await hmacSha256Hex(
@@ -132,8 +141,8 @@ export default {
           p_first_name: firstName,
           p_last_name: lastName,
           p_phone: phone,
-          p_whatsapp: whatsapp,
-          p_email: email,
+          p_whatsapp: whatsapp ?? undefined,
+          p_email: email ?? undefined,
           p_consent: consent,
         },
       );
@@ -149,7 +158,9 @@ export default {
             success: false,
             message: "Service temporairement indisponible.",
           },
-          { status: 500 },
+          {
+            status: 500,
+          },
         );
       }
 
@@ -159,10 +170,9 @@ export default {
         return Response.json(
           {
             success: false,
-            message:
-              result?.reason === "consent_required"
-                ? "Le consentement est obligatoire."
-                : "Session invalide, expirée ou déjà utilisée.",
+            message: result?.reason === "consent_required"
+              ? "Le consentement est obligatoire."
+              : "Session invalide, expirée ou déjà utilisée.",
           },
           {
             status: 400,
