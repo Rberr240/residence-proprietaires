@@ -9,400 +9,1256 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Mirador Golf | Informations propriétaire</title>
+    <meta
+        name="description"
+        content="Collecte des informations des propriétaires de la résidence Mirador Golf"
+    >
 
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/form.css">
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>
+        Mirador Golf | Informations propriétaire
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="assets/css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/form.css"
+    >
+
+    <style>
+        .collection-page {
+            min-height: 100vh;
+            padding: 28px 16px 50px;
+            background:
+                linear-gradient(
+                    180deg,
+                    #f4f8f6 0%,
+                    #ffffff 45%,
+                    #f6f7f6 100%
+                );
+        }
+
+        .collection-card {
+            width: 100%;
+            max-width: 760px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 22px;
+            box-shadow:
+                0 12px 40px rgba(19, 64, 51, 0.09);
+            overflow: hidden;
+        }
+
+        .collection-top {
+            padding: 32px 32px 25px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #113f34,
+                    #1b5a49
+                );
+            color: white;
+        }
+
+        .brand-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .collection-logo {
+            flex-shrink: 0;
+            width: 54px;
+            height: 54px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            color: #174b3d;
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+
+        .collection-top .brand-label {
+            margin: 0 0 4px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: 700;
+            opacity: 0.75;
+        }
+
+        .collection-top h1 {
+            color: white;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .collection-intro {
+            margin-top: 24px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.88);
+        }
+
+        .collection-intro p {
+            margin: 0;
+        }
+
+        .collection-body {
+            padding: 30px 32px 35px;
+        }
+
+        .form-section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 32px 0 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e7ece9;
+        }
+
+        .form-section-title:first-child {
+            margin-top: 0;
+        }
+
+        .form-section-title span {
+            width: 30px;
+            height: 30px;
+            border-radius: 9px;
+            background: #edf6f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-section-title h2 {
+            margin: 0;
+            font-size: 17px;
+            color: #173f35;
+        }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .collection-field {
+            margin-bottom: 18px;
+        }
+
+        .collection-field label {
+            display: block;
+            margin-bottom: 7px;
+            color: #243d36;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .collection-field input,
+        .collection-field select {
+            width: 100%;
+            box-sizing: border-box;
+            min-height: 48px;
+            border: 1px solid #d8e1dd;
+            border-radius: 11px;
+            padding: 0 14px;
+            background: #ffffff;
+            color: #172d27;
+            font-size: 15px;
+            outline: none;
+            transition:
+                border-color 0.2s,
+                box-shadow 0.2s;
+        }
+
+        .collection-field input:focus,
+        .collection-field select:focus {
+            border-color: #296653;
+            box-shadow:
+                0 0 0 3px rgba(41, 102, 83, 0.11);
+        }
+
+        .collection-field small {
+            display: block;
+            margin-top: 7px;
+            color: #71817b;
+            line-height: 1.4;
+        }
+
+        .whatsapp-copy {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            font-size: 13px;
+            color: #52645e;
+            cursor: pointer;
+        }
+
+        .whatsapp-copy input {
+            width: auto;
+            min-height: auto;
+        }
+
+        .meeting-question {
+            padding: 20px;
+            background: #f5f8f7;
+            border-radius: 15px;
+        }
+
+        .meeting-question p {
+            margin: 0 0 15px;
+            line-height: 1.5;
+            color: #455b54;
+        }
+
+        .meeting-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .meeting-option {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .meeting-option input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .meeting-option span {
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 1px solid #d8e1dd;
+            border-radius: 11px;
+            background: white;
+            font-weight: 600;
+            color: #40554e;
+            transition: 0.2s;
+        }
+
+        .meeting-option input:checked + span {
+            color: #174b3d;
+            border-color: #286751;
+            background: #eaf5ef;
+            box-shadow:
+                inset 0 0 0 1px #286751;
+        }
+
+        .privacy-notice {
+            display: flex;
+            gap: 13px;
+            margin-top: 28px;
+            padding: 17px;
+            border-radius: 13px;
+            background: #f3f7f5;
+            color: #52645e;
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        .privacy-icon {
+            font-size: 19px;
+        }
+
+        .consent-container {
+            margin-top: 20px;
+        }
+
+        .consent-label {
+            display: flex;
+            gap: 11px;
+            align-items: flex-start;
+            cursor: pointer;
+            color: #485c55;
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        .consent-label input {
+            margin-top: 3px;
+            width: 17px;
+            height: 17px;
+            flex-shrink: 0;
+        }
+
+        #formMessage {
+            min-height: 23px;
+            margin: 18px 0 0;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .form-error {
+            color: #b42318;
+        }
+
+        .form-success {
+            color: #157347;
+        }
+
+        .collection-submit {
+            width: 100%;
+            margin-top: 10px;
+            min-height: 54px;
+            border: 0;
+            border-radius: 12px;
+            background: #174b3d;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            transition:
+                transform 0.15s,
+                opacity 0.15s,
+                background 0.15s;
+        }
+
+        .collection-submit:hover {
+            background: #103d31;
+        }
+
+        .collection-submit:active {
+            transform: translateY(1px);
+        }
+
+        .collection-submit:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        .required-info {
+            margin-top: 15px;
+            text-align: center;
+            color: #87938f;
+            font-size: 12px;
+        }
+
+        .collection-footer {
+            margin: 22px auto 0;
+            text-align: center;
+            color: #78857f;
+            font-size: 12px;
+        }
+
+        .collection-footer a {
+            color: #45655a;
+        }
+
+        @media (max-width: 650px) {
+            .collection-page {
+                padding: 0;
+                background: white;
+            }
+
+            .collection-card {
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .collection-top {
+                padding: 27px 20px 23px;
+            }
+
+            .collection-body {
+                padding: 25px 20px 35px;
+            }
+
+            .collection-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .meeting-options {
+                grid-template-columns: 1fr;
+            }
+
+            .collection-footer {
+                padding: 0 20px 20px;
+            }
+        }
+    </style>
 </head>
+
 
 <body>
 
-<main class="registration-page">
+<main class="collection-page">
 
-<section class="registration-card">
+    <section class="collection-card">
 
-<header class="registration-header">
+        <!-- ========================= -->
+        <!-- HEADER                    -->
+        <!-- ========================= -->
 
-    <div class="small-logo">MG</div>
+        <header class="collection-top">
 
-    <div>
-        <p class="residence-name">MIRADOR GOLF</p>
+            <div class="brand-row">
 
-        <h1>
-            Informations du propriétaire
-        </h1>
-    </div>
+                <div class="collection-logo">
+                    MG
+                </div>
 
-</header>
+                <div>
 
-<div class="intro">
+                    <p class="brand-label">
+                        RÉSIDENCE
+                    </p>
 
-    <h2>Vos coordonnées</h2>
+                    <h1>
+                        Mirador Golf
+                    </h1>
 
-    <p>
-        Merci de renseigner vos informations afin de faciliter
-        les communications et l'organisation des réunions
-        de la résidence Mirador Golf.
-    </p>
+                </div>
 
-</div>
+            </div>
 
-<form id="collectForm">
+            <div class="collection-intro">
 
-<div class="form-grid">
+                <p>
+                    Merci de compléter ce formulaire afin de
+                    mettre à jour les coordonnées des propriétaires
+                    et préparer la prochaine réunion de la résidence.
+                </p>
 
-    <div class="field">
+            </div>
 
-        <label for="building">
-            Bloc *
-        </label>
+        </header>
 
-        <select id="building" required>
-            <option value="">Sélectionnez</option>
-            <option value="A">Bloc A</option>
-            <option value="B">Bloc B</option>
-            <option value="C">Bloc C</option>
-            <option value="D">Bloc D</option>
-            <option value="E">Bloc E</option>
-            <option value="F">Bloc F</option>
-            <option value="H">Bloc H</option>
-            <option value="I">Bloc I</option>
-            <option value="J">Bloc J</option>
-            <option value="K">Bloc K</option>
-            <option value="HOTEL">Hôtel</option>
-        </select>
 
-    </div>
+        <!-- ========================= -->
+        <!-- FORMULAIRE                -->
+        <!-- ========================= -->
 
-    <div class="field">
+        <div class="collection-body">
 
-        <label for="apartment">
-            Appartement *
-        </label>
+            <form id="collectForm">
 
-        <input
-            id="apartment"
-            type="text"
-            required
-            maxlength="30"
-            placeholder="Exemple : 12"
-        >
 
-    </div>
+                <!-- ========================= -->
+                <!-- LOGEMENT                  -->
+                <!-- ========================= -->
 
-</div>
+                <div class="form-section-title">
 
-<div class="form-grid">
+                    <span>
+                        🏠
+                    </span>
 
-    <div class="field">
+                    <h2>
+                        Votre logement
+                    </h2>
 
-        <label for="lastName">
-            Nom *
-        </label>
+                </div>
 
-        <input
-            id="lastName"
-            type="text"
-            required
-            autocomplete="family-name"
-        >
 
-    </div>
+                <div class="collection-grid">
 
-    <div class="field">
+                    <div class="collection-field">
 
-        <label for="firstName">
-            Prénom *
-        </label>
+                        <label for="building">
+                            Bloc *
+                        </label>
 
-        <input
-            id="firstName"
-            type="text"
-            required
-            autocomplete="given-name"
-        >
+                        <select
+                            id="building"
+                            required
+                        >
 
-    </div>
+                            <option value="">
+                                Sélectionnez votre bloc
+                            </option>
 
-</div>
+                            <option value="A">Bloc A</option>
+                            <option value="B">Bloc B</option>
+                            <option value="C">Bloc C</option>
+                            <option value="D">Bloc D</option>
+                            <option value="E">Bloc E</option>
+                            <option value="F">Bloc F</option>
+                            <option value="H">Bloc H</option>
+                            <option value="I">Bloc I</option>
+                            <option value="J">Bloc J</option>
+                            <option value="K">Bloc K</option>
+                            <option value="HOTEL">Hôtel</option>
 
-<div class="form-grid">
+                        </select>
 
-    <div class="field">
+                    </div>
 
-        <label for="phone">
-            Téléphone *
-        </label>
 
-        <input
-            id="phone"
-            type="tel"
-            required
-            autocomplete="tel"
-            placeholder="+212 6 XX XX XX XX"
-        >
+                    <div class="collection-field">
 
-    </div>
-
-    <div class="field">
-
-        <label for="whatsapp">
-            WhatsApp
-        </label>
-
-        <input
-            id="whatsapp"
-            type="tel"
-            placeholder="+212 6 XX XX XX XX"
-        >
+                        <label for="apartment">
+                            Appartement *
+                        </label>
 
-    </div>
+                        <input
+                            id="apartment"
+                            type="text"
+                            maxlength="30"
+                            required
+                            autocomplete="off"
+                            placeholder="Exemple : 12"
+                        >
 
-</div>
+                    </div>
 
-<div class="field">
+                </div>
 
-    <label for="email">
-        Adresse email
-    </label>
-
-    <input
-        id="email"
-        type="email"
-        autocomplete="email"
-        placeholder="nom@exemple.com"
-    >
 
-</div>
-
-<div class="form-section">
+                <!-- ========================= -->
+                <!-- IDENTITE                  -->
+                <!-- ========================= -->
 
-    <h3>Prochaine réunion</h3>
-
-    <p class="section-description">
-        Pensez-vous participer ?
-    </p>
-
-    <div class="radio-group">
+                <div class="form-section-title">
 
-        <label class="choice-card">
-            <input
-                type="radio"
-                name="attendance"
-                value="yes"
-            >
-            <span>Oui</span>
-        </label>
-
-        <label class="choice-card">
-            <input
-                type="radio"
-                name="attendance"
-                value="no"
-            >
-            <span>Non</span>
-        </label>
-
-        <label class="choice-card">
-            <input
-                type="radio"
-                name="attendance"
-                value="maybe"
-            >
-            <span>À confirmer</span>
-        </label>
-
-    </div>
-
-</div>
-
-<div class="form-section">
-
-    <h3>Disponibilités</h3>
-
-    <div class="checkbox-grid">
-
-        <label class="choice-card">
-            <input
-                type="checkbox"
-                name="availability"
-                value="morning"
-            >
-            <span>Matin</span>
-        </label>
-
-        <label class="choice-card">
-            <input
-                type="checkbox"
-                name="availability"
-                value="afternoon"
-            >
-            <span>Après-midi</span>
-        </label>
-
-        <label class="choice-card">
-            <input
-                type="checkbox"
-                name="availability"
-                value="evening"
-            >
-            <span>Soir</span>
-        </label>
-
-    </div>
-
-</div>
-
-<div class="field">
-
-    <label for="subject">
-        Sujet que vous souhaitez aborder
-    </label>
-
-    <textarea
-        id="subject"
-        rows="5"
-        maxlength="1000"
-        placeholder="Entretien, sécurité, espaces communs..."
-    ></textarea>
-
-</div>
-
-<label class="consent-box">
-
-    <input
-        type="checkbox"
-        id="consent"
-        required
-    >
-
-    <span>
-        J'accepte que mes coordonnées soient utilisées
-        uniquement pour les communications et
-        l'organisation liées à la résidence Mirador Golf.
-    </span>
-
-</label>
-
-<p
-    id="formMessage"
-    class="form-message"
-    aria-live="polite"
-></p>
-
-<button
-    id="submitButton"
-    type="submit"
-    class="submit-button"
->
-    Envoyer mes informations →
-</button>
-
-</form>
-
-</section>
+                    <span>
+                        👤
+                    </span>
+
+                    <h2>
+                        Identité du propriétaire
+                    </h2>
+
+                </div>
+
+
+                <div class="collection-grid">
+
+                    <div class="collection-field">
+
+                        <label for="lastName">
+                            Nom *
+                        </label>
+
+                        <input
+                            id="lastName"
+                            type="text"
+                            maxlength="100"
+                            required
+                            autocomplete="family-name"
+                        >
+
+                    </div>
+
+
+                    <div class="collection-field">
+
+                        <label for="firstName">
+                            Prénom *
+                        </label>
+
+                        <input
+                            id="firstName"
+                            type="text"
+                            maxlength="100"
+                            required
+                            autocomplete="given-name"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="collection-field">
+
+                    <label for="cin">
+                        CIN *
+                    </label>
+
+                    <input
+                        id="cin"
+                        type="text"
+                        minlength="4"
+                        maxlength="30"
+                        required
+                        autocomplete="off"
+                        autocapitalize="characters"
+                        placeholder="Exemple : AB123456"
+                    >
+
+                    <small>
+                        Le numéro de CIN est utilisé uniquement
+                        pour identifier le propriétaire.
+                    </small>
+
+                </div>
+
+
+                <!-- ========================= -->
+                <!-- CONTACT                   -->
+                <!-- ========================= -->
+
+                <div class="form-section-title">
+
+                    <span>
+                        📱
+                    </span>
+
+                    <h2>
+                        Coordonnées
+                    </h2>
+
+                </div>
+
+
+                <div class="collection-grid">
+
+                    <div class="collection-field">
+
+                        <label for="phone">
+                            Téléphone *
+                        </label>
+
+                        <input
+                            id="phone"
+                            type="tel"
+                            maxlength="30"
+                            required
+                            autocomplete="tel"
+                            inputmode="tel"
+                            placeholder="+212 6 XX XX XX XX"
+                        >
+
+                    </div>
+
+
+                    <div class="collection-field">
+
+                        <label for="whatsapp">
+                            WhatsApp *
+                        </label>
+
+                        <input
+                            id="whatsapp"
+                            type="tel"
+                            maxlength="30"
+                            required
+                            inputmode="tel"
+                            placeholder="+212 6 XX XX XX XX"
+                        >
+
+                        <label class="whatsapp-copy">
+
+                            <input
+                                id="sameWhatsapp"
+                                type="checkbox"
+                            >
+
+                            Même numéro que le téléphone
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="collection-field">
+
+                    <label for="email">
+                        Adresse email
+                    </label>
+
+                    <input
+                        id="email"
+                        type="email"
+                        maxlength="254"
+                        autocomplete="email"
+                        inputmode="email"
+                        placeholder="nom@exemple.com"
+                    >
+
+                    <small>
+                        Facultatif.
+                    </small>
+
+                </div>
+
+
+                <!-- ========================= -->
+                <!-- REUNION                   -->
+                <!-- ========================= -->
+
+                <div class="form-section-title">
+
+                    <span>
+                        📅
+                    </span>
+
+                    <h2>
+                        Prochaine réunion
+                    </h2>
+
+                </div>
+
+
+                <div class="meeting-question">
+
+                    <p>
+                        Êtes-vous disponible pour participer
+                        à une prochaine réunion des propriétaires ?
+                    </p>
+
+
+                    <div class="meeting-options">
+
+                        <label class="meeting-option">
+
+                            <input
+                                type="radio"
+                                name="attendance"
+                                value="yes"
+                                required
+                            >
+
+                            <span>
+                                ✓ Oui
+                            </span>
+
+                        </label>
+
+
+                        <label class="meeting-option">
+
+                            <input
+                                type="radio"
+                                name="attendance"
+                                value="no"
+                            >
+
+                            <span>
+                                Non
+                            </span>
+
+                        </label>
+
+
+                        <label class="meeting-option">
+
+                            <input
+                                type="radio"
+                                name="attendance"
+                                value="maybe"
+                            >
+
+                            <span>
+                                À confirmer
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ========================= -->
+                <!-- CONFIDENTIALITE            -->
+                <!-- ========================= -->
+
+                <div class="privacy-notice">
+
+                    <div class="privacy-icon">
+                        🔒
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Informations confidentielles
+                        </strong>
+
+                        <br>
+
+                        Vos coordonnées et votre CIN ne sont pas
+                        visibles par les autres propriétaires.
+                        Elles sont destinées uniquement à la gestion
+                        de la résidence Mirador Golf.
+
+                    </div>
+
+                </div>
+
+
+                <div class="consent-container">
+
+                    <label class="consent-label">
+
+                        <input
+                            id="consent"
+                            type="checkbox"
+                            required
+                        >
+
+                        <span>
+                            J'accepte que mes informations soient
+                            utilisées pour les communications,
+                            l'organisation des réunions et la gestion
+                            interne de la résidence Mirador Golf.
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- ========================= -->
+                <!-- MESSAGE                   -->
+                <!-- ========================= -->
+
+                <p
+                    id="formMessage"
+                    aria-live="polite"
+                ></p>
+
+
+                <!-- ========================= -->
+                <!-- SUBMIT                    -->
+                <!-- ========================= -->
+
+                <button
+                    id="submitButton"
+                    class="collection-submit"
+                    type="submit"
+                >
+                    Envoyer mes informations →
+                </button>
+
+
+                <p class="required-info">
+                    * Champs obligatoires
+                </p>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <footer class="collection-footer">
+
+        © 2026 Mirador Golf
+        ·
+        <a href="confidentialite.html">
+            Confidentialité
+        </a>
+
+    </footer>
 
 </main>
 
+
+<!-- ========================= -->
+<!-- CONFIGURATION SUPABASE    -->
+<!-- ========================= -->
+
 <script src="assets/js/config.js"></script>
 
+
+<!-- ========================= -->
+<!-- FORMULAIRE                -->
+<!-- ========================= -->
+
 <script>
-const form = document.getElementById("collectForm");
-const message = document.getElementById("formMessage");
-const button = document.getElementById("submitButton");
 
-form.addEventListener("submit", async (event) => {
-    event.preventDefault();
+const form =
+    document.getElementById("collectForm");
 
-    message.textContent = "";
+const formMessage =
+    document.getElementById("formMessage");
 
-    const attendance =
-        document.querySelector(
-            'input[name="attendance"]:checked'
-        )?.value ?? null;
+const submitButton =
+    document.getElementById("submitButton");
 
-    const availability =
-        Array.from(
-            document.querySelectorAll(
-                'input[name="availability"]:checked'
-            )
-        ).map(input => input.value);
+const phoneInput =
+    document.getElementById("phone");
 
-    const payload = {
-        building_code:
-            document.getElementById("building").value,
+const whatsappInput =
+    document.getElementById("whatsapp");
 
-        apartment_number:
-            document.getElementById("apartment").value.trim(),
+const sameWhatsapp =
+    document.getElementById("sameWhatsapp");
 
-        first_name:
-            document.getElementById("firstName").value.trim(),
+const cinInput =
+    document.getElementById("cin");
 
-        last_name:
-            document.getElementById("lastName").value.trim(),
 
-        phone:
-            document.getElementById("phone").value.trim(),
+/*
+ * ---------------------------------------------------------
+ * CIN : majuscules automatiquement
+ * ---------------------------------------------------------
+ */
 
-        whatsapp:
-            document.getElementById("whatsapp").value.trim() || null,
+cinInput.addEventListener(
+    "input",
+    () => {
 
-        email:
-            document.getElementById("email").value.trim() || null,
+        cinInput.value =
+            cinInput.value
+                .toUpperCase()
+                .replace(/\s+/g, "");
 
-        attendance,
+    }
+);
 
-        availability,
 
-        subject:
-            document.getElementById("subject").value.trim() || null,
+/*
+ * ---------------------------------------------------------
+ * WhatsApp = téléphone
+ * ---------------------------------------------------------
+ */
 
-        consent:
-            document.getElementById("consent").checked
-    };
+sameWhatsapp.addEventListener(
+    "change",
+    () => {
 
-    button.disabled = true;
-    button.textContent = "Envoi en cours...";
+        if (sameWhatsapp.checked) {
 
-    try {
+            whatsappInput.value =
+                phoneInput.value;
 
-        const response = await fetch(
-            `${SUPABASE_URL}/rest/v1/owner_submissions`,
-            {
-                method: "POST",
+            whatsappInput.disabled =
+                true;
 
-                headers: {
-                    apikey: SUPABASE_PUBLISHABLE_KEY,
-                    "Content-Type": "application/json",
-                    Prefer: "return=minimal"
-                },
+        } else {
 
-                body: JSON.stringify(payload)
-            }
-        );
+            whatsappInput.disabled =
+                false;
 
-        if (!response.ok) {
-            throw new Error(
-                `HTTP ${response.status}`
-            );
         }
 
-        window.location.href =
-            "confirmation.html";
-
-    } catch (error) {
-
-        console.error(error);
-
-        message.textContent =
-            "Impossible d'envoyer les informations. Veuillez réessayer.";
-
-        button.disabled = false;
-        button.textContent =
-            "Envoyer mes informations →";
     }
-});
+);
+
+
+phoneInput.addEventListener(
+    "input",
+    () => {
+
+        if (sameWhatsapp.checked) {
+
+            whatsappInput.value =
+                phoneInput.value;
+
+        }
+
+    }
+);
+
+
+/*
+ * ---------------------------------------------------------
+ * FORM SUBMIT
+ * ---------------------------------------------------------
+ */
+
+form.addEventListener(
+    "submit",
+    async (event) => {
+
+        event.preventDefault();
+
+
+        formMessage.textContent = "";
+        formMessage.className = "";
+
+
+        /*
+         * Réunion
+         */
+
+        const attendance =
+            document.querySelector(
+                'input[name="attendance"]:checked'
+            )?.value ?? null;
+
+
+        if (!attendance) {
+
+            formMessage.textContent =
+                "Veuillez indiquer votre disponibilité pour la prochaine réunion.";
+
+            formMessage.className =
+                "form-error";
+
+            return;
+
+        }
+
+
+        /*
+         * Valeur WhatsApp
+         */
+
+        const whatsapp =
+            sameWhatsapp.checked
+                ? phoneInput.value.trim()
+                : whatsappInput.value.trim();
+
+
+        /*
+         * Payload
+         */
+
+        const payload = {
+
+            building_code:
+                document
+                    .getElementById("building")
+                    .value,
+
+            apartment_number:
+                document
+                    .getElementById("apartment")
+                    .value
+                    .trim(),
+
+            first_name:
+                document
+                    .getElementById("firstName")
+                    .value
+                    .trim(),
+
+            last_name:
+                document
+                    .getElementById("lastName")
+                    .value
+                    .trim(),
+
+            phone:
+                phoneInput
+                    .value
+                    .trim(),
+
+            whatsapp:
+                whatsapp,
+
+            email:
+                document
+                    .getElementById("email")
+                    .value
+                    .trim() || null,
+
+            cin:
+                cinInput
+                    .value
+                    .trim()
+                    .toUpperCase(),
+
+            attendance:
+                attendance,
+
+            /*
+             * Ces colonnes existent encore dans la base,
+             * mais ne sont pas utilisées dans cette phase.
+             */
+
+            availability:
+                [],
+
+            subject:
+                null,
+
+            consent:
+                document
+                    .getElementById("consent")
+                    .checked
+
+        };
+
+
+        /*
+         * Vérification
+         */
+
+        if (
+            !payload.building_code ||
+            !payload.apartment_number ||
+            !payload.first_name ||
+            !payload.last_name ||
+            !payload.phone ||
+            !payload.whatsapp ||
+            !payload.cin
+        ) {
+
+            formMessage.textContent =
+                "Veuillez remplir tous les champs obligatoires.";
+
+            formMessage.className =
+                "form-error";
+
+            return;
+
+        }
+
+
+        if (!payload.consent) {
+
+            formMessage.textContent =
+                "Vous devez accepter l'utilisation de vos informations.";
+
+            formMessage.className =
+                "form-error";
+
+            return;
+
+        }
+
+
+        /*
+         * Empêche plusieurs clics
+         */
+
+        submitButton.disabled =
+            true;
+
+        submitButton.textContent =
+            "Envoi en cours...";
+
+
+        try {
+
+            /*
+             * Envoi Supabase
+             */
+
+            const response =
+                await fetch(
+
+                    `${SUPABASE_URL}/rest/v1/owner_submissions`,
+
+                    {
+
+                        method:
+                            "POST",
+
+                        headers: {
+
+                            apikey:
+                                SUPABASE_PUBLISHABLE_KEY,
+
+                            "Content-Type":
+                                "application/json",
+
+                            Prefer:
+                                "return=minimal"
+
+                        },
+
+                        body:
+                            JSON.stringify(
+                                payload
+                            )
+
+                    }
+
+                );
+
+
+            if (!response.ok) {
+
+                const responseText =
+                    await response.text();
+
+                console.error(
+                    "Supabase submission error:",
+                    response.status,
+                    responseText
+                );
+
+                throw new Error(
+                    `HTTP ${response.status}`
+                );
+
+            }
+
+
+            /*
+             * Succès
+             */
+
+            formMessage.textContent =
+                "Merci. Vos informations ont bien été enregistrées.";
+
+            formMessage.className =
+                "form-success";
+
+
+            submitButton.textContent =
+                "Informations envoyées ✓";
+
+
+            /*
+             * Nettoyage formulaire
+             */
+
+            form.reset();
+
+            whatsappInput.disabled =
+                false;
+
+
+            /*
+             * Confirmation
+             */
+
+            setTimeout(
+                () => {
+
+                    window.location.href =
+                        "confirmation.html";
+
+                },
+                1000
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Owner submission failed:",
+                error
+            );
+
+
+            formMessage.textContent =
+                "Impossible d'envoyer vos informations. Vérifiez votre connexion puis réessayez.";
+
+            formMessage.className =
+                "form-error";
+
+
+            submitButton.disabled =
+                false;
+
+            submitButton.textContent =
+                "Envoyer mes informations →";
+
+        }
+
+    }
+);
+
 </script>
 
 </body>
+
 </html>
