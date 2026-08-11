@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="robots"
+        content="noindex, nofollow"
+    >
+
+    <title>
+        Administration | Mirador Golf 1
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="assets/css/app.css"
+    >
+
+    <style>
+
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(
+                    135deg,
+                    #0b2f27,
+                    #174b3d
+                );
+        }
+
+        .admin-login-page {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px 18px;
+        }
+
+        .admin-login-card {
+            width: 100%;
+            max-width: 450px;
+
+            background: white;
+
+            border-radius: 22px;
+
+            padding: 38px;
+
+            box-shadow:
+                0 30px 80px
+                rgba(0, 0, 0, 0.25);
+        }
+
+        .admin-logo {
+            width: 60px;
+            height: 60px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 25px;
+
+            border-radius: 16px;
+
+            background: #174b3d;
+
+            color: white;
+
+            font-weight: 900;
+            font-size: 20px;
+        }
+
+        .admin-label {
+            margin: 0 0 5px;
+
+            color: #30735e;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            letter-spacing: 1.7px;
+        }
+
+        h1 {
+            margin: 0;
+
+            color: #0b2f27;
+
+            font-size: 30px;
+        }
+
+        .description {
+            margin:
+                10px
+                0
+                28px;
+
+            color: #687a73;
+
+            line-height: 1.6;
+        }
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        .field label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #354941;
+
+            font-size: 14px;
+            font-weight: 650;
+        }
+
+        .field input {
+            width: 100%;
+
+            min-height: 50px;
+
+            padding: 0 14px;
+
+            border:
+                1px
+                solid
+                #d8e3de;
+
+            border-radius: 11px;
+
+            outline: none;
+
+            font-size: 15px;
+        }
+
+        .field input:focus {
+            border-color: #30735e;
+
+            box-shadow:
+                0
+                0
+                0
+                3px
+                rgba(48, 115, 94, 0.12);
+        }
+
+        .login-submit {
+            width: 100%;
+
+            min-height: 52px;
+
+            margin-top: 7px;
+
+            border: none;
+            border-radius: 11px;
+
+            background: #174b3d;
+            color: white;
+
+            font-weight: 700;
+            font-size: 15px;
+
+            cursor: pointer;
+        }
+
+        .login-submit:hover {
+            background: #103d32;
+        }
+
+        .login-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        #loginMessage {
+            min-height: 22px;
+
+            margin:
+                17px
+                0
+                0;
+
+            text-align: center;
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .error {
+            color: #b42318;
+        }
+
+        .success {
+            color: #16764b;
+        }
+
+        .security {
+            margin-top: 25px;
+
+            padding-top: 18px;
+
+            border-top:
+                1px solid #e9efec;
+
+            color: #81908a;
+
+            text-align: center;
+
+            font-size: 12px;
+        }
+
+        .back-link {
+            display: block;
+
+            margin-top: 18px;
+
+            text-align: center;
+
+            color: #536a61;
+
+            font-size: 13px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<main class="admin-login-page">
+
+
+    <section class="admin-login-card">
+
+
+        <div class="admin-logo">
+            MG
+        </div>
+
+
+        <p class="admin-label">
+            MIRADOR GOLF 1
+        </p>
+
+
+        <h1>
+            Administration
+        </h1>
+
+
+        <p class="description">
+            Connectez-vous avec votre compte administrateur
+            pour accéder à la gestion de la résidence.
+        </p>
+
+
+        <form id="adminLoginForm">
+
+
+            <div class="field">
+
+                <label for="email">
+                    Adresse email
+                </label>
+
+                <input
+                    id="email"
+                    type="email"
+                    autocomplete="email"
+                    required
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="password">
+                    Mot de passe
+                </label>
+
+                <input
+                    id="password"
+                    type="password"
+                    autocomplete="current-password"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                id="loginButton"
+                class="login-submit"
+                type="submit"
+            >
+                Se connecter
+            </button>
+
+
+            <p
+                id="loginMessage"
+                aria-live="polite"
+            ></p>
+
+
+        </form>
+
+
+        <div class="security">
+            🔒 Accès réservé aux administrateurs autorisés
+        </div>
+
+
+        <a
+            class="back-link"
+            href="index.html"
+        >
+            ← Retour à Mirador Golf 1
+        </a>
+
+
+    </section>
+
+
+</main>
+
+
+<script src="assets/js/config.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="assets/js/supabase-client.js"></script>
+
+
+<script>
+
+const form =
+    document.getElementById(
+        "adminLoginForm"
+    );
+
+const loginButton =
+    document.getElementById(
+        "loginButton"
+    );
+
+const loginMessage =
+    document.getElementById(
+        "loginMessage"
+    );
+
+
+async function redirectIfAlreadyAdmin() {
+
+    const {
+        data: {
+            session
+        }
+    } =
+        await supabaseClient.auth.getSession();
+
+
+    if (!session) {
+        return;
+    }
+
+
+    const {
+        data: admin
+    } =
+        await supabaseClient
+            .from("admin_users")
+            .select(
+                "id, role, is_active"
+            )
+            .eq(
+                "auth_user_id",
+                session.user.id
+            )
+            .maybeSingle();
+
+
+    if (
+        admin &&
+        admin.is_active
+    ) {
+
+        window.location.href =
+            "admin.html";
+
+    }
+
+}
+
+
+redirectIfAlreadyAdmin();
+
+
+
+form.addEventListener(
+    "submit",
+    async (event) => {
+
+        event.preventDefault();
+
+
+        loginMessage.textContent =
+            "";
+
+        loginMessage.className =
+            "";
+
+
+        loginButton.disabled =
+            true;
+
+        loginButton.textContent =
+            "Connexion...";
+
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim()
+                .toLowerCase();
+
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        try {
+
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient
+                    .auth
+                    .signInWithPassword({
+                        email,
+                        password
+                    });
+
+
+            if (error) {
+
+                throw error;
+
+            }
+
+
+            if (!data.user) {
+
+                throw new Error(
+                    "Utilisateur introuvable."
+                );
+
+            }
+
+
+            const {
+                data: admin,
+                error: adminError
+            } =
+                await supabaseClient
+                    .from("admin_users")
+                    .select(
+                        `
+                        id,
+                        display_name,
+                        role,
+                        is_active
+                        `
+                    )
+                    .eq(
+                        "auth_user_id",
+                        data.user.id
+                    )
+                    .maybeSingle();
+
+
+            if (
+                adminError ||
+                !admin ||
+                !admin.is_active
+            ) {
+
+                await supabaseClient
+                    .auth
+                    .signOut();
+
+
+                throw new Error(
+                    "Ce compte n'est pas autorisé à accéder à l'administration."
+                );
+
+            }
+
+
+            loginMessage.textContent =
+                "Connexion réussie.";
+
+            loginMessage.className =
+                "success";
+
+
+            window.location.href =
+                "admin.html";
+
+
+        }
+
+        catch (error) {
+
+
+            console.error(
+                "Admin login error:",
+                error
+            );
+
+
+            loginMessage.textContent =
+                error.message ===
+                "Invalid login credentials"
+
+                    ? "Email ou mot de passe incorrect."
+
+                    : error.message;
+
+
+            loginMessage.className =
+                "error";
+
+
+            loginButton.disabled =
+                false;
+
+            loginButton.textContent =
+                "Se connecter";
+
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

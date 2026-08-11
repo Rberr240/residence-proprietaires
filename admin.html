@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="robots"
+        content="noindex, nofollow"
+    >
+
+    <title>
+        Tableau de bord | Mirador Golf 1
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="assets/css/app.css"
+    >
+
+
+    <style>
+
+        body {
+            background: #f4f7f5;
+        }
+
+
+        .admin-header {
+            min-height: 72px;
+
+            background: #0b2f27;
+
+            color: white;
+        }
+
+
+        .admin-header-content {
+            min-height: 72px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+
+        .admin-brand {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .admin-brand-logo {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background: white;
+            color: #174b3d;
+
+            font-weight: 900;
+        }
+
+
+        .admin-brand strong {
+            display: block;
+        }
+
+
+        .admin-brand span {
+            display: block;
+
+            margin-top: 1px;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.6
+                );
+
+            font-size: 11px;
+        }
+
+
+        .logout-button {
+            padding:
+                9px
+                14px;
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.2
+                );
+
+            border-radius: 9px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.07
+                );
+
+            color: white;
+
+            cursor: pointer;
+        }
+
+
+        .admin-main {
+            padding:
+                38px
+                0
+                70px;
+        }
+
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+
+        .welcome span {
+            color: #30735e;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            letter-spacing: 1.4px;
+        }
+
+
+        .welcome h1 {
+            margin:
+                5px
+                0;
+
+            color: #0b2f27;
+
+            font-size: 32px;
+        }
+
+
+        .welcome p {
+            margin: 0;
+
+            color: #667a72;
+        }
+
+
+
+        /* STATS */
+
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    4,
+                    1fr
+                );
+
+            gap: 15px;
+
+            margin-bottom: 28px;
+        }
+
+
+        .stat-card {
+            padding: 20px;
+
+            background: white;
+
+            border:
+                1px solid #e1e8e5;
+
+            border-radius: 15px;
+        }
+
+
+        .stat-card span {
+            color: #74867f;
+
+            font-size: 12px;
+        }
+
+
+        .stat-card strong {
+            display: block;
+
+            margin-top: 5px;
+
+            color: #113c31;
+
+            font-size: 30px;
+        }
+
+
+
+        /* PANEL */
+
+
+        .owners-panel {
+            background: white;
+
+            border:
+                1px solid #e1e8e5;
+
+            border-radius: 17px;
+
+            overflow: hidden;
+        }
+
+
+        .panel-top {
+            padding: 20px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 15px;
+
+            border-bottom:
+                1px solid #e8eeeb;
+        }
+
+
+        .panel-top h2 {
+            margin: 0;
+
+            color: #123d32;
+
+            font-size: 20px;
+        }
+
+
+        .filters {
+            display: flex;
+            gap: 10px;
+        }
+
+
+        .filters input,
+        .filters select {
+            min-height: 40px;
+
+            padding:
+                0
+                12px;
+
+            border:
+                1px solid #dbe4e0;
+
+            border-radius: 9px;
+
+            outline: none;
+        }
+
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            white-space: nowrap;
+        }
+
+
+        th {
+            padding:
+                13px
+                15px;
+
+            background: #f7f9f8;
+
+            color: #6b7e76;
+
+            text-align: left;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.6px;
+        }
+
+
+        td {
+            padding:
+                15px;
+
+            border-top:
+                1px solid #edf1ef;
+
+            color: #344941;
+
+            font-size: 13px;
+        }
+
+
+        tr:hover td {
+            background: #fafcfb;
+        }
+
+
+        .owner-name {
+            color: #153f34;
+
+            font-weight: 700;
+        }
+
+
+        .status {
+            display: inline-flex;
+
+            padding:
+                5px
+                9px;
+
+            border-radius: 100px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+        .status-pending {
+            background: #fff4d8;
+            color: #8b6500;
+        }
+
+
+        .status-verified {
+            background: #e6f6ee;
+            color: #176c45;
+        }
+
+
+        .meeting-yes {
+            color: #19734a;
+            font-weight: 700;
+        }
+
+
+        .meeting-no {
+            color: #ad3434;
+            font-weight: 700;
+        }
+
+
+        .meeting-maybe {
+            color: #916c00;
+            font-weight: 700;
+        }
+
+
+        .details-button {
+            border: none;
+
+            background: #edf5f1;
+
+            color: #174b3d;
+
+            padding:
+                7px
+                10px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-weight: 650;
+        }
+
+
+        #loadingState,
+        #emptyState {
+            padding: 40px;
+
+            text-align: center;
+
+            color: #71847c;
+        }
+
+
+        /* MODAL */
+
+
+        .modal {
+            position: fixed;
+
+            inset: 0;
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                rgba(
+                    4,
+                    22,
+                    17,
+                    0.6
+                );
+
+            z-index: 500;
+        }
+
+
+        .modal.visible {
+            display: flex;
+        }
+
+
+        .modal-card {
+            width: 100%;
+            max-width: 520px;
+
+            max-height: 90vh;
+            overflow-y: auto;
+
+            padding: 28px;
+
+            border-radius: 18px;
+
+            background: white;
+
+            box-shadow:
+                0
+                30px
+                90px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.3
+                );
+        }
+
+
+        .modal-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            gap: 20px;
+        }
+
+
+        .modal-head h2 {
+            margin: 0;
+
+            color: #123d32;
+        }
+
+
+        .modal-close {
+            border: none;
+
+            background: #eef3f1;
+
+            width: 34px;
+            height: 34px;
+
+            border-radius: 50%;
+
+            cursor: pointer;
+        }
+
+
+        .details-grid {
+            margin-top: 22px;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1fr;
+
+            gap: 15px;
+        }
+
+
+        .detail {
+            padding: 12px;
+
+            border-radius: 10px;
+
+            background: #f5f8f7;
+        }
+
+
+        .detail span {
+            display: block;
+
+            color: #788a83;
+
+            font-size: 11px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .detail strong {
+            color: #24463b;
+
+            font-size: 14px;
+
+            word-break: break-word;
+        }
+
+
+        .coming-soon {
+            margin-top: 22px;
+
+            padding: 15px;
+
+            border:
+                1px dashed #cfdcd6;
+
+            border-radius: 11px;
+
+            background: #fafcfb;
+
+            color: #60756c;
+
+            font-size: 13px;
+        }
+
+
+
+        @media (
+            max-width: 900px
+        ) {
+
+            .stats-grid {
+                grid-template-columns:
+                    repeat(
+                        2,
+                        1fr
+                    );
+            }
+
+            .panel-top {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .filters {
+                width: 100%;
+            }
+
+            .filters input,
+            .filters select {
+                flex: 1;
+            }
+
+        }
+
+
+        @media (
+            max-width: 560px
+        ) {
+
+            .stats-grid {
+                grid-template-columns:
+                    1fr
+                    1fr;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+
+            .details-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header class="admin-header">
+
+    <div class="container admin-header-content">
+
+        <div class="admin-brand">
+
+            <div class="admin-brand-logo">
+                MG
+            </div>
+
+            <div>
+
+                <strong>
+                    Mirador Golf 1
+                </strong>
+
+                <span>
+                    Administration
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <button
+            id="logoutButton"
+            class="logout-button"
+        >
+            Déconnexion
+        </button>
+
+    </div>
+
+</header>
+
+
+<main class="admin-main">
+
+    <div class="container">
+
+
+        <section class="welcome">
+
+            <span>
+                TABLEAU DE BORD
+            </span>
+
+            <h1 id="welcomeTitle">
+                Administration
+            </h1>
+
+            <p>
+                Gestion des propriétaires de la résidence Mirador Golf 1.
+            </p>
+
+        </section>
+
+
+
+        <!-- STATISTIQUES -->
+
+
+        <section class="stats-grid">
+
+
+            <article class="stat-card">
+
+                <span>
+                    Propriétaires inscrits
+                </span>
+
+                <strong id="totalOwners">
+                    —
+                </strong>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <span>
+                    Disponibles réunion
+                </span>
+
+                <strong id="yesOwners">
+                    —
+                </strong>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <span>
+                    À confirmer
+                </span>
+
+                <strong id="maybeOwners">
+                    —
+                </strong>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <span>
+                    Non disponibles
+                </span>
+
+                <strong id="noOwners">
+                    —
+                </strong>
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- TABLEAU -->
+
+
+        <section class="owners-panel">
+
+
+            <div class="panel-top">
+
+
+                <h2>
+                    Propriétaires
+                </h2>
+
+
+                <div class="filters">
+
+
+                    <input
+                        id="searchInput"
+                        type="search"
+                        placeholder="Rechercher..."
+                    >
+
+
+                    <select id="buildingFilter">
+
+                        <option value="">
+                            Tous les blocs
+                        </option>
+
+                        <option value="A">Bloc A</option>
+                        <option value="B">Bloc B</option>
+                        <option value="C">Bloc C</option>
+                        <option value="D">Bloc D</option>
+                        <option value="E">Bloc E</option>
+                        <option value="F">Bloc F</option>
+                        <option value="H">Bloc H</option>
+                        <option value="I">Bloc I</option>
+                        <option value="J">Bloc J</option>
+                        <option value="K">Bloc K</option>
+                        <option value="L">Bloc L</option>
+                        <option value="HOTEL">Hôtel</option>
+
+                    </select>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div id="loadingState">
+                Chargement des propriétaires...
+            </div>
+
+
+            <div
+                id="emptyState"
+                hidden
+            >
+                Aucun propriétaire trouvé.
+            </div>
+
+
+            <div
+                id="tableWrapper"
+                class="table-wrapper"
+                hidden
+            >
+
+
+                <table>
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Bloc</th>
+
+                            <th>Appartement</th>
+
+                            <th>Propriétaire</th>
+
+                            <th>Téléphone</th>
+
+                            <th>WhatsApp</th>
+
+                            <th>Réunion</th>
+
+                            <th>Statut</th>
+
+                            <th></th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="ownersTableBody">
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+        </section>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- MODAL -->
+
+
+<div
+    id="ownerModal"
+    class="modal"
+>
+
+    <div class="modal-card">
+
+
+        <div class="modal-head">
+
+
+            <div>
+
+                <span
+                    style="
+                        color:#30735e;
+                        font-size:11px;
+                        font-weight:800;
+                    "
+                >
+                    PROPRIÉTAIRE
+                </span>
+
+                <h2 id="modalName">
+                    —
+                </h2>
+
+            </div>
+
+
+            <button
+                id="modalClose"
+                class="modal-close"
+            >
+                ×
+            </button>
+
+
+        </div>
+
+
+        <div class="details-grid">
+
+
+            <div class="detail">
+
+                <span>
+                    Bloc
+                </span>
+
+                <strong id="modalBuilding">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span>
+                    Appartement
+                </span>
+
+                <strong id="modalApartment">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span>
+                    Téléphone
+                </span>
+
+                <strong id="modalPhone">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span>
+                    WhatsApp
+                </span>
+
+                <strong id="modalWhatsapp">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span>
+                    Email
+                </span>
+
+                <strong id="modalEmail">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span>
+                    Réunion
+                </span>
+
+                <strong id="modalAttendance">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span>
+                    Statut
+                </span>
+
+                <strong id="modalStatus">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span>
+                    Date d'inscription
+                </span>
+
+                <strong id="modalCreated">
+                    —
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="coming-soon">
+
+            🔐 La validation du propriétaire et la génération
+            de son code d'accès seront ajoutées à l'étape suivante.
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<script src="assets/js/config.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="assets/js/supabase-client.js"></script>
+
+
+<script>
+
+let owners =
+    [];
+
+
+const tableBody =
+    document.getElementById(
+        "ownersTableBody"
+    );
+
+const tableWrapper =
+    document.getElementById(
+        "tableWrapper"
+    );
+
+const loadingState =
+    document.getElementById(
+        "loadingState"
+    );
+
+const emptyState =
+    document.getElementById(
+        "emptyState"
+    );
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+const buildingFilter =
+    document.getElementById(
+        "buildingFilter"
+    );
+
+
+
+function escapeHtml(value) {
+
+    return String(
+        value ?? ""
+    )
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+
+}
+
+
+
+function attendanceLabel(
+    value
+) {
+
+    switch (
+        value
+    ) {
+
+        case "yes":
+            return "Oui";
+
+        case "no":
+            return "Non";
+
+        case "maybe":
+            return "À confirmer";
+
+        default:
+            return "—";
+
+    }
+
+}
+
+
+
+function attendanceClass(
+    value
+) {
+
+    switch (
+        value
+    ) {
+
+        case "yes":
+            return "meeting-yes";
+
+        case "no":
+            return "meeting-no";
+
+        case "maybe":
+            return "meeting-maybe";
+
+        default:
+            return "";
+
+    }
+
+}
+
+
+
+function statusLabel(
+    value
+) {
+
+    if (
+        value === "verified"
+    ) {
+        return "Validé";
+    }
+
+    return "En attente";
+
+}
+
+
+
+function updateStatistics() {
+
+    document
+        .getElementById(
+            "totalOwners"
+        )
+        .textContent =
+            owners.length;
+
+
+    document
+        .getElementById(
+            "yesOwners"
+        )
+        .textContent =
+            owners.filter(
+                owner =>
+                    owner.attendance ===
+                    "yes"
+            ).length;
+
+
+    document
+        .getElementById(
+            "maybeOwners"
+        )
+        .textContent =
+            owners.filter(
+                owner =>
+                    owner.attendance ===
+                    "maybe"
+            ).length;
+
+
+    document
+        .getElementById(
+            "noOwners"
+        )
+        .textContent =
+            owners.filter(
+                owner =>
+                    owner.attendance ===
+                    "no"
+            ).length;
+
+}
+
+
+
+function renderOwners() {
+
+    const search =
+        searchInput
+            .value
+            .trim()
+            .toLowerCase();
+
+
+    const building =
+        buildingFilter
+            .value;
+
+
+    const filtered =
+        owners.filter(
+            owner => {
+
+
+                if (
+                    building &&
+                    owner.building_code !==
+                    building
+                ) {
+
+                    return false;
+
+                }
+
+
+                if (
+                    !search
+                ) {
+
+                    return true;
+
+                }
+
+
+                const haystack =
+                    [
+                        owner.first_name,
+                        owner.last_name,
+                        owner.phone,
+                        owner.whatsapp,
+                        owner.email,
+                        owner.apartment_number,
+                        owner.building_code
+                    ]
+                        .join(" ")
+                        .toLowerCase();
+
+
+                return haystack
+                    .includes(
+                        search
+                    );
+
+
+            }
+        );
+
+
+    tableBody.innerHTML =
+        "";
+
+
+    if (
+        filtered.length === 0
+    ) {
+
+        tableWrapper.hidden =
+            true;
+
+        emptyState.hidden =
+            false;
+
+        return;
+
+    }
+
+
+    emptyState.hidden =
+        true;
+
+    tableWrapper.hidden =
+        false;
+
+
+    for (
+        const owner
+        of filtered
+    ) {
+
+
+        const row =
+            document.createElement(
+                "tr"
+            );
+
+
+        row.innerHTML = `
+
+            <td>
+                ${escapeHtml(owner.building_code)}
+            </td>
+
+            <td>
+                ${escapeHtml(owner.apartment_number)}
+            </td>
+
+            <td class="owner-name">
+                ${escapeHtml(owner.last_name)}
+                ${escapeHtml(owner.first_name)}
+            </td>
+
+            <td>
+                ${escapeHtml(owner.phone)}
+            </td>
+
+            <td>
+                ${escapeHtml(owner.whatsapp || "—")}
+            </td>
+
+            <td class="${attendanceClass(owner.attendance)}">
+                ${attendanceLabel(owner.attendance)}
+            </td>
+
+            <td>
+                <span class="
+                    status
+                    ${
+                        owner.status === "verified"
+
+                            ? "status-verified"
+
+                            : "status-pending"
+                    }
+                ">
+                    ${statusLabel(owner.status)}
+                </span>
+            </td>
+
+            <td>
+                <button
+                    class="details-button"
+                    data-id="${escapeHtml(owner.id)}"
+                >
+                    Voir
+                </button>
+            </td>
+
+        `;
+
+
+        tableBody
+            .appendChild(
+                row
+            );
+
+    }
+
+
+    document
+        .querySelectorAll(
+            ".details-button"
+        )
+        .forEach(
+            button => {
+
+                button
+                    .addEventListener(
+                        "click",
+                        () =>
+                            showOwner(
+                                button.dataset.id
+                            )
+                    );
+
+            }
+        );
+
+}
+
+
+
+function showOwner(
+    id
+) {
+
+    const owner =
+        owners.find(
+            item =>
+                item.id === id
+        );
+
+
+    if (
+        !owner
+    ) {
+        return;
+    }
+
+
+    document
+        .getElementById(
+            "modalName"
+        )
+        .textContent =
+            `${owner.first_name} ${owner.last_name}`;
+
+
+    document
+        .getElementById(
+            "modalBuilding"
+        )
+        .textContent =
+            owner.building_code;
+
+
+    document
+        .getElementById(
+            "modalApartment"
+        )
+        .textContent =
+            owner.apartment_number;
+
+
+    document
+        .getElementById(
+            "modalPhone"
+        )
+        .textContent =
+            owner.phone;
+
+
+    document
+        .getElementById(
+            "modalWhatsapp"
+        )
+        .textContent =
+            owner.whatsapp || "—";
+
+
+    document
+        .getElementById(
+            "modalEmail"
+        )
+        .textContent =
+            owner.email || "—";
+
+
+    document
+        .getElementById(
+            "modalAttendance"
+        )
+        .textContent =
+            attendanceLabel(
+                owner.attendance
+            );
+
+
+    document
+        .getElementById(
+            "modalStatus"
+        )
+        .textContent =
+            statusLabel(
+                owner.status
+            );
+
+
+    document
+        .getElementById(
+            "modalCreated"
+        )
+        .textContent =
+            new Date(
+                owner.created_at
+            )
+                .toLocaleString(
+                    "fr-FR"
+                );
+
+
+    document
+        .getElementById(
+            "ownerModal"
+        )
+        .classList
+        .add(
+            "visible"
+        );
+
+}
+
+
+
+async function requireAdmin() {
+
+
+    const {
+        data: {
+            session
+        }
+    } =
+        await supabaseClient
+            .auth
+            .getSession();
+
+
+    if (
+        !session
+    ) {
+
+        window.location.href =
+            "admin-login.html";
+
+        return null;
+
+    }
+
+
+    const {
+        data: admin,
+        error
+    } =
+        await supabaseClient
+            .from(
+                "admin_users"
+            )
+            .select(
+                `
+                id,
+                display_name,
+                role,
+                is_active
+                `
+            )
+            .eq(
+                "auth_user_id",
+                session.user.id
+            )
+            .maybeSingle();
+
+
+    if (
+        error ||
+        !admin ||
+        !admin.is_active
+    ) {
+
+
+        await supabaseClient
+            .auth
+            .signOut();
+
+
+        window.location.href =
+            "admin-login.html";
+
+
+        return null;
+
+    }
+
+
+    document
+        .getElementById(
+            "welcomeTitle"
+        )
+        .textContent =
+            `Bonjour ${admin.display_name || "Administrateur"}`;
+
+
+    return admin;
+
+}
+
+
+
+async function loadOwners() {
+
+
+    const admin =
+        await requireAdmin();
+
+
+    if (
+        !admin
+    ) {
+        return;
+    }
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from(
+                "owner_submissions"
+            )
+            .select(
+                `
+                id,
+                building_code,
+                apartment_number,
+                first_name,
+                last_name,
+                phone,
+                whatsapp,
+                email,
+                attendance,
+                status,
+                created_at
+                `
+            )
+            .order(
+                "created_at",
+                {
+                    ascending:
+                        false
+                }
+            );
+
+
+    loadingState.hidden =
+        true;
+
+
+    if (
+        error
+    ) {
+
+
+        console.error(
+            error
+        );
+
+
+        emptyState.hidden =
+            false;
+
+        emptyState.textContent =
+            "Impossible de charger les propriétaires.";
+
+
+        return;
+
+    }
+
+
+    owners =
+        data || [];
+
+
+    updateStatistics();
+
+    renderOwners();
+
+}
+
+
+
+searchInput
+    .addEventListener(
+        "input",
+        renderOwners
+    );
+
+
+buildingFilter
+    .addEventListener(
+        "change",
+        renderOwners
+    );
+
+
+
+document
+    .getElementById(
+        "modalClose"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .getElementById(
+                    "ownerModal"
+                )
+                .classList
+                .remove(
+                    "visible"
+                );
+
+        }
+    );
+
+
+
+document
+    .getElementById(
+        "ownerModal"
+    )
+    .addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target.id ===
+                "ownerModal"
+            ) {
+
+                event
+                    .currentTarget
+                    .classList
+                    .remove(
+                        "visible"
+                    );
+
+            }
+
+        }
+    );
+
+
+
+document
+    .getElementById(
+        "logoutButton"
+    )
+    .addEventListener(
+        "click",
+        async () => {
+
+            await supabaseClient
+                .auth
+                .signOut();
+
+
+            window.location.href =
+                "admin-login.html";
+
+        }
+    );
+
+
+
+loadOwners();
+
+</script>
+
+
+</body>
+
+</html>
