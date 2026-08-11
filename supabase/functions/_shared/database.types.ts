@@ -198,6 +198,185 @@ export type Database = {
         }
         Relationships: []
       }
+      owner_account_units: {
+        Row: {
+          apartment_number: string
+          building_code: string
+          created_at: string
+          id: string
+          is_primary: boolean
+          owner_account_id: string
+          submission_id: string
+        }
+        Insert: {
+          apartment_number: string
+          building_code: string
+          created_at?: string
+          id?: string
+          is_primary?: boolean
+          owner_account_id: string
+          submission_id: string
+        }
+        Update: {
+          apartment_number?: string
+          building_code?: string
+          created_at?: string
+          id?: string
+          is_primary?: boolean
+          owner_account_id?: string
+          submission_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "owner_account_units_owner_account_id_fkey"
+            columns: ["owner_account_id"]
+            isOneToOne: false
+            referencedRelation: "owner_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "owner_account_units_submission_id_fkey"
+            columns: ["submission_id"]
+            isOneToOne: true
+            referencedRelation: "owner_submissions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      owner_accounts: {
+        Row: {
+          activated_at: string | null
+          auth_user_id: string | null
+          created_at: string
+          email: string | null
+          first_name: string
+          id: string
+          last_name: string
+          phone: string
+          phone_e164: string | null
+          status: string
+          whatsapp: string | null
+        }
+        Insert: {
+          activated_at?: string | null
+          auth_user_id?: string | null
+          created_at?: string
+          email?: string | null
+          first_name: string
+          id?: string
+          last_name: string
+          phone: string
+          phone_e164?: string | null
+          status?: string
+          whatsapp?: string | null
+        }
+        Update: {
+          activated_at?: string | null
+          auth_user_id?: string | null
+          created_at?: string
+          email?: string | null
+          first_name?: string
+          id?: string
+          last_name?: string
+          phone?: string
+          phone_e164?: string | null
+          status?: string
+          whatsapp?: string | null
+        }
+        Relationships: []
+      }
+      owner_activation_codes: {
+        Row: {
+          code_hash: string
+          created_at: string
+          expires_at: string
+          id: string
+          owner_account_id: string
+          revoked_at: string | null
+          used_at: string | null
+        }
+        Insert: {
+          code_hash: string
+          created_at?: string
+          expires_at: string
+          id?: string
+          owner_account_id: string
+          revoked_at?: string | null
+          used_at?: string | null
+        }
+        Update: {
+          code_hash?: string
+          created_at?: string
+          expires_at?: string
+          id?: string
+          owner_account_id?: string
+          revoked_at?: string | null
+          used_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "owner_activation_codes_owner_account_id_fkey"
+            columns: ["owner_account_id"]
+            isOneToOne: false
+            referencedRelation: "owner_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      owner_submissions: {
+        Row: {
+          apartment_number: string
+          attendance: string | null
+          availability: string[]
+          building_code: string
+          cin: string | null
+          consent: boolean
+          created_at: string
+          email: string | null
+          first_name: string
+          id: string
+          last_name: string
+          phone: string
+          status: string
+          subject: string | null
+          whatsapp: string | null
+        }
+        Insert: {
+          apartment_number: string
+          attendance?: string | null
+          availability?: string[]
+          building_code: string
+          cin?: string | null
+          consent: boolean
+          created_at?: string
+          email?: string | null
+          first_name: string
+          id?: string
+          last_name: string
+          phone: string
+          status?: string
+          subject?: string | null
+          whatsapp?: string | null
+        }
+        Update: {
+          apartment_number?: string
+          attendance?: string | null
+          availability?: string[]
+          building_code?: string
+          cin?: string | null
+          consent?: boolean
+          created_at?: string
+          email?: string | null
+          first_name?: string
+          id?: string
+          last_name?: string
+          phone?: string
+          status?: string
+          subject?: string | null
+          whatsapp?: string | null
+        }
+        Relationships: []
+      }
       owners: {
         Row: {
           apartment_id: string
