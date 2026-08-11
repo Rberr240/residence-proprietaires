@@ -52,6 +52,33 @@ export type Database = {
           },
         ]
       }
+      admin_users: {
+        Row: {
+          auth_user_id: string
+          created_at: string
+          display_name: string | null
+          id: string
+          is_active: boolean
+          role: string
+        }
+        Insert: {
+          auth_user_id: string
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          is_active?: boolean
+          role?: string
+        }
+        Update: {
+          auth_user_id?: string
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          is_active?: boolean
+          role?: string
+        }
+        Relationships: []
+      }
       apartments: {
         Row: {
           apartment_number: string
@@ -480,6 +507,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      is_admin: { Args: never; Returns: boolean }
       register_owner_with_session:
         | {
             Args: {
