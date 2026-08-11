@@ -1,120 +1,600 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <meta
         name="description"
-        content="Espace réservé aux propriétaires de la résidence Mirador Golf"
+        content="Espace numérique des propriétaires de la résidence Mirador Golf 1"
     >
 
-    <title>Mirador Golf | Espace Propriétaires</title>
+    <title>Mirador Golf 1 | Espace propriétaires</title>
 
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/app.css">
 </head>
+
 
 <body>
 
-    <main class="page">
+<!-- ========================================= -->
+<!-- NAVIGATION                                -->
+<!-- ========================================= -->
 
-        <section class="access-card">
+<header class="navbar">
 
-            <div class="logo-container">
-                <div class="building-icon">MG</div>
+    <div class="container nav-content">
+
+        <a href="index.html" class="brand">
+
+            <div class="brand-logo">
+                MG
             </div>
 
-            <p class="residence-label">
-                RÉSIDENCE
-            </p>
+            <div class="brand-text">
+                <strong>MIRADOR GOLF 1</strong>
+                <span>Espace propriétaires</span>
+            </div>
+
+        </a>
+
+
+        <nav class="desktop-nav">
+
+            <a href="#actualites">
+                Actualités
+            </a>
+
+            <a href="#services">
+                Services
+            </a>
+
+            <a href="#residence">
+                Résidence
+            </a>
+
+            <a
+                href="connexion.html"
+                class="login-button"
+            >
+                Se connecter
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<main>
+
+
+    <!-- ========================================= -->
+    <!-- HERO                                      -->
+    <!-- ========================================= -->
+
+    <section class="hero">
+
+        <div class="hero-overlay"></div>
+
+        <div class="container hero-content">
+
+            <div class="hero-badge">
+                Résidence Mirador Golf 1
+            </div>
 
             <h1>
-                Mirador Golf
+                Votre résidence,
+                <span>simplement connectée.</span>
             </h1>
 
-            <div class="separator"></div>
-
-            <h2>
-                Espace Propriétaires
-            </h2>
-
-            <p class="description">
-                Cet espace est exclusivement réservé aux
-                propriétaires de la résidence.
+            <p class="hero-description">
+                Un espace privé destiné aux propriétaires pour
+                retrouver les informations de la résidence,
+                participer aux réunions et votes, consulter
+                les annonces et suivre la gestion du syndic.
             </p>
 
-            <form id="accessForm">
 
-                <div class="form-group">
+            <div class="hero-actions">
 
-                    <label for="accessCode">
-                        Code d'accès propriétaire
-                    </label>
-
-                    <input
-                        type="text"
-                        id="accessCode"
-                        name="accessCode"
-                        placeholder="Exemple : A12-X7Q9"
-                        autocomplete="off"
-                        maxlength="20"
-                        required
-                    >
-
-                </div>
-
-                <p
-                    id="errorMessage"
-                    class="error-message"
-                    aria-live="polite"
-                ></p>
-
-                <button type="submit" class="primary-button">
-                    Continuer
+                <a
+                    href="connexion.html"
+                    class="primary-button"
+                >
+                    Accéder à mon espace
                     <span>→</span>
-                </button>
+                </a>
 
-            </form>
+                <a
+                    href="#actualites"
+                    class="secondary-button"
+                >
+                    Voir les informations
+                </a>
 
-            <div class="security-info">
+            </div>
 
-                <span class="security-icon">🔒</span>
+
+            <div class="hero-info">
 
                 <div>
-                    <strong>Espace privé</strong>
+                    <strong>Privé</strong>
+                    <span>Réservé aux propriétaires</span>
+                </div>
 
-                    <p>
-                        Vos informations sont utilisées uniquement
-                        pour la gestion et les réunions de la résidence.
-                    </p>
+                <div>
+                    <strong>Sécurisé</strong>
+                    <span>Accès personnel</span>
+                </div>
+
+                <div>
+                    <strong>Centralisé</strong>
+                    <span>Une seule plateforme</span>
                 </div>
 
             </div>
 
-            <p class="help-text">
-                Vous n'avez pas reçu votre code ?
-                <br>
-                Contactez l'administrateur de la résidence.
-            </p>
+        </div>
 
-        </section>
+    </section>
 
-        <footer>
-            <p>
-                © 2026 Mirador Golf
-            </p>
+
+
+    <!-- ========================================= -->
+    <!-- SERVICES                                  -->
+    <!-- ========================================= -->
+
+    <section
+        class="section"
+        id="services"
+    >
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    ESPACE PROPRIÉTAIRE
+                </span>
+
+                <h2>
+                    Tout ce qui concerne votre résidence
+                    au même endroit
+                </h2>
+
+                <p>
+                    Mirador Golf 1 met progressivement à disposition
+                    un espace numérique réservé aux propriétaires.
+                </p>
+
+            </div>
+
+
+            <div class="services-grid">
+
+
+                <article class="service-card">
+
+                    <div class="service-icon">
+                        📢
+                    </div>
+
+                    <h3>
+                        Annonces
+                    </h3>
+
+                    <p>
+                        Retrouvez les informations importantes
+                        et communications concernant la résidence.
+                    </p>
+
+                </article>
+
+
+
+                <article class="service-card">
+
+                    <div class="service-icon">
+                        📅
+                    </div>
+
+                    <h3>
+                        Réunions
+                    </h3>
+
+                    <p>
+                        Consultez les prochaines réunions
+                        et confirmez votre participation.
+                    </p>
+
+                </article>
+
+
+
+                <article class="service-card">
+
+                    <div class="service-icon">
+                        🗳️
+                    </div>
+
+                    <h3>
+                        Votes
+                    </h3>
+
+                    <p>
+                        Participez aux consultations et votes
+                        organisés pour les propriétaires.
+                    </p>
+
+                </article>
+
+
+
+                <article class="service-card">
+
+                    <div class="service-icon">
+                        💳
+                    </div>
+
+                    <h3>
+                        Syndic
+                    </h3>
+
+                    <p>
+                        Consultez les informations liées
+                        aux cotisations et à la gestion.
+                    </p>
+
+                </article>
+
+
+
+                <article class="service-card">
+
+                    <div class="service-icon">
+                        📄
+                    </div>
+
+                    <h3>
+                        Documents
+                    </h3>
+
+                    <p>
+                        Retrouvez progressivement les documents
+                        utiles de la résidence.
+                    </p>
+
+                </article>
+
+
+
+                <article class="service-card">
+
+                    <div class="service-icon">
+                        👤
+                    </div>
+
+                    <h3>
+                        Mon espace
+                    </h3>
+
+                    <p>
+                        Consultez vos informations personnelles
+                        et les données liées à votre logement.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================= -->
+    <!-- ACTUALITES                                -->
+    <!-- ========================================= -->
+
+    <section
+        class="section section-light"
+        id="actualites"
+    >
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    INFORMATIONS
+                </span>
+
+                <h2>
+                    Actualités de la résidence
+                </h2>
+
+            </div>
+
+
+            <div class="news-grid">
+
+
+                <article class="news-main">
+
+                    <div class="news-date">
+                        Août 2026
+                    </div>
+
+                    <h3>
+                        Mise à jour des coordonnées
+                        des propriétaires
+                    </h3>
+
+                    <p>
+                        Une campagne de mise à jour des coordonnées
+                        des propriétaires de Mirador Golf 1
+                        est actuellement en cours.
+                    </p>
+
+                    <a href="collecte.html">
+                        Accéder au formulaire →
+                    </a>
+
+                </article>
+
+
+
+                <article class="news-card">
+
+                    <div class="news-icon">
+                        📅
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Prochaine étape
+                        </span>
+
+                        <h3>
+                            Réunion des propriétaires
+                        </h3>
+
+                        <p>
+                            La date sera communiquée
+                            prochainement.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+
+                <article class="news-card">
+
+                    <div class="news-icon">
+                        🔐
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Espace privé
+                        </span>
+
+                        <h3>
+                            Comptes propriétaires
+                        </h3>
+
+                        <p>
+                            Les codes d'accès personnels seront
+                            envoyés aux propriétaires validés.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================= -->
+    <!-- RESIDENCE                                 -->
+    <!-- ========================================= -->
+
+    <section
+        class="section residence-section"
+        id="residence"
+    >
+
+        <div class="container residence-grid">
+
+
+            <div>
+
+                <span class="section-label">
+                    MIRADOR GOLF 1
+                </span>
+
+                <h2>
+                    Une plateforme créée pour
+                    faciliter la vie de la résidence
+                </h2>
+
+                <p>
+                    Cette plateforme a pour objectif de faciliter
+                    les communications entre les propriétaires,
+                    centraliser les informations importantes
+                    et améliorer l'organisation de la résidence.
+                </p>
+
+
+                <ul class="residence-list">
+
+                    <li>
+                        <span>✓</span>
+                        Communications centralisées
+                    </li>
+
+                    <li>
+                        <span>✓</span>
+                        Comptes propriétaires individuels
+                    </li>
+
+                    <li>
+                        <span>✓</span>
+                        Votes sécurisés
+                    </li>
+
+                    <li>
+                        <span>✓</span>
+                        Suivi des réunions
+                    </li>
+
+                    <li>
+                        <span>✓</span>
+                        Informations du syndic
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="residence-visual">
+
+                <div class="visual-logo">
+                    MG
+                </div>
+
+                <strong>
+                    MIRADOR GOLF 1
+                </strong>
+
+                <span>
+                    Résidence des propriétaires
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================= -->
+    <!-- CTA                                       -->
+    <!-- ========================================= -->
+
+    <section class="cta-section">
+
+        <div class="container cta-content">
+
+            <div>
+
+                <span>
+                    ESPACE PRIVÉ
+                </span>
+
+                <h2>
+                    Vous êtes propriétaire ?
+                </h2>
+
+                <p>
+                    Connectez-vous avec votre accès personnel
+                    pour retrouver votre espace Mirador Golf 1.
+                </p>
+
+            </div>
+
+
+            <a
+                href="connexion.html"
+                class="cta-button"
+            >
+                Se connecter →
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- ========================================= -->
+<!-- FOOTER                                    -->
+<!-- ========================================= -->
+
+<footer class="footer">
+
+    <div class="container footer-content">
+
+
+        <div class="footer-brand">
+
+            <div class="brand-logo">
+                MG
+            </div>
+
+            <div>
+
+                <strong>
+                    Mirador Golf 1
+                </strong>
+
+                <p>
+                    Espace numérique des propriétaires
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="collecte.html">
+                Formulaire propriétaires
+            </a>
 
             <a href="confidentialite.html">
                 Confidentialité
             </a>
-        </footer>
 
-    </main>
+        </div>
 
-    
-<script src="assets/js/config.js"></script>
-<script src="assets/js/access.js"></script>
+
+        <p class="copyright">
+            © 2026 Mirador Golf 1
+        </p>
+
+
+    </div>
+
+</footer>
+
+
 </body>
+
 </html>
