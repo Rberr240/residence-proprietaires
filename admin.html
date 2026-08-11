@@ -366,6 +366,12 @@
         }
 
 
+        .status-rejected {
+            background: #fde8e8;
+            color: #a12626;
+        }
+
+
         .meeting-yes {
             color: #19734a;
             font-weight: 700;
@@ -561,7 +567,210 @@
         }
 
 
+/* ========================================= */
+/* OWNER VALIDATION                          */
+/* ========================================= */
 
+.validation-area {
+    margin-top: 24px;
+    padding: 20px;
+
+    border: 1px solid #dce7e2;
+    border-radius: 14px;
+
+    background: #f8faf9;
+}
+
+
+.validation-area h3 {
+    margin: 0 0 7px;
+
+    color: #123d32;
+
+    font-size: 17px;
+}
+
+
+.validation-area p {
+    color: #687a73;
+
+    line-height: 1.5;
+}
+
+
+.validate-owner-button {
+    width: 100%;
+
+    min-height: 49px;
+
+    margin-top: 8px;
+
+    border: 0;
+    border-radius: 10px;
+
+    background: #174b3d;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.validate-owner-button:hover {
+    background: #103d32;
+}
+
+
+.validate-owner-button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+
+.activation-result {
+    margin-top: 4px;
+}
+
+
+.activation-success {
+    margin-bottom: 18px;
+
+    color: #167347;
+
+    font-size: 15px;
+    font-weight: 800;
+}
+
+
+.activation-label {
+    margin: 0 0 7px !important;
+
+    color: #536a61 !important;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+}
+
+
+.activation-code-row {
+    display: flex;
+    gap: 8px;
+}
+
+
+.activation-code-row code {
+    flex: 1;
+
+    min-height: 50px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 15px;
+
+    border: 1px solid #bfd7cc;
+    border-radius: 10px;
+
+    background: white;
+
+    color: #0b392e;
+
+    font-family:
+        Consolas,
+        Monaco,
+        monospace;
+
+    font-size: 16px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+    word-break: break-all;
+}
+
+
+.code-action-button {
+    padding: 0 15px;
+
+    border: 1px solid #cad9d3;
+    border-radius: 10px;
+
+    background: white;
+
+    color: #174b3d;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.activation-expiry {
+    margin: 9px 0 15px !important;
+
+    font-size: 12px !important;
+}
+
+
+.whatsapp-button {
+    width: 100%;
+
+    min-height: 48px;
+
+    border: 0;
+    border-radius: 10px;
+
+    background: #1f8f5f;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.whatsapp-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+.activation-warning {
+    margin: 13px 0 0 !important;
+
+    color: #84918c !important;
+
+    font-size: 11px !important;
+}
+
+
+.validation-message {
+    min-height: 20px;
+
+    margin: 13px 0 0 !important;
+
+    text-align: center;
+
+    font-size: 12px !important;
+    font-weight: 700;
+}
+
+
+.validation-message.error {
+    color: #b42318 !important;
+}
+
+
+.validation-message.success {
+    color: #167347 !important;
+}
         @media (
             max-width: 900px
         ) {
@@ -1016,12 +1225,95 @@
         </div>
 
 
-        <div class="coming-soon">
+<div
+    id="validationArea"
+    class="validation-area"
+>
 
-            🔐 La validation du propriétaire et la génération
-            de son code d'accès seront ajoutées à l'étape suivante.
+    <div id="validationPending">
+
+        <h3>
+            Validation du propriétaire
+        </h3>
+
+        <p id="validationDescription">
+            Vérifiez les informations avant de créer
+            l'accès propriétaire.
+        </p>
+
+        <button
+            id="validateOwnerButton"
+            class="validate-owner-button"
+            type="button"
+        >
+            ✓ Valider le propriétaire
+        </button>
+
+    </div>
+
+
+    <div
+        id="activationResult"
+        class="activation-result"
+        hidden
+    >
+
+        <div class="activation-success">
+            ✓ Propriétaire validé
+        </div>
+
+        <p class="activation-label">
+            Code d'activation
+        </p>
+
+        <div class="activation-code-row">
+
+            <code id="activationCode">
+                —
+            </code>
+
+            <button
+                id="copyCodeButton"
+                type="button"
+                class="code-action-button"
+            >
+                Copier
+            </button>
 
         </div>
+
+
+        <p
+            id="activationExpiry"
+            class="activation-expiry"
+        ></p>
+
+
+        <button
+            id="whatsappCodeButton"
+            type="button"
+            class="whatsapp-button"
+        >
+            💬 Envoyer sur WhatsApp
+        </button>
+
+
+        <p class="activation-warning">
+            Ce code est affiché uniquement au moment
+            de sa génération. S'il est perdu,
+            générez-en un nouveau.
+        </p>
+
+    </div>
+
+
+    <p
+        id="validationMessage"
+        class="validation-message"
+        aria-live="polite"
+    ></p>
+
+</div>
 
 
     </div>
@@ -1041,6 +1333,12 @@
 
 let owners =
     [];
+
+let selectedOwner =
+    null;
+
+let currentActivationCode =
+    null;
 
 
 const tableBody =
@@ -1161,13 +1459,38 @@ function statusLabel(
     value
 ) {
 
-    if (
-        value === "verified"
-    ) {
-        return "Validé";
+    switch (value) {
+
+        case "verified":
+            return "Validé";
+
+        case "rejected":
+            return "Rejeté";
+
+        default:
+            return "En attente";
+
     }
 
-    return "En attente";
+}
+
+
+function statusClass(
+    value
+) {
+
+    switch (value) {
+
+        case "verified":
+            return "status-verified";
+
+        case "rejected":
+            return "status-rejected";
+
+        default:
+            return "status-pending";
+
+    }
 
 }
 
@@ -1353,13 +1676,7 @@ function renderOwners() {
             <td>
                 <span class="
                     status
-                    ${
-                        owner.status === "verified"
-
-                            ? "status-verified"
-
-                            : "status-pending"
-                    }
+                    ${statusClass(owner.status)}
                 ">
                     ${statusLabel(owner.status)}
                 </span>
@@ -1423,6 +1740,100 @@ function showOwner(
         !owner
     ) {
         return;
+    }
+
+
+    selectedOwner =
+        owner;
+
+    currentActivationCode =
+        null;
+
+
+    document
+        .getElementById(
+            "activationResult"
+        )
+        .hidden =
+            true;
+
+
+    document
+        .getElementById(
+            "activationCode"
+        )
+        .textContent =
+            "—";
+
+
+    document
+        .getElementById(
+            "activationExpiry"
+        )
+        .textContent =
+            "";
+
+
+    const validationMessage =
+        document.getElementById(
+            "validationMessage"
+        );
+
+    validationMessage.textContent =
+        "";
+
+    validationMessage.className =
+        "validation-message";
+
+
+    const validateButton =
+        document.getElementById(
+            "validateOwnerButton"
+        );
+
+    validateButton.disabled =
+        false;
+
+
+    const validationDescription =
+        document.getElementById(
+            "validationDescription"
+        );
+
+
+    if (
+        owner.status === "verified"
+    ) {
+
+        validateButton.textContent =
+            "↻ Générer un nouveau code";
+
+        validationDescription.textContent =
+            "Ce propriétaire est déjà validé. Vous pouvez générer un nouveau code d'activation si nécessaire.";
+
+    }
+    else if (
+        owner.status === "rejected"
+    ) {
+
+        validateButton.textContent =
+            "Propriétaire rejeté";
+
+        validateButton.disabled =
+            true;
+
+        validationDescription.textContent =
+            "Cette inscription est marquée comme rejetée et ne peut pas recevoir de code d'activation.";
+
+    }
+    else {
+
+        validateButton.textContent =
+            "✓ Valider le propriétaire";
+
+        validationDescription.textContent =
+            "Vérifiez les informations avant de créer l'accès propriétaire.";
+
     }
 
 
@@ -1766,6 +2177,488 @@ document
 
             window.location.href =
                 "admin-login.html";
+
+        }
+    );
+
+
+
+/* =========================================================
+ * OWNER ACTIVATION
+ * ========================================================= */
+
+function normalizeWhatsappNumber(
+    value
+) {
+
+    let digits =
+        String(
+            value || ""
+        )
+            .replace(
+                /\D/g,
+                ""
+            );
+
+
+    if (
+        digits.startsWith(
+            "00"
+        )
+    ) {
+
+        digits =
+            digits.slice(2);
+
+    }
+
+
+    // Numéro marocain local : 06... / 07...
+    if (
+        digits.startsWith(
+            "0"
+        )
+    ) {
+
+        digits =
+            "212" +
+            digits.slice(1);
+
+    }
+
+
+    return digits;
+
+}
+
+
+function buildWhatsappMessage(
+    owner,
+    activationCode
+) {
+
+    return [
+        `Bonjour ${owner.first_name},`,
+        "",
+        "Votre accès à l'espace propriétaire Mirador Golf 1 est maintenant disponible.",
+        "",
+        `Votre code d'activation : ${activationCode}`,
+        "",
+        "Accès :",
+        "https://rberr240.github.io/residence-proprietaires/",
+        "",
+        "Conservez ce code jusqu'à l'activation de votre compte.",
+        "",
+        "Mirador Golf 1"
+    ]
+        .join(
+            "\n"
+        );
+
+}
+
+
+async function extractFunctionError(
+    error
+) {
+
+    try {
+
+        if (
+            error?.context &&
+            typeof error.context.json ===
+                "function"
+        ) {
+
+            const payload =
+                await error.context.json();
+
+            return (
+                payload?.message ||
+                error.message ||
+                "Erreur lors de la validation."
+            );
+
+        }
+
+    }
+    catch (
+        parseError
+    ) {
+
+        console.warn(
+            "Impossible de lire la réponse d'erreur de la fonction :",
+            parseError
+        );
+
+    }
+
+
+    return (
+        error?.message ||
+        "Erreur lors de la validation."
+    );
+
+}
+
+
+async function validateSelectedOwner() {
+
+    if (
+        !selectedOwner
+    ) {
+        return;
+    }
+
+
+    if (
+        selectedOwner.status ===
+        "rejected"
+    ) {
+        return;
+    }
+
+
+    const button =
+        document.getElementById(
+            "validateOwnerButton"
+        );
+
+    const message =
+        document.getElementById(
+            "validationMessage"
+        );
+
+
+    message.textContent =
+        "";
+
+    message.className =
+        "validation-message";
+
+
+    const alreadyVerified =
+        selectedOwner.status ===
+            "verified";
+
+
+    const confirmed =
+        window.confirm(
+            alreadyVerified
+                ? `Générer un nouveau code d'activation pour ${selectedOwner.first_name} ${selectedOwner.last_name} ? L'ancien code non utilisé sera révoqué.`
+                : `Confirmer la validation de ${selectedOwner.first_name} ${selectedOwner.last_name}, Bloc ${selectedOwner.building_code}, Appartement ${selectedOwner.apartment_number} ?`
+        );
+
+
+    if (
+        !confirmed
+    ) {
+        return;
+    }
+
+
+    button.disabled =
+        true;
+
+    button.textContent =
+        alreadyVerified
+            ? "Génération..."
+            : "Validation...";
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .functions
+                .invoke(
+                    "admin-generate-owner-code",
+                    {
+                        body: {
+                            submissionId:
+                                selectedOwner.id
+                        }
+                    }
+                );
+
+
+        if (
+            error
+        ) {
+
+            const errorMessage =
+                await extractFunctionError(
+                    error
+                );
+
+            throw new Error(
+                errorMessage
+            );
+
+        }
+
+
+        if (
+            !data ||
+            !data.success ||
+            !data.activationCode
+        ) {
+
+            throw new Error(
+                data?.message ||
+                "Le serveur n'a pas retourné de code d'activation."
+            );
+
+        }
+
+
+        currentActivationCode =
+            data.activationCode;
+
+
+        document
+            .getElementById(
+                "activationCode"
+            )
+            .textContent =
+                currentActivationCode;
+
+
+        const expiry =
+            new Date(
+                data.expiresAt
+            );
+
+
+        document
+            .getElementById(
+                "activationExpiry"
+            )
+            .textContent =
+                Number.isNaN(
+                    expiry.getTime()
+                )
+                    ? ""
+                    : `Valable jusqu'au ${expiry.toLocaleDateString("fr-FR")} à ${expiry.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" })}`;
+
+
+        document
+            .getElementById(
+                "activationResult"
+            )
+            .hidden =
+                false;
+
+
+        selectedOwner.status =
+            "verified";
+
+
+        document
+            .getElementById(
+                "modalStatus"
+            )
+            .textContent =
+                "Validé";
+
+
+        renderOwners();
+
+
+        button.disabled =
+            false;
+
+        button.textContent =
+            "↻ Générer un nouveau code";
+
+
+        document
+            .getElementById(
+                "validationDescription"
+            )
+            .textContent =
+                "Le propriétaire est validé. Un nouveau code peut être généré si celui-ci est perdu.";
+
+
+        message.textContent =
+            "Propriétaire validé avec succès.";
+
+        message.className =
+            "validation-message success";
+
+    }
+    catch (
+        error
+    ) {
+
+        console.error(
+            "Owner validation error:",
+            error
+        );
+
+
+        message.textContent =
+            error?.message ||
+            "Impossible de valider le propriétaire.";
+
+        message.className =
+            "validation-message error";
+
+
+        button.disabled =
+            false;
+
+        button.textContent =
+            selectedOwner.status ===
+                "verified"
+                ? "↻ Générer un nouveau code"
+                : "✓ Valider le propriétaire";
+
+    }
+
+}
+
+
+document
+    .getElementById(
+        "validateOwnerButton"
+    )
+    .addEventListener(
+        "click",
+        validateSelectedOwner
+    );
+
+
+/* =========================================================
+ * COPY ACTIVATION CODE
+ * ========================================================= */
+
+document
+    .getElementById(
+        "copyCodeButton"
+    )
+    .addEventListener(
+        "click",
+        async () => {
+
+            if (
+                !currentActivationCode
+            ) {
+                return;
+            }
+
+
+            const button =
+                document.getElementById(
+                    "copyCodeButton"
+                );
+
+
+            try {
+
+                await navigator
+                    .clipboard
+                    .writeText(
+                        currentActivationCode
+                    );
+
+
+                const original =
+                    button.textContent;
+
+                button.textContent =
+                    "Copié ✓";
+
+
+                setTimeout(
+                    () => {
+                        button.textContent =
+                            original;
+                    },
+                    1500
+                );
+
+            }
+            catch (
+                error
+            ) {
+
+                console.error(
+                    "Clipboard error:",
+                    error
+                );
+
+
+                window.prompt(
+                    "Copiez le code :",
+                    currentActivationCode
+                );
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+ * WHATSAPP
+ * ========================================================= */
+
+document
+    .getElementById(
+        "whatsappCodeButton"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            if (
+                !selectedOwner ||
+                !currentActivationCode
+            ) {
+                return;
+            }
+
+
+            const phone =
+                normalizeWhatsappNumber(
+                    selectedOwner.whatsapp ||
+                    selectedOwner.phone
+                );
+
+
+            if (
+                !phone
+            ) {
+
+                alert(
+                    "Aucun numéro WhatsApp disponible."
+                );
+
+                return;
+
+            }
+
+
+            const text =
+                buildWhatsappMessage(
+                    selectedOwner,
+                    currentActivationCode
+                );
+
+
+            const url =
+                `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+
+
+            window.open(
+                url,
+                "_blank",
+                "noopener,noreferrer"
+            );
 
         }
     );
