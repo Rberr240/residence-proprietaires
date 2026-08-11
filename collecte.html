@@ -2,6 +2,7 @@
 <html lang="fr">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -11,13 +12,16 @@
 
     <meta
         name="description"
-        content="Collecte des informations des propriétaires de la résidence Mirador Golf"
+        content="Collecte des informations des propriétaires de la résidence Mirador Golf 1"
     >
 
-    <meta name="robots" content="noindex, nofollow">
+    <meta
+        name="robots"
+        content="noindex, nofollow"
+    >
 
     <title>
-        Mirador Golf | Informations propriétaire
+        Mirador Golf 1 | Informations propriétaire
     </title>
 
     <link
@@ -30,10 +34,27 @@
         href="assets/css/form.css"
     >
 
+
     <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+        }
+
+
         .collection-page {
             min-height: 100vh;
-            padding: 28px 16px 50px;
+
+            padding:
+                28px
+                16px
+                50px;
+
             background:
                 linear-gradient(
                     180deg,
@@ -43,468 +64,1093 @@
                 );
         }
 
+
         .collection-card {
+
             width: 100%;
+
             max-width: 760px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 22px;
+
+            margin:
+                0
+                auto;
+
+            background:
+                #ffffff;
+
+            border-radius:
+                22px;
+
             box-shadow:
-                0 12px 40px rgba(19, 64, 51, 0.09);
-            overflow: hidden;
+                0
+                12px
+                40px
+                rgba(
+                    19,
+                    64,
+                    51,
+                    0.09
+                );
+
+            overflow:
+                hidden;
         }
 
+
+        /* ========================= */
+        /* HEADER                    */
+        /* ========================= */
+
+
         .collection-top {
-            padding: 32px 32px 25px;
+
+            padding:
+                32px
+                32px
+                25px;
+
             background:
                 linear-gradient(
                     135deg,
                     #113f34,
                     #1b5a49
                 );
-            color: white;
+
+            color:
+                white;
         }
+
 
         .brand-row {
-            display: flex;
-            align-items: center;
-            gap: 16px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                16px;
         }
+
 
         .collection-logo {
-            flex-shrink: 0;
-            width: 54px;
-            height: 54px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #ffffff;
-            color: #174b3d;
-            font-weight: 800;
-            font-size: 20px;
-            letter-spacing: 1px;
+
+            flex-shrink:
+                0;
+
+            width:
+                54px;
+
+            height:
+                54px;
+
+            border-radius:
+                15px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            background:
+                #ffffff;
+
+            color:
+                #174b3d;
+
+            font-weight:
+                800;
+
+            font-size:
+                20px;
+
+            letter-spacing:
+                1px;
         }
 
-        .collection-top .brand-label {
-            margin: 0 0 4px;
-            font-size: 12px;
-            letter-spacing: 2px;
-            font-weight: 700;
-            opacity: 0.75;
+
+        .brand-label {
+
+            margin:
+                0
+                0
+                4px;
+
+            font-size:
+                12px;
+
+            letter-spacing:
+                2px;
+
+            font-weight:
+                700;
+
+            opacity:
+                0.75;
         }
+
 
         .collection-top h1 {
-            color: white;
-            margin: 0;
-            font-size: 24px;
+
+            color:
+                white;
+
+            margin:
+                0;
+
+            font-size:
+                24px;
         }
 
+
         .collection-intro {
-            margin-top: 24px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.88);
+
+            margin-top:
+                24px;
+
+            line-height:
+                1.6;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.88
+                );
         }
+
 
         .collection-intro p {
             margin: 0;
         }
 
+
+
+        /* ========================= */
+        /* FORMULAIRE                */
+        /* ========================= */
+
+
         .collection-body {
-            padding: 30px 32px 35px;
+
+            padding:
+                30px
+                32px
+                35px;
         }
 
+
         .form-section-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 32px 0 18px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #e7ece9;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            margin:
+                32px
+                0
+                18px;
+
+            padding-bottom:
+                10px;
+
+            border-bottom:
+                1px
+                solid
+                #e7ece9;
         }
+
 
         .form-section-title:first-child {
             margin-top: 0;
         }
 
+
         .form-section-title span {
-            width: 30px;
-            height: 30px;
-            border-radius: 9px;
-            background: #edf6f1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+
+            width:
+                30px;
+
+            height:
+                30px;
+
+            border-radius:
+                9px;
+
+            background:
+                #edf6f1;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
         }
+
 
         .form-section-title h2 {
-            margin: 0;
-            font-size: 17px;
-            color: #173f35;
+
+            margin:
+                0;
+
+            font-size:
+                17px;
+
+            color:
+                #173f35;
         }
+
 
         .collection-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 18px;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr
+                1fr;
+
+            gap:
+                18px;
         }
+
 
         .collection-field {
-            margin-bottom: 18px;
+
+            margin-bottom:
+                18px;
         }
 
+
         .collection-field label {
-            display: block;
-            margin-bottom: 7px;
-            color: #243d36;
-            font-weight: 600;
-            font-size: 14px;
+
+            display:
+                block;
+
+            margin-bottom:
+                7px;
+
+            color:
+                #243d36;
+
+            font-weight:
+                600;
+
+            font-size:
+                14px;
         }
+
 
         .collection-field input,
         .collection-field select {
-            width: 100%;
-            box-sizing: border-box;
-            min-height: 48px;
-            border: 1px solid #d8e1dd;
-            border-radius: 11px;
-            padding: 0 14px;
-            background: #ffffff;
-            color: #172d27;
-            font-size: 15px;
-            outline: none;
+
+            width:
+                100%;
+
+            min-height:
+                48px;
+
+            border:
+                1px
+                solid
+                #d8e1dd;
+
+            border-radius:
+                11px;
+
+            padding:
+                0
+                14px;
+
+            background:
+                #ffffff;
+
+            color:
+                #172d27;
+
+            font-size:
+                15px;
+
+            outline:
+                none;
+
             transition:
-                border-color 0.2s,
-                box-shadow 0.2s;
+                border-color
+                0.2s,
+                box-shadow
+                0.2s;
         }
+
 
         .collection-field input:focus,
         .collection-field select:focus {
-            border-color: #296653;
+
+            border-color:
+                #296653;
+
             box-shadow:
-                0 0 0 3px rgba(41, 102, 83, 0.11);
+                0
+                0
+                0
+                3px
+                rgba(
+                    41,
+                    102,
+                    83,
+                    0.11
+                );
         }
+
 
         .collection-field small {
-            display: block;
-            margin-top: 7px;
-            color: #71817b;
-            line-height: 1.4;
+
+            display:
+                block;
+
+            margin-top:
+                7px;
+
+            color:
+                #71817b;
+
+            line-height:
+                1.4;
         }
+
+
+
+        /* ========================= */
+        /* WHATSAPP                  */
+        /* ========================= */
+
 
         .whatsapp-copy {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 10px;
-            font-size: 13px;
-            color: #52645e;
-            cursor: pointer;
+
+            display:
+                flex !important;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            margin-top:
+                10px;
+
+            font-size:
+                13px !important;
+
+            font-weight:
+                400 !important;
+
+            color:
+                #52645e !important;
+
+            cursor:
+                pointer;
         }
+
 
         .whatsapp-copy input {
-            width: auto;
-            min-height: auto;
+
+            width:
+                17px;
+
+            height:
+                17px;
+
+            min-height:
+                auto;
+
+            margin:
+                0;
         }
+
+
+
+        /* ========================= */
+        /* REUNION                   */
+        /* ========================= */
+
 
         .meeting-question {
-            padding: 20px;
-            background: #f5f8f7;
-            border-radius: 15px;
+
+            padding:
+                20px;
+
+            background:
+                #f5f8f7;
+
+            border-radius:
+                15px;
         }
+
 
         .meeting-question p {
-            margin: 0 0 15px;
-            line-height: 1.5;
-            color: #455b54;
+
+            margin:
+                0
+                0
+                15px;
+
+            line-height:
+                1.5;
+
+            color:
+                #455b54;
         }
+
 
         .meeting-options {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    1fr
+                );
+
+            gap:
+                10px;
         }
+
 
         .meeting-option {
-            position: relative;
-            cursor: pointer;
+
+            position:
+                relative;
+
+            cursor:
+                pointer;
         }
+
 
         .meeting-option input {
-            position: absolute;
-            opacity: 0;
-            pointer-events: none;
+
+            position:
+                absolute;
+
+            opacity:
+                0;
+
+            pointer-events:
+                none;
         }
+
 
         .meeting-option span {
-            min-height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            border: 1px solid #d8e1dd;
-            border-radius: 11px;
-            background: white;
-            font-weight: 600;
-            color: #40554e;
-            transition: 0.2s;
+
+            min-height:
+                48px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            text-align:
+                center;
+
+            border:
+                1px
+                solid
+                #d8e1dd;
+
+            border-radius:
+                11px;
+
+            background:
+                white;
+
+            font-weight:
+                600;
+
+            color:
+                #40554e;
+
+            transition:
+                0.2s;
         }
+
 
         .meeting-option input:checked + span {
-            color: #174b3d;
-            border-color: #286751;
-            background: #eaf5ef;
+
+            color:
+                #174b3d;
+
+            border-color:
+                #286751;
+
+            background:
+                #eaf5ef;
+
             box-shadow:
-                inset 0 0 0 1px #286751;
+                inset
+                0
+                0
+                0
+                1px
+                #286751;
         }
+
+
+
+        /* ========================= */
+        /* CONFIDENTIALITE           */
+        /* ========================= */
+
 
         .privacy-notice {
-            display: flex;
-            gap: 13px;
-            margin-top: 28px;
-            padding: 17px;
-            border-radius: 13px;
-            background: #f3f7f5;
-            color: #52645e;
-            font-size: 13px;
-            line-height: 1.55;
+
+            display:
+                flex;
+
+            gap:
+                13px;
+
+            margin-top:
+                28px;
+
+            padding:
+                17px;
+
+            border-radius:
+                13px;
+
+            background:
+                #f3f7f5;
+
+            color:
+                #52645e;
+
+            font-size:
+                13px;
+
+            line-height:
+                1.55;
         }
+
 
         .privacy-icon {
-            font-size: 19px;
+
+            flex-shrink:
+                0;
+
+            font-size:
+                19px;
         }
+
 
         .consent-container {
-            margin-top: 20px;
+
+            margin-top:
+                20px;
         }
+
 
         .consent-label {
-            display: flex;
-            gap: 11px;
-            align-items: flex-start;
-            cursor: pointer;
-            color: #485c55;
-            font-size: 13px;
-            line-height: 1.55;
+
+            display:
+                flex;
+
+            gap:
+                11px;
+
+            align-items:
+                flex-start;
+
+            cursor:
+                pointer;
+
+            color:
+                #485c55;
+
+            font-size:
+                13px;
+
+            line-height:
+                1.55;
         }
+
 
         .consent-label input {
-            margin-top: 3px;
-            width: 17px;
-            height: 17px;
-            flex-shrink: 0;
+
+            margin-top:
+                3px;
+
+            width:
+                17px;
+
+            height:
+                17px;
+
+            flex-shrink:
+                0;
         }
+
+
+
+        /* ========================= */
+        /* MESSAGE                   */
+        /* ========================= */
+
 
         #formMessage {
-            min-height: 23px;
-            margin: 18px 0 0;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 600;
+
+            min-height:
+                23px;
+
+            margin:
+                18px
+                0
+                0;
+
+            text-align:
+                center;
+
+            font-size:
+                14px;
+
+            font-weight:
+                600;
         }
+
 
         .form-error {
-            color: #b42318;
+
+            color:
+                #b42318;
         }
+
 
         .form-success {
-            color: #157347;
+
+            color:
+                #157347;
         }
+
+
+
+        /* ========================= */
+        /* BOUTON                    */
+        /* ========================= */
+
 
         .collection-submit {
-            width: 100%;
-            margin-top: 10px;
-            min-height: 54px;
-            border: 0;
-            border-radius: 12px;
-            background: #174b3d;
-            color: white;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 700;
+
+            width:
+                100%;
+
+            margin-top:
+                10px;
+
+            min-height:
+                54px;
+
+            border:
+                0;
+
+            border-radius:
+                12px;
+
+            background:
+                #174b3d;
+
+            color:
+                white;
+
+            cursor:
+                pointer;
+
+            font-size:
+                16px;
+
+            font-weight:
+                700;
+
             transition:
-                transform 0.15s,
-                opacity 0.15s,
-                background 0.15s;
+                transform
+                0.15s,
+                opacity
+                0.15s,
+                background
+                0.15s;
         }
+
 
         .collection-submit:hover {
-            background: #103d31;
+
+            background:
+                #103d31;
         }
+
 
         .collection-submit:active {
-            transform: translateY(1px);
+
+            transform:
+                translateY(
+                    1px
+                );
         }
+
 
         .collection-submit:disabled {
-            opacity: 0.65;
-            cursor: not-allowed;
+
+            opacity:
+                0.65;
+
+            cursor:
+                not-allowed;
         }
+
 
         .required-info {
-            margin-top: 15px;
-            text-align: center;
-            color: #87938f;
-            font-size: 12px;
+
+            margin-top:
+                15px;
+
+            text-align:
+                center;
+
+            color:
+                #87938f;
+
+            font-size:
+                12px;
         }
+
+
+
+        /* ========================= */
+        /* FOOTER                    */
+        /* ========================= */
+
 
         .collection-footer {
-            margin: 22px auto 0;
-            text-align: center;
-            color: #78857f;
-            font-size: 12px;
+
+            margin:
+                22px
+                auto
+                0;
+
+            text-align:
+                center;
+
+            color:
+                #78857f;
+
+            font-size:
+                12px;
         }
+
 
         .collection-footer a {
-            color: #45655a;
+
+            color:
+                #45655a;
         }
 
-        @media (max-width: 650px) {
+
+
+        /* ========================= */
+        /* MOBILE                    */
+        /* ========================= */
+
+
+        @media (
+            max-width:
+                650px
+        ) {
+
             .collection-page {
-                padding: 0;
-                background: white;
+
+                padding:
+                    0;
+
+                background:
+                    white;
             }
+
 
             .collection-card {
-                border-radius: 0;
-                box-shadow: none;
+
+                border-radius:
+                    0;
+
+                box-shadow:
+                    none;
             }
+
 
             .collection-top {
-                padding: 27px 20px 23px;
+
+                padding:
+                    27px
+                    20px
+                    23px;
             }
+
 
             .collection-body {
-                padding: 25px 20px 35px;
+
+                padding:
+                    25px
+                    20px
+                    35px;
             }
+
 
             .collection-grid {
-                grid-template-columns: 1fr;
-                gap: 0;
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    0;
             }
+
 
             .meeting-options {
-                grid-template-columns: 1fr;
+
+                grid-template-columns:
+                    1fr;
             }
 
+
             .collection-footer {
-                padding: 0 20px 20px;
+
+                padding:
+                    0
+                    20px
+                    20px;
             }
+
         }
+
     </style>
+
 </head>
+
 
 
 <body>
 
+
 <main class="collection-page">
 
+
     <section class="collection-card">
+
 
         <!-- ========================= -->
         <!-- HEADER                    -->
         <!-- ========================= -->
 
+
         <header class="collection-top">
+
 
             <div class="brand-row">
 
+
                 <div class="collection-logo">
+
                     MG
+
                 </div>
+
 
                 <div>
 
+
                     <p class="brand-label">
+
                         RÉSIDENCE
+
                     </p>
 
+
                     <h1>
-                        Mirador Golf
+
+                        Mirador Golf 1
+
                     </h1>
+
 
                 </div>
 
+
             </div>
+
+
 
             <div class="collection-intro">
 
+
                 <p>
+
                     Merci de compléter ce formulaire afin de
                     mettre à jour les coordonnées des propriétaires
                     et préparer la prochaine réunion de la résidence.
+
                 </p>
+
 
             </div>
 
+
         </header>
+
 
 
         <!-- ========================= -->
         <!-- FORMULAIRE                -->
         <!-- ========================= -->
 
+
         <div class="collection-body">
 
-            <form id="collectForm">
+
+            <form
+                id="collectForm"
+            >
+
 
 
                 <!-- ========================= -->
                 <!-- LOGEMENT                  -->
                 <!-- ========================= -->
 
+
                 <div class="form-section-title">
 
+
                     <span>
+
                         🏠
+
                     </span>
 
+
                     <h2>
+
                         Votre logement
+
                     </h2>
+
 
                 </div>
 
 
+
                 <div class="collection-grid">
+
 
                     <div class="collection-field">
 
+
                         <label for="building">
+
                             Bloc *
+
                         </label>
+
 
                         <select
                             id="building"
                             required
                         >
 
+
                             <option value="">
+
                                 Sélectionnez votre bloc
+
                             </option>
 
-                            <option value="A">Bloc A</option>
-                            <option value="B">Bloc B</option>
-                            <option value="C">Bloc C</option>
-                            <option value="D">Bloc D</option>
-                            <option value="E">Bloc E</option>
-                            <option value="F">Bloc F</option>
-                            <option value="H">Bloc H</option>
-                            <option value="I">Bloc I</option>
-                            <option value="J">Bloc J</option>
-                            <option value="K">Bloc K</option>
-                            <option value="HOTEL">Hôtel</option>
+
+                            <option value="A">
+                                Bloc A
+                            </option>
+
+                            <option value="B">
+                                Bloc B
+                            </option>
+
+                            <option value="C">
+                                Bloc C
+                            </option>
+
+                            <option value="D">
+                                Bloc D
+                            </option>
+
+                            <option value="E">
+                                Bloc E
+                            </option>
+
+                            <option value="F">
+                                Bloc F
+                            </option>
+
+                            <option value="H">
+                                Bloc H
+                            </option>
+
+                            <option value="I">
+                                Bloc I
+                            </option>
+
+                            <option value="J">
+                                Bloc J
+                            </option>
+
+                            <option value="K">
+                                Bloc K
+                            </option>
+
+                            <option value="HOTEL">
+                                Hôtel
+                            </option>
+
 
                         </select>
+
 
                     </div>
 
 
+
                     <div class="collection-field">
 
+
                         <label for="apartment">
+
                             Appartement *
+
                         </label>
+
 
                         <input
                             id="apartment"
@@ -515,35 +1161,52 @@
                             placeholder="Exemple : 12"
                         >
 
+
                     </div>
 
+
                 </div>
+
 
 
                 <!-- ========================= -->
                 <!-- IDENTITE                  -->
                 <!-- ========================= -->
 
+
                 <div class="form-section-title">
 
+
                     <span>
+
                         👤
+
                     </span>
 
+
                     <h2>
+
                         Identité du propriétaire
+
                     </h2>
+
 
                 </div>
 
 
+
                 <div class="collection-grid">
+
 
                     <div class="collection-field">
 
+
                         <label for="lastName">
+
                             Nom *
+
                         </label>
+
 
                         <input
                             id="lastName"
@@ -553,14 +1216,20 @@
                             autocomplete="family-name"
                         >
 
+
                     </div>
+
 
 
                     <div class="collection-field">
 
+
                         <label for="firstName">
+
                             Prénom *
+
                         </label>
+
 
                         <input
                             id="firstName"
@@ -570,60 +1239,52 @@
                             autocomplete="given-name"
                         >
 
+
                     </div>
 
-                </div>
-
-
-                <div class="collection-field">
-
-                    <label for="cin">
-                        CIN *
-                    </label>
-
-                    <input
-                        id="cin"
-                        type="text"
-                        minlength="4"
-                        maxlength="30"
-                        required
-                        autocomplete="off"
-                        autocapitalize="characters"
-                        placeholder="Exemple : AB123456"
-                    >
-
-                    <small>
-                        Le numéro de CIN est utilisé uniquement
-                        pour identifier le propriétaire.
-                    </small>
 
                 </div>
 
 
+
                 <!-- ========================= -->
-                <!-- CONTACT                   -->
+                <!-- COORDONNEES               -->
                 <!-- ========================= -->
+
 
                 <div class="form-section-title">
 
+
                     <span>
+
                         📱
+
                     </span>
 
+
                     <h2>
+
                         Coordonnées
+
                     </h2>
 
+
                 </div>
+
 
 
                 <div class="collection-grid">
 
+
                     <div class="collection-field">
 
+
                         <label for="phone">
+
                             Téléphone *
+
                         </label>
+
 
                         <input
                             id="phone"
@@ -635,14 +1296,20 @@
                             placeholder="+212 6 XX XX XX XX"
                         >
 
+
                     </div>
+
 
 
                     <div class="collection-field">
 
+
                         <label for="whatsapp">
+
                             WhatsApp *
+
                         </label>
+
 
                         <input
                             id="whatsapp"
@@ -653,27 +1320,42 @@
                             placeholder="+212 6 XX XX XX XX"
                         >
 
+
                         <label class="whatsapp-copy">
+
 
                             <input
                                 id="sameWhatsapp"
                                 type="checkbox"
                             >
 
-                            Même numéro que le téléphone
+
+                            <span>
+
+                                Même numéro que le téléphone
+
+                            </span>
+
 
                         </label>
 
+
                     </div>
+
 
                 </div>
 
 
+
                 <div class="collection-field">
 
+
                     <label for="email">
+
                         Adresse email
+
                     </label>
+
 
                     <input
                         id="email"
@@ -684,41 +1366,61 @@
                         placeholder="nom@exemple.com"
                     >
 
+
                     <small>
+
                         Facultatif.
+
                     </small>
 
+
                 </div>
+
 
 
                 <!-- ========================= -->
                 <!-- REUNION                   -->
                 <!-- ========================= -->
 
+
                 <div class="form-section-title">
 
+
                     <span>
+
                         📅
+
                     </span>
 
+
                     <h2>
+
                         Prochaine réunion
+
                     </h2>
+
 
                 </div>
 
 
+
                 <div class="meeting-question">
 
+
                     <p>
+
                         Êtes-vous disponible pour participer
                         à une prochaine réunion des propriétaires ?
+
                     </p>
+
 
 
                     <div class="meeting-options">
 
+
                         <label class="meeting-option">
+
 
                             <input
                                 type="radio"
@@ -727,14 +1429,20 @@
                                 required
                             >
 
+
                             <span>
+
                                 ✓ Oui
+
                             </span>
+
 
                         </label>
 
 
+
                         <label class="meeting-option">
+
 
                             <input
                                 type="radio"
@@ -742,14 +1450,20 @@
                                 value="no"
                             >
 
+
                             <span>
+
                                 Non
+
                             </span>
+
 
                         </label>
 
 
+
                         <label class="meeting-option">
+
 
                             <input
                                 type="radio"
@@ -757,48 +1471,71 @@
                                 value="maybe"
                             >
 
+
                             <span>
+
                                 À confirmer
+
                             </span>
+
 
                         </label>
 
+
                     </div>
+
 
                 </div>
 
 
+
                 <!-- ========================= -->
-                <!-- CONFIDENTIALITE            -->
+                <!-- CONFIDENTIALITE           -->
                 <!-- ========================= -->
+
 
                 <div class="privacy-notice">
 
+
                     <div class="privacy-icon">
+
                         🔒
+
                     </div>
+
 
                     <div>
 
+
                         <strong>
+
                             Informations confidentielles
+
                         </strong>
+
 
                         <br>
 
-                        Vos coordonnées et votre CIN ne sont pas
-                        visibles par les autres propriétaires.
-                        Elles sont destinées uniquement à la gestion
-                        de la résidence Mirador Golf.
+
+                        Vos coordonnées ne sont pas visibles
+                        par les autres propriétaires.
+                        Elles sont destinées uniquement
+                        à la gestion de la résidence
+                        Mirador Golf 1.
+
 
                     </div>
 
+
                 </div>
+
 
 
                 <div class="consent-container">
 
+
                     <label class="consent-label">
+
 
                         <input
                             id="consent"
@@ -806,21 +1543,28 @@
                             required
                         >
 
+
                         <span>
+
                             J'accepte que mes informations soient
                             utilisées pour les communications,
                             l'organisation des réunions et la gestion
-                            interne de la résidence Mirador Golf.
+                            interne de la résidence Mirador Golf 1.
+
                         </span>
+
 
                     </label>
 
+
                 </div>
+
 
 
                 <!-- ========================= -->
                 <!-- MESSAGE                   -->
                 <!-- ========================= -->
+
 
                 <p
                     id="formMessage"
@@ -828,161 +1572,216 @@
                 ></p>
 
 
+
                 <!-- ========================= -->
-                <!-- SUBMIT                    -->
+                <!-- BOUTON                    -->
                 <!-- ========================= -->
+
 
                 <button
                     id="submitButton"
                     class="collection-submit"
                     type="submit"
                 >
+
                     Envoyer mes informations →
+
                 </button>
 
 
+
                 <p class="required-info">
+
                     * Champs obligatoires
+
                 </p>
+
 
             </form>
 
+
         </div>
+
 
     </section>
 
 
+
     <footer class="collection-footer">
 
-        © 2026 Mirador Golf
+
+        © 2026 Mirador Golf 1
+
         ·
+
         <a href="confidentialite.html">
+
             Confidentialité
+
         </a>
 
+
     </footer>
+
 
 </main>
 
 
-<!-- ========================= -->
-<!-- CONFIGURATION SUPABASE    -->
-<!-- ========================= -->
+
+<!-- ================================= -->
+<!-- CONFIGURATION SUPABASE            -->
+<!-- ================================= -->
+
 
 <script src="assets/js/config.js"></script>
 
 
-<!-- ========================= -->
-<!-- FORMULAIRE                -->
-<!-- ========================= -->
+
+<!-- ================================= -->
+<!-- JAVASCRIPT FORMULAIRE             -->
+<!-- ================================= -->
+
 
 <script>
 
+
 const form =
-    document.getElementById("collectForm");
+    document.getElementById(
+        "collectForm"
+    );
+
 
 const formMessage =
-    document.getElementById("formMessage");
+    document.getElementById(
+        "formMessage"
+    );
+
 
 const submitButton =
-    document.getElementById("submitButton");
+    document.getElementById(
+        "submitButton"
+    );
+
 
 const phoneInput =
-    document.getElementById("phone");
+    document.getElementById(
+        "phone"
+    );
+
 
 const whatsappInput =
-    document.getElementById("whatsapp");
+    document.getElementById(
+        "whatsapp"
+    );
+
 
 const sameWhatsapp =
-    document.getElementById("sameWhatsapp");
+    document.getElementById(
+        "sameWhatsapp"
+    );
 
-const cinInput =
-    document.getElementById("cin");
-
-
-/*
- * ---------------------------------------------------------
- * CIN : majuscules automatiquement
- * ---------------------------------------------------------
- */
-
-cinInput.addEventListener(
-    "input",
-    () => {
-
-        cinInput.value =
-            cinInput.value
-                .toUpperCase()
-                .replace(/\s+/g, "");
-
-    }
-);
 
 
 /*
- * ---------------------------------------------------------
- * WhatsApp = téléphone
- * ---------------------------------------------------------
+ * =========================================================
+ * WHATSAPP = TELEPHONE
+ * =========================================================
  */
+
 
 sameWhatsapp.addEventListener(
     "change",
     () => {
 
-        if (sameWhatsapp.checked) {
+
+        if (
+            sameWhatsapp.checked
+        ) {
+
 
             whatsappInput.value =
-                phoneInput.value;
+                phoneInput
+                    .value
+                    .trim();
+
 
             whatsappInput.disabled =
                 true;
 
-        } else {
+
+        }
+
+        else {
+
 
             whatsappInput.disabled =
                 false;
 
+
+            whatsappInput.focus();
+
+
         }
+
 
     }
 );
+
 
 
 phoneInput.addEventListener(
     "input",
     () => {
 
-        if (sameWhatsapp.checked) {
+
+        if (
+            sameWhatsapp.checked
+        ) {
+
 
             whatsappInput.value =
                 phoneInput.value;
 
+
         }
+
 
     }
 );
 
 
+
 /*
- * ---------------------------------------------------------
- * FORM SUBMIT
- * ---------------------------------------------------------
+ * =========================================================
+ * ENVOI DU FORMULAIRE
+ * =========================================================
  */
+
 
 form.addEventListener(
     "submit",
     async (event) => {
 
+
         event.preventDefault();
 
 
-        formMessage.textContent = "";
-        formMessage.className = "";
+
+        formMessage.textContent =
+            "";
+
+
+        formMessage.className =
+            "";
+
 
 
         /*
-         * Réunion
+         * -------------------------------------------------
+         * REUNION
+         * -------------------------------------------------
          */
+
 
         const attendance =
             document.querySelector(
@@ -990,212 +1789,329 @@ form.addEventListener(
             )?.value ?? null;
 
 
-        if (!attendance) {
+
+        if (
+            !attendance
+        ) {
+
 
             formMessage.textContent =
                 "Veuillez indiquer votre disponibilité pour la prochaine réunion.";
 
+
             formMessage.className =
                 "form-error";
 
+
             return;
+
 
         }
 
 
+
         /*
-         * Valeur WhatsApp
+         * -------------------------------------------------
+         * WHATSAPP
+         * -------------------------------------------------
          */
+
 
         const whatsapp =
+
             sameWhatsapp.checked
-                ? phoneInput.value.trim()
-                : whatsappInput.value.trim();
+
+                ? phoneInput
+                    .value
+                    .trim()
+
+                : whatsappInput
+                    .value
+                    .trim();
+
 
 
         /*
-         * Payload
+         * -------------------------------------------------
+         * DONNEES
+         * -------------------------------------------------
          */
+
 
         const payload = {
 
+
             building_code:
+
                 document
-                    .getElementById("building")
+                    .getElementById(
+                        "building"
+                    )
                     .value,
 
+
             apartment_number:
+
                 document
-                    .getElementById("apartment")
+                    .getElementById(
+                        "apartment"
+                    )
                     .value
                     .trim(),
+
 
             first_name:
+
                 document
-                    .getElementById("firstName")
+                    .getElementById(
+                        "firstName"
+                    )
                     .value
                     .trim(),
+
 
             last_name:
+
                 document
-                    .getElementById("lastName")
+                    .getElementById(
+                        "lastName"
+                    )
                     .value
                     .trim(),
 
+
             phone:
+
                 phoneInput
                     .value
                     .trim(),
 
+
             whatsapp:
+
                 whatsapp,
 
-            email:
-                document
-                    .getElementById("email")
-                    .value
-                    .trim() || null,
 
-            cin:
-                cinInput
+            email:
+
+                document
+                    .getElementById(
+                        "email"
+                    )
                     .value
                     .trim()
-                    .toUpperCase(),
+                    .toLowerCase()
+                || null,
+
 
             attendance:
+
                 attendance,
 
-            /*
-             * Ces colonnes existent encore dans la base,
-             * mais ne sont pas utilisées dans cette phase.
-             */
 
             availability:
+
                 [],
 
+
             subject:
+
                 null,
 
+
             consent:
+
                 document
-                    .getElementById("consent")
+                    .getElementById(
+                        "consent"
+                    )
                     .checked
+
 
         };
 
 
+
         /*
-         * Vérification
+         * -------------------------------------------------
+         * VALIDATION
+         * -------------------------------------------------
          */
 
+
         if (
+
             !payload.building_code ||
+
             !payload.apartment_number ||
+
             !payload.first_name ||
+
             !payload.last_name ||
+
             !payload.phone ||
-            !payload.whatsapp ||
-            !payload.cin
+
+            !payload.whatsapp
+
         ) {
+
 
             formMessage.textContent =
                 "Veuillez remplir tous les champs obligatoires.";
 
+
             formMessage.className =
                 "form-error";
 
+
             return;
+
 
         }
 
 
-        if (!payload.consent) {
+
+        if (
+            !payload.consent
+        ) {
+
 
             formMessage.textContent =
                 "Vous devez accepter l'utilisation de vos informations.";
 
+
             formMessage.className =
                 "form-error";
 
+
             return;
+
 
         }
 
 
+
         /*
-         * Empêche plusieurs clics
+         * -------------------------------------------------
+         * BLOQUER DOUBLE CLIC
+         * -------------------------------------------------
          */
+
 
         submitButton.disabled =
             true;
+
 
         submitButton.textContent =
             "Envoi en cours...";
 
 
+
         try {
 
+
+
             /*
-             * Envoi Supabase
+             * =============================================
+             * ENVOI VERS SUPABASE
+             * =============================================
              */
+
 
             const response =
                 await fetch(
 
+
                     `${SUPABASE_URL}/rest/v1/owner_submissions`,
 
+
                     {
+
 
                         method:
                             "POST",
 
+
                         headers: {
+
 
                             apikey:
                                 SUPABASE_PUBLISHABLE_KEY,
 
+
                             "Content-Type":
                                 "application/json",
+
 
                             Prefer:
                                 "return=minimal"
 
+
                         },
 
+
                         body:
+
                             JSON.stringify(
                                 payload
                             )
 
+
                     }
+
 
                 );
 
 
-            if (!response.ok) {
+
+            /*
+             * -------------------------------------------------
+             * ERREUR SUPABASE
+             * -------------------------------------------------
+             */
+
+
+            if (
+                !response.ok
+            ) {
+
 
                 const responseText =
                     await response.text();
 
+
                 console.error(
+
                     "Supabase submission error:",
+
                     response.status,
+
                     responseText
+
                 );
 
+
                 throw new Error(
+
                     `HTTP ${response.status}`
+
                 );
+
 
             }
 
 
+
             /*
-             * Succès
+             * -------------------------------------------------
+             * SUCCES
+             * -------------------------------------------------
              */
+
 
             formMessage.textContent =
                 "Merci. Vos informations ont bien été enregistrées.";
+
 
             formMessage.className =
                 "form-success";
@@ -1205,59 +2121,76 @@ form.addEventListener(
                 "Informations envoyées ✓";
 
 
-            /*
-             * Nettoyage formulaire
-             */
-
-            form.reset();
-
-            whatsappInput.disabled =
-                false;
-
 
             /*
-             * Confirmation
+             * -------------------------------------------------
+             * REDIRECTION
+             * -------------------------------------------------
              */
+
 
             setTimeout(
+
                 () => {
+
 
                     window.location.href =
                         "confirmation.html";
 
+
                 },
-                1000
+
+                900
+
             );
+
 
         }
 
-        catch (error) {
+
+        catch (
+            error
+        ) {
+
+
 
             console.error(
+
                 "Owner submission failed:",
+
                 error
+
             );
+
 
 
             formMessage.textContent =
                 "Impossible d'envoyer vos informations. Vérifiez votre connexion puis réessayez.";
 
+
             formMessage.className =
                 "form-error";
+
 
 
             submitButton.disabled =
                 false;
 
+
+
             submitButton.textContent =
                 "Envoyer mes informations →";
 
+
         }
+
 
     }
 );
 
+
 </script>
+
 
 </body>
 
