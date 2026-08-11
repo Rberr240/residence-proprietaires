@@ -515,6 +515,15 @@ export type Database = {
         }
         Returns: Json
       }
+      complete_owner_activation: {
+        Args: {
+          p_activation_code_id: string
+          p_auth_user_id: string
+          p_owner_account_id: string
+          p_phone_e164: string
+        }
+        Returns: Json
+      }
       is_admin: { Args: never; Returns: boolean }
       register_owner_with_session:
         | {
