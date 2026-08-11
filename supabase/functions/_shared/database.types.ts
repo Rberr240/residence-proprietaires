@@ -507,6 +507,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      admin_validate_owner_submission: {
+        Args: {
+          p_code_hash: string
+          p_expires_at: string
+          p_submission_id: string
+        }
+        Returns: Json
+      }
       is_admin: { Args: never; Returns: boolean }
       register_owner_with_session:
         | {
