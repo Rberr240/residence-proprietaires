@@ -771,6 +771,357 @@
 .validation-message.success {
     color: #167347 !important;
 }
+
+/* ========================================= */
+/* ADMIN SECTIONS / MEETINGS                 */
+/* ========================================= */
+
+.admin-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.admin-tab-button {
+    min-height: 42px;
+    padding: 0 16px;
+    border: 1px solid #d7e2dd;
+    border-radius: 10px;
+    background: white;
+    color: #5d7168;
+    font-size: 13px;
+    font-weight: 750;
+    cursor: pointer;
+}
+
+.admin-tab-button.active {
+    border-color: #174b3d;
+    background: #174b3d;
+    color: white;
+}
+
+.meetings-panel {
+    background: white;
+    border: 1px solid #e1e8e5;
+    border-radius: 17px;
+    overflow: hidden;
+}
+
+.meetings-panel-top {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid #e8eeeb;
+}
+
+.meetings-panel-top h2 {
+    margin: 0;
+    color: #123d32;
+    font-size: 20px;
+}
+
+.meetings-panel-top p {
+    margin: 5px 0 0;
+    color: #71847c;
+    font-size: 12px;
+}
+
+.create-meeting-button {
+    min-height: 42px;
+    padding: 0 15px;
+    border: 0;
+    border-radius: 10px;
+    background: #174b3d;
+    color: white;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.create-meeting-button:hover {
+    background: #103d32;
+}
+
+.meetings-list {
+    display: grid;
+    gap: 12px;
+    padding: 18px;
+}
+
+.meeting-card {
+    padding: 17px;
+    border: 1px solid #e3ebe7;
+    border-radius: 13px;
+    background: #fbfcfc;
+}
+
+.meeting-card-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.meeting-card h3 {
+    margin: 0;
+    color: #143e33;
+    font-size: 16px;
+}
+
+.meeting-card-meta {
+    margin-top: 7px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px 13px;
+    color: #71847c;
+    font-size: 11px;
+}
+
+.meeting-card-description {
+    margin: 12px 0 0;
+    color: #5f756c;
+    font-size: 12px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+}
+
+.meeting-status {
+    display: inline-flex;
+    align-items: center;
+    min-height: 26px;
+    padding: 0 9px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 850;
+    white-space: nowrap;
+}
+
+.meeting-status-draft {
+    background: #eef1f0;
+    color: #61736c;
+}
+
+.meeting-status-published {
+    background: #e6f6ee;
+    color: #176c45;
+}
+
+.meeting-status-closed {
+    background: #e8eef8;
+    color: #365b8d;
+}
+
+.meeting-status-cancelled {
+    background: #fde8e8;
+    color: #a12626;
+}
+
+.meeting-card-actions {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.meeting-action-button {
+    min-height: 35px;
+    padding: 0 11px;
+    border: 1px solid #d5e0db;
+    border-radius: 8px;
+    background: white;
+    color: #174b3d;
+    font-size: 11px;
+    font-weight: 750;
+    cursor: pointer;
+}
+
+.meeting-action-button.primary {
+    border-color: #174b3d;
+    background: #174b3d;
+    color: white;
+}
+
+.meeting-action-button.danger {
+    border-color: #ebcccc;
+    color: #9c2f2f;
+}
+
+.meeting-stats {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid #e5ece8;
+}
+
+.meeting-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.meeting-stat {
+    padding: 10px;
+    border-radius: 9px;
+    background: white;
+    border: 1px solid #e6ece9;
+}
+
+.meeting-stat span {
+    display: block;
+    color: #7a8b84;
+    font-size: 9px;
+}
+
+.meeting-stat strong {
+    display: block;
+    margin-top: 3px;
+    color: #143e33;
+    font-size: 18px;
+}
+
+.meeting-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.meeting-form-field {
+    min-width: 0;
+}
+
+.meeting-form-field.full {
+    grid-column: 1 / -1;
+}
+
+.meeting-form-field label {
+    display: block;
+    margin-bottom: 6px;
+    color: #405a50;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.meeting-form-field input,
+.meeting-form-field select,
+.meeting-form-field textarea {
+    width: 100%;
+    border: 1px solid #d7e2dd;
+    border-radius: 9px;
+    background: white;
+    color: #24463b;
+    outline: none;
+}
+
+.meeting-form-field input,
+.meeting-form-field select {
+    min-height: 44px;
+    padding: 0 11px;
+}
+
+.meeting-form-field textarea {
+    min-height: 105px;
+    padding: 11px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.meeting-form-field input:focus,
+.meeting-form-field select:focus,
+.meeting-form-field textarea:focus {
+    border-color: #30735e;
+    box-shadow: 0 0 0 3px rgba(48, 115, 94, 0.10);
+}
+
+.meeting-modal-card {
+    max-width: 720px;
+}
+
+.meeting-modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 9px;
+}
+
+.meeting-save-button,
+.meeting-cancel-button {
+    min-height: 43px;
+    padding: 0 16px;
+    border-radius: 9px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.meeting-save-button {
+    border: 0;
+    background: #174b3d;
+    color: white;
+}
+
+.meeting-cancel-button {
+    border: 1px solid #d5e0db;
+    background: white;
+    color: #52675e;
+}
+
+.meeting-form-message {
+    min-height: 20px;
+    margin: 12px 0 0;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.meeting-form-message.error {
+    color: #b42318;
+}
+
+.meeting-form-message.success {
+    color: #167347;
+}
+
+.meetings-empty,
+.meetings-loading {
+    padding: 38px 22px;
+    text-align: center;
+    color: #71847c;
+    font-size: 13px;
+}
+
+@media (max-width: 760px) {
+    .meetings-panel-top {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .create-meeting-button {
+        width: 100%;
+    }
+
+    .meeting-card-head {
+        display: block;
+    }
+
+    .meeting-card-head .meeting-status {
+        margin-top: 10px;
+    }
+
+    .meeting-stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .meeting-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .meeting-form-field.full {
+        grid-column: auto;
+    }
+}
+
         @media (
             max-width: 900px
         ) {
@@ -888,11 +1239,32 @@
         </section>
 
 
+        <div class="admin-tabs">
+
+            <button
+                id="ownersTabButton"
+                class="admin-tab-button active"
+                type="button"
+            >
+                Propriétaires
+            </button>
+
+            <button
+                id="meetingsTabButton"
+                class="admin-tab-button"
+                type="button"
+            >
+                Réunions
+            </button>
+
+        </div>
+
+
 
         <!-- STATISTIQUES -->
 
 
-        <section class="stats-grid">
+        <section id="ownersStatsSection" class="stats-grid">
 
 
             <article class="stat-card">
@@ -954,7 +1326,7 @@
         <!-- TABLEAU -->
 
 
-        <section class="owners-panel">
+        <section id="ownersPanelSection" class="owners-panel">
 
 
             <div class="panel-top">
@@ -1061,6 +1433,69 @@
 
             </div>
 
+
+        </section>
+
+
+        <!-- RÉUNIONS V2 -->
+
+
+        <section
+            id="meetingsSection"
+            class="meetings-panel"
+            hidden
+        >
+
+            <div class="meetings-panel-top">
+
+                <div>
+
+                    <h2>
+                        Réunions
+                    </h2>
+
+                    <p>
+                        Créez, publiez, modifiez et clôturez
+                        les réunions de Mirador Golf 1.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="createMeetingButton"
+                    class="create-meeting-button"
+                    type="button"
+                >
+                    + Créer une réunion
+                </button>
+
+            </div>
+
+
+            <div
+                id="meetingsLoading"
+                class="meetings-loading"
+            >
+                Chargement des réunions...
+            </div>
+
+
+            <div
+                id="meetingsEmpty"
+                class="meetings-empty"
+                hidden
+            >
+                Aucune réunion créée pour le moment.
+            </div>
+
+
+            <div
+                id="meetingsList"
+                class="meetings-list"
+                hidden
+            >
+            </div>
 
         </section>
 
@@ -1315,6 +1750,195 @@
 
 </div>
 
+
+    </div>
+
+</div>
+
+
+
+<!-- MODAL RÉUNION -->
+
+
+<div
+    id="meetingModal"
+    class="modal"
+>
+
+    <div class="modal-card meeting-modal-card">
+
+
+        <div class="modal-head">
+
+            <div>
+
+                <span
+                    style="
+                        color:#30735e;
+                        font-size:11px;
+                        font-weight:800;
+                    "
+                >
+                    RÉUNION
+                </span>
+
+                <h2 id="meetingModalTitle">
+                    Nouvelle réunion
+                </h2>
+
+            </div>
+
+
+            <button
+                id="meetingModalClose"
+                class="modal-close"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="meetingForm">
+
+            <div class="meeting-form-grid">
+
+                <div class="meeting-form-field full">
+
+                    <label for="meetingTitle">
+                        Titre *
+                    </label>
+
+                    <input
+                        id="meetingTitle"
+                        type="text"
+                        maxlength="180"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="meeting-form-field">
+
+                    <label for="meetingDate">
+                        Date et heure *
+                    </label>
+
+                    <input
+                        id="meetingDate"
+                        type="datetime-local"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="meeting-form-field">
+
+                    <label for="meetingDeadline">
+                        Date limite de réponse
+                    </label>
+
+                    <input
+                        id="meetingDeadline"
+                        type="datetime-local"
+                    >
+
+                </div>
+
+
+                <div class="meeting-form-field">
+
+                    <label for="meetingLocation">
+                        Lieu
+                    </label>
+
+                    <input
+                        id="meetingLocation"
+                        type="text"
+                        maxlength="180"
+                        placeholder="Ex. Salle de réunion"
+                    >
+
+                </div>
+
+
+                <div class="meeting-form-field">
+
+                    <label for="meetingStatus">
+                        Statut
+                    </label>
+
+                    <select id="meetingStatus">
+
+                        <option value="draft">
+                            Brouillon
+                        </option>
+
+                        <option value="published">
+                            Publiée
+                        </option>
+
+                        <option value="closed">
+                            Clôturée
+                        </option>
+
+                        <option value="cancelled">
+                            Annulée
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="meeting-form-field full">
+
+                    <label for="meetingDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="meetingDescription"
+                        maxlength="5000"
+                        placeholder="Ordre du jour, informations utiles..."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <p
+                id="meetingFormMessage"
+                class="meeting-form-message"
+                aria-live="polite"
+            ></p>
+
+
+            <div class="meeting-modal-actions">
+
+                <button
+                    id="meetingFormCancel"
+                    class="meeting-cancel-button"
+                    type="button"
+                >
+                    Annuler
+                </button>
+
+                <button
+                    id="meetingSaveButton"
+                    class="meeting-save-button"
+                    type="submit"
+                >
+                    Enregistrer
+                </button>
+
+            </div>
+
+        </form>
 
     </div>
 
@@ -2659,6 +3283,1480 @@ document
                 "_blank",
                 "noopener,noreferrer"
             );
+
+        }
+    );
+
+
+
+
+/* =========================================================
+ * ADMIN NAVIGATION
+ * ========================================================= */
+
+const ownersTabButton =
+    document.getElementById(
+        "ownersTabButton"
+    );
+
+const meetingsTabButton =
+    document.getElementById(
+        "meetingsTabButton"
+    );
+
+const ownersStatsSection =
+    document.getElementById(
+        "ownersStatsSection"
+    );
+
+const ownersPanelSection =
+    document.getElementById(
+        "ownersPanelSection"
+    );
+
+const meetingsSection =
+    document.getElementById(
+        "meetingsSection"
+    );
+
+
+function showAdminSection(
+    section
+) {
+
+    const showMeetings =
+        section === "meetings";
+
+
+    ownersTabButton
+        .classList
+        .toggle(
+            "active",
+            !showMeetings
+        );
+
+
+    meetingsTabButton
+        .classList
+        .toggle(
+            "active",
+            showMeetings
+        );
+
+
+    ownersStatsSection.hidden =
+        showMeetings;
+
+
+    ownersPanelSection.hidden =
+        showMeetings;
+
+
+    meetingsSection.hidden =
+        !showMeetings;
+
+
+    if (
+        showMeetings
+    ) {
+
+        loadMeetings();
+
+    }
+
+}
+
+
+ownersTabButton
+    .addEventListener(
+        "click",
+        () => {
+
+            showAdminSection(
+                "owners"
+            );
+
+        }
+    );
+
+
+meetingsTabButton
+    .addEventListener(
+        "click",
+        () => {
+
+            showAdminSection(
+                "meetings"
+            );
+
+        }
+    );
+
+
+
+/* =========================================================
+ * MEETINGS V2
+ * ========================================================= */
+
+let meetings =
+    [];
+
+let selectedMeetingId =
+    null;
+
+let currentAdminAuthUserId =
+    null;
+
+
+const meetingsLoading =
+    document.getElementById(
+        "meetingsLoading"
+    );
+
+const meetingsEmpty =
+    document.getElementById(
+        "meetingsEmpty"
+    );
+
+const meetingsList =
+    document.getElementById(
+        "meetingsList"
+    );
+
+const meetingModal =
+    document.getElementById(
+        "meetingModal"
+    );
+
+const meetingForm =
+    document.getElementById(
+        "meetingForm"
+    );
+
+const meetingSaveButton =
+    document.getElementById(
+        "meetingSaveButton"
+    );
+
+const meetingFormMessage =
+    document.getElementById(
+        "meetingFormMessage"
+    );
+
+
+function meetingStatusLabel(
+    status
+) {
+
+    switch (
+        status
+    ) {
+
+        case "published":
+            return "Publiée";
+
+        case "closed":
+            return "Clôturée";
+
+        case "cancelled":
+            return "Annulée";
+
+        case "draft":
+        default:
+            return "Brouillon";
+
+    }
+
+}
+
+
+function meetingStatusClass(
+    status
+) {
+
+    switch (
+        status
+    ) {
+
+        case "published":
+            return "meeting-status-published";
+
+        case "closed":
+            return "meeting-status-closed";
+
+        case "cancelled":
+            return "meeting-status-cancelled";
+
+        case "draft":
+        default:
+            return "meeting-status-draft";
+
+    }
+
+}
+
+
+function formatDateTime(
+    value
+) {
+
+    if (
+        !value
+    ) {
+        return "—";
+    }
+
+
+    const date =
+        new Date(
+            value
+        );
+
+
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+        return "—";
+    }
+
+
+    return date
+        .toLocaleString(
+            "fr-FR",
+            {
+                dateStyle:
+                    "medium",
+
+                timeStyle:
+                    "short"
+            }
+        );
+
+}
+
+
+function toDatetimeLocalValue(
+    value
+) {
+
+    if (
+        !value
+    ) {
+        return "";
+    }
+
+
+    const date =
+        new Date(
+            value
+        );
+
+
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+        return "";
+    }
+
+
+    const localDate =
+        new Date(
+            date.getTime() -
+            date.getTimezoneOffset() *
+            60000
+        );
+
+
+    return localDate
+        .toISOString()
+        .slice(
+            0,
+            16
+        );
+
+}
+
+
+function openMeetingModal(
+    meeting = null
+) {
+
+    selectedMeetingId =
+        meeting?.id ||
+        null;
+
+
+    document
+        .getElementById(
+            "meetingModalTitle"
+        )
+        .textContent =
+            meeting
+                ? "Modifier la réunion"
+                : "Nouvelle réunion";
+
+
+    document
+        .getElementById(
+            "meetingTitle"
+        )
+        .value =
+            meeting?.title ||
+            "";
+
+
+    document
+        .getElementById(
+            "meetingDate"
+        )
+        .value =
+            toDatetimeLocalValue(
+                meeting?.meeting_date
+            );
+
+
+    document
+        .getElementById(
+            "meetingDeadline"
+        )
+        .value =
+            toDatetimeLocalValue(
+                meeting?.response_deadline
+            );
+
+
+    document
+        .getElementById(
+            "meetingLocation"
+        )
+        .value =
+            meeting?.location ||
+            "";
+
+
+    document
+        .getElementById(
+            "meetingStatus"
+        )
+        .value =
+            meeting?.status ||
+            "draft";
+
+
+    document
+        .getElementById(
+            "meetingDescription"
+        )
+        .value =
+            meeting?.description ||
+            "";
+
+
+    meetingFormMessage.textContent =
+        "";
+
+    meetingFormMessage.className =
+        "meeting-form-message";
+
+
+    meetingSaveButton.disabled =
+        false;
+
+    meetingSaveButton.textContent =
+        meeting
+            ? "Enregistrer les modifications"
+            : "Créer la réunion";
+
+
+    meetingModal
+        .classList
+        .add(
+            "visible"
+        );
+
+}
+
+
+function closeMeetingModal() {
+
+    meetingModal
+        .classList
+        .remove(
+            "visible"
+        );
+
+
+    selectedMeetingId =
+        null;
+
+
+    meetingForm.reset();
+
+
+    meetingFormMessage.textContent =
+        "";
+
+    meetingFormMessage.className =
+        "meeting-form-message";
+
+}
+
+
+async function loadMeetings() {
+
+    meetingsLoading.hidden =
+        false;
+
+    meetingsEmpty.hidden =
+        true;
+
+    meetingsList.hidden =
+        true;
+
+
+    const {
+        data: {
+            session
+        }
+    } =
+        await supabaseClient
+            .auth
+            .getSession();
+
+
+    if (
+        !session
+    ) {
+
+        window.location.href =
+            "admin-login.html";
+
+        return;
+
+    }
+
+
+    currentAdminAuthUserId =
+        session.user.id;
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from(
+                "meetings"
+            )
+            .select(
+                `
+                id,
+                title,
+                description,
+                location,
+                meeting_date,
+                response_deadline,
+                status,
+                published_at,
+                closed_at,
+                created_by,
+                created_at,
+                updated_at
+                `
+            )
+            .order(
+                "meeting_date",
+                {
+                    ascending:
+                        false,
+
+                    nullsFirst:
+                        false
+                }
+            );
+
+
+    meetingsLoading.hidden =
+        true;
+
+
+    if (
+        error
+    ) {
+
+        console.error(
+            "Meetings loading error:",
+            error
+        );
+
+
+        meetingsEmpty.hidden =
+            false;
+
+        meetingsEmpty.textContent =
+            "Impossible de charger les réunions.";
+
+        return;
+
+    }
+
+
+    meetings =
+        data ||
+        [];
+
+
+    renderMeetings();
+
+}
+
+
+function renderMeetings() {
+
+    meetingsList.innerHTML =
+        "";
+
+
+    if (
+        meetings.length === 0
+    ) {
+
+        meetingsEmpty.hidden =
+            false;
+
+        meetingsEmpty.textContent =
+            "Aucune réunion créée pour le moment.";
+
+        meetingsList.hidden =
+            true;
+
+        return;
+
+    }
+
+
+    meetingsEmpty.hidden =
+        true;
+
+    meetingsList.hidden =
+        false;
+
+
+    for (
+        const meeting
+        of meetings
+    ) {
+
+        const card =
+            document.createElement(
+                "article"
+            );
+
+
+        card.className =
+            "meeting-card";
+
+
+        const deadline =
+            meeting.response_deadline
+                ? formatDateTime(
+                    meeting.response_deadline
+                )
+                : "Aucune";
+
+
+        card.innerHTML = `
+
+            <div class="meeting-card-head">
+
+                <div>
+
+                    <h3>
+                        ${escapeHtml(meeting.title)}
+                    </h3>
+
+                    <div class="meeting-card-meta">
+
+                        <span>
+                            📅 ${escapeHtml(formatDateTime(meeting.meeting_date))}
+                        </span>
+
+                        <span>
+                            📍 ${escapeHtml(meeting.location || "Lieu non précisé")}
+                        </span>
+
+                        <span>
+                            ⏳ Réponse avant : ${escapeHtml(deadline)}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <span class="
+                    meeting-status
+                    ${meetingStatusClass(meeting.status)}
+                ">
+                    ${escapeHtml(meetingStatusLabel(meeting.status))}
+                </span>
+
+            </div>
+
+
+            ${
+                meeting.description
+                    ? `
+                        <p class="meeting-card-description">
+                            ${escapeHtml(meeting.description)}
+                        </p>
+                    `
+                    : ""
+            }
+
+
+            <div class="meeting-card-actions">
+
+                <button
+                    class="meeting-action-button"
+                    type="button"
+                    data-meeting-action="edit"
+                    data-meeting-id="${escapeHtml(meeting.id)}"
+                >
+                    Modifier
+                </button>
+
+                ${
+                    meeting.status === "draft"
+                        ? `
+                            <button
+                                class="meeting-action-button primary"
+                                type="button"
+                                data-meeting-action="publish"
+                                data-meeting-id="${escapeHtml(meeting.id)}"
+                            >
+                                Publier
+                            </button>
+                        `
+                        : ""
+                }
+
+                ${
+                    meeting.status === "published"
+                        ? `
+                            <button
+                                class="meeting-action-button"
+                                type="button"
+                                data-meeting-action="stats"
+                                data-meeting-id="${escapeHtml(meeting.id)}"
+                            >
+                                Statistiques
+                            </button>
+
+                            <button
+                                class="meeting-action-button primary"
+                                type="button"
+                                data-meeting-action="close"
+                                data-meeting-id="${escapeHtml(meeting.id)}"
+                            >
+                                Clôturer
+                            </button>
+                        `
+                        : ""
+                }
+
+                ${
+                    meeting.status === "closed"
+                        ? `
+                            <button
+                                class="meeting-action-button"
+                                type="button"
+                                data-meeting-action="stats"
+                                data-meeting-id="${escapeHtml(meeting.id)}"
+                            >
+                                Statistiques
+                            </button>
+                        `
+                        : ""
+                }
+
+                ${
+                    meeting.status === "draft"
+                        ? `
+                            <button
+                                class="meeting-action-button danger"
+                                type="button"
+                                data-meeting-action="delete"
+                                data-meeting-id="${escapeHtml(meeting.id)}"
+                            >
+                                Supprimer
+                            </button>
+                        `
+                        : ""
+                }
+
+            </div>
+
+
+            <div
+                id="meetingStats-${escapeHtml(meeting.id)}"
+                class="meeting-stats"
+                hidden
+            >
+            </div>
+
+        `;
+
+
+        meetingsList
+            .appendChild(
+                card
+            );
+
+    }
+
+
+    document
+        .querySelectorAll(
+            "[data-meeting-action]"
+        )
+        .forEach(
+            button => {
+
+                button
+                    .addEventListener(
+                        "click",
+                        () => {
+
+                            handleMeetingAction(
+                                button.dataset.meetingAction,
+                                button.dataset.meetingId
+                            );
+
+                        }
+                    );
+
+            }
+        );
+
+}
+
+
+async function handleMeetingAction(
+    action,
+    meetingId
+) {
+
+    const meeting =
+        meetings.find(
+            item =>
+                item.id ===
+                meetingId
+        );
+
+
+    if (
+        !meeting
+    ) {
+        return;
+    }
+
+
+    if (
+        action === "edit"
+    ) {
+
+        openMeetingModal(
+            meeting
+        );
+
+        return;
+
+    }
+
+
+    if (
+        action === "stats"
+    ) {
+
+        await loadMeetingStats(
+            meetingId
+        );
+
+        return;
+
+    }
+
+
+    if (
+        action === "publish"
+    ) {
+
+        const confirmed =
+            window.confirm(
+                `Publier la réunion "${meeting.title}" ? Les propriétaires actifs pourront la voir et répondre.`
+            );
+
+
+        if (
+            !confirmed
+        ) {
+            return;
+        }
+
+
+        await updateMeetingStatus(
+            meetingId,
+            "published"
+        );
+
+        return;
+
+    }
+
+
+    if (
+        action === "close"
+    ) {
+
+        const confirmed =
+            window.confirm(
+                `Clôturer la réunion "${meeting.title}" ? Les propriétaires ne pourront plus modifier leur réponse.`
+            );
+
+
+        if (
+            !confirmed
+        ) {
+            return;
+        }
+
+
+        await updateMeetingStatus(
+            meetingId,
+            "closed"
+        );
+
+        return;
+
+    }
+
+
+    if (
+        action === "delete"
+    ) {
+
+        const confirmed =
+            window.confirm(
+                `Supprimer définitivement le brouillon "${meeting.title}" ?`
+            );
+
+
+        if (
+            !confirmed
+        ) {
+            return;
+        }
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .from(
+                    "meetings"
+                )
+                .delete()
+                .eq(
+                    "id",
+                    meetingId
+                )
+                .eq(
+                    "status",
+                    "draft"
+                );
+
+
+        if (
+            error
+        ) {
+
+            console.error(
+                "Meeting deletion error:",
+                error
+            );
+
+            alert(
+                "Impossible de supprimer cette réunion."
+            );
+
+            return;
+
+        }
+
+
+        await loadMeetings();
+
+    }
+
+}
+
+
+async function updateMeetingStatus(
+    meetingId,
+    status
+) {
+
+    const payload = {
+        status
+    };
+
+
+    if (
+        status === "published"
+    ) {
+
+        payload.published_at =
+            new Date()
+                .toISOString();
+
+        payload.closed_at =
+            null;
+
+    }
+
+
+    if (
+        status === "closed"
+    ) {
+
+        payload.closed_at =
+            new Date()
+                .toISOString();
+
+    }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+            .from(
+                "meetings"
+            )
+            .update(
+                payload
+            )
+            .eq(
+                "id",
+                meetingId
+            );
+
+
+    if (
+        error
+    ) {
+
+        console.error(
+            "Meeting status update error:",
+            error
+        );
+
+        alert(
+            "Impossible de modifier le statut de la réunion."
+        );
+
+        return;
+
+    }
+
+
+    await loadMeetings();
+
+}
+
+
+async function loadMeetingStats(
+    meetingId
+) {
+
+    const container =
+        document.getElementById(
+            `meetingStats-${meetingId}`
+        );
+
+
+    if (
+        !container
+    ) {
+        return;
+    }
+
+
+    if (
+        !container.hidden
+    ) {
+
+        container.hidden =
+            true;
+
+        return;
+
+    }
+
+
+    container.hidden =
+        false;
+
+    container.innerHTML =
+        "Chargement des statistiques...";
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .rpc(
+                "admin_get_meeting_stats",
+                {
+                    p_meeting_id:
+                        meetingId
+                }
+            );
+
+
+    if (
+        error
+    ) {
+
+        console.error(
+            "Meeting stats error:",
+            error
+        );
+
+        container.innerHTML =
+            "Impossible de charger les statistiques.";
+
+        return;
+
+    }
+
+
+    const stats =
+        data ||
+        {};
+
+
+    container.innerHTML = `
+
+        <div class="meeting-stats-grid">
+
+            <div class="meeting-stat">
+                <span>Invités</span>
+                <strong>${escapeHtml(stats.invited ?? 0)}</strong>
+            </div>
+
+            <div class="meeting-stat">
+                <span>Présents</span>
+                <strong>${escapeHtml(stats.present ?? 0)}</strong>
+            </div>
+
+            <div class="meeting-stat">
+                <span>Absents</span>
+                <strong>${escapeHtml(stats.absent ?? 0)}</strong>
+            </div>
+
+            <div class="meeting-stat">
+                <span>Peut-être</span>
+                <strong>${escapeHtml(stats.maybe ?? 0)}</strong>
+            </div>
+
+            <div class="meeting-stat">
+                <span>Sans réponse</span>
+                <strong>${escapeHtml(stats.noResponse ?? 0)}</strong>
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+meetingForm
+    .addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+
+            meetingFormMessage.textContent =
+                "";
+
+            meetingFormMessage.className =
+                "meeting-form-message";
+
+
+            const title =
+                document
+                    .getElementById(
+                        "meetingTitle"
+                    )
+                    .value
+                    .trim();
+
+
+            const meetingDateValue =
+                document
+                    .getElementById(
+                        "meetingDate"
+                    )
+                    .value;
+
+
+            const deadlineValue =
+                document
+                    .getElementById(
+                        "meetingDeadline"
+                    )
+                    .value;
+
+
+            const location =
+                document
+                    .getElementById(
+                        "meetingLocation"
+                    )
+                    .value
+                    .trim();
+
+
+            const status =
+                document
+                    .getElementById(
+                        "meetingStatus"
+                    )
+                    .value;
+
+
+            const description =
+                document
+                    .getElementById(
+                        "meetingDescription"
+                    )
+                    .value
+                    .trim();
+
+
+            if (
+                !title ||
+                !meetingDateValue
+            ) {
+
+                meetingFormMessage.textContent =
+                    "Le titre et la date de la réunion sont obligatoires.";
+
+                meetingFormMessage.className =
+                    "meeting-form-message error";
+
+                return;
+
+            }
+
+
+            const meetingDate =
+                new Date(
+                    meetingDateValue
+                );
+
+
+            const responseDeadline =
+                deadlineValue
+                    ? new Date(
+                        deadlineValue
+                    )
+                    : null;
+
+
+            if (
+                Number.isNaN(
+                    meetingDate.getTime()
+                )
+            ) {
+
+                meetingFormMessage.textContent =
+                    "La date de réunion est invalide.";
+
+                meetingFormMessage.className =
+                    "meeting-form-message error";
+
+                return;
+
+            }
+
+
+            if (
+                responseDeadline &&
+                (
+                    Number.isNaN(
+                        responseDeadline.getTime()
+                    ) ||
+                    responseDeadline.getTime() >
+                    meetingDate.getTime()
+                )
+            ) {
+
+                meetingFormMessage.textContent =
+                    "La date limite de réponse doit être valide et antérieure ou égale à la réunion.";
+
+                meetingFormMessage.className =
+                    "meeting-form-message error";
+
+                return;
+
+            }
+
+
+            meetingSaveButton.disabled =
+                true;
+
+            meetingSaveButton.textContent =
+                "Enregistrement...";
+
+
+            const payload = {
+
+                title,
+
+                description:
+                    description ||
+                    null,
+
+                location:
+                    location ||
+                    null,
+
+                meeting_date:
+                    meetingDate
+                        .toISOString(),
+
+                response_deadline:
+                    responseDeadline
+                        ? responseDeadline
+                            .toISOString()
+                        : null,
+
+                status
+
+            };
+
+
+            if (
+                status ===
+                "published"
+            ) {
+
+                payload.published_at =
+                    new Date()
+                        .toISOString();
+
+                payload.closed_at =
+                    null;
+
+            }
+
+
+            if (
+                status ===
+                "closed"
+            ) {
+
+                payload.closed_at =
+                    new Date()
+                        .toISOString();
+
+            }
+
+
+            let error;
+
+
+            if (
+                selectedMeetingId
+            ) {
+
+                const result =
+                    await supabaseClient
+                        .from(
+                            "meetings"
+                        )
+                        .update(
+                            payload
+                        )
+                        .eq(
+                            "id",
+                            selectedMeetingId
+                        );
+
+
+                error =
+                    result.error;
+
+            }
+            else {
+
+                payload.created_by =
+                    currentAdminAuthUserId;
+
+
+                const result =
+                    await supabaseClient
+                        .from(
+                            "meetings"
+                        )
+                        .insert(
+                            payload
+                        );
+
+
+                error =
+                    result.error;
+
+            }
+
+
+            if (
+                error
+            ) {
+
+                console.error(
+                    "Meeting save error:",
+                    error
+                );
+
+
+                meetingFormMessage.textContent =
+                    error.message ||
+                    "Impossible d'enregistrer la réunion.";
+
+                meetingFormMessage.className =
+                    "meeting-form-message error";
+
+
+                meetingSaveButton.disabled =
+                    false;
+
+                meetingSaveButton.textContent =
+                    "Enregistrer";
+
+                return;
+
+            }
+
+
+            meetingFormMessage.textContent =
+                selectedMeetingId
+                    ? "Réunion modifiée avec succès."
+                    : "Réunion créée avec succès.";
+
+            meetingFormMessage.className =
+                "meeting-form-message success";
+
+
+            setTimeout(
+                async () => {
+
+                    closeMeetingModal();
+
+                    await loadMeetings();
+
+                },
+                350
+            );
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "createMeetingButton"
+    )
+    .addEventListener(
+        "click",
+        async () => {
+
+            const {
+                data: {
+                    session
+                }
+            } =
+                await supabaseClient
+                    .auth
+                    .getSession();
+
+
+            if (
+                !session
+            ) {
+
+                window.location.href =
+                    "admin-login.html";
+
+                return;
+
+            }
+
+
+            currentAdminAuthUserId =
+                session.user.id;
+
+
+            openMeetingModal();
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "meetingModalClose"
+    )
+    .addEventListener(
+        "click",
+        closeMeetingModal
+    );
+
+
+document
+    .getElementById(
+        "meetingFormCancel"
+    )
+    .addEventListener(
+        "click",
+        closeMeetingModal
+    );
+
+
+meetingModal
+    .addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target.id ===
+                "meetingModal"
+            ) {
+
+                closeMeetingModal();
+
+            }
 
         }
     );
