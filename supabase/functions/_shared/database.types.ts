@@ -194,31 +194,43 @@ export type Database = {
       }
       meetings: {
         Row: {
+          closed_at: string | null
           created_at: string
+          created_by: string | null
           description: string | null
           id: string
           location: string | null
           meeting_date: string | null
+          published_at: string | null
+          response_deadline: string | null
           status: string
           title: string
           updated_at: string
         }
         Insert: {
+          closed_at?: string | null
           created_at?: string
+          created_by?: string | null
           description?: string | null
           id?: string
           location?: string | null
           meeting_date?: string | null
+          published_at?: string | null
+          response_deadline?: string | null
           status?: string
           title: string
           updated_at?: string
         }
         Update: {
+          closed_at?: string | null
           created_at?: string
+          created_by?: string | null
           description?: string | null
           id?: string
           location?: string | null
           meeting_date?: string | null
+          published_at?: string | null
+          response_deadline?: string | null
           status?: string
           title?: string
           updated_at?: string
@@ -343,6 +355,54 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "owner_activation_codes_owner_account_id_fkey"
+            columns: ["owner_account_id"]
+            isOneToOne: false
+            referencedRelation: "owner_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      owner_meeting_responses: {
+        Row: {
+          attendance: string
+          comment: string | null
+          created_at: string
+          id: string
+          meeting_id: string
+          owner_account_id: string
+          responded_at: string
+          updated_at: string
+        }
+        Insert: {
+          attendance: string
+          comment?: string | null
+          created_at?: string
+          id?: string
+          meeting_id: string
+          owner_account_id: string
+          responded_at?: string
+          updated_at?: string
+        }
+        Update: {
+          attendance?: string
+          comment?: string | null
+          created_at?: string
+          id?: string
+          meeting_id?: string
+          owner_account_id?: string
+          responded_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "owner_meeting_responses_meeting_id_fkey"
+            columns: ["meeting_id"]
+            isOneToOne: false
+            referencedRelation: "meetings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "owner_meeting_responses_owner_account_id_fkey"
             columns: ["owner_account_id"]
             isOneToOne: false
             referencedRelation: "owner_accounts"
@@ -507,6 +567,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      admin_get_meeting_stats: { Args: { p_meeting_id: string }; Returns: Json }
       admin_validate_owner_submission: {
         Args: {
           p_code_hash: string
