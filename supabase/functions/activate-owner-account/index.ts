@@ -2,60 +2,34 @@ import { withSupabase } from "npm:@supabase/server@^1";
 
 import type { Database } from "../_shared/database.types.ts";
 
-function normalizeActivationCode(
-  value: unknown,
-): string {
-  if (typeof value !== "string") {
-    return "";
-  }
-
-  return value
-    .trim()
-    .toUpperCase()
-    .replace(/\s+/g, "");
+function normalizeActivationCode(value: unknown): string {
+  if (typeof value !== "string") return "";
+  return value.trim().toUpperCase().replace(/\s+/g, "");
 }
 
-function normalizeMoroccoPhone(
-  value: string,
-): string | null {
+function normalizeMoroccoPhone(value: string): string | null {
   let digits = value.replace(/\D/g, "");
 
-  if (digits.startsWith("00")) {
-    digits = digits.slice(2);
-  }
+  if (digits.startsWith("00")) digits = digits.slice(2);
 
-  /*
-   * +212 6xxxxxxxx
-   * 2126xxxxxxxx
-   */
   if (
     digits.startsWith("212") &&
-    digits.length === 12
+    digits.length === 12 &&
+    (digits.startsWith("2126") || digits.startsWith("2127"))
   ) {
     return `+${digits}`;
   }
 
-  /*
-   * 06xxxxxxxx
-   * 07xxxxxxxx
-   */
   if (
     digits.length === 10 &&
-    digits.startsWith("0")
+    (digits.startsWith("06") || digits.startsWith("07"))
   ) {
     return `+212${digits.slice(1)}`;
   }
 
-  /*
-   * 6xxxxxxxx
-   * 7xxxxxxxx
-   */
   if (
     digits.length === 9 &&
-    (
-      digits.startsWith("6") ||
-      digits.startsWith("7")
-    )
+    (digits.startsWith("6") || digits.startsWith("7"))
   ) {
     return `+212${digits}`;
   }
@@ -63,19 +37,13 @@ function normalizeMoroccoPhone(
   return null;
 }
 
-async function hmacSha256(
-  value: string,
-  secret: string,
-): Promise<string> {
+async function hmacSha256(value: string, secret: string): Promise<string> {
   const encoder = new TextEncoder();
 
   const key = await crypto.subtle.importKey(
     "raw",
     encoder.encode(secret),
-    {
-      name: "HMAC",
-      hash: "SHA-256",
-    },
+    { name: "HMAC", hash: "SHA-256" },
     false,
     ["sign"],
   );
@@ -86,211 +54,125 @@ async function hmacSha256(
     encoder.encode(value),
   );
 
-  return Array
-    .from(
-      new Uint8Array(signature),
-    )
-    .map(
-      (byte) =>
-        byte
-          .toString(16)
-          .padStart(2, "0"),
-    )
+  return Array.from(new Uint8Array(signature))
+    .map((byte) => byte.toString(16).padStart(2, "0"))
     .join("");
 }
 
-function jsonError(
-  message: string,
-  status = 400,
-): Response {
+async function sha256Hex(value: string): Promise<string> {
+  const digest = await crypto.subtle.digest(
+    "SHA-256",
+    new TextEncoder().encode(value),
+  );
+
+  return Array.from(new Uint8Array(digest))
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+async function buildInternalLoginEmail(phoneE164: string): Promise<string> {
+  const digest = await sha256Hex(`mirador-golf-1:${phoneE164}`);
+  return `owner-${digest.slice(0, 40)}@auth.mirador-golf.invalid`;
+}
+
+function jsonError(message: string, status = 400): Response {
   return Response.json(
-    {
-      success: false,
-      message,
-    },
-    {
-      status,
-    },
+    { success: false, message },
+    { status },
   );
 }
 
 export default {
   fetch: withSupabase<Database>(
-    {
-      /*
-       * Le propriétaire n'est pas encore connecté.
-       * La fonction accepte donc la clé publishable
-       * de notre application publique.
-       */
-      auth: "publishable",
-    },
-    async (
-      req,
-      ctx,
-    ) => {
+    { auth: "publishable" },
+    async (req, ctx) => {
       let createdAuthUserId: string | null = null;
 
       try {
-        /*
-         * =========================================
-         * METHOD
-         * =========================================
-         */
-
         if (req.method !== "POST") {
-          return jsonError(
-            "Méthode non autorisée.",
-            405,
-          );
+          return jsonError("Méthode non autorisée.", 405);
         }
 
-        /*
-         * =========================================
-         * BODY
-         * =========================================
-         */
+        let body: {
+          activationCode?: unknown;
+          password?: unknown;
+        };
 
-        const body = await req.json();
+        try {
+          body = await req.json();
+        } catch {
+          return jsonError("Requête invalide.", 400);
+        }
 
-        const activationCode = normalizeActivationCode(
-          body?.activationCode,
-        );
+        const activationCode = normalizeActivationCode(body?.activationCode);
 
         const password = typeof body?.password === "string"
           ? body.password
           : "";
 
-        /*
-         * =========================================
-         * VALIDATION CODE
-         * =========================================
-         */
-
         if (
           activationCode.length < 10 ||
-          activationCode.length > 40
+          activationCode.length > 40 ||
+          !activationCode.startsWith("MG-")
         ) {
-          return jsonError(
-            "Code d'activation invalide.",
-          );
+          return jsonError("Code d'activation invalide.");
         }
 
-        if (
-          !activationCode.startsWith(
-            "MG-",
-          )
-        ) {
-          return jsonError(
-            "Code d'activation invalide.",
-          );
-        }
-
-        /*
-         * =========================================
-         * VALIDATION PASSWORD
-         * =========================================
-         */
-
-        if (
-          password.length < 8
-        ) {
+        if (password.length < 8) {
           return jsonError(
             "Le mot de passe doit contenir au moins 8 caractères.",
           );
         }
 
-        if (
-          password.length > 72
-        ) {
-          return jsonError(
-            "Le mot de passe est trop long.",
-          );
+        if (password.length > 72) {
+          return jsonError("Le mot de passe est trop long.");
         }
 
-        if (
-          !/[A-Za-z]/.test(password) ||
-          !/[0-9]/.test(password)
-        ) {
+        if (!/[A-Za-z]/.test(password) || !/[0-9]/.test(password)) {
           return jsonError(
             "Le mot de passe doit contenir au moins une lettre et un chiffre.",
           );
         }
 
-        /*
-         * =========================================
-         * SERVER SECRET
-         * =========================================
-         */
-
-        const pepper = Deno.env.get(
-          "OWNER_ACTIVATION_CODE_PEPPER",
-        );
+        const pepper = Deno.env.get("OWNER_ACTIVATION_CODE_PEPPER");
 
         if (!pepper) {
-          console.error(
-            "OWNER_ACTIVATION_CODE_PEPPER missing",
-          );
-
-          return jsonError(
-            "Configuration serveur incomplète.",
-            500,
-          );
+          console.error("OWNER_ACTIVATION_CODE_PEPPER missing");
+          return jsonError("Configuration serveur incomplète.", 500);
         }
-
-        /*
-         * =========================================
-         * HASH DU CODE
-         * =========================================
-         */
 
         const codeHash = await hmacSha256(
           activationCode,
           pepper,
         );
 
-        /*
-         * =========================================
-         * RECHERCHE CODE
-         * =========================================
-         */
-
         const {
           data: code,
           error: codeError,
         } = await ctx.supabaseAdmin
-          .from(
-            "owner_activation_codes",
-          )
+          .from("owner_activation_codes")
           .select(
             `
-                            id,
-                            owner_account_id,
-                            expires_at,
-                            used_at,
-                            revoked_at
-                            `,
+            id,
+            owner_account_id,
+            expires_at,
+            used_at,
+            revoked_at
+            `,
           )
-          .eq(
-            "code_hash",
-            codeHash,
-          )
+          .eq("code_hash", codeHash)
           .maybeSingle();
 
-        if (
-          codeError ||
-          !code
-        ) {
-          return jsonError(
-            "Code d'activation invalide.",
-            401,
-          );
-        }
+        if (codeError || !code) {
+          if (codeError) {
+            console.error(
+              "Activation code lookup failed:",
+              codeError.message,
+            );
+          }
 
-        /*
-         * =========================================
-         * CODE UTILISABLE ?
-         * =========================================
-         */
+          return jsonError("Code d'activation invalide.", 401);
+        }
 
         if (code.revoked_at) {
           return jsonError(
@@ -306,89 +188,54 @@ export default {
           );
         }
 
-        if (
-          new Date(
-            code.expires_at,
-          ).getTime() <= Date.now()
-        ) {
+        if (new Date(code.expires_at).getTime() <= Date.now()) {
           return jsonError(
             "Ce code d'activation a expiré.",
             401,
           );
         }
 
-        /*
-         * =========================================
-         * COMPTE PROPRIÉTAIRE
-         * =========================================
-         */
-
         const {
           data: owner,
           error: ownerError,
         } = await ctx.supabaseAdmin
-          .from(
-            "owner_accounts",
-          )
+          .from("owner_accounts")
           .select(
             `
-                            id,
-                            auth_user_id,
-                            first_name,
-                            last_name,
-                            phone,
-                            whatsapp,
-                            email,
-                            status
-                            `,
+            id,
+            auth_user_id,
+            first_name,
+            last_name,
+            phone,
+            whatsapp,
+            status
+            `,
           )
-          .eq(
-            "id",
-            code.owner_account_id,
-          )
+          .eq("id", code.owner_account_id)
           .maybeSingle();
 
-        if (
-          ownerError ||
-          !owner
-        ) {
+        if (ownerError || !owner) {
+          if (ownerError) {
+            console.error("Owner lookup failed:", ownerError.message);
+          }
+
           return jsonError(
             "Compte propriétaire introuvable.",
             404,
           );
         }
 
-        /*
-         * =========================================
-         * DÉJÀ ACTIF ?
-         * =========================================
-         */
-
-        if (
-          owner.status === "active" ||
-          owner.auth_user_id
-        ) {
+        if (owner.status === "active" || owner.auth_user_id) {
           return jsonError(
             "Ce compte propriétaire est déjà activé. Utilisez la page de connexion.",
             409,
           );
         }
 
-        /*
-         * =========================================
-         * TELEPHONE
-         * =========================================
-         */
-
-        const phoneE164 = normalizeMoroccoPhone(
-          owner.phone,
-        );
+        const phoneE164 = normalizeMoroccoPhone(owner.phone);
 
         if (!phoneE164) {
-          console.error(
-            "Invalid owner phone",
-            owner.id,
-          );
+          console.error("Invalid owner phone:", owner.id);
 
           return jsonError(
             "Le numéro de téléphone associé à ce propriétaire est invalide. Contactez l'administration.",
@@ -396,15 +243,7 @@ export default {
           );
         }
 
-        /*
-         * =========================================
-         * CREATE SUPABASE AUTH USER
-         * =========================================
-         *
-         * IMPORTANT :
-         * aucune clé service_role n'est envoyée
-         * au navigateur.
-         */
+        const loginEmail = await buildInternalLoginEmail(phoneE164);
 
         const {
           data: authData,
@@ -413,35 +252,28 @@ export default {
           .auth
           .admin
           .createUser({
-            phone: phoneE164,
-
+            email: loginEmail,
             password,
-
-            phone_confirm: true,
-
+            email_confirm: true,
             user_metadata: {
               owner_account_id: owner.id,
-
               first_name: owner.first_name,
-
               last_name: owner.last_name,
+              phone_e164: phoneE164,
             },
           });
 
-        if (
-          authError ||
-          !authData.user
-        ) {
+        if (authError || !authData.user) {
           console.error(
             "Auth user creation failed:",
             authError?.message,
           );
 
-          const duplicate = authError?.message
-            ?.toLowerCase()
-            .includes(
-              "already",
-            );
+          const authMessage = authError?.message?.toLowerCase() || "";
+
+          const duplicate = authMessage.includes("already") ||
+            authMessage.includes("registered") ||
+            authMessage.includes("exists");
 
           return jsonError(
             duplicate
@@ -453,12 +285,6 @@ export default {
 
         createdAuthUserId = authData.user.id;
 
-        /*
-         * =========================================
-         * FINALISATION ATOMIQUE DATABASE
-         * =========================================
-         */
-
         const {
           data: activationResult,
           error: activationError,
@@ -467,11 +293,8 @@ export default {
             "complete_owner_activation",
             {
               p_owner_account_id: owner.id,
-
               p_activation_code_id: code.id,
-
               p_auth_user_id: authData.user.id,
-
               p_phone_e164: phoneE164,
             },
           );
@@ -482,19 +305,11 @@ export default {
             activationError.message,
           );
 
-          /*
-           * Compensation :
-           * si la transaction DB échoue,
-           * on supprime le compte Auth créé.
-           */
-
           try {
             await ctx.supabaseAdmin
               .auth
               .admin
-              .deleteUser(
-                authData.user.id,
-              );
+              .deleteUser(authData.user.id);
           } catch (cleanupError) {
             console.error(
               "Auth cleanup failed:",
@@ -511,33 +326,29 @@ export default {
           );
         }
 
-        /*
-         * =========================================
-         * SUCCESS
-         * =========================================
-         */
-
         createdAuthUserId = null;
 
         return Response.json(
           {
             success: true,
-
             message: "Compte activé avec succès.",
+
+            /*
+             * Identifiant technique Supabase Auth.
+             * Le frontend l'utilise sans l'afficher.
+             */
+            loginEmail,
 
             phone: phoneE164,
 
             owner: {
               firstName: owner.first_name,
-
               lastName: owner.last_name,
             },
 
             activation: activationResult,
           },
-          {
-            status: 200,
-          },
+          { status: 200 },
         );
       } catch (error) {
         console.error(
@@ -545,20 +356,12 @@ export default {
           error,
         );
 
-        /*
-         * Dernier filet de sécurité.
-         */
-
-        if (
-          createdAuthUserId
-        ) {
+        if (createdAuthUserId) {
           try {
             await ctx.supabaseAdmin
               .auth
               .admin
-              .deleteUser(
-                createdAuthUserId,
-              );
+              .deleteUser(createdAuthUserId);
           } catch (cleanupError) {
             console.error(
               "Emergency cleanup failed:",
