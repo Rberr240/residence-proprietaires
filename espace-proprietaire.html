@@ -2346,6 +2346,425 @@
         font-size: 8px;
       }
     }
+
+    /* ======================================== */
+    /* NOTIFICATIONS V2                         */
+    /* ======================================== */
+
+    .notification-nav-count {
+      margin-left: auto;
+      min-width: 22px;
+      height: 20px;
+      padding: 0 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: #dc4d4d;
+      color: white;
+      font-size: 9px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .notification-bell {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--mg-border);
+      border-radius: 12px;
+      background: white;
+      color: var(--mg-green-900);
+      font-size: 18px;
+      box-shadow: 0 8px 24px rgba(17, 55, 44, 0.06);
+    }
+
+    .notification-bell:hover {
+      background: var(--mg-green-50);
+    }
+
+    .notification-bell-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 5px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #f4f7f5;
+      border-radius: 999px;
+      background: #dc4d4d;
+      color: white;
+      font-size: 9px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .notifications-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(290px, 0.75fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .notification-panel {
+      overflow: hidden;
+      border: 1px solid var(--mg-border);
+      border-radius: 18px;
+      background: white;
+      box-shadow: var(--mg-shadow);
+    }
+
+    .notification-panel-header {
+      padding: 19px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      border-bottom: 1px solid var(--mg-border);
+    }
+
+    .notification-panel-header h3 {
+      margin: 0;
+      color: var(--mg-green-950);
+      font-size: 15px;
+    }
+
+    .notification-panel-header p {
+      margin: 4px 0 0;
+      color: var(--mg-muted);
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    .notification-header-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .notification-secondary-button,
+    .notification-primary-button {
+      min-height: 38px;
+      padding: 0 13px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .notification-secondary-button {
+      border: 1px solid var(--mg-border);
+      background: white;
+      color: var(--mg-green-900);
+    }
+
+    .notification-primary-button {
+      border: 1px solid var(--mg-green-800);
+      background: var(--mg-green-800);
+      color: white;
+    }
+
+    .notification-primary-button:disabled,
+    .notification-secondary-button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .notification-filters {
+      padding: 12px 20px;
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid var(--mg-border);
+      background: var(--mg-green-50);
+    }
+
+    .notification-filter-button {
+      min-height: 32px;
+      padding: 0 12px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--mg-muted);
+      font-size: 9px;
+      font-weight: 900;
+    }
+
+    .notification-filter-button.active {
+      border-color: var(--mg-border);
+      background: white;
+      color: var(--mg-green-950);
+      box-shadow: 0 5px 15px rgba(17, 55, 44, 0.05);
+    }
+
+    .notification-state {
+      margin: 16px 20px;
+      padding: 18px;
+      border: 1px dashed var(--mg-border);
+      border-radius: 13px;
+      background: var(--mg-green-50);
+      color: var(--mg-muted);
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .owner-notifications-list {
+      display: grid;
+    }
+
+    .notification-item {
+      position: relative;
+      padding: 17px 20px;
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr) auto;
+      gap: 13px;
+      align-items: start;
+      border-bottom: 1px solid var(--mg-border);
+      background: white;
+    }
+
+    .notification-item:last-child {
+      border-bottom: 0;
+    }
+
+    .notification-item.unread {
+      background: #f6fbf8;
+    }
+
+    .notification-item.unread::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 7px;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #dc4d4d;
+    }
+
+    .notification-category-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--mg-green-100);
+      color: var(--mg-green-800);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .notification-item-content {
+      min-width: 0;
+    }
+
+    .notification-item-topline {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .notification-item-title {
+      margin: 0;
+      color: var(--mg-green-950);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .notification-priority {
+      padding: 3px 7px;
+      border-radius: 999px;
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    .notification-priority.high {
+      background: #fff4db;
+      color: #8f6300;
+    }
+
+    .notification-priority.urgent {
+      background: #fff0f0;
+      color: #b53f3f;
+    }
+
+    .notification-item-body {
+      margin: 5px 0 0;
+      color: var(--mg-muted);
+      font-size: 10px;
+      line-height: 1.55;
+    }
+
+    .notification-item-meta {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #8b9993;
+      font-size: 9px;
+      font-weight: 700;
+      flex-wrap: wrap;
+    }
+
+    .notification-item-action {
+      min-height: 34px;
+      padding: 0 10px;
+      border: 1px solid var(--mg-border);
+      border-radius: 9px;
+      background: white;
+      color: var(--mg-green-800);
+      font-size: 9px;
+      font-weight: 900;
+    }
+
+    .notification-preferences-body {
+      padding: 18px 20px 20px;
+      display: grid;
+      gap: 11px;
+    }
+
+    .notification-preference-row {
+      min-height: 68px;
+      padding: 13px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      border: 1px solid var(--mg-border);
+      border-radius: 13px;
+      background: #fbfcfc;
+    }
+
+    .notification-preference-row strong {
+      display: block;
+      color: var(--mg-green-950);
+      font-size: 11px;
+    }
+
+    .notification-preference-row small {
+      display: block;
+      margin-top: 4px;
+      color: var(--mg-muted);
+      font-size: 9px;
+      line-height: 1.45;
+    }
+
+    .notification-pref-status {
+      flex: 0 0 auto;
+      min-height: 26px;
+      padding: 0 9px;
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      background: var(--mg-success-bg);
+      color: var(--mg-success);
+      font-size: 8px;
+      font-weight: 900;
+    }
+
+    .notification-pref-status.soon {
+      background: var(--mg-warning-bg);
+      color: var(--mg-warning);
+    }
+
+    .notification-switch {
+      position: relative;
+      width: 44px;
+      height: 25px;
+      flex: 0 0 auto;
+    }
+
+    .notification-switch input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .notification-switch span {
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      background: #ccd8d3;
+      transition: background 0.15s ease;
+    }
+
+    .notification-switch span::after {
+      content: "";
+      position: absolute;
+      width: 19px;
+      height: 19px;
+      top: 3px;
+      left: 3px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
+      transition: transform 0.15s ease;
+    }
+
+    .notification-switch input:checked + span {
+      background: var(--mg-green-700);
+    }
+
+    .notification-switch input:checked + span::after {
+      transform: translateX(19px);
+    }
+
+    .notification-preference-message {
+      min-height: 18px;
+      color: var(--mg-muted);
+      font-size: 9px;
+      line-height: 1.45;
+    }
+
+    .notification-preference-message.success {
+      color: var(--mg-success);
+      font-weight: 800;
+    }
+
+    .notification-preference-message.error {
+      color: #b42318;
+      font-weight: 800;
+    }
+
+    @media (max-width: 980px) {
+      .notifications-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .notification-panel-header,
+      .notification-preference-row {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .notification-header-actions {
+        justify-content: stretch;
+      }
+
+      .notification-header-actions button {
+        flex: 1 1 auto;
+      }
+
+      .notification-item {
+        grid-template-columns: 38px minmax(0, 1fr);
+      }
+
+      .notification-item-action {
+        grid-column: 1 / -1;
+        width: 100%;
+      }
+    }
+
   </style>
 </head>
 
@@ -2471,6 +2890,23 @@
           Documents
         </button>
 
+
+        <button
+          class="nav-button"
+          type="button"
+          data-section="notifications"
+        >
+          <span class="nav-icon">N</span>
+          Notifications
+          <span
+            id="notificationNavCount"
+            class="notification-nav-count"
+            hidden
+          >
+            0
+          </span>
+        </button>
+
         <button
           class="nav-button"
           type="button"
@@ -2537,6 +2973,24 @@
         </div>
 
         <div class="topbar-right">
+
+
+          <button
+            id="topbarNotificationsButton"
+            class="notification-bell"
+            type="button"
+            aria-label="Ouvrir les notifications"
+            title="Notifications"
+          >
+            🔔
+            <span
+              id="notificationBellBadge"
+              class="notification-bell-badge"
+              hidden
+            >
+              0
+            </span>
+          </button>
 
           <div class="status-pill">
 
@@ -3328,6 +3782,222 @@
 
         </section>
 
+
+        <!-- ==================================== -->
+        <!-- NOTIFICATIONS                        -->
+        <!-- ==================================== -->
+
+        <section
+          id="section-notifications"
+          class="page-section"
+          data-page-section
+          hidden
+        >
+
+          <div class="section-heading">
+            <div>
+              <span>
+                CENTRE D'ALERTES
+              </span>
+
+              <h2>
+                Notifications
+              </h2>
+
+              <p>
+                Retrouvez les informations importantes de la résidence
+                et choisissez comment vous souhaitez être prévenu.
+              </p>
+            </div>
+          </div>
+
+          <div class="notifications-layout">
+
+            <article class="notification-panel">
+
+              <div class="notification-panel-header">
+                <div>
+                  <h3>
+                    Mes notifications
+                  </h3>
+                  <p>
+                    Réunions, votes, syndic, annonces et documents.
+                  </p>
+                </div>
+
+                <div class="notification-header-actions">
+                  <button
+                    id="refreshNotificationsButton"
+                    class="notification-secondary-button"
+                    type="button"
+                  >
+                    Actualiser
+                  </button>
+
+                  <button
+                    id="markAllNotificationsReadButton"
+                    class="notification-primary-button"
+                    type="button"
+                  >
+                    Tout marquer comme lu
+                  </button>
+                </div>
+              </div>
+
+              <div class="notification-filters">
+                <button
+                  class="notification-filter-button active"
+                  type="button"
+                  data-notification-filter="all"
+                >
+                  Toutes
+                </button>
+
+                <button
+                  class="notification-filter-button"
+                  type="button"
+                  data-notification-filter="unread"
+                >
+                  Non lues
+                </button>
+              </div>
+
+              <div
+                id="ownerNotificationsLoading"
+                class="notification-state"
+              >
+                Chargement des notifications...
+              </div>
+
+              <div
+                id="ownerNotificationsEmpty"
+                class="notification-state"
+                hidden
+              >
+                Aucune notification pour le moment.
+              </div>
+
+              <div
+                id="ownerNotificationsError"
+                class="notification-state"
+                hidden
+              >
+                Impossible de charger les notifications.
+              </div>
+
+              <div
+                id="ownerNotificationsList"
+                class="owner-notifications-list"
+                hidden
+              >
+              </div>
+
+            </article>
+
+            <article class="notification-panel">
+
+              <div class="notification-panel-header">
+                <div>
+                  <h3>
+                    Préférences
+                  </h3>
+                  <p>
+                    Contrôlez les canaux externes de votre compte.
+                  </p>
+                </div>
+              </div>
+
+              <div class="notification-preferences-body">
+
+                <div class="notification-preference-row">
+                  <div>
+                    <strong>
+                      Notifications dans l'application
+                    </strong>
+                    <small>
+                      Toujours actives pour les événements importants.
+                    </small>
+                  </div>
+
+                  <span class="notification-pref-status">
+                    Actif
+                  </span>
+                </div>
+
+                <div class="notification-preference-row">
+                  <div>
+                    <strong>
+                      Email
+                    </strong>
+                    <small id="notificationEmailHint">
+                      Chargement de votre adresse email...
+                    </small>
+                  </div>
+
+                  <label
+                    class="notification-switch"
+                    title="Activer ou désactiver les emails"
+                  >
+                    <input
+                      id="notificationEmailToggle"
+                      type="checkbox"
+                    >
+                    <span></span>
+                  </label>
+                </div>
+
+                <div class="notification-preference-row">
+                  <div>
+                    <strong>
+                      WhatsApp
+                    </strong>
+                    <small>
+                      Le canal sera disponible après configuration du provider.
+                    </small>
+                  </div>
+
+                  <span class="notification-pref-status soon">
+                    Bientôt
+                  </span>
+                </div>
+
+                <div class="notification-preference-row">
+                  <div>
+                    <strong>
+                      Notifications push
+                    </strong>
+                    <small>
+                      Le canal sera disponible après intégration OneSignal.
+                    </small>
+                  </div>
+
+                  <span class="notification-pref-status soon">
+                    Bientôt
+                  </span>
+                </div>
+
+                <div
+                  id="notificationPreferenceMessage"
+                  class="notification-preference-message"
+                >
+                </div>
+
+                <button
+                  id="saveNotificationPreferencesButton"
+                  class="notification-primary-button"
+                  type="button"
+                >
+                  Enregistrer mes préférences
+                </button>
+
+              </div>
+
+            </article>
+
+          </div>
+
+        </section>
+
         <!-- ==================================== -->
         <!-- PROFILE                              -->
         <!-- ==================================== -->
@@ -3541,6 +4211,32 @@
       false;
 
 
+    let ownerNotifications =
+      [];
+
+    let notificationsLoadedOnce =
+      false;
+
+    let notificationFilter =
+      "all";
+
+    let notificationPreferences = {
+      emailEnabled: false,
+      whatsappEnabled: false,
+      pushEnabled: false,
+      digestMode: "immediate",
+      quietHoursStart: null,
+      quietHoursEnd: null,
+      timezone: "Africa/Casablanca",
+    };
+
+    let currentOwnerEmail =
+      "";
+
+    let currentSectionName =
+      "overview";
+
+
     const SECTION_NAMES = {
       overview: {
         label: "MIRADOR GOLF 1",
@@ -3572,6 +4268,12 @@
         title: "Documents",
       },
 
+
+      notifications: {
+        label: "CENTRE D'ALERTES",
+        title: "Notifications",
+      },
+
       profile: {
         label: "COMPTE",
         title: "Mon profil",
@@ -3601,6 +4303,9 @@
       const configuration =
         SECTION_NAMES[sectionName] ||
         SECTION_NAMES.overview;
+
+      currentSectionName =
+        sectionName;
 
       pageSections.forEach(
         (section) => {
@@ -3665,6 +4370,13 @@
         loadOwnerDocuments();
       }
 
+      if (
+        sectionName === "notifications" &&
+        currentOwnerAccountId
+      ) {
+        loadOwnerNotifications();
+      }
+
       window.scrollTo({
         top: 0,
         behavior: "smooth",
@@ -3684,6 +4396,20 @@
         );
       },
     );
+
+
+    document
+      .getElementById(
+        "topbarNotificationsButton"
+      )
+      .addEventListener(
+        "click",
+        () => {
+          showSection(
+            "notifications"
+          );
+        },
+      );
 
 
     mobileMenuButton.addEventListener(
@@ -8292,6 +9018,1012 @@ ${escapeHtml(announcement.content)}
       );
 
 
+    function notificationSectionName(
+      value,
+    ) {
+      const aliases = {
+        dashboard: "overview",
+        home: "overview",
+      };
+
+      const normalized =
+        aliases[value] ||
+        value;
+
+      const allowed =
+        new Set([
+          "overview",
+          "meetings",
+          "votes",
+          "syndic",
+          "announcements",
+          "documents",
+          "notifications",
+          "profile",
+        ]);
+
+      return allowed.has(
+        normalized
+      )
+        ? normalized
+        : "overview";
+    }
+
+
+    function requestedOwnerSection() {
+      const params =
+        new URLSearchParams(
+          window.location.search
+        );
+
+      return notificationSectionName(
+        params.get("section") ||
+        "overview"
+      );
+    }
+
+
+    function notificationCategoryMeta(
+      category,
+    ) {
+      const values = {
+        meeting: {
+          icon: "R",
+          label: "Réunion",
+        },
+        vote: {
+          icon: "V",
+          label: "Vote",
+        },
+        syndic: {
+          icon: "S",
+          label: "Syndic",
+        },
+        announcement: {
+          icon: "A",
+          label: "Annonce",
+        },
+        document: {
+          icon: "D",
+          label: "Document",
+        },
+        account: {
+          icon: "C",
+          label: "Compte",
+        },
+        system: {
+          icon: "I",
+          label: "Information",
+        },
+      };
+
+      return values[category] ||
+        values.system;
+    }
+
+
+    function formatNotificationDate(
+      value,
+    ) {
+      if (
+        !value
+      ) {
+        return "Date inconnue";
+      }
+
+      const date =
+        new Date(
+          value
+        );
+
+      if (
+        Number.isNaN(
+          date.getTime()
+        )
+      ) {
+        return "Date inconnue";
+      }
+
+      return date.toLocaleString(
+        "fr-FR",
+        {
+          dateStyle: "medium",
+          timeStyle: "short",
+        },
+      );
+    }
+
+
+    function setUnreadNotificationCount(
+      count,
+    ) {
+      const safeCount =
+        Math.max(
+          0,
+          Number(count) || 0,
+        );
+
+      const label =
+        safeCount > 99
+          ? "99+"
+          : String(
+            safeCount
+          );
+
+      const bellBadge =
+        document.getElementById(
+          "notificationBellBadge"
+        );
+
+      const navCount =
+        document.getElementById(
+          "notificationNavCount"
+        );
+
+      [
+        bellBadge,
+        navCount,
+      ].forEach(
+        element => {
+          if (
+            !element
+          ) {
+            return;
+          }
+
+          element.textContent =
+            label;
+
+          element.hidden =
+            safeCount === 0;
+        },
+      );
+
+      const markAllButton =
+        document.getElementById(
+          "markAllNotificationsReadButton"
+        );
+
+      if (
+        markAllButton
+      ) {
+        markAllButton.disabled =
+          safeCount === 0;
+      }
+    }
+
+
+    async function refreshUnreadNotificationCount() {
+      if (
+        !currentOwnerAccountId
+      ) {
+        setUnreadNotificationCount(
+          0
+        );
+        return;
+      }
+
+      const {
+        data,
+        error,
+      } =
+        await supabaseClient
+          .rpc(
+            "owner_get_unread_notification_count"
+          );
+
+      if (
+        error
+      ) {
+        console.error(
+          "Unread notification count error:",
+          error
+        );
+        return;
+      }
+
+      setUnreadNotificationCount(
+        data
+      );
+    }
+
+
+    async function loadOwnerNotifications(
+      force = false,
+    ) {
+      if (
+        !currentOwnerAccountId
+      ) {
+        return;
+      }
+
+      if (
+        notificationsLoadedOnce &&
+        !force
+      ) {
+        renderOwnerNotifications();
+        return;
+      }
+
+      const loading =
+        document.getElementById(
+          "ownerNotificationsLoading"
+        );
+
+      const empty =
+        document.getElementById(
+          "ownerNotificationsEmpty"
+        );
+
+      const errorState =
+        document.getElementById(
+          "ownerNotificationsError"
+        );
+
+      const list =
+        document.getElementById(
+          "ownerNotificationsList"
+        );
+
+      loading.hidden =
+        false;
+      empty.hidden =
+        true;
+      errorState.hidden =
+        true;
+      list.hidden =
+        true;
+
+      const {
+        data: notificationsData,
+        error: notificationsError,
+      } =
+        await supabaseClient
+          .from(
+            "owner_notifications"
+          )
+          .select(
+            `
+            id,
+            event_id,
+            seen_at,
+            opened_at,
+            read_at,
+            dismissed_at,
+            created_at
+            `
+          )
+          .eq(
+            "owner_account_id",
+            currentOwnerAccountId
+          )
+          .is(
+            "dismissed_at",
+            null
+          )
+          .order(
+            "created_at",
+            {
+              ascending: false,
+            }
+          )
+          .limit(
+            100
+          );
+
+      if (
+        notificationsError
+      ) {
+        console.error(
+          "Owner notifications loading error:",
+          notificationsError
+        );
+
+        loading.hidden =
+          true;
+        errorState.hidden =
+          false;
+        return;
+      }
+
+      const safeNotifications =
+        Array.isArray(
+          notificationsData
+        )
+          ? notificationsData
+          : [];
+
+      const eventIds =
+        safeNotifications
+          .map(
+            item =>
+              item.event_id
+          )
+          .filter(
+            Boolean
+          );
+
+      let eventsData =
+        [];
+
+      if (
+        eventIds.length > 0
+      ) {
+        const {
+          data,
+          error,
+        } =
+          await supabaseClient
+            .from(
+              "notification_events"
+            )
+            .select(
+              `
+              id,
+              event_type,
+              category,
+              source_type,
+              source_id,
+              title,
+              body,
+              priority,
+              action_section,
+              action_entity_id,
+              metadata,
+              occurred_at
+              `
+            )
+            .in(
+              "id",
+              eventIds
+            );
+
+        if (
+          error
+        ) {
+          console.error(
+            "Notification events loading error:",
+            error
+          );
+
+          loading.hidden =
+            true;
+          errorState.hidden =
+            false;
+          return;
+        }
+
+        eventsData =
+          Array.isArray(data)
+            ? data
+            : [];
+      }
+
+      const eventsById =
+        new Map(
+          eventsData.map(
+            event => [
+              event.id,
+              event,
+            ]
+          )
+        );
+
+      ownerNotifications =
+        safeNotifications
+          .map(
+            item => ({
+              ...item,
+              event:
+                eventsById.get(
+                  item.event_id
+                ) || null,
+            })
+          )
+          .filter(
+            item =>
+              item.event
+          );
+
+      notificationsLoadedOnce =
+        true;
+
+      loading.hidden =
+        true;
+
+      renderOwnerNotifications();
+      await refreshUnreadNotificationCount();
+    }
+
+
+    function renderOwnerNotifications() {
+      const empty =
+        document.getElementById(
+          "ownerNotificationsEmpty"
+        );
+
+      const list =
+        document.getElementById(
+          "ownerNotificationsList"
+        );
+
+      list.innerHTML =
+        "";
+
+      const visibleNotifications =
+        ownerNotifications.filter(
+          notification =>
+            notificationFilter !==
+              "unread" ||
+            !notification.read_at
+        );
+
+      if (
+        visibleNotifications.length ===
+        0
+      ) {
+        empty.textContent =
+          notificationFilter ===
+          "unread"
+            ? "Aucune notification non lue."
+            : "Aucune notification pour le moment.";
+
+        empty.hidden =
+          false;
+        list.hidden =
+          true;
+        return;
+      }
+
+      empty.hidden =
+        true;
+      list.hidden =
+        false;
+
+      for (
+        const notification
+        of visibleNotifications
+      ) {
+        const event =
+          notification.event;
+
+        const meta =
+          notificationCategoryMeta(
+            event.category
+          );
+
+        const unread =
+          !notification.read_at;
+
+        const priority =
+          safeText(
+            event.priority,
+            "normal"
+          ).toLowerCase();
+
+        const card =
+          document.createElement(
+            "article"
+          );
+
+        card.className =
+          `notification-item${
+            unread
+              ? " unread"
+              : ""
+          }`;
+
+        const priorityBadge =
+          priority === "high" ||
+          priority === "urgent"
+            ? `
+              <span class="notification-priority ${escapeHtml(priority)}">
+                ${priority === "urgent" ? "Urgent" : "Important"}
+              </span>
+            `
+            : "";
+
+        card.innerHTML = `
+          <div class="notification-category-icon">
+            ${escapeHtml(meta.icon)}
+          </div>
+
+          <div class="notification-item-content">
+            <div class="notification-item-topline">
+              <h3 class="notification-item-title">
+                ${escapeHtml(event.title)}
+              </h3>
+              ${priorityBadge}
+            </div>
+
+            <p class="notification-item-body">
+              ${escapeHtml(event.body)}
+            </p>
+
+            <div class="notification-item-meta">
+              <span>${escapeHtml(meta.label)}</span>
+              <span>${escapeHtml(formatNotificationDate(event.occurred_at || notification.created_at))}</span>
+              <span>${unread ? "Non lue" : "Lue"}</span>
+            </div>
+          </div>
+
+          <button
+            class="notification-item-action"
+            type="button"
+            data-open-notification="${escapeHtml(notification.id)}"
+          >
+            Ouvrir
+          </button>
+        `;
+
+        list.appendChild(
+          card
+        );
+      }
+
+      list
+        .querySelectorAll(
+          "[data-open-notification]"
+        )
+        .forEach(
+          button => {
+            button.addEventListener(
+              "click",
+              () => {
+                openOwnerNotification(
+                  button.dataset.openNotification,
+                  button
+                );
+              },
+            );
+          },
+        );
+    }
+
+
+    async function openOwnerNotification(
+      notificationId,
+      button,
+    ) {
+      const notification =
+        ownerNotifications.find(
+          item =>
+            item.id ===
+            notificationId
+        );
+
+      if (
+        !notification
+      ) {
+        return;
+      }
+
+      const originalLabel =
+        button.textContent;
+
+      button.disabled =
+        true;
+      button.textContent =
+        "Ouverture...";
+
+      try {
+        if (
+          !notification.read_at
+        ) {
+          const {
+            data,
+            error,
+          } =
+            await supabaseClient
+              .rpc(
+                "owner_mark_notification_read",
+                {
+                  p_notification_id:
+                    notificationId,
+                },
+              );
+
+          if (
+            error
+          ) {
+            throw error;
+          }
+
+          notification.read_at =
+            data?.readAt ||
+            new Date().toISOString();
+
+          notification.seen_at =
+            notification.seen_at ||
+            notification.read_at;
+
+          notification.opened_at =
+            notification.opened_at ||
+            notification.read_at;
+        }
+
+        await refreshUnreadNotificationCount();
+        renderOwnerNotifications();
+
+        const destination =
+          notificationSectionName(
+            notification.event?.action_section ||
+            "notifications"
+          );
+
+        if (
+          destination !==
+          "notifications"
+        ) {
+          showSection(
+            destination
+          );
+        }
+      } catch (
+        error
+      ) {
+        console.error(
+          "Open owner notification error:",
+          error
+        );
+
+        alert(
+          "Impossible d'ouvrir cette notification."
+        );
+      } finally {
+        button.disabled =
+          false;
+        button.textContent =
+          originalLabel;
+      }
+    }
+
+
+    async function markAllOwnerNotificationsRead() {
+      const button =
+        document.getElementById(
+          "markAllNotificationsReadButton"
+        );
+
+      const originalLabel =
+        button.textContent;
+
+      button.disabled =
+        true;
+      button.textContent =
+        "Mise à jour...";
+
+      try {
+        const {
+          error,
+        } =
+          await supabaseClient
+            .rpc(
+              "owner_mark_all_notifications_read"
+            );
+
+        if (
+          error
+        ) {
+          throw error;
+        }
+
+        const now =
+          new Date().toISOString();
+
+        ownerNotifications.forEach(
+          notification => {
+            if (
+              !notification.read_at
+            ) {
+              notification.read_at =
+                now;
+              notification.seen_at =
+                notification.seen_at ||
+                now;
+            }
+          },
+        );
+
+        setUnreadNotificationCount(
+          0
+        );
+        renderOwnerNotifications();
+      } catch (
+        error
+      ) {
+        console.error(
+          "Mark all notifications read error:",
+          error
+        );
+
+        alert(
+          "Impossible de marquer les notifications comme lues."
+        );
+      } finally {
+        button.textContent =
+          originalLabel;
+
+        button.disabled =
+          !ownerNotifications.some(
+            item =>
+              !item.read_at
+          );
+      }
+    }
+
+
+    function renderNotificationPreferences() {
+      const emailToggle =
+        document.getElementById(
+          "notificationEmailToggle"
+        );
+
+      const emailHint =
+        document.getElementById(
+          "notificationEmailHint"
+        );
+
+      emailToggle.checked =
+        Boolean(
+          notificationPreferences.emailEnabled
+        );
+
+      emailToggle.disabled =
+        !currentOwnerEmail;
+
+      emailHint.textContent =
+        currentOwnerEmail
+          ? `Envoi vers ${currentOwnerEmail}`
+          : "Aucune adresse email associée à votre compte.";
+    }
+
+
+    async function loadNotificationPreferences() {
+      const {
+        data,
+        error,
+      } =
+        await supabaseClient
+          .rpc(
+            "owner_get_notification_preferences"
+          );
+
+      if (
+        error
+      ) {
+        console.error(
+          "Notification preferences loading error:",
+          error
+        );
+        return;
+      }
+
+      notificationPreferences = {
+        emailEnabled:
+          Boolean(
+            data?.emailEnabled
+          ),
+        whatsappEnabled:
+          Boolean(
+            data?.whatsappEnabled
+          ),
+        pushEnabled:
+          Boolean(
+            data?.pushEnabled
+          ),
+        digestMode:
+          data?.digestMode ||
+          "immediate",
+        quietHoursStart:
+          data?.quietHoursStart ||
+          null,
+        quietHoursEnd:
+          data?.quietHoursEnd ||
+          null,
+        timezone:
+          data?.timezone ||
+          "Africa/Casablanca",
+      };
+
+      renderNotificationPreferences();
+    }
+
+
+    async function saveNotificationPreferences() {
+      const button =
+        document.getElementById(
+          "saveNotificationPreferencesButton"
+        );
+
+      const message =
+        document.getElementById(
+          "notificationPreferenceMessage"
+        );
+
+      const emailEnabled =
+        Boolean(
+          document.getElementById(
+            "notificationEmailToggle"
+          ).checked
+        );
+
+      if (
+        emailEnabled &&
+        !currentOwnerEmail
+      ) {
+        message.textContent =
+          "Ajoutez d'abord une adresse email à votre compte.";
+        message.className =
+          "notification-preference-message error";
+        return;
+      }
+
+      button.disabled =
+        true;
+      button.textContent =
+        "Enregistrement...";
+
+      message.textContent =
+        "";
+      message.className =
+        "notification-preference-message";
+
+      try {
+        const {
+          data,
+          error,
+        } =
+          await supabaseClient
+            .rpc(
+              "owner_update_notification_preferences",
+              {
+                p_email_enabled:
+                  emailEnabled,
+                p_whatsapp_enabled:
+                  Boolean(
+                    notificationPreferences.whatsappEnabled
+                  ),
+                p_push_enabled:
+                  Boolean(
+                    notificationPreferences.pushEnabled
+                  ),
+                p_digest_mode:
+                  notificationPreferences.digestMode ||
+                  "immediate",
+                p_quiet_hours_start:
+                  notificationPreferences.quietHoursStart,
+                p_quiet_hours_end:
+                  notificationPreferences.quietHoursEnd,
+                p_timezone:
+                  notificationPreferences.timezone ||
+                  "Africa/Casablanca",
+              },
+            );
+
+        if (
+          error
+        ) {
+          throw error;
+        }
+
+        notificationPreferences.emailEnabled =
+          Boolean(
+            data?.emailEnabled
+          );
+
+        notificationPreferences.whatsappEnabled =
+          Boolean(
+            data?.whatsappEnabled
+          );
+
+        notificationPreferences.pushEnabled =
+          Boolean(
+            data?.pushEnabled
+          );
+
+        renderNotificationPreferences();
+
+        message.textContent =
+          "Préférences enregistrées.";
+        message.className =
+          "notification-preference-message success";
+      } catch (
+        error
+      ) {
+        console.error(
+          "Notification preferences save error:",
+          error
+        );
+
+        message.textContent =
+          error?.message ||
+          "Impossible d'enregistrer vos préférences.";
+        message.className =
+          "notification-preference-message error";
+      } finally {
+        button.disabled =
+          false;
+        button.textContent =
+          "Enregistrer mes préférences";
+      }
+    }
+
+
+    document
+      .getElementById(
+        "refreshNotificationsButton"
+      )
+      .addEventListener(
+        "click",
+        () => {
+          notificationsLoadedOnce =
+            false;
+
+          loadOwnerNotifications(
+            true
+          );
+        },
+      );
+
+
+    document
+      .getElementById(
+        "markAllNotificationsReadButton"
+      )
+      .addEventListener(
+        "click",
+        () => {
+          markAllOwnerNotificationsRead();
+        },
+      );
+
+
+    document
+      .querySelectorAll(
+        "[data-notification-filter]"
+      )
+      .forEach(
+        button => {
+          button.addEventListener(
+            "click",
+            () => {
+              notificationFilter =
+                button.dataset.notificationFilter ||
+                "all";
+
+              document
+                .querySelectorAll(
+                  "[data-notification-filter]"
+                )
+                .forEach(
+                  item => {
+                    item.classList.toggle(
+                      "active",
+                      item === button
+                    );
+                  },
+                );
+
+              renderOwnerNotifications();
+            },
+          );
+        },
+      );
+
+
+    document
+      .getElementById(
+        "saveNotificationPreferencesButton"
+      )
+      .addEventListener(
+        "click",
+        () => {
+          saveNotificationPreferences();
+        },
+      );
+
+
     async function loadOwnerSpace() {
       try {
         const {
@@ -8400,6 +10132,12 @@ ${escapeHtml(announcement.content)}
 
         currentOwnerAccountId =
           owner.id;
+
+        currentOwnerEmail =
+          safeText(
+            owner.email,
+            ""
+          );
 
 
         const {
@@ -8626,6 +10364,22 @@ ${escapeHtml(announcement.content)}
         );
 
 
+        await Promise.allSettled(
+          [
+            refreshUnreadNotificationCount(),
+            loadNotificationPreferences(),
+          ]
+        );
+
+        if (
+          currentSectionName ===
+          "notifications"
+        ) {
+          await loadOwnerNotifications(
+            true
+          );
+        }
+
         loadingScreen.hidden =
           true;
 
@@ -8665,7 +10419,7 @@ ${escapeHtml(announcement.content)}
 
 
     showSection(
-      "overview"
+      requestedOwnerSection()
     );
 
     loadOwnerSpace();
