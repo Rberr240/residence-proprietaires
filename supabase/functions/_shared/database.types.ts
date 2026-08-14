@@ -464,6 +464,48 @@ export type Database = {
         }
         Relationships: []
       }
+      owner_vote_ballots: {
+        Row: {
+          id: string
+          option_id: string
+          owner_account_id: string
+          submitted_at: string
+          updated_at: string
+          vote_id: string
+        }
+        Insert: {
+          id?: string
+          option_id: string
+          owner_account_id: string
+          submitted_at?: string
+          updated_at?: string
+          vote_id: string
+        }
+        Update: {
+          id?: string
+          option_id?: string
+          owner_account_id?: string
+          submitted_at?: string
+          updated_at?: string
+          vote_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "owner_vote_ballots_eligibility_fkey"
+            columns: ["vote_id", "owner_account_id"]
+            isOneToOne: true
+            referencedRelation: "residence_vote_eligibility"
+            referencedColumns: ["vote_id", "owner_account_id"]
+          },
+          {
+            foreignKeyName: "owner_vote_ballots_option_fkey"
+            columns: ["vote_id", "option_id"]
+            isOneToOne: false
+            referencedRelation: "residence_vote_options"
+            referencedColumns: ["vote_id", "id"]
+          },
+        ]
+      }
       owners: {
         Row: {
           apartment_id: string
@@ -562,12 +604,153 @@ export type Database = {
           },
         ]
       }
+      residence_vote_eligibility: {
+        Row: {
+          created_at: string
+          id: string
+          owner_account_id: string
+          vote_id: string
+          voting_weight: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          owner_account_id: string
+          vote_id: string
+          voting_weight?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          owner_account_id?: string
+          vote_id?: string
+          voting_weight?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "residence_vote_eligibility_owner_account_id_fkey"
+            columns: ["owner_account_id"]
+            isOneToOne: false
+            referencedRelation: "owner_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "residence_vote_eligibility_vote_id_fkey"
+            columns: ["vote_id"]
+            isOneToOne: false
+            referencedRelation: "residence_votes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      residence_vote_options: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          label: string
+          position: number
+          vote_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          label: string
+          position?: number
+          vote_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          label?: string
+          position?: number
+          vote_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "residence_vote_options_vote_id_fkey"
+            columns: ["vote_id"]
+            isOneToOne: false
+            referencedRelation: "residence_votes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      residence_votes: {
+        Row: {
+          allow_vote_change: boolean
+          cancelled_at: string | null
+          closed_at: string | null
+          closes_at: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          opens_at: string | null
+          published_at: string | null
+          question: string
+          results_visibility: string
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          allow_vote_change?: boolean
+          cancelled_at?: string | null
+          closed_at?: string | null
+          closes_at?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          opens_at?: string | null
+          published_at?: string | null
+          question: string
+          results_visibility?: string
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          allow_vote_change?: boolean
+          cancelled_at?: string | null
+          closed_at?: string | null
+          closes_at?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          opens_at?: string | null
+          published_at?: string | null
+          question?: string
+          results_visibility?: string
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
+      admin_cancel_residence_vote: {
+        Args: { p_vote_id: string }
+        Returns: Json
+      }
+      admin_close_residence_vote: { Args: { p_vote_id: string }; Returns: Json }
       admin_get_meeting_stats: { Args: { p_meeting_id: string }; Returns: Json }
+      admin_get_residence_vote_stats: {
+        Args: { p_vote_id: string }
+        Returns: Json
+      }
+      admin_publish_residence_vote: {
+        Args: { p_vote_id: string }
+        Returns: Json
+      }
       admin_validate_owner_submission: {
         Args: {
           p_code_hash: string
@@ -586,6 +769,10 @@ export type Database = {
         Returns: Json
       }
       is_admin: { Args: never; Returns: boolean }
+      owner_get_residence_vote_results: {
+        Args: { p_vote_id: string }
+        Returns: Json
+      }
       register_owner_with_session:
         | {
             Args: {
