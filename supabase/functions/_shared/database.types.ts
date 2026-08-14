@@ -237,6 +237,226 @@ export type Database = {
         }
         Relationships: []
       }
+      notification_deliveries: {
+        Row: {
+          attempt_count: number
+          channel: string
+          created_at: string
+          delivered_at: string | null
+          destination: string
+          failed_at: string | null
+          id: string
+          last_error: string | null
+          max_attempts: number
+          metadata: Json
+          next_attempt_at: string
+          owner_notification_id: string
+          processing_started_at: string | null
+          provider: string
+          provider_message_id: string | null
+          scheduled_for: string
+          sent_at: string | null
+          skipped_at: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          attempt_count?: number
+          channel: string
+          created_at?: string
+          delivered_at?: string | null
+          destination: string
+          failed_at?: string | null
+          id?: string
+          last_error?: string | null
+          max_attempts?: number
+          metadata?: Json
+          next_attempt_at?: string
+          owner_notification_id: string
+          processing_started_at?: string | null
+          provider: string
+          provider_message_id?: string | null
+          scheduled_for?: string
+          sent_at?: string | null
+          skipped_at?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          attempt_count?: number
+          channel?: string
+          created_at?: string
+          delivered_at?: string | null
+          destination?: string
+          failed_at?: string | null
+          id?: string
+          last_error?: string | null
+          max_attempts?: number
+          metadata?: Json
+          next_attempt_at?: string
+          owner_notification_id?: string
+          processing_started_at?: string | null
+          provider?: string
+          provider_message_id?: string | null
+          scheduled_for?: string
+          sent_at?: string | null
+          skipped_at?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notification_deliveries_owner_notification_id_fkey"
+            columns: ["owner_notification_id"]
+            isOneToOne: false
+            referencedRelation: "owner_notifications"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notification_delivery_attempts: {
+        Row: {
+          attempt_number: number
+          completed_at: string | null
+          created_at: string
+          delivery_id: string
+          error_code: string | null
+          error_message: string | null
+          http_status: number | null
+          id: string
+          provider: string
+          provider_message_id: string | null
+          response_metadata: Json
+          started_at: string
+          status: string
+        }
+        Insert: {
+          attempt_number: number
+          completed_at?: string | null
+          created_at?: string
+          delivery_id: string
+          error_code?: string | null
+          error_message?: string | null
+          http_status?: number | null
+          id?: string
+          provider: string
+          provider_message_id?: string | null
+          response_metadata?: Json
+          started_at?: string
+          status: string
+        }
+        Update: {
+          attempt_number?: number
+          completed_at?: string | null
+          created_at?: string
+          delivery_id?: string
+          error_code?: string | null
+          error_message?: string | null
+          http_status?: number | null
+          id?: string
+          provider?: string
+          provider_message_id?: string | null
+          response_metadata?: Json
+          started_at?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notification_delivery_attempts_delivery_id_fkey"
+            columns: ["delivery_id"]
+            isOneToOne: false
+            referencedRelation: "notification_deliveries"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notification_events: {
+        Row: {
+          action_entity_id: string | null
+          action_section: string | null
+          body: string
+          category: string
+          created_at: string
+          event_key: string
+          event_type: string
+          id: string
+          metadata: Json
+          occurred_at: string
+          priority: string
+          source_id: string
+          source_type: string
+          title: string
+        }
+        Insert: {
+          action_entity_id?: string | null
+          action_section?: string | null
+          body: string
+          category: string
+          created_at?: string
+          event_key: string
+          event_type: string
+          id?: string
+          metadata?: Json
+          occurred_at?: string
+          priority?: string
+          source_id: string
+          source_type: string
+          title: string
+        }
+        Update: {
+          action_entity_id?: string | null
+          action_section?: string | null
+          body?: string
+          category?: string
+          created_at?: string
+          event_key?: string
+          event_type?: string
+          id?: string
+          metadata?: Json
+          occurred_at?: string
+          priority?: string
+          source_id?: string
+          source_type?: string
+          title?: string
+        }
+        Relationships: []
+      }
+      notification_provider_events: {
+        Row: {
+          created_at: string
+          event_type: string
+          id: string
+          payload: Json
+          processed_at: string | null
+          provider: string
+          provider_event_id: string | null
+          provider_message_id: string | null
+          received_at: string
+        }
+        Insert: {
+          created_at?: string
+          event_type: string
+          id?: string
+          payload?: Json
+          processed_at?: string | null
+          provider: string
+          provider_event_id?: string | null
+          provider_message_id?: string | null
+          received_at?: string
+        }
+        Update: {
+          created_at?: string
+          event_type?: string
+          id?: string
+          payload?: Json
+          processed_at?: string | null
+          provider?: string
+          provider_event_id?: string | null
+          provider_message_id?: string | null
+          received_at?: string
+        }
+        Relationships: []
+      }
       owner_account_units: {
         Row: {
           apartment_number: string
@@ -502,6 +722,122 @@ export type Database = {
           },
           {
             foreignKeyName: "owner_meeting_responses_owner_account_id_fkey"
+            columns: ["owner_account_id"]
+            isOneToOne: false
+            referencedRelation: "owner_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      owner_notification_preferences: {
+        Row: {
+          created_at: string
+          digest_mode: string
+          email_enabled: boolean
+          email_opted_in_at: string | null
+          email_opted_out_at: string | null
+          in_app_enabled: boolean
+          owner_account_id: string
+          push_enabled: boolean
+          push_opted_in_at: string | null
+          push_opted_out_at: string | null
+          quiet_hours_end: string | null
+          quiet_hours_start: string | null
+          timezone: string
+          updated_at: string
+          whatsapp_enabled: boolean
+          whatsapp_opted_in_at: string | null
+          whatsapp_opted_out_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          digest_mode?: string
+          email_enabled?: boolean
+          email_opted_in_at?: string | null
+          email_opted_out_at?: string | null
+          in_app_enabled?: boolean
+          owner_account_id: string
+          push_enabled?: boolean
+          push_opted_in_at?: string | null
+          push_opted_out_at?: string | null
+          quiet_hours_end?: string | null
+          quiet_hours_start?: string | null
+          timezone?: string
+          updated_at?: string
+          whatsapp_enabled?: boolean
+          whatsapp_opted_in_at?: string | null
+          whatsapp_opted_out_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          digest_mode?: string
+          email_enabled?: boolean
+          email_opted_in_at?: string | null
+          email_opted_out_at?: string | null
+          in_app_enabled?: boolean
+          owner_account_id?: string
+          push_enabled?: boolean
+          push_opted_in_at?: string | null
+          push_opted_out_at?: string | null
+          quiet_hours_end?: string | null
+          quiet_hours_start?: string | null
+          timezone?: string
+          updated_at?: string
+          whatsapp_enabled?: boolean
+          whatsapp_opted_in_at?: string | null
+          whatsapp_opted_out_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "owner_notification_preferences_owner_account_id_fkey"
+            columns: ["owner_account_id"]
+            isOneToOne: true
+            referencedRelation: "owner_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      owner_notifications: {
+        Row: {
+          created_at: string
+          dismissed_at: string | null
+          event_id: string
+          id: string
+          opened_at: string | null
+          owner_account_id: string
+          read_at: string | null
+          seen_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          dismissed_at?: string | null
+          event_id: string
+          id?: string
+          opened_at?: string | null
+          owner_account_id: string
+          read_at?: string | null
+          seen_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          dismissed_at?: string | null
+          event_id?: string
+          id?: string
+          opened_at?: string | null
+          owner_account_id?: string
+          read_at?: string | null
+          seen_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "owner_notifications_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "notification_events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "owner_notifications_owner_account_id_fkey"
             columns: ["owner_account_id"]
             isOneToOne: false
             referencedRelation: "owner_accounts"
@@ -1294,6 +1630,7 @@ export type Database = {
         Returns: Json
       }
       admin_get_meeting_stats: { Args: { p_meeting_id: string }; Returns: Json }
+      admin_get_notification_stats: { Args: never; Returns: Json }
       admin_get_residence_document_stats: {
         Args: { p_document_id: string }
         Returns: Json
@@ -1355,18 +1692,41 @@ export type Database = {
         }
         Returns: Json
       }
+      ensure_notification_event: {
+        Args: {
+          p_action_entity_id: string
+          p_action_section: string
+          p_body: string
+          p_category: string
+          p_event_key: string
+          p_event_type: string
+          p_metadata: Json
+          p_priority: string
+          p_source_id: string
+          p_source_type: string
+          p_title: string
+        }
+        Returns: string
+      }
       is_admin: { Args: never; Returns: boolean }
+      owner_get_notification_preferences: { Args: never; Returns: Json }
       owner_get_residence_vote_results: {
         Args: { p_vote_id: string }
         Returns: Json
       }
       owner_get_syndic_summary: { Args: never; Returns: Json }
+      owner_get_unread_notification_count: { Args: never; Returns: number }
       owner_log_document_access: {
         Args: { p_action: string; p_document_id: string }
         Returns: Json
       }
+      owner_mark_all_notifications_read: { Args: never; Returns: Json }
       owner_mark_announcement_read: {
         Args: { p_announcement_id: string }
+        Returns: Json
+      }
+      owner_mark_notification_read: {
+        Args: { p_notification_id: string }
         Returns: Json
       }
       owner_matches_announcement_target: {
@@ -1376,6 +1736,18 @@ export type Database = {
       owner_matches_document_target: {
         Args: { p_document_id: string }
         Returns: boolean
+      }
+      owner_update_notification_preferences: {
+        Args: {
+          p_digest_mode?: string
+          p_email_enabled: boolean
+          p_push_enabled: boolean
+          p_quiet_hours_end?: string
+          p_quiet_hours_start?: string
+          p_timezone?: string
+          p_whatsapp_enabled: boolean
+        }
+        Returns: Json
       }
       register_owner_with_session:
         | {
@@ -1405,6 +1777,51 @@ export type Database = {
             }
             Returns: Json
           }
+      service_claim_notification_deliveries: {
+        Args: { p_limit?: number }
+        Returns: {
+          attempt_count: number
+          channel: string
+          created_at: string
+          delivered_at: string | null
+          destination: string
+          failed_at: string | null
+          id: string
+          last_error: string | null
+          max_attempts: number
+          metadata: Json
+          next_attempt_at: string
+          owner_notification_id: string
+          processing_started_at: string | null
+          provider: string
+          provider_message_id: string | null
+          scheduled_for: string
+          sent_at: string | null
+          skipped_at: string | null
+          status: string
+          updated_at: string
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "notification_deliveries"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
+      service_finish_notification_delivery: {
+        Args: {
+          p_delivery_id: string
+          p_last_error?: string
+          p_next_attempt_at?: string
+          p_provider_message_id?: string
+          p_status: string
+        }
+        Returns: Json
+      }
+      service_requeue_stale_notification_deliveries: {
+        Args: never
+        Returns: number
+      }
     }
     Enums: {
       [_ in never]: never
