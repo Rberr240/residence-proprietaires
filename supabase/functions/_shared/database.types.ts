@@ -732,6 +732,237 @@ export type Database = {
         }
         Relationships: []
       }
+      syndic_charge_calls: {
+        Row: {
+          cancelled_at: string | null
+          charge_type: string
+          closed_at: string | null
+          created_at: string
+          created_by: string | null
+          currency: string
+          default_amount: number
+          description: string | null
+          due_date: string
+          fiscal_year: number
+          id: string
+          period_label: string | null
+          published_at: string | null
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          cancelled_at?: string | null
+          charge_type?: string
+          closed_at?: string | null
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          default_amount: number
+          description?: string | null
+          due_date: string
+          fiscal_year: number
+          id?: string
+          period_label?: string | null
+          published_at?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          cancelled_at?: string | null
+          charge_type?: string
+          closed_at?: string | null
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          default_amount?: number
+          description?: string | null
+          due_date?: string
+          fiscal_year?: number
+          id?: string
+          period_label?: string | null
+          published_at?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      syndic_payment_allocations: {
+        Row: {
+          amount: number
+          created_at: string
+          id: string
+          payment_id: string
+          unit_charge_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          id?: string
+          payment_id: string
+          unit_charge_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          id?: string
+          payment_id?: string
+          unit_charge_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "syndic_payment_allocations_payment_id_fkey"
+            columns: ["payment_id"]
+            isOneToOne: false
+            referencedRelation: "syndic_payments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "syndic_payment_allocations_unit_charge_id_fkey"
+            columns: ["unit_charge_id"]
+            isOneToOne: false
+            referencedRelation: "syndic_unit_charges"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      syndic_payments: {
+        Row: {
+          amount: number
+          confirmed_at: string | null
+          created_at: string
+          currency: string
+          id: string
+          notes: string | null
+          owner_account_id: string
+          payment_date: string
+          payment_method: string
+          receipt_storage_path: string | null
+          recorded_by: string | null
+          reference: string | null
+          reversal_reason: string | null
+          reversed_at: string | null
+          reversed_by: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          amount: number
+          confirmed_at?: string | null
+          created_at?: string
+          currency?: string
+          id?: string
+          notes?: string | null
+          owner_account_id: string
+          payment_date: string
+          payment_method: string
+          receipt_storage_path?: string | null
+          recorded_by?: string | null
+          reference?: string | null
+          reversal_reason?: string | null
+          reversed_at?: string | null
+          reversed_by?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          confirmed_at?: string | null
+          created_at?: string
+          currency?: string
+          id?: string
+          notes?: string | null
+          owner_account_id?: string
+          payment_date?: string
+          payment_method?: string
+          receipt_storage_path?: string | null
+          recorded_by?: string | null
+          reference?: string | null
+          reversal_reason?: string | null
+          reversed_at?: string | null
+          reversed_by?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "syndic_payments_owner_account_id_fkey"
+            columns: ["owner_account_id"]
+            isOneToOne: false
+            referencedRelation: "owner_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      syndic_unit_charges: {
+        Row: {
+          adjustment_amount: number
+          adjustment_note: string | null
+          amount_due: number | null
+          apartment_number: string
+          base_amount: number
+          building_code: string
+          charge_call_id: string
+          created_at: string
+          id: string
+          owner_account_id: string
+          owner_account_unit_id: string
+          updated_at: string
+        }
+        Insert: {
+          adjustment_amount?: number
+          adjustment_note?: string | null
+          amount_due?: number | null
+          apartment_number: string
+          base_amount: number
+          building_code: string
+          charge_call_id: string
+          created_at?: string
+          id?: string
+          owner_account_id: string
+          owner_account_unit_id: string
+          updated_at?: string
+        }
+        Update: {
+          adjustment_amount?: number
+          adjustment_note?: string | null
+          amount_due?: number | null
+          apartment_number?: string
+          base_amount?: number
+          building_code?: string
+          charge_call_id?: string
+          created_at?: string
+          id?: string
+          owner_account_id?: string
+          owner_account_unit_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "syndic_unit_charges_charge_call_id_fkey"
+            columns: ["charge_call_id"]
+            isOneToOne: false
+            referencedRelation: "syndic_charge_calls"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "syndic_unit_charges_owner_account_id_fkey"
+            columns: ["owner_account_id"]
+            isOneToOne: false
+            referencedRelation: "owner_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "syndic_unit_charges_owner_account_unit_id_fkey"
+            columns: ["owner_account_unit_id"]
+            isOneToOne: false
+            referencedRelation: "owner_account_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -741,14 +972,46 @@ export type Database = {
         Args: { p_vote_id: string }
         Returns: Json
       }
+      admin_cancel_syndic_charge_call: {
+        Args: { p_charge_call_id: string }
+        Returns: Json
+      }
       admin_close_residence_vote: { Args: { p_vote_id: string }; Returns: Json }
+      admin_close_syndic_charge_call: {
+        Args: { p_charge_call_id: string }
+        Returns: Json
+      }
       admin_get_meeting_stats: { Args: { p_meeting_id: string }; Returns: Json }
       admin_get_residence_vote_stats: {
         Args: { p_vote_id: string }
         Returns: Json
       }
+      admin_get_syndic_charge_call_stats: {
+        Args: { p_charge_call_id: string }
+        Returns: Json
+      }
       admin_publish_residence_vote: {
         Args: { p_vote_id: string }
+        Returns: Json
+      }
+      admin_publish_syndic_charge_call: {
+        Args: { p_charge_call_id: string }
+        Returns: Json
+      }
+      admin_record_syndic_payment: {
+        Args: {
+          p_allocations: Json
+          p_amount: number
+          p_notes: string
+          p_owner_account_id: string
+          p_payment_date: string
+          p_payment_method: string
+          p_reference: string
+        }
+        Returns: Json
+      }
+      admin_reverse_syndic_payment: {
+        Args: { p_payment_id: string; p_reason: string }
         Returns: Json
       }
       admin_validate_owner_submission: {
@@ -773,6 +1036,7 @@ export type Database = {
         Args: { p_vote_id: string }
         Returns: Json
       }
+      owner_get_syndic_summary: { Args: never; Returns: Json }
       register_owner_with_session:
         | {
             Args: {
