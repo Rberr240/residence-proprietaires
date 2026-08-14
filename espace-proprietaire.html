@@ -1340,6 +1340,339 @@
     }
 
 
+
+    /* ======================================== */
+    /* SYNDIC                                   */
+    /* ======================================== */
+
+    .syndic-summary-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .syndic-summary-card {
+      padding: 18px;
+      border:
+        1px solid var(--mg-border);
+      border-radius: 15px;
+      background: white;
+      box-shadow:
+        0 8px 26px
+        rgba(15, 50, 40, 0.04);
+    }
+
+    .syndic-summary-card span {
+      display: block;
+      color: var(--mg-muted);
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: 0.8px;
+    }
+
+    .syndic-summary-card strong {
+      display: block;
+      margin-top: 7px;
+      color: var(--mg-green-950);
+      font-size: 22px;
+      line-height: 1.15;
+    }
+
+    .syndic-summary-card.outstanding strong {
+      color: #a06a00;
+    }
+
+    .syndic-summary-card.paid strong {
+      color: var(--mg-success);
+    }
+
+    .syndic-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      border:
+        1px solid var(--mg-border);
+      border-radius: 13px;
+      background: white;
+    }
+
+    .syndic-toolbar strong {
+      display: block;
+      color: var(--mg-green-950);
+      font-size: 12px;
+    }
+
+    .syndic-toolbar span {
+      display: block;
+      margin-top: 3px;
+      color: var(--mg-muted);
+      font-size: 9px;
+      line-height: 1.45;
+    }
+
+    .syndic-refresh-button {
+      flex: 0 0 auto;
+      min-height: 35px;
+      padding: 0 12px;
+      border:
+        1px solid #d5e0db;
+      border-radius: 9px;
+      background: white;
+      color: var(--mg-green-800);
+      font-size: 9px;
+      font-weight: 900;
+    }
+
+    .syndic-subtabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+
+    .syndic-subtab {
+      min-height: 35px;
+      padding: 0 12px;
+      border:
+        1px solid #d7e2dd;
+      border-radius: 9px;
+      background: white;
+      color: #60736b;
+      font-size: 9px;
+      font-weight: 900;
+    }
+
+    .syndic-subtab.active {
+      border-color: var(--mg-green-800);
+      background: var(--mg-green-800);
+      color: white;
+    }
+
+    .owner-syndic-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .owner-syndic-card {
+      overflow: hidden;
+      border:
+        1px solid var(--mg-border);
+      border-radius: 16px;
+      background: white;
+      box-shadow:
+        0 8px 28px
+        rgba(15, 50, 40, 0.04);
+    }
+
+    .owner-syndic-card-top {
+      padding: 18px 19px;
+      background:
+        linear-gradient(
+          145deg,
+          #ffffff,
+          #f8fbf9
+        );
+    }
+
+    .owner-syndic-card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .owner-syndic-card h3 {
+      margin: 0;
+      color: var(--mg-green-950);
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .owner-syndic-card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 13px;
+      margin-top: 8px;
+      color: var(--mg-muted);
+      font-size: 9px;
+    }
+
+    .owner-syndic-description {
+      margin: 11px 0 0;
+      color: #61766d;
+      font-size: 10px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+
+    .syndic-payment-status {
+      flex: 0 0 auto;
+      min-height: 27px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 9px;
+      border-radius: 999px;
+      font-size: 8px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .syndic-payment-status.paid {
+      background: var(--mg-success-bg);
+      color: var(--mg-success);
+    }
+
+    .syndic-payment-status.partial {
+      background: var(--mg-warning-bg);
+      color: var(--mg-warning);
+    }
+
+    .syndic-payment-status.unpaid {
+      background: #fdecec;
+      color: #a22f2f;
+    }
+
+    .syndic-amount-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      padding: 14px 19px 17px;
+      border-top:
+        1px solid #e7eeea;
+      background: #fbfcfc;
+    }
+
+    .syndic-amount-item {
+      padding: 10px;
+      border:
+        1px solid #e5ece8;
+      border-radius: 10px;
+      background: white;
+    }
+
+    .syndic-amount-item span {
+      display: block;
+      color: var(--mg-muted);
+      font-size: 8px;
+      font-weight: 800;
+    }
+
+    .syndic-amount-item strong {
+      display: block;
+      margin-top: 4px;
+      color: var(--mg-green-950);
+      font-size: 13px;
+    }
+
+    .syndic-amount-item.paid strong {
+      color: var(--mg-success);
+    }
+
+    .syndic-amount-item.outstanding strong {
+      color: #9a6b00;
+    }
+
+    .syndic-payment-history-card {
+      padding: 17px 18px;
+      border:
+        1px solid var(--mg-border);
+      border-radius: 14px;
+      background: white;
+    }
+
+    .syndic-payment-history-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .syndic-payment-history-card h3 {
+      margin: 0;
+      color: var(--mg-green-950);
+      font-size: 14px;
+    }
+
+    .syndic-payment-history-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 12px;
+      margin-top: 7px;
+      color: var(--mg-muted);
+      font-size: 9px;
+    }
+
+    .syndic-payment-history-note {
+      margin: 10px 0 0;
+      color: #61766d;
+      font-size: 9px;
+      line-height: 1.5;
+    }
+
+    .syndic-history-status {
+      min-height: 25px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 8px;
+      border-radius: 999px;
+      font-size: 8px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .syndic-history-status.confirmed {
+      background: var(--mg-success-bg);
+      color: var(--mg-success);
+    }
+
+    .syndic-history-status.reversed {
+      background: #fdecec;
+      color: #a22f2f;
+    }
+
+    .syndic-state {
+      padding: 38px 24px;
+      border:
+        1px dashed #cfdcd6;
+      border-radius: 15px;
+      background:
+        rgba(255, 255, 255, 0.78);
+      text-align: center;
+      color: var(--mg-muted);
+      font-size: 10px;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 760px) {
+      .syndic-summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .owner-syndic-card-head,
+      .syndic-payment-history-head,
+      .syndic-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .syndic-refresh-button {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .syndic-amount-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
     /* ======================================== */
     /* EMPTY MODULES                            */
     /* ======================================== */
@@ -1960,8 +2293,11 @@
                     </small>
                   </div>
 
-                  <span class="module-row-status">
-                    À connecter
+                  <span
+                    class="module-row-status"
+                    style="color:#197149;font-weight:900;"
+                  >
+                    Actif
                   </span>
 
                 </div>
@@ -2204,6 +2540,7 @@
         >
 
           <div class="section-heading">
+
             <div>
               <span>
                 SUIVI
@@ -2214,41 +2551,151 @@
               </h2>
 
               <p>
-                Consultez votre situation,
-                vos échéances et l'historique associé.
+                Consultez vos appels de fonds,
+                votre solde et l'historique
+                des paiements enregistrés.
               </p>
             </div>
+
           </div>
 
-          <div class="module-hero">
+          <div class="syndic-summary-grid">
 
-            <div class="module-hero-icon">
-              S
+            <article class="syndic-summary-card">
+
+              <span>
+                TOTAL DÛ
+              </span>
+
+              <strong id="ownerSyndicTotalDue">
+                0,00 MAD
+              </strong>
+
+            </article>
+
+            <article class="syndic-summary-card paid">
+
+              <span>
+                TOTAL PAYÉ
+              </span>
+
+              <strong id="ownerSyndicTotalPaid">
+                0,00 MAD
+              </strong>
+
+            </article>
+
+            <article class="syndic-summary-card outstanding">
+
+              <span>
+                RESTE À PAYER
+              </span>
+
+              <strong id="ownerSyndicOutstanding">
+                0,00 MAD
+              </strong>
+
+            </article>
+
+          </div>
+
+          <div class="syndic-toolbar">
+
+            <div>
+              <strong>
+                Ma situation financière
+              </strong>
+
+              <span>
+                Les données affichées concernent
+                uniquement votre compte propriétaire
+                et vos lots associés.
+              </span>
             </div>
 
-            <h3>
-              Situation syndic
-            </h3>
-
-            <p>
-              Nous ajouterons ensuite les données payé /
-              impayé, montants, échéances et historique
-              sans exposer les données des autres propriétaires.
-            </p>
+            <button
+              id="refreshSyndicButton"
+              class="syndic-refresh-button"
+              type="button"
+            >
+              Actualiser
+            </button>
 
           </div>
 
-          <div class="empty-state">
+          <div class="syndic-subtabs">
 
-            <strong>
-              Situation financière non connectée
-            </strong>
+            <button
+              id="syndicChargesSubtab"
+              class="syndic-subtab active"
+              type="button"
+            >
+              Appels de fonds
+            </button>
 
-            <p>
-              Aucun montant n'est affiché tant que
-              le module de gestion du syndic n'est pas
-              connecté à la base de données.
-            </p>
+            <button
+              id="syndicPaymentsSubtab"
+              class="syndic-subtab"
+              type="button"
+            >
+              Historique des paiements
+            </button>
+
+          </div>
+
+          <div id="ownerSyndicChargesView">
+
+            <div
+              id="ownerSyndicLoading"
+              class="syndic-state"
+            >
+              Chargement de votre situation syndic...
+            </div>
+
+            <div
+              id="ownerSyndicEmpty"
+              class="syndic-state"
+              hidden
+            >
+              Aucun appel de fonds actif ou clôturé
+              n'est associé à votre compte.
+            </div>
+
+            <div
+              id="ownerSyndicError"
+              class="syndic-state"
+              hidden
+            >
+              Impossible de charger votre situation syndic.
+            </div>
+
+            <div
+              id="ownerSyndicChargesList"
+              class="owner-syndic-list"
+              hidden
+            >
+            </div>
+
+          </div>
+
+          <div
+            id="ownerSyndicPaymentsView"
+            hidden
+          >
+
+            <div
+              id="ownerSyndicPaymentsEmpty"
+              class="syndic-state"
+              hidden
+            >
+              Aucun paiement enregistré pour le moment.
+            </div>
+
+            <div
+              id="ownerSyndicPaymentsList"
+              class="owner-syndic-list"
+            >
+            </div>
 
           </div>
 
@@ -2528,6 +2975,12 @@
     let votesLoadedOnce =
       false;
 
+    let ownerSyndicSummary =
+      null;
+
+    let syndicLoadedOnce =
+      false;
+
 
     const SECTION_NAMES = {
       overview: {
@@ -2630,6 +3083,13 @@
         currentOwnerAccountId
       ) {
         loadVotes();
+      }
+
+      if (
+        sectionName === "syndic" &&
+        currentOwnerAccountId
+      ) {
+        loadSyndicSummary();
       }
 
       window.scrollTo({
@@ -4955,32 +5415,726 @@
       );
 
 
-    async function loadOwnerSpace() {
+
+    function formatSyndicMoney(
+      value,
+      currency = "MAD",
+    ) {
+      const amount =
+        Number(
+          value || 0
+        );
+
       try {
-        const {
-          data: {
-            session,
-          },
-          error: sessionError,
-        } =
-          await supabaseClient
-            .auth
-            .getSession();
+        return new Intl.NumberFormat(
+          "fr-FR",
+          {
+            style:
+              "currency",
 
-        if (
-          sessionError ||
-          !session
-        ) {
-          window.location.href =
-            "connexion.html";
+            currency,
 
-          return;
+            minimumFractionDigits:
+              2,
+          }
+        )
+          .format(
+            amount
+          );
+      } catch {
+        return `${amount.toFixed(2)} ${currency}`;
+      }
+    }
+
+
+    function formatSyndicDate(
+      value,
+    ) {
+      if (
+        !value
+      ) {
+        return "—";
+      }
+
+      const date =
+        new Date(
+          `${value}T00:00:00`
+        );
+
+      if (
+        Number.isNaN(
+          date.getTime()
+        )
+      ) {
+        return String(
+          value
+        );
+      }
+
+      return date
+        .toLocaleDateString(
+          "fr-FR",
+          {
+            dateStyle:
+              "medium",
+          }
+        );
+    }
+
+
+    function syndicPaymentStatusLabel(
+      status,
+    ) {
+      switch (
+        status
+      ) {
+        case "paid":
+          return "Payé";
+
+        case "partial":
+          return "Partiel";
+
+        case "unpaid":
+        default:
+          return "Impayé";
+      }
+    }
+
+
+    function syndicPaymentMethodLabel(
+      method,
+    ) {
+      switch (
+        method
+      ) {
+        case "bank_transfer":
+          return "Virement bancaire";
+
+        case "cash":
+          return "Espèces";
+
+        case "cheque":
+          return "Chèque";
+
+        case "card":
+          return "Carte";
+
+        default:
+          return "Autre";
+      }
+    }
+
+
+    function syndicHistoryStatusLabel(
+      status,
+    ) {
+      return status ===
+        "reversed"
+          ? "Extourné"
+          : "Confirmé";
+    }
+
+
+    function showOwnerSyndicSubview(
+      view,
+    ) {
+      const showPayments =
+        view === "payments";
+
+      document
+        .getElementById(
+          "syndicChargesSubtab"
+        )
+        .classList
+        .toggle(
+          "active",
+          !showPayments
+        );
+
+      document
+        .getElementById(
+          "syndicPaymentsSubtab"
+        )
+        .classList
+        .toggle(
+          "active",
+          showPayments
+        );
+
+      document
+        .getElementById(
+          "ownerSyndicChargesView"
+        )
+        .hidden =
+          showPayments;
+
+      document
+        .getElementById(
+          "ownerSyndicPaymentsView"
+        )
+        .hidden =
+          !showPayments;
+    }
+
+
+    async function loadSyndicSummary(
+      force = false,
+    ) {
+      if (
+        !currentOwnerAccountId
+      ) {
+        return;
+      }
+
+      if (
+        syndicLoadedOnce &&
+        !force
+      ) {
+        renderSyndicSummary();
+        return;
+      }
+
+      const loading =
+        document.getElementById(
+          "ownerSyndicLoading"
+        );
+
+      const errorState =
+        document.getElementById(
+          "ownerSyndicError"
+        );
+
+      const emptyState =
+        document.getElementById(
+          "ownerSyndicEmpty"
+        );
+
+      const chargesList =
+        document.getElementById(
+          "ownerSyndicChargesList"
+        );
+
+      loading.hidden =
+        false;
+
+      errorState.hidden =
+        true;
+
+      emptyState.hidden =
+        true;
+
+      chargesList.hidden =
+        true;
+
+      const {
+        data,
+        error,
+      } =
+        await supabaseClient
+          .rpc(
+            "owner_get_syndic_summary"
+          );
+
+      loading.hidden =
+        true;
+
+      if (
+        error ||
+        !data
+      ) {
+        console.error(
+          "Owner syndic summary error:",
+          error
+        );
+
+        errorState.hidden =
+          false;
+
+        return;
+      }
+
+      ownerSyndicSummary =
+        data;
+
+      syndicLoadedOnce =
+        true;
+
+      renderSyndicSummary();
+    }
+
+
+    function renderSyndicSummary() {
+      const summary =
+        ownerSyndicSummary ||
+        {};
+
+      const currency =
+        summary.currency ||
+        "MAD";
+
+      const charges =
+        Array.isArray(
+          summary.charges
+        )
+          ? summary.charges
+          : [];
+
+      const payments =
+        Array.isArray(
+          summary.payments
+        )
+          ? summary.payments
+          : [];
+
+      document
+        .getElementById(
+          "ownerSyndicTotalDue"
+        )
+        .textContent =
+          formatSyndicMoney(
+            summary.totalDue,
+            currency
+          );
+
+      document
+        .getElementById(
+          "ownerSyndicTotalPaid"
+        )
+        .textContent =
+          formatSyndicMoney(
+            summary.totalPaid,
+            currency
+          );
+
+      document
+        .getElementById(
+          "ownerSyndicOutstanding"
+        )
+        .textContent =
+          formatSyndicMoney(
+            summary.outstanding,
+            currency
+          );
+
+      renderOwnerSyndicCharges(
+        charges,
+        currency
+      );
+
+      renderOwnerSyndicPayments(
+        payments,
+        currency
+      );
+    }
+
+
+    function renderOwnerSyndicCharges(
+      charges,
+      fallbackCurrency,
+    ) {
+      const list =
+        document.getElementById(
+          "ownerSyndicChargesList"
+        );
+
+      const emptyState =
+        document.getElementById(
+          "ownerSyndicEmpty"
+        );
+
+      list.innerHTML =
+        "";
+
+      if (
+        charges.length === 0
+      ) {
+        emptyState.hidden =
+          false;
+
+        list.hidden =
+          true;
+
+        return;
+      }
+
+      emptyState.hidden =
+        true;
+
+      list.hidden =
+        false;
+
+      for (
+        const charge
+        of charges
+      ) {
+        const paymentStatus =
+          charge.paymentStatus ||
+          "unpaid";
+
+        const currency =
+          charge.currency ||
+          fallbackCurrency ||
+          "MAD";
+
+        const card =
+          document.createElement(
+            "article"
+          );
+
+        card.className =
+          "owner-syndic-card";
+
+        card.innerHTML = `
+          <div class="owner-syndic-card-top">
+
+            <div class="owner-syndic-card-head">
+
+              <div>
+
+                <h3>
+                  ${escapeHtml(charge.title || "Appel de fonds")}
+                </h3>
+
+                <div class="owner-syndic-card-meta">
+
+                  <span>
+                    Bloc ${escapeHtml(charge.buildingCode || "—")}
+                    · Appartement ${escapeHtml(charge.apartmentNumber || "—")}
+                  </span>
+
+                  <span>
+                    Échéance :
+                    ${escapeHtml(formatSyndicDate(charge.dueDate))}
+                  </span>
+
+                  ${
+                    charge.periodLabel
+                      ? `
+                        <span>
+                          ${escapeHtml(charge.periodLabel)}
+                        </span>
+                      `
+                      : ""
+                  }
+
+                </div>
+
+              </div>
+
+              <span class="syndic-payment-status ${escapeHtml(paymentStatus)}">
+                ${escapeHtml(syndicPaymentStatusLabel(paymentStatus))}
+              </span>
+
+            </div>
+
+            ${
+              charge.description
+                ? `
+                  <p class="owner-syndic-description">
+                    ${escapeHtml(charge.description)}
+                  </p>
+                `
+                : ""
+            }
+
+          </div>
+
+          <div class="syndic-amount-grid">
+
+            <div class="syndic-amount-item">
+
+              <span>
+                MONTANT DÛ
+              </span>
+
+              <strong>
+                ${escapeHtml(formatSyndicMoney(charge.amountDue, currency))}
+              </strong>
+
+            </div>
+
+            <div class="syndic-amount-item paid">
+
+              <span>
+                PAYÉ
+              </span>
+
+              <strong>
+                ${escapeHtml(formatSyndicMoney(charge.amountPaid, currency))}
+              </strong>
+
+            </div>
+
+            <div class="syndic-amount-item outstanding">
+
+              <span>
+                RESTE
+              </span>
+
+              <strong>
+                ${escapeHtml(formatSyndicMoney(charge.outstanding, currency))}
+              </strong>
+
+            </div>
+
+          </div>
+        `;
+
+        list.appendChild(
+          card
+        );
+      }
+    }
+
+
+    function renderOwnerSyndicPayments(
+      payments,
+      fallbackCurrency,
+    ) {
+      const list =
+        document.getElementById(
+          "ownerSyndicPaymentsList"
+        );
+
+      const emptyState =
+        document.getElementById(
+          "ownerSyndicPaymentsEmpty"
+        );
+
+      list.innerHTML =
+        "";
+
+      if (
+        payments.length === 0
+      ) {
+        emptyState.hidden =
+          false;
+
+        return;
+      }
+
+      emptyState.hidden =
+        true;
+
+      for (
+        const payment
+        of payments
+      ) {
+        const currency =
+          payment.currency ||
+          fallbackCurrency ||
+          "MAD";
+
+        const status =
+          payment.status ===
+          "reversed"
+            ? "reversed"
+            : "confirmed";
+
+        const card =
+          document.createElement(
+            "article"
+          );
+
+        card.className =
+          "syndic-payment-history-card";
+
+        card.innerHTML = `
+          <div class="syndic-payment-history-head">
+
+            <div>
+
+              <h3>
+                ${escapeHtml(formatSyndicMoney(payment.amount, currency))}
+              </h3>
+
+              <div class="syndic-payment-history-meta">
+
+                <span>
+                  ${escapeHtml(formatSyndicDate(payment.paymentDate))}
+                </span>
+
+                <span>
+                  ${escapeHtml(syndicPaymentMethodLabel(payment.paymentMethod))}
+                </span>
+
+                <span>
+                  Référence :
+                  ${escapeHtml(payment.reference || "—")}
+                </span>
+
+              </div>
+
+            </div>
+
+            <span class="syndic-history-status ${escapeHtml(status)}">
+              ${escapeHtml(syndicHistoryStatusLabel(status))}
+            </span>
+
+          </div>
+
+          ${
+            payment.notes
+              ? `
+                <p class="syndic-payment-history-note">
+                  ${escapeHtml(payment.notes)}
+                </p>
+              `
+              : ""
+          }
+
+          ${
+            status === "reversed" &&
+            payment.reversalReason
+              ? `
+                <p class="syndic-payment-history-note">
+                  Motif d'extourne :
+                  ${escapeHtml(payment.reversalReason)}
+                </p>
+              `
+              : ""
+          }
+        `;
+
+        list.appendChild(
+          card
+        );
+      }
+    }
+
+
+    document
+      .getElementById(
+        "refreshSyndicButton"
+      )
+      .addEventListener(
+        "click",
+        () => {
+          syndicLoadedOnce =
+            false;
+
+          loadSyndicSummary(
+            true
+          );
+        },
+      );
+
+
+    document
+      .getElementById(
+        "syndicChargesSubtab"
+      )
+      .addEventListener(
+        "click",
+        () => {
+          showOwnerSyndicSubview(
+            "charges"
+          );
+        },
+      );
+
+
+    document
+      .getElementById(
+        "syndicPaymentsSubtab"
+      )
+      .addEventListener(
+        "click",
+        () => {
+          showOwnerSyndicSubview(
+            "payments"
+          );
+        },
+      );
+
+
+    function wait(
+      milliseconds,
+    ) {
+      return new Promise(
+        resolve => {
+          setTimeout(
+            resolve,
+            milliseconds
+          );
         }
+      );
+    }
 
 
+    function showOwnerLoadError(
+      message,
+    ) {
+      loadingScreen.hidden =
+        false;
+
+      loadingScreen.innerHTML = `
+        <div class="loading-box">
+
+          <div class="loading-logo">
+            MG
+          </div>
+
+          <strong>
+            Impossible de charger votre espace
+          </strong>
+
+          <span>
+            ${escapeHtml(
+              message ||
+              "Votre session est toujours conservée. Réessayez dans quelques secondes."
+            )}
+          </span>
+
+          <button
+            id="ownerRetryButton"
+            type="button"
+            style="
+              width:100%;
+              min-height:42px;
+              margin-top:16px;
+              border:0;
+              border-radius:10px;
+              background:#0d392f;
+              color:white;
+              font-weight:800;
+              cursor:pointer;
+            "
+          >
+            Réessayer
+          </button>
+
+        </div>
+      `;
+
+      document
+        .getElementById(
+          "ownerRetryButton"
+        )
+        ?.addEventListener(
+          "click",
+          () => {
+            window.location.reload();
+          },
+        );
+    }
+
+
+    async function getActiveOwnerWithRetry(
+      authUserId,
+      attempts = 3,
+    ) {
+      let lastError =
+        null;
+
+      for (
+        let attempt = 1;
+        attempt <= attempts;
+        attempt += 1
+      ) {
         const {
-          data: owner,
-          error: ownerError,
+          data,
+          error,
         } =
           await supabaseClient
             .from(
@@ -5000,24 +6154,149 @@
             )
             .eq(
               "auth_user_id",
-              session.user.id
+              authUserId
             )
             .maybeSingle();
 
+        if (
+          !error
+        ) {
+          return {
+            owner:
+              data,
+
+            error:
+              null,
+          };
+        }
+
+        lastError =
+          error;
+
+        console.warn(
+          `Owner lookup attempt ${attempt} failed:`,
+          error
+        );
 
         if (
-          ownerError ||
-          !owner ||
-          owner.status !== "active"
+          attempt <
+          attempts
+        ) {
+          await wait(
+            attempt *
+            600
+          );
+        }
+      }
+
+      return {
+        owner:
+          null,
+
+        error:
+          lastError,
+      };
+    }
+
+
+    async function loadOwnerSpace() {
+      try {
+        const {
+          data: {
+            session,
+          },
+          error: sessionError,
+        } =
+          await supabaseClient
+            .auth
+            .getSession();
+
+        if (
+          sessionError
         ) {
           console.error(
-            "Owner account unavailable:",
+            "Session read error:",
+            sessionError
+          );
+
+          showOwnerLoadError(
+            "La session n'a pas pu être vérifiée. Elle n'a pas été supprimée."
+          );
+
+          return;
+        }
+
+        if (
+          !session
+        ) {
+          window.location.href =
+            "connexion.html";
+
+          return;
+        }
+
+
+        const {
+          owner,
+          error: ownerError,
+        } =
+          await getActiveOwnerWithRetry(
+            session.user.id
+          );
+
+
+        if (
+          ownerError
+        ) {
+          console.error(
+            "Owner account temporarily unavailable:",
             ownerError
+          );
+
+          showOwnerLoadError(
+            "Une erreur réseau ou Supabase a empêché le chargement. Votre session reste active."
+          );
+
+          return;
+        }
+
+
+        if (
+          !owner
+        ) {
+          console.warn(
+            "No owner account linked to current owner session."
           );
 
           await supabaseClient
             .auth
-            .signOut();
+            .signOut({
+              scope:
+                "local",
+            });
+
+          window.location.href =
+            "connexion.html";
+
+          return;
+        }
+
+
+        if (
+          owner.status !==
+          "active"
+        ) {
+          console.warn(
+            "Owner account is not active:",
+            owner.status
+          );
+
+          await supabaseClient
+            .auth
+            .signOut({
+              scope:
+                "local",
+            });
 
           window.location.href =
             "connexion.html";
@@ -5053,19 +6332,22 @@
             .order(
               "is_primary",
               {
-                ascending: false,
+                ascending:
+                  false,
               }
             )
             .order(
               "building_code",
               {
-                ascending: true,
+                ascending:
+                  true,
               }
             )
             .order(
               "apartment_number",
               {
-                ascending: true,
+                ascending:
+                  true,
               }
             );
 
@@ -5081,7 +6363,9 @@
 
 
         const safeUnits =
-          Array.isArray(units)
+          Array.isArray(
+            units
+          )
             ? units
             : [];
 
@@ -5179,11 +6463,10 @@
             "summaryUnitsCount"
           )
           .textContent =
-            safeUnits.length === 1
+            safeUnits.length ===
+            1
               ? "1 lot associé"
-              : `${
-                  safeUnits.length
-                } lots associés`;
+              : `${safeUnits.length} lots associés`;
 
 
         document
@@ -5259,12 +6542,9 @@
           error
         );
 
-        await supabaseClient
-          .auth
-          .signOut();
-
-        window.location.href =
-          "connexion.html";
+        showOwnerLoadError(
+          "Le chargement a échoué temporairement. Votre session n'a pas été supprimée."
+        );
       }
     }
 
@@ -5280,7 +6560,10 @@
 
         await supabaseClient
           .auth
-          .signOut();
+          .signOut({
+            scope:
+              "local",
+          });
 
         window.location.href =
           "connexion.html";

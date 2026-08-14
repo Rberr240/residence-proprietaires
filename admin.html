@@ -1508,6 +1508,480 @@
     color: #52675e;
 }
 
+
+/* ========================================= */
+/* SYNDIC V2                                 */
+/* ========================================= */
+
+.syndic-panel {
+    background: white;
+    border: 1px solid #e1e8e5;
+    border-radius: 17px;
+    overflow: hidden;
+}
+
+.syndic-panel-top {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    border-bottom: 1px solid #e8eeeb;
+}
+
+.syndic-panel-top h2 {
+    margin: 0;
+    color: #123d32;
+    font-size: 20px;
+}
+
+.syndic-panel-top p {
+    margin: 5px 0 0;
+    color: #71847c;
+    font-size: 12px;
+}
+
+.syndic-top-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.syndic-primary-button {
+    min-height: 42px;
+    padding: 0 15px;
+    border: 0;
+    border-radius: 10px;
+    background: #174b3d;
+    color: white;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.syndic-secondary-button {
+    min-height: 42px;
+    padding: 0 15px;
+    border: 1px solid #d5e0db;
+    border-radius: 10px;
+    background: white;
+    color: #174b3d;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.syndic-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    padding: 18px;
+    border-bottom: 1px solid #e8eeeb;
+    background: #f9fbfa;
+}
+
+.syndic-summary-card {
+    padding: 14px;
+    border: 1px solid #e3ebe7;
+    border-radius: 12px;
+    background: white;
+}
+
+.syndic-summary-card span {
+    display: block;
+    color: #7b8c85;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .5px;
+}
+
+.syndic-summary-card strong {
+    display: block;
+    margin-top: 5px;
+    color: #143e33;
+    font-size: 20px;
+}
+
+.syndic-subtabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 16px 18px 0;
+}
+
+.syndic-subtab {
+    min-height: 36px;
+    padding: 0 12px;
+    border: 1px solid #d7e2dd;
+    border-radius: 9px;
+    background: white;
+    color: #60736b;
+    font-size: 10px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.syndic-subtab.active {
+    border-color: #174b3d;
+    background: #174b3d;
+    color: white;
+}
+
+.syndic-list {
+    display: grid;
+    gap: 12px;
+    padding: 18px;
+}
+
+.syndic-loading,
+.syndic-empty {
+    padding: 38px 22px;
+    text-align: center;
+    color: #71847c;
+    font-size: 12px;
+}
+
+.charge-card,
+.payment-card {
+    padding: 17px;
+    border: 1px solid #e3ebe7;
+    border-radius: 13px;
+    background: #fbfcfc;
+}
+
+.charge-card-head,
+.payment-card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.charge-card h3,
+.payment-card h3 {
+    margin: 0;
+    color: #143e33;
+    font-size: 16px;
+}
+
+.charge-card-description {
+    margin: 10px 0 0;
+    color: #61766d;
+    font-size: 11px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+}
+
+.charge-meta,
+.payment-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px 13px;
+    margin-top: 9px;
+    color: #71847c;
+    font-size: 10px;
+}
+
+.charge-status,
+.payment-status {
+    display: inline-flex;
+    align-items: center;
+    min-height: 26px;
+    padding: 0 9px;
+    border-radius: 999px;
+    font-size: 9px;
+    font-weight: 850;
+    white-space: nowrap;
+}
+
+.charge-status-draft,
+.payment-status-pending {
+    background: #eef1f0;
+    color: #61736c;
+}
+
+.charge-status-published,
+.payment-status-confirmed {
+    background: #e6f6ee;
+    color: #176c45;
+}
+
+.charge-status-closed {
+    background: #e8eef8;
+    color: #365b8d;
+}
+
+.charge-status-cancelled,
+.payment-status-reversed,
+.payment-status-rejected {
+    background: #fde8e8;
+    color: #a12626;
+}
+
+.charge-actions,
+.payment-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.syndic-action-button {
+    min-height: 35px;
+    padding: 0 11px;
+    border: 1px solid #d5e0db;
+    border-radius: 8px;
+    background: white;
+    color: #174b3d;
+    font-size: 10px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.syndic-action-button.primary {
+    border-color: #174b3d;
+    background: #174b3d;
+    color: white;
+}
+
+.syndic-action-button.danger {
+    border-color: #ebcccc;
+    color: #a12626;
+}
+
+.charge-stats {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid #e5ece8;
+}
+
+.charge-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.charge-stat {
+    padding: 10px;
+    border: 1px solid #e6ece9;
+    border-radius: 9px;
+    background: white;
+}
+
+.charge-stat span {
+    display: block;
+    color: #7a8b84;
+    font-size: 9px;
+}
+
+.charge-stat strong {
+    display: block;
+    margin-top: 3px;
+    color: #143e33;
+    font-size: 17px;
+}
+
+.syndic-modal-card {
+    max-width: 780px;
+}
+
+.syndic-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.syndic-form-field {
+    min-width: 0;
+}
+
+.syndic-form-field.full {
+    grid-column: 1 / -1;
+}
+
+.syndic-form-field label {
+    display: block;
+    margin-bottom: 6px;
+    color: #405a50;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.syndic-form-field input,
+.syndic-form-field select,
+.syndic-form-field textarea {
+    width: 100%;
+    border: 1px solid #d7e2dd;
+    border-radius: 9px;
+    background: white;
+    color: #24463b;
+    outline: none;
+}
+
+.syndic-form-field input,
+.syndic-form-field select {
+    min-height: 44px;
+    padding: 0 11px;
+}
+
+.syndic-form-field textarea {
+    min-height: 95px;
+    padding: 11px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.syndic-form-field input:focus,
+.syndic-form-field select:focus,
+.syndic-form-field textarea:focus {
+    border-color: #30735e;
+    box-shadow: 0 0 0 3px rgba(48, 115, 94, 0.10);
+}
+
+.syndic-form-message {
+    min-height: 20px;
+    margin: 12px 0 0;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.syndic-form-message.error {
+    color: #b42318;
+}
+
+.syndic-form-message.success {
+    color: #167347;
+}
+
+.syndic-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 9px;
+    margin-top: 20px;
+}
+
+.syndic-save-button,
+.syndic-cancel-button {
+    min-height: 43px;
+    padding: 0 16px;
+    border-radius: 9px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.syndic-save-button {
+    border: 0;
+    background: #174b3d;
+    color: white;
+}
+
+.syndic-cancel-button {
+    border: 1px solid #d5e0db;
+    background: white;
+    color: #52675e;
+}
+
+.payment-owner-card {
+    margin-top: 10px;
+    padding: 12px;
+    border: 1px solid #e1e9e5;
+    border-radius: 10px;
+    background: #f8faf9;
+    color: #52675e;
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+.payment-allocation-list {
+    display: grid;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.payment-allocation-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 130px;
+    gap: 10px;
+    align-items: center;
+    padding: 11px;
+    border: 1px solid #e2eae6;
+    border-radius: 10px;
+    background: #fbfcfc;
+}
+
+.payment-allocation-row strong {
+    display: block;
+    color: #294c40;
+    font-size: 11px;
+}
+
+.payment-allocation-row span {
+    display: block;
+    margin-top: 3px;
+    color: #73857d;
+    font-size: 9px;
+}
+
+.payment-allocation-row input {
+    min-height: 40px;
+    padding: 0 10px;
+}
+
+.payment-total-box {
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #edf6f2;
+    color: #275344;
+    text-align: right;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.payment-history-owner {
+    color: #294c40;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+@media (max-width: 760px) {
+    .syndic-panel-top,
+    .charge-card-head,
+    .payment-card-head {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .syndic-top-actions {
+        display: grid;
+    }
+
+    .syndic-primary-button,
+    .syndic-secondary-button {
+        width: 100%;
+    }
+
+    .syndic-summary-grid,
+    .charge-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .syndic-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .syndic-form-field.full {
+        grid-column: auto;
+    }
+
+    .payment-allocation-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+
 @media (max-width: 760px) {
     .votes-panel-top,
     .vote-card-head {
@@ -1705,6 +2179,14 @@
                 type="button"
             >
                 Votes
+            </button>
+
+            <button
+                id="syndicTabButton"
+                class="admin-tab-button"
+                type="button"
+            >
+                Syndic
             </button>
 
         </div>
@@ -2004,6 +2486,151 @@
                 class="votes-list"
                 hidden
             >
+            </div>
+
+        </section>
+
+
+        <!-- SYNDIC V2 -->
+
+
+        <section
+            id="syndicSection"
+            class="syndic-panel"
+            hidden
+        >
+
+            <div class="syndic-panel-top">
+
+                <div>
+
+                    <h2>
+                        Syndic
+                    </h2>
+
+                    <p>
+                        Appels de fonds, encaissements
+                        et situation des propriétaires.
+                    </p>
+
+                </div>
+
+                <div class="syndic-top-actions">
+
+                    <button
+                        id="createChargeCallButton"
+                        class="syndic-primary-button"
+                        type="button"
+                    >
+                        + Nouvel appel de fonds
+                    </button>
+
+                    <button
+                        id="recordPaymentButton"
+                        class="syndic-secondary-button"
+                        type="button"
+                    >
+                        + Enregistrer un paiement
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="syndic-summary-grid">
+
+                <div class="syndic-summary-card">
+                    <span>TOTAL ATTENDU</span>
+                    <strong id="syndicTotalExpected">0,00 DH</strong>
+                </div>
+
+                <div class="syndic-summary-card">
+                    <span>TOTAL ENCAISSÉ</span>
+                    <strong id="syndicTotalPaid">0,00 DH</strong>
+                </div>
+
+                <div class="syndic-summary-card">
+                    <span>RESTE À ENCAISSER</span>
+                    <strong id="syndicOutstanding">0,00 DH</strong>
+                </div>
+
+            </div>
+
+            <div class="syndic-subtabs">
+
+                <button
+                    id="chargeCallsSubtab"
+                    class="syndic-subtab active"
+                    type="button"
+                >
+                    Appels de fonds
+                </button>
+
+                <button
+                    id="paymentsSubtab"
+                    class="syndic-subtab"
+                    type="button"
+                >
+                    Paiements
+                </button>
+
+            </div>
+
+            <div
+                id="chargeCallsView"
+            >
+
+                <div
+                    id="chargeCallsLoading"
+                    class="syndic-loading"
+                >
+                    Chargement des appels de fonds...
+                </div>
+
+                <div
+                    id="chargeCallsEmpty"
+                    class="syndic-empty"
+                    hidden
+                >
+                    Aucun appel de fonds créé.
+                </div>
+
+                <div
+                    id="chargeCallsList"
+                    class="syndic-list"
+                    hidden
+                >
+                </div>
+
+            </div>
+
+            <div
+                id="paymentsView"
+                hidden
+            >
+
+                <div
+                    id="paymentsLoading"
+                    class="syndic-loading"
+                >
+                    Chargement des paiements...
+                </div>
+
+                <div
+                    id="paymentsEmpty"
+                    class="syndic-empty"
+                    hidden
+                >
+                    Aucun paiement enregistré.
+                </div>
+
+                <div
+                    id="paymentsList"
+                    class="syndic-list"
+                    hidden
+                >
+                </div>
+
             </div>
 
         </section>
@@ -2660,6 +3287,250 @@
                     type="submit"
                 >
                     Enregistrer le brouillon
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- MODAL APPEL DE FONDS -->
+
+
+<div
+    id="chargeCallModal"
+    class="modal"
+>
+
+    <div class="modal-card syndic-modal-card">
+
+        <div class="modal-head">
+
+            <div>
+                <span style="color:#30735e;font-size:11px;font-weight:800;">
+                    SYNDIC
+                </span>
+
+                <h2 id="chargeCallModalTitle">
+                    Nouvel appel de fonds
+                </h2>
+            </div>
+
+            <button
+                id="chargeCallModalClose"
+                class="modal-close"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <form id="chargeCallForm">
+
+            <div class="syndic-form-grid">
+
+                <div class="syndic-form-field full">
+                    <label for="chargeCallTitle">Titre *</label>
+                    <input id="chargeCallTitle" type="text" maxlength="180" required>
+                </div>
+
+                <div class="syndic-form-field">
+                    <label for="chargeCallYear">Exercice *</label>
+                    <input id="chargeCallYear" type="number" min="2000" max="2200" required>
+                </div>
+
+                <div class="syndic-form-field">
+                    <label for="chargeCallPeriod">Période</label>
+                    <input id="chargeCallPeriod" type="text" maxlength="80" placeholder="Ex. T3 2026">
+                </div>
+
+                <div class="syndic-form-field">
+                    <label for="chargeCallType">Type</label>
+                    <select id="chargeCallType">
+                        <option value="regular">Cotisation régulière</option>
+                        <option value="exceptional">Charge exceptionnelle</option>
+                        <option value="adjustment">Régularisation</option>
+                        <option value="other">Autre</option>
+                    </select>
+                </div>
+
+                <div class="syndic-form-field">
+                    <label for="chargeCallAmount">Montant par lot (DH) *</label>
+                    <input id="chargeCallAmount" type="number" min="0.01" step="0.01" required>
+                </div>
+
+                <div class="syndic-form-field">
+                    <label for="chargeCallDueDate">Échéance *</label>
+                    <input id="chargeCallDueDate" type="date" required>
+                </div>
+
+                <div class="syndic-form-field full">
+                    <label for="chargeCallDescription">Description</label>
+                    <textarea id="chargeCallDescription" maxlength="5000"></textarea>
+                </div>
+
+            </div>
+
+            <p
+                id="chargeCallFormMessage"
+                class="syndic-form-message"
+                aria-live="polite"
+            ></p>
+
+            <div class="syndic-modal-actions">
+
+                <button
+                    id="chargeCallFormCancel"
+                    class="syndic-cancel-button"
+                    type="button"
+                >
+                    Annuler
+                </button>
+
+                <button
+                    id="chargeCallSaveButton"
+                    class="syndic-save-button"
+                    type="submit"
+                >
+                    Enregistrer le brouillon
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- MODAL PAIEMENT -->
+
+
+<div
+    id="paymentModal"
+    class="modal"
+>
+
+    <div class="modal-card syndic-modal-card">
+
+        <div class="modal-head">
+
+            <div>
+                <span style="color:#30735e;font-size:11px;font-weight:800;">
+                    ENCAISSEMENT
+                </span>
+
+                <h2>
+                    Enregistrer un paiement
+                </h2>
+            </div>
+
+            <button
+                id="paymentModalClose"
+                class="modal-close"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <form id="paymentForm">
+
+            <div class="syndic-form-grid">
+
+                <div class="syndic-form-field full">
+                    <label for="paymentOwnerSelect">Propriétaire *</label>
+                    <select id="paymentOwnerSelect" required>
+                        <option value="">Sélectionner...</option>
+                    </select>
+
+                    <div
+                        id="paymentOwnerInfo"
+                        class="payment-owner-card"
+                        hidden
+                    ></div>
+                </div>
+
+                <div class="syndic-form-field">
+                    <label for="paymentDate">Date du paiement *</label>
+                    <input id="paymentDate" type="date" required>
+                </div>
+
+                <div class="syndic-form-field">
+                    <label for="paymentMethod">Mode de paiement *</label>
+                    <select id="paymentMethod" required>
+                        <option value="bank_transfer">Virement bancaire</option>
+                        <option value="cash">Espèces</option>
+                        <option value="cheque">Chèque</option>
+                        <option value="card">Carte</option>
+                        <option value="other">Autre</option>
+                    </select>
+                </div>
+
+                <div class="syndic-form-field">
+                    <label for="paymentReference">Référence</label>
+                    <input id="paymentReference" type="text" maxlength="180">
+                </div>
+
+                <div class="syndic-form-field full">
+                    <label for="paymentNotes">Notes</label>
+                    <textarea id="paymentNotes" maxlength="2000"></textarea>
+                </div>
+
+                <div class="syndic-form-field full">
+
+                    <label>
+                        Ventilation du paiement *
+                    </label>
+
+                    <div
+                        id="paymentAllocationsList"
+                        class="payment-allocation-list"
+                    >
+                        Sélectionnez un propriétaire.
+                    </div>
+
+                    <div
+                        id="paymentTotalBox"
+                        class="payment-total-box"
+                    >
+                        Total : 0,00 DH
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p
+                id="paymentFormMessage"
+                class="syndic-form-message"
+                aria-live="polite"
+            ></p>
+
+            <div class="syndic-modal-actions">
+
+                <button
+                    id="paymentFormCancel"
+                    class="syndic-cancel-button"
+                    type="button"
+                >
+                    Annuler
+                </button>
+
+                <button
+                    id="paymentSaveButton"
+                    class="syndic-save-button"
+                    type="submit"
+                >
+                    Enregistrer le paiement
                 </button>
 
             </div>
@@ -4035,6 +4906,11 @@ const votesTabButton =
         "votesTabButton"
     );
 
+const syndicTabButton =
+    document.getElementById(
+        "syndicTabButton"
+    );
+
 const ownersStatsSection =
     document.getElementById(
         "ownersStatsSection"
@@ -4055,6 +4931,11 @@ const votesSection =
         "votesSection"
     );
 
+const syndicSection =
+    document.getElementById(
+        "syndicSection"
+    );
+
 
 function showAdminSection(
     section
@@ -4069,104 +4950,108 @@ function showAdminSection(
     const showVotes =
         section === "votes";
 
-
-    ownersTabButton
-        .classList
-        .toggle(
-            "active",
-            showOwners
-        );
+    const showSyndic =
+        section === "syndic";
 
 
-    meetingsTabButton
-        .classList
-        .toggle(
-            "active",
-            showMeetings
-        );
+    ownersTabButton.classList.toggle(
+        "active",
+        showOwners
+    );
 
+    meetingsTabButton.classList.toggle(
+        "active",
+        showMeetings
+    );
 
-    votesTabButton
-        .classList
-        .toggle(
-            "active",
-            showVotes
-        );
+    votesTabButton.classList.toggle(
+        "active",
+        showVotes
+    );
+
+    syndicTabButton.classList.toggle(
+        "active",
+        showSyndic
+    );
 
 
     ownersStatsSection.hidden =
         !showOwners;
 
-
     ownersPanelSection.hidden =
         !showOwners;
-
 
     meetingsSection.hidden =
         !showMeetings;
 
-
     votesSection.hidden =
         !showVotes;
+
+    syndicSection.hidden =
+        !showSyndic;
 
 
     if (
         showMeetings
     ) {
-
         loadMeetings();
-
     }
 
 
     if (
         showVotes
     ) {
-
         loadVotes();
+    }
 
+
+    if (
+        showSyndic
+    ) {
+        loadSyndic();
     }
 
 }
 
 
-ownersTabButton
-    .addEventListener(
-        "click",
-        () => {
-
-            showAdminSection(
-                "owners"
-            );
-
-        }
-    );
+ownersTabButton.addEventListener(
+    "click",
+    () => {
+        showAdminSection(
+            "owners"
+        );
+    }
+);
 
 
-meetingsTabButton
-    .addEventListener(
-        "click",
-        () => {
-
-            showAdminSection(
-                "meetings"
-            );
-
-        }
-    );
+meetingsTabButton.addEventListener(
+    "click",
+    () => {
+        showAdminSection(
+            "meetings"
+        );
+    }
+);
 
 
-votesTabButton
-    .addEventListener(
-        "click",
-        () => {
+votesTabButton.addEventListener(
+    "click",
+    () => {
+        showAdminSection(
+            "votes"
+        );
+    }
+);
 
-            showAdminSection(
-                "votes"
-            );
 
-        }
-    );
+syndicTabButton.addEventListener(
+    "click",
+    () => {
+        showAdminSection(
+            "syndic"
+        );
+    }
+);
 
 
 
@@ -7521,6 +8406,2641 @@ voteModal
 
 
 resetVoteOptionsEditor();
+
+
+
+
+/* =========================================================
+ * SYNDIC V2
+ * ========================================================= */
+
+let syndicChargeCalls =
+    [];
+
+let syndicPayments =
+    [];
+
+let syndicOwnerAccounts =
+    [];
+
+let syndicUnitCharges =
+    [];
+
+let syndicAllocations =
+    [];
+
+let selectedChargeCallId =
+    null;
+
+
+const chargeCallsLoading =
+    document.getElementById(
+        "chargeCallsLoading"
+    );
+
+const chargeCallsEmpty =
+    document.getElementById(
+        "chargeCallsEmpty"
+    );
+
+const chargeCallsList =
+    document.getElementById(
+        "chargeCallsList"
+    );
+
+const paymentsLoading =
+    document.getElementById(
+        "paymentsLoading"
+    );
+
+const paymentsEmpty =
+    document.getElementById(
+        "paymentsEmpty"
+    );
+
+const paymentsList =
+    document.getElementById(
+        "paymentsList"
+    );
+
+
+function formatMoney(
+    value,
+    currency = "MAD"
+) {
+
+    const number =
+        Number(
+            value ||
+            0
+        );
+
+
+    try {
+
+        return new Intl
+            .NumberFormat(
+                "fr-FR",
+                {
+                    style:
+                        "currency",
+
+                    currency,
+
+                    minimumFractionDigits:
+                        2
+                }
+            )
+            .format(
+                number
+            );
+
+    }
+    catch {
+
+        return `${number.toFixed(2)} ${currency}`;
+
+    }
+
+}
+
+
+function chargeStatusLabel(
+    status
+) {
+
+    switch (
+        status
+    ) {
+
+        case "published":
+            return "Publié";
+
+        case "closed":
+            return "Clôturé";
+
+        case "cancelled":
+            return "Annulé";
+
+        case "draft":
+        default:
+            return "Brouillon";
+
+    }
+
+}
+
+
+function chargeStatusClass(
+    status
+) {
+
+    switch (
+        status
+    ) {
+
+        case "published":
+            return "charge-status-published";
+
+        case "closed":
+            return "charge-status-closed";
+
+        case "cancelled":
+            return "charge-status-cancelled";
+
+        default:
+            return "charge-status-draft";
+
+    }
+
+}
+
+
+function paymentStatusLabel(
+    status
+) {
+
+    switch (
+        status
+    ) {
+
+        case "confirmed":
+            return "Confirmé";
+
+        case "reversed":
+            return "Extourné";
+
+        case "rejected":
+            return "Rejeté";
+
+        case "pending":
+        default:
+            return "En attente";
+
+    }
+
+}
+
+
+function paymentMethodLabel(
+    method
+) {
+
+    switch (
+        method
+    ) {
+
+        case "bank_transfer":
+            return "Virement";
+
+        case "cash":
+            return "Espèces";
+
+        case "cheque":
+            return "Chèque";
+
+        case "card":
+            return "Carte";
+
+        default:
+            return "Autre";
+
+    }
+
+}
+
+
+function formatSimpleDate(
+    value
+) {
+
+    if (
+        !value
+    ) {
+        return "—";
+    }
+
+
+    const date =
+        new Date(
+            `${value}T00:00:00`
+        );
+
+
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+        return value;
+    }
+
+
+    return date
+        .toLocaleDateString(
+            "fr-FR",
+            {
+                dateStyle:
+                    "medium"
+            }
+        );
+
+}
+
+
+async function loadSyndic() {
+
+    chargeCallsLoading.hidden =
+        false;
+
+    paymentsLoading.hidden =
+        false;
+
+
+    const [
+        callsResult,
+        ownersResult,
+        chargesResult,
+        paymentsResult,
+        allocationsResult
+    ] =
+        await Promise.all([
+
+            supabaseClient
+                .from(
+                    "syndic_charge_calls"
+                )
+                .select(
+                    `
+                    id,
+                    title,
+                    description,
+                    fiscal_year,
+                    period_label,
+                    charge_type,
+                    default_amount,
+                    currency,
+                    due_date,
+                    status,
+                    published_at,
+                    closed_at,
+                    cancelled_at,
+                    created_by,
+                    created_at,
+                    updated_at
+                    `
+                )
+                .order(
+                    "created_at",
+                    {
+                        ascending:
+                            false
+                    }
+                ),
+
+            supabaseClient
+                .from(
+                    "owner_accounts"
+                )
+                .select(
+                    `
+                    id,
+                    first_name,
+                    last_name,
+                    phone,
+                    status
+                    `
+                )
+                .order(
+                    "last_name",
+                    {
+                        ascending:
+                            true
+                    }
+                ),
+
+            supabaseClient
+                .from(
+                    "syndic_unit_charges"
+                )
+                .select(
+                    `
+                    id,
+                    charge_call_id,
+                    owner_account_unit_id,
+                    owner_account_id,
+                    building_code,
+                    apartment_number,
+                    base_amount,
+                    adjustment_amount,
+                    amount_due,
+                    adjustment_note
+                    `
+                ),
+
+            supabaseClient
+                .from(
+                    "syndic_payments"
+                )
+                .select(
+                    `
+                    id,
+                    owner_account_id,
+                    payment_date,
+                    amount,
+                    currency,
+                    payment_method,
+                    reference,
+                    notes,
+                    status,
+                    confirmed_at,
+                    reversed_at,
+                    reversal_reason,
+                    created_at
+                    `
+                )
+                .order(
+                    "payment_date",
+                    {
+                        ascending:
+                            false
+                    }
+                ),
+
+            supabaseClient
+                .from(
+                    "syndic_payment_allocations"
+                )
+                .select(
+                    `
+                    id,
+                    payment_id,
+                    unit_charge_id,
+                    amount
+                    `
+                )
+
+        ]);
+
+
+    const errors =
+        [
+            callsResult.error,
+            ownersResult.error,
+            chargesResult.error,
+            paymentsResult.error,
+            allocationsResult.error
+        ]
+        .filter(
+            Boolean
+        );
+
+
+    if (
+        errors.length > 0
+    ) {
+
+        console.error(
+            "Syndic loading errors:",
+            errors
+        );
+
+    }
+
+
+    syndicChargeCalls =
+        callsResult.data ||
+        [];
+
+    syndicOwnerAccounts =
+        ownersResult.data ||
+        [];
+
+    syndicUnitCharges =
+        chargesResult.data ||
+        [];
+
+    syndicPayments =
+        paymentsResult.data ||
+        [];
+
+    syndicAllocations =
+        allocationsResult.data ||
+        [];
+
+
+    chargeCallsLoading.hidden =
+        true;
+
+    paymentsLoading.hidden =
+        true;
+
+
+    renderChargeCalls();
+
+    renderPayments();
+
+    renderSyndicGlobalSummary();
+
+    populatePaymentOwners();
+
+}
+
+
+function renderSyndicGlobalSummary() {
+
+    let totalExpected =
+        0;
+
+    let totalPaid =
+        0;
+
+
+    const validCalls =
+        new Set(
+            syndicChargeCalls
+                .filter(
+                    call =>
+                        call.status === "published" ||
+                        call.status === "closed"
+                )
+                .map(
+                    call =>
+                        call.id
+                )
+        );
+
+
+    for (
+        const charge
+        of syndicUnitCharges
+    ) {
+
+        if (
+            validCalls.has(
+                charge.charge_call_id
+            )
+        ) {
+
+            totalExpected +=
+                Number(
+                    charge.amount_due ||
+                    0
+                );
+
+        }
+
+    }
+
+
+    for (
+        const payment
+        of syndicPayments
+    ) {
+
+        if (
+            payment.status ===
+            "confirmed"
+        ) {
+
+            totalPaid +=
+                Number(
+                    payment.amount ||
+                    0
+                );
+
+        }
+
+    }
+
+
+    document
+        .getElementById(
+            "syndicTotalExpected"
+        )
+        .textContent =
+            formatMoney(
+                totalExpected
+            );
+
+
+    document
+        .getElementById(
+            "syndicTotalPaid"
+        )
+        .textContent =
+            formatMoney(
+                totalPaid
+            );
+
+
+    document
+        .getElementById(
+            "syndicOutstanding"
+        )
+        .textContent =
+            formatMoney(
+                Math.max(
+                    totalExpected -
+                    totalPaid,
+                    0
+                )
+            );
+
+}
+
+
+function renderChargeCalls() {
+
+    chargeCallsList.innerHTML =
+        "";
+
+
+    if (
+        syndicChargeCalls.length === 0
+    ) {
+
+        chargeCallsEmpty.hidden =
+            false;
+
+        chargeCallsList.hidden =
+            true;
+
+        return;
+
+    }
+
+
+    chargeCallsEmpty.hidden =
+        true;
+
+    chargeCallsList.hidden =
+        false;
+
+
+    for (
+        const call
+        of syndicChargeCalls
+    ) {
+
+        const card =
+            document.createElement(
+                "article"
+            );
+
+
+        card.className =
+            "charge-card";
+
+
+        card.innerHTML = `
+
+            <div class="charge-card-head">
+
+                <div>
+
+                    <h3>
+                        ${escapeHtml(call.title)}
+                    </h3>
+
+                    <div class="charge-meta">
+
+                        <span>
+                            Exercice :
+                            ${escapeHtml(call.fiscal_year)}
+                        </span>
+
+                        <span>
+                            ${escapeHtml(call.period_label || "Période non précisée")}
+                        </span>
+
+                        <span>
+                            ${escapeHtml(formatMoney(call.default_amount, call.currency))}
+                            / lot
+                        </span>
+
+                        <span>
+                            Échéance :
+                            ${escapeHtml(formatSimpleDate(call.due_date))}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <span class="
+                    charge-status
+                    ${chargeStatusClass(call.status)}
+                ">
+                    ${escapeHtml(chargeStatusLabel(call.status))}
+                </span>
+
+            </div>
+
+
+            ${
+                call.description
+                    ? `
+                        <p class="charge-card-description">
+                            ${escapeHtml(call.description)}
+                        </p>
+                    `
+                    : ""
+            }
+
+
+            <div class="charge-actions">
+
+                ${
+                    call.status === "draft"
+                        ? `
+                            <button
+                                class="syndic-action-button"
+                                type="button"
+                                data-charge-action="edit"
+                                data-charge-id="${escapeHtml(call.id)}"
+                            >
+                                Modifier
+                            </button>
+
+                            <button
+                                class="syndic-action-button primary"
+                                type="button"
+                                data-charge-action="publish"
+                                data-charge-id="${escapeHtml(call.id)}"
+                            >
+                                Publier
+                            </button>
+
+                            <button
+                                class="syndic-action-button danger"
+                                type="button"
+                                data-charge-action="delete"
+                                data-charge-id="${escapeHtml(call.id)}"
+                            >
+                                Supprimer
+                            </button>
+                        `
+                        : ""
+                }
+
+
+                ${
+                    call.status === "published"
+                        ? `
+                            <button
+                                class="syndic-action-button"
+                                type="button"
+                                data-charge-action="stats"
+                                data-charge-id="${escapeHtml(call.id)}"
+                            >
+                                Statistiques
+                            </button>
+
+                            <button
+                                class="syndic-action-button primary"
+                                type="button"
+                                data-charge-action="close"
+                                data-charge-id="${escapeHtml(call.id)}"
+                            >
+                                Clôturer
+                            </button>
+
+                            <button
+                                class="syndic-action-button danger"
+                                type="button"
+                                data-charge-action="cancel"
+                                data-charge-id="${escapeHtml(call.id)}"
+                            >
+                                Annuler
+                            </button>
+                        `
+                        : ""
+                }
+
+
+                ${
+                    call.status === "closed" ||
+                    call.status === "cancelled"
+                        ? `
+                            <button
+                                class="syndic-action-button"
+                                type="button"
+                                data-charge-action="stats"
+                                data-charge-id="${escapeHtml(call.id)}"
+                            >
+                                Statistiques
+                            </button>
+                        `
+                        : ""
+                }
+
+            </div>
+
+
+            <div
+                id="chargeStats-${escapeHtml(call.id)}"
+                class="charge-stats"
+                hidden
+            ></div>
+
+        `;
+
+
+        chargeCallsList
+            .appendChild(
+                card
+            );
+
+    }
+
+
+    document
+        .querySelectorAll(
+            "[data-charge-action]"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        handleChargeAction(
+                            button.dataset.chargeAction,
+                            button.dataset.chargeId
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+}
+
+
+function renderPayments() {
+
+    paymentsList.innerHTML =
+        "";
+
+
+    if (
+        syndicPayments.length === 0
+    ) {
+
+        paymentsEmpty.hidden =
+            false;
+
+        paymentsList.hidden =
+            true;
+
+        return;
+
+    }
+
+
+    paymentsEmpty.hidden =
+        true;
+
+    paymentsList.hidden =
+        false;
+
+
+    const ownerMap =
+        new Map(
+            syndicOwnerAccounts
+                .map(
+                    owner => [
+                        owner.id,
+                        owner
+                    ]
+                )
+        );
+
+
+    for (
+        const payment
+        of syndicPayments
+    ) {
+
+        const owner =
+            ownerMap.get(
+                payment.owner_account_id
+            );
+
+
+        const fullName =
+            owner
+                ? `${owner.first_name || ""} ${owner.last_name || ""}`.trim()
+                : "Propriétaire";
+
+
+        const card =
+            document.createElement(
+                "article"
+            );
+
+
+        card.className =
+            "payment-card";
+
+
+        card.innerHTML = `
+
+            <div class="payment-card-head">
+
+                <div>
+
+                    <div class="payment-history-owner">
+                        ${escapeHtml(fullName)}
+                    </div>
+
+                    <h3>
+                        ${escapeHtml(formatMoney(payment.amount, payment.currency))}
+                    </h3>
+
+                    <div class="payment-meta">
+
+                        <span>
+                            ${escapeHtml(formatSimpleDate(payment.payment_date))}
+                        </span>
+
+                        <span>
+                            ${escapeHtml(paymentMethodLabel(payment.payment_method))}
+                        </span>
+
+                        <span>
+                            Réf. :
+                            ${escapeHtml(payment.reference || "—")}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <span class="
+                    payment-status
+                    payment-status-${escapeHtml(payment.status)}
+                ">
+                    ${escapeHtml(paymentStatusLabel(payment.status))}
+                </span>
+
+            </div>
+
+
+            ${
+                payment.notes
+                    ? `
+                        <p class="charge-card-description">
+                            ${escapeHtml(payment.notes)}
+                        </p>
+                    `
+                    : ""
+            }
+
+
+            ${
+                payment.status === "reversed" &&
+                payment.reversal_reason
+                    ? `
+                        <p class="charge-card-description">
+                            Motif d'extourne :
+                            ${escapeHtml(payment.reversal_reason)}
+                        </p>
+                    `
+                    : ""
+            }
+
+
+            ${
+                payment.status === "confirmed"
+                    ? `
+                        <div class="payment-actions">
+
+                            <button
+                                class="syndic-action-button danger"
+                                type="button"
+                                data-payment-reverse="${escapeHtml(payment.id)}"
+                            >
+                                Extourner
+                            </button>
+
+                        </div>
+                    `
+                    : ""
+            }
+
+        `;
+
+
+        paymentsList
+            .appendChild(
+                card
+            );
+
+    }
+
+
+    document
+        .querySelectorAll(
+            "[data-payment-reverse]"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    async () => {
+
+                        await reversePayment(
+                            button.dataset.paymentReverse
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+}
+
+
+function openChargeCallModal(
+    call = null
+) {
+
+    selectedChargeCallId =
+        call?.id ||
+        null;
+
+
+    document
+        .getElementById(
+            "chargeCallModalTitle"
+        )
+        .textContent =
+            call
+                ? "Modifier l'appel de fonds"
+                : "Nouvel appel de fonds";
+
+
+    document
+        .getElementById(
+            "chargeCallTitle"
+        )
+        .value =
+            call?.title ||
+            "";
+
+
+    document
+        .getElementById(
+            "chargeCallYear"
+        )
+        .value =
+            call?.fiscal_year ||
+            new Date().getFullYear();
+
+
+    document
+        .getElementById(
+            "chargeCallPeriod"
+        )
+        .value =
+            call?.period_label ||
+            "";
+
+
+    document
+        .getElementById(
+            "chargeCallType"
+        )
+        .value =
+            call?.charge_type ||
+            "regular";
+
+
+    document
+        .getElementById(
+            "chargeCallAmount"
+        )
+        .value =
+            call?.default_amount ||
+            "";
+
+
+    document
+        .getElementById(
+            "chargeCallDueDate"
+        )
+        .value =
+            call?.due_date ||
+            "";
+
+
+    document
+        .getElementById(
+            "chargeCallDescription"
+        )
+        .value =
+            call?.description ||
+            "";
+
+
+    document
+        .getElementById(
+            "chargeCallFormMessage"
+        )
+        .textContent =
+            "";
+
+
+    document
+        .getElementById(
+            "chargeCallModal"
+        )
+        .classList
+        .add(
+            "visible"
+        );
+
+}
+
+
+function closeChargeCallModal() {
+
+    selectedChargeCallId =
+        null;
+
+
+    document
+        .getElementById(
+            "chargeCallForm"
+        )
+        .reset();
+
+
+    document
+        .getElementById(
+            "chargeCallModal"
+        )
+        .classList
+        .remove(
+            "visible"
+        );
+
+}
+
+
+async function handleChargeAction(
+    action,
+    chargeCallId
+) {
+
+    const call =
+        syndicChargeCalls.find(
+            item =>
+                item.id ===
+                chargeCallId
+        );
+
+
+    if (
+        !call
+    ) {
+        return;
+    }
+
+
+    if (
+        action === "edit"
+    ) {
+
+        openChargeCallModal(
+            call
+        );
+
+        return;
+
+    }
+
+
+    if (
+        action === "stats"
+    ) {
+
+        await loadChargeStats(
+            chargeCallId
+        );
+
+        return;
+
+    }
+
+
+    if (
+        action === "publish"
+    ) {
+
+        if (
+            !window.confirm(
+                `Publier "${call.title}" ? Une créance sera créée pour chaque lot propriétaire concerné.`
+            )
+        ) {
+            return;
+        }
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .rpc(
+                    "admin_publish_syndic_charge_call",
+                    {
+                        p_charge_call_id:
+                            chargeCallId
+                    }
+                );
+
+
+        if (
+            error
+        ) {
+
+            console.error(
+                "Charge publication error:",
+                error
+            );
+
+            alert(
+                error.message ||
+                "Impossible de publier l'appel de fonds."
+            );
+
+            return;
+
+        }
+
+
+        await loadSyndic();
+
+        return;
+
+    }
+
+
+    if (
+        action === "close"
+    ) {
+
+        if (
+            !window.confirm(
+                `Clôturer "${call.title}" ?`
+            )
+        ) {
+            return;
+        }
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .rpc(
+                    "admin_close_syndic_charge_call",
+                    {
+                        p_charge_call_id:
+                            chargeCallId
+                    }
+                );
+
+
+        if (
+            error
+        ) {
+
+            alert(
+                error.message ||
+                "Impossible de clôturer l'appel."
+            );
+
+            return;
+
+        }
+
+
+        await loadSyndic();
+
+        return;
+
+    }
+
+
+    if (
+        action === "cancel"
+    ) {
+
+        if (
+            !window.confirm(
+                `Annuler "${call.title}" ?`
+            )
+        ) {
+            return;
+        }
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .rpc(
+                    "admin_cancel_syndic_charge_call",
+                    {
+                        p_charge_call_id:
+                            chargeCallId
+                    }
+                );
+
+
+        if (
+            error
+        ) {
+
+            alert(
+                error.message ||
+                "Impossible d'annuler l'appel."
+            );
+
+            return;
+
+        }
+
+
+        await loadSyndic();
+
+        return;
+
+    }
+
+
+    if (
+        action === "delete"
+    ) {
+
+        if (
+            !window.confirm(
+                `Supprimer définitivement le brouillon "${call.title}" ?`
+            )
+        ) {
+            return;
+        }
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .from(
+                    "syndic_charge_calls"
+                )
+                .delete()
+                .eq(
+                    "id",
+                    chargeCallId
+                )
+                .eq(
+                    "status",
+                    "draft"
+                );
+
+
+        if (
+            error
+        ) {
+
+            alert(
+                "Impossible de supprimer ce brouillon."
+            );
+
+            return;
+
+        }
+
+
+        await loadSyndic();
+
+    }
+
+}
+
+
+async function loadChargeStats(
+    chargeCallId
+) {
+
+    const container =
+        document.getElementById(
+            `chargeStats-${chargeCallId}`
+        );
+
+
+    if (
+        !container
+    ) {
+        return;
+    }
+
+
+    if (
+        !container.hidden
+    ) {
+
+        container.hidden =
+            true;
+
+        return;
+
+    }
+
+
+    container.hidden =
+        false;
+
+    container.textContent =
+        "Chargement des statistiques...";
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .rpc(
+                "admin_get_syndic_charge_call_stats",
+                {
+                    p_charge_call_id:
+                        chargeCallId
+                }
+            );
+
+
+    if (
+        error
+    ) {
+
+        container.textContent =
+            error.message ||
+            "Impossible de charger les statistiques.";
+
+        return;
+
+    }
+
+
+    container.innerHTML = `
+
+        <div class="charge-stats-grid">
+
+            <div class="charge-stat">
+                <span>Lots</span>
+                <strong>${escapeHtml(data.units ?? 0)}</strong>
+            </div>
+
+            <div class="charge-stat">
+                <span>Payés</span>
+                <strong>${escapeHtml(data.paidUnits ?? 0)}</strong>
+            </div>
+
+            <div class="charge-stat">
+                <span>Partiels</span>
+                <strong>${escapeHtml(data.partialUnits ?? 0)}</strong>
+            </div>
+
+            <div class="charge-stat">
+                <span>Impayés</span>
+                <strong>${escapeHtml(data.unpaidUnits ?? 0)}</strong>
+            </div>
+
+            <div class="charge-stat">
+                <span>Total attendu</span>
+                <strong>${escapeHtml(formatMoney(data.totalExpected, data.currency || "MAD"))}</strong>
+            </div>
+
+            <div class="charge-stat">
+                <span>Encaissé</span>
+                <strong>${escapeHtml(formatMoney(data.totalPaid, data.currency || "MAD"))}</strong>
+            </div>
+
+            <div class="charge-stat">
+                <span>Reste</span>
+                <strong>${escapeHtml(formatMoney(data.outstanding, data.currency || "MAD"))}</strong>
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+document
+    .getElementById(
+        "chargeCallForm"
+    )
+    .addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+
+            const message =
+                document.getElementById(
+                    "chargeCallFormMessage"
+                );
+
+
+            message.textContent =
+                "";
+
+            message.className =
+                "syndic-form-message";
+
+
+            const title =
+                document
+                    .getElementById(
+                        "chargeCallTitle"
+                    )
+                    .value
+                    .trim();
+
+
+            const fiscalYear =
+                Number(
+                    document
+                        .getElementById(
+                            "chargeCallYear"
+                        )
+                        .value
+                );
+
+
+            const periodLabel =
+                document
+                    .getElementById(
+                        "chargeCallPeriod"
+                    )
+                    .value
+                    .trim();
+
+
+            const chargeType =
+                document
+                    .getElementById(
+                        "chargeCallType"
+                    )
+                    .value;
+
+
+            const defaultAmount =
+                Number(
+                    document
+                        .getElementById(
+                            "chargeCallAmount"
+                        )
+                        .value
+                );
+
+
+            const dueDate =
+                document
+                    .getElementById(
+                        "chargeCallDueDate"
+                    )
+                    .value;
+
+
+            const description =
+                document
+                    .getElementById(
+                        "chargeCallDescription"
+                    )
+                    .value
+                    .trim();
+
+
+            if (
+                !title ||
+                !Number.isFinite(
+                    fiscalYear
+                ) ||
+                !Number.isFinite(
+                    defaultAmount
+                ) ||
+                defaultAmount <= 0 ||
+                !dueDate
+            ) {
+
+                message.textContent =
+                    "Vérifiez le titre, l'exercice, le montant et l'échéance.";
+
+                message.className =
+                    "syndic-form-message error";
+
+                return;
+
+            }
+
+
+            const payload = {
+
+                title,
+
+                description:
+                    description ||
+                    null,
+
+                fiscal_year:
+                    fiscalYear,
+
+                period_label:
+                    periodLabel ||
+                    null,
+
+                charge_type:
+                    chargeType,
+
+                default_amount:
+                    defaultAmount,
+
+                currency:
+                    "MAD",
+
+                due_date:
+                    dueDate
+
+            };
+
+
+            let error;
+
+
+            if (
+                selectedChargeCallId
+            ) {
+
+                const result =
+                    await supabaseClient
+                        .from(
+                            "syndic_charge_calls"
+                        )
+                        .update(
+                            payload
+                        )
+                        .eq(
+                            "id",
+                            selectedChargeCallId
+                        )
+                        .eq(
+                            "status",
+                            "draft"
+                        );
+
+
+                error =
+                    result.error;
+
+            }
+            else {
+
+                const {
+                    data: {
+                        session
+                    }
+                } =
+                    await supabaseClient
+                        .auth
+                        .getSession();
+
+
+                const result =
+                    await supabaseClient
+                        .from(
+                            "syndic_charge_calls"
+                        )
+                        .insert({
+                            ...payload,
+
+                            status:
+                                "draft",
+
+                            created_by:
+                                session?.user?.id ||
+                                null
+                        });
+
+
+                error =
+                    result.error;
+
+            }
+
+
+            if (
+                error
+            ) {
+
+                console.error(
+                    "Charge save error:",
+                    error
+                );
+
+
+                message.textContent =
+                    error.message ||
+                    "Impossible d'enregistrer l'appel de fonds.";
+
+                message.className =
+                    "syndic-form-message error";
+
+                return;
+
+            }
+
+
+            message.textContent =
+                "Appel de fonds enregistré.";
+
+            message.className =
+                "syndic-form-message success";
+
+
+            setTimeout(
+                async () => {
+
+                    closeChargeCallModal();
+
+                    await loadSyndic();
+
+                },
+                300
+            );
+
+        }
+    );
+
+
+function populatePaymentOwners() {
+
+    const select =
+        document.getElementById(
+            "paymentOwnerSelect"
+        );
+
+
+    const currentValue =
+        select.value;
+
+
+    select.innerHTML =
+        `<option value="">Sélectionner...</option>`;
+
+
+    for (
+        const owner
+        of syndicOwnerAccounts
+    ) {
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+
+        option.value =
+            owner.id;
+
+
+        option.textContent =
+            `${owner.last_name || ""} ${owner.first_name || ""} · ${owner.phone || ""}`
+                .trim();
+
+
+        select.appendChild(
+            option
+        );
+
+    }
+
+
+    if (
+        currentValue &&
+        syndicOwnerAccounts.some(
+            owner =>
+                owner.id ===
+                currentValue
+        )
+    ) {
+
+        select.value =
+            currentValue;
+
+    }
+
+}
+
+
+function getConfirmedPaidForCharge(
+    unitChargeId
+) {
+
+    const paymentMap =
+        new Map(
+            syndicPayments
+                .map(
+                    payment => [
+                        payment.id,
+                        payment
+                    ]
+                )
+        );
+
+
+    return syndicAllocations
+        .filter(
+            allocation =>
+                allocation.unit_charge_id ===
+                unitChargeId
+        )
+        .reduce(
+            (
+                total,
+                allocation
+            ) => {
+
+                const payment =
+                    paymentMap.get(
+                        allocation.payment_id
+                    );
+
+
+                if (
+                    payment?.status ===
+                    "confirmed"
+                ) {
+
+                    return total +
+                        Number(
+                            allocation.amount ||
+                            0
+                        );
+
+                }
+
+
+                return total;
+
+            },
+            0
+        );
+
+}
+
+
+function renderOwnerPaymentCharges(
+    ownerAccountId
+) {
+
+    const list =
+        document.getElementById(
+            "paymentAllocationsList"
+        );
+
+
+    const owner =
+        syndicOwnerAccounts.find(
+            item =>
+                item.id ===
+                ownerAccountId
+        );
+
+
+    const info =
+        document.getElementById(
+            "paymentOwnerInfo"
+        );
+
+
+    if (
+        !owner
+    ) {
+
+        info.hidden =
+            true;
+
+        list.textContent =
+            "Sélectionnez un propriétaire.";
+
+        updatePaymentTotal();
+
+        return;
+
+    }
+
+
+    info.hidden =
+        false;
+
+    info.textContent =
+        `${owner.first_name || ""} ${owner.last_name || ""} · ${owner.phone || "Téléphone non renseigné"}`;
+
+
+    const callMap =
+        new Map(
+            syndicChargeCalls
+                .map(
+                    call => [
+                        call.id,
+                        call
+                    ]
+                )
+        );
+
+
+    const rows =
+        syndicUnitCharges
+            .filter(
+                charge =>
+                    charge.owner_account_id ===
+                    ownerAccountId
+            )
+            .map(
+                charge => {
+
+                    const call =
+                        callMap.get(
+                            charge.charge_call_id
+                        );
+
+
+                    const paid =
+                        getConfirmedPaidForCharge(
+                            charge.id
+                        );
+
+
+                    const outstanding =
+                        Math.max(
+                            Number(
+                                charge.amount_due ||
+                                0
+                            ) -
+                            paid,
+                            0
+                        );
+
+
+                    return {
+                        charge,
+                        call,
+                        paid,
+                        outstanding
+                    };
+
+                }
+            )
+            .filter(
+                item =>
+                    item.outstanding > 0.005 &&
+                    (
+                        item.call?.status ===
+                        "published" ||
+                        item.call?.status ===
+                        "closed"
+                    )
+            )
+            .sort(
+                (
+                    first,
+                    second
+                ) =>
+                    String(
+                        first.call?.due_date ||
+                        ""
+                    )
+                    .localeCompare(
+                        String(
+                            second.call?.due_date ||
+                            ""
+                        )
+                    )
+            );
+
+
+    list.innerHTML =
+        "";
+
+
+    if (
+        rows.length === 0
+    ) {
+
+        list.textContent =
+            "Aucune créance impayée pour ce propriétaire.";
+
+        updatePaymentTotal();
+
+        return;
+
+    }
+
+
+    for (
+        const item
+        of rows
+    ) {
+
+        const row =
+            document.createElement(
+                "div"
+            );
+
+
+        row.className =
+            "payment-allocation-row";
+
+
+        row.innerHTML = `
+
+            <div>
+
+                <strong>
+                    ${escapeHtml(item.call?.title || "Appel de fonds")}
+                </strong>
+
+                <span>
+                    Bloc ${escapeHtml(item.charge.building_code)}
+                    · Appartement ${escapeHtml(item.charge.apartment_number)}
+                    · Reste :
+                    ${escapeHtml(formatMoney(item.outstanding))}
+                </span>
+
+            </div>
+
+            <input
+                type="number"
+                min="0"
+                max="${escapeHtml(item.outstanding)}"
+                step="0.01"
+                value="0"
+                data-allocation-charge-id="${escapeHtml(item.charge.id)}"
+                data-allocation-max="${escapeHtml(item.outstanding)}"
+            >
+
+        `;
+
+
+        list.appendChild(
+            row
+        );
+
+    }
+
+
+    list
+        .querySelectorAll(
+            "[data-allocation-charge-id]"
+        )
+        .forEach(
+            input => {
+
+                input.addEventListener(
+                    "input",
+                    updatePaymentTotal
+                );
+
+            }
+        );
+
+
+    updatePaymentTotal();
+
+}
+
+
+function getPaymentAllocations() {
+
+    return Array
+        .from(
+            document
+                .querySelectorAll(
+                    "[data-allocation-charge-id]"
+                )
+        )
+        .map(
+            input => ({
+
+                unitChargeId:
+                    input.dataset.allocationChargeId,
+
+                amount:
+                    Number(
+                        input.value ||
+                        0
+                    )
+
+            })
+        )
+        .filter(
+            item =>
+                item.amount > 0
+        );
+
+}
+
+
+function updatePaymentTotal() {
+
+    const total =
+        getPaymentAllocations()
+            .reduce(
+                (
+                    sum,
+                    allocation
+                ) =>
+                    sum +
+                    allocation.amount,
+                0
+            );
+
+
+    document
+        .getElementById(
+            "paymentTotalBox"
+        )
+        .textContent =
+            `Total : ${formatMoney(total)}`;
+
+}
+
+
+function openPaymentModal() {
+
+    document
+        .getElementById(
+            "paymentForm"
+        )
+        .reset();
+
+
+    const today =
+        new Date();
+
+
+    const local =
+        new Date(
+            today.getTime() -
+            today.getTimezoneOffset() *
+            60000
+        )
+        .toISOString()
+        .slice(
+            0,
+            10
+        );
+
+
+    document
+        .getElementById(
+            "paymentDate"
+        )
+        .value =
+            local;
+
+
+    populatePaymentOwners();
+
+
+    document
+        .getElementById(
+            "paymentOwnerInfo"
+        )
+        .hidden =
+            true;
+
+
+    document
+        .getElementById(
+            "paymentAllocationsList"
+        )
+        .textContent =
+            "Sélectionnez un propriétaire.";
+
+
+    updatePaymentTotal();
+
+
+    document
+        .getElementById(
+            "paymentFormMessage"
+        )
+        .textContent =
+            "";
+
+
+    document
+        .getElementById(
+            "paymentModal"
+        )
+        .classList
+        .add(
+            "visible"
+        );
+
+}
+
+
+function closePaymentModal() {
+
+    document
+        .getElementById(
+            "paymentModal"
+        )
+        .classList
+        .remove(
+            "visible"
+        );
+
+}
+
+
+document
+    .getElementById(
+        "paymentOwnerSelect"
+    )
+    .addEventListener(
+        "change",
+        event => {
+
+            renderOwnerPaymentCharges(
+                event.target.value
+            );
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "paymentForm"
+    )
+    .addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+
+            const message =
+                document.getElementById(
+                    "paymentFormMessage"
+                );
+
+
+            message.textContent =
+                "";
+
+            message.className =
+                "syndic-form-message";
+
+
+            const ownerAccountId =
+                document
+                    .getElementById(
+                        "paymentOwnerSelect"
+                    )
+                    .value;
+
+
+            const paymentDate =
+                document
+                    .getElementById(
+                        "paymentDate"
+                    )
+                    .value;
+
+
+            const paymentMethod =
+                document
+                    .getElementById(
+                        "paymentMethod"
+                    )
+                    .value;
+
+
+            const reference =
+                document
+                    .getElementById(
+                        "paymentReference"
+                    )
+                    .value
+                    .trim();
+
+
+            const notes =
+                document
+                    .getElementById(
+                        "paymentNotes"
+                    )
+                    .value
+                    .trim();
+
+
+            const allocations =
+                getPaymentAllocations();
+
+
+            const amount =
+                allocations
+                    .reduce(
+                        (
+                            sum,
+                            allocation
+                        ) =>
+                            sum +
+                            allocation.amount,
+                        0
+                    );
+
+
+            if (
+                !ownerAccountId ||
+                !paymentDate ||
+                amount <= 0 ||
+                allocations.length === 0
+            ) {
+
+                message.textContent =
+                    "Sélectionnez un propriétaire, une date et au moins une créance à régler.";
+
+                message.className =
+                    "syndic-form-message error";
+
+                return;
+
+            }
+
+
+            const {
+                error
+            } =
+                await supabaseClient
+                    .rpc(
+                        "admin_record_syndic_payment",
+                        {
+                            p_owner_account_id:
+                                ownerAccountId,
+
+                            p_payment_date:
+                                paymentDate,
+
+                            p_amount:
+                                amount,
+
+                            p_payment_method:
+                                paymentMethod,
+
+                            p_reference:
+                                reference ||
+                                null,
+
+                            p_notes:
+                                notes ||
+                                null,
+
+                            p_allocations:
+                                allocations
+                        }
+                    );
+
+
+            if (
+                error
+            ) {
+
+                console.error(
+                    "Payment record error:",
+                    error
+                );
+
+
+                message.textContent =
+                    error.message ||
+                    "Impossible d'enregistrer le paiement.";
+
+                message.className =
+                    "syndic-form-message error";
+
+                return;
+
+            }
+
+
+            message.textContent =
+                "Paiement enregistré avec succès.";
+
+            message.className =
+                "syndic-form-message success";
+
+
+            setTimeout(
+                async () => {
+
+                    closePaymentModal();
+
+                    await loadSyndic();
+
+                    showSyndicSubview(
+                        "payments"
+                    );
+
+                },
+                350
+            );
+
+        }
+    );
+
+
+async function reversePayment(
+    paymentId
+) {
+
+    const reason =
+        window.prompt(
+            "Motif de l'extourne :"
+        );
+
+
+    if (
+        reason === null
+    ) {
+        return;
+    }
+
+
+    if (
+        reason.trim().length < 3
+    ) {
+
+        alert(
+            "Le motif doit contenir au moins 3 caractères."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        !window.confirm(
+            "Confirmer l'extourne de ce paiement ?"
+        )
+    ) {
+        return;
+    }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+            .rpc(
+                "admin_reverse_syndic_payment",
+                {
+                    p_payment_id:
+                        paymentId,
+
+                    p_reason:
+                        reason.trim()
+                }
+            );
+
+
+    if (
+        error
+    ) {
+
+        alert(
+            error.message ||
+            "Impossible d'extourner ce paiement."
+        );
+
+        return;
+
+    }
+
+
+    await loadSyndic();
+
+    showSyndicSubview(
+        "payments"
+    );
+
+}
+
+
+function showSyndicSubview(
+    view
+) {
+
+    const showPayments =
+        view ===
+        "payments";
+
+
+    document
+        .getElementById(
+            "chargeCallsSubtab"
+        )
+        .classList
+        .toggle(
+            "active",
+            !showPayments
+        );
+
+
+    document
+        .getElementById(
+            "paymentsSubtab"
+        )
+        .classList
+        .toggle(
+            "active",
+            showPayments
+        );
+
+
+    document
+        .getElementById(
+            "chargeCallsView"
+        )
+        .hidden =
+            showPayments;
+
+
+    document
+        .getElementById(
+            "paymentsView"
+        )
+        .hidden =
+            !showPayments;
+
+}
+
+
+document
+    .getElementById(
+        "chargeCallsSubtab"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            showSyndicSubview(
+                "charges"
+            );
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "paymentsSubtab"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            showSyndicSubview(
+                "payments"
+            );
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "createChargeCallButton"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            openChargeCallModal();
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "recordPaymentButton"
+    )
+    .addEventListener(
+        "click",
+        openPaymentModal
+    );
+
+
+document
+    .getElementById(
+        "chargeCallModalClose"
+    )
+    .addEventListener(
+        "click",
+        closeChargeCallModal
+    );
+
+
+document
+    .getElementById(
+        "chargeCallFormCancel"
+    )
+    .addEventListener(
+        "click",
+        closeChargeCallModal
+    );
+
+
+document
+    .getElementById(
+        "paymentModalClose"
+    )
+    .addEventListener(
+        "click",
+        closePaymentModal
+    );
+
+
+document
+    .getElementById(
+        "paymentFormCancel"
+    )
+    .addEventListener(
+        "click",
+        closePaymentModal
+    );
+
+
+document
+    .getElementById(
+        "chargeCallModal"
+    )
+    .addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target.id ===
+                "chargeCallModal"
+            ) {
+
+                closeChargeCallModal();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "paymentModal"
+    )
+    .addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target.id ===
+                "paymentModal"
+            ) {
+
+                closePaymentModal();
+
+            }
+
+        }
+    );
 
 
 
