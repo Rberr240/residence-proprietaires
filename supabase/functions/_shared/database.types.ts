@@ -362,6 +362,48 @@ export type Database = {
           },
         ]
       }
+      owner_announcement_reads: {
+        Row: {
+          announcement_id: string
+          first_read_at: string
+          id: string
+          last_read_at: string
+          owner_account_id: string
+          read_count: number
+        }
+        Insert: {
+          announcement_id: string
+          first_read_at?: string
+          id?: string
+          last_read_at?: string
+          owner_account_id: string
+          read_count?: number
+        }
+        Update: {
+          announcement_id?: string
+          first_read_at?: string
+          id?: string
+          last_read_at?: string
+          owner_account_id?: string
+          read_count?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "owner_announcement_reads_announcement_id_fkey"
+            columns: ["announcement_id"]
+            isOneToOne: false
+            referencedRelation: "residence_announcements"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "owner_announcement_reads_owner_account_id_fkey"
+            columns: ["owner_account_id"]
+            isOneToOne: false
+            referencedRelation: "owner_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       owner_meeting_responses: {
         Row: {
           attendance: string
@@ -603,6 +645,102 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      residence_announcement_targets: {
+        Row: {
+          announcement_id: string
+          building_code: string | null
+          created_at: string
+          id: string
+          owner_account_unit_id: string | null
+          target_type: string
+        }
+        Insert: {
+          announcement_id: string
+          building_code?: string | null
+          created_at?: string
+          id?: string
+          owner_account_unit_id?: string | null
+          target_type: string
+        }
+        Update: {
+          announcement_id?: string
+          building_code?: string | null
+          created_at?: string
+          id?: string
+          owner_account_unit_id?: string | null
+          target_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "residence_announcement_targets_announcement_id_fkey"
+            columns: ["announcement_id"]
+            isOneToOne: false
+            referencedRelation: "residence_announcements"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "residence_announcement_targets_owner_account_unit_id_fkey"
+            columns: ["owner_account_unit_id"]
+            isOneToOne: false
+            referencedRelation: "owner_account_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      residence_announcements: {
+        Row: {
+          archived_at: string | null
+          category: string
+          content: string
+          created_at: string
+          created_by: string | null
+          expires_at: string | null
+          id: string
+          is_pinned: boolean
+          priority: string
+          published_at: string | null
+          status: string
+          summary: string | null
+          title: string
+          updated_at: string
+          visible_from: string | null
+        }
+        Insert: {
+          archived_at?: string | null
+          category?: string
+          content: string
+          created_at?: string
+          created_by?: string | null
+          expires_at?: string | null
+          id?: string
+          is_pinned?: boolean
+          priority?: string
+          published_at?: string | null
+          status?: string
+          summary?: string | null
+          title: string
+          updated_at?: string
+          visible_from?: string | null
+        }
+        Update: {
+          archived_at?: string | null
+          category?: string
+          content?: string
+          created_at?: string
+          created_by?: string | null
+          expires_at?: string | null
+          id?: string
+          is_pinned?: boolean
+          priority?: string
+          published_at?: string | null
+          status?: string
+          summary?: string | null
+          title?: string
+          updated_at?: string
+          visible_from?: string | null
+        }
+        Relationships: []
       }
       residence_vote_eligibility: {
         Row: {
@@ -968,6 +1106,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      admin_archive_residence_announcement: {
+        Args: { p_announcement_id: string }
+        Returns: Json
+      }
       admin_cancel_residence_vote: {
         Args: { p_vote_id: string }
         Returns: Json
@@ -981,6 +1123,10 @@ export type Database = {
         Args: { p_charge_call_id: string }
         Returns: Json
       }
+      admin_get_announcement_stats: {
+        Args: { p_announcement_id: string }
+        Returns: Json
+      }
       admin_get_meeting_stats: { Args: { p_meeting_id: string }; Returns: Json }
       admin_get_residence_vote_stats: {
         Args: { p_vote_id: string }
@@ -988,6 +1134,10 @@ export type Database = {
       }
       admin_get_syndic_charge_call_stats: {
         Args: { p_charge_call_id: string }
+        Returns: Json
+      }
+      admin_publish_residence_announcement: {
+        Args: { p_announcement_id: string }
         Returns: Json
       }
       admin_publish_residence_vote: {
@@ -1037,6 +1187,14 @@ export type Database = {
         Returns: Json
       }
       owner_get_syndic_summary: { Args: never; Returns: Json }
+      owner_mark_announcement_read: {
+        Args: { p_announcement_id: string }
+        Returns: Json
+      }
+      owner_matches_announcement_target: {
+        Args: { p_announcement_id: string }
+        Returns: boolean
+      }
       register_owner_with_session:
         | {
             Args: {
