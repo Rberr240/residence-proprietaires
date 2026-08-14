@@ -404,6 +404,63 @@ export type Database = {
           },
         ]
       }
+      owner_document_accesses: {
+        Row: {
+          created_at: string
+          document_id: string
+          download_count: number
+          first_download_at: string | null
+          first_view_at: string | null
+          id: string
+          last_download_at: string | null
+          last_view_at: string | null
+          owner_account_id: string
+          updated_at: string
+          view_count: number
+        }
+        Insert: {
+          created_at?: string
+          document_id: string
+          download_count?: number
+          first_download_at?: string | null
+          first_view_at?: string | null
+          id?: string
+          last_download_at?: string | null
+          last_view_at?: string | null
+          owner_account_id: string
+          updated_at?: string
+          view_count?: number
+        }
+        Update: {
+          created_at?: string
+          document_id?: string
+          download_count?: number
+          first_download_at?: string | null
+          first_view_at?: string | null
+          id?: string
+          last_download_at?: string | null
+          last_view_at?: string | null
+          owner_account_id?: string
+          updated_at?: string
+          view_count?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "owner_document_accesses_document_id_fkey"
+            columns: ["document_id"]
+            isOneToOne: false
+            referencedRelation: "residence_documents"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "owner_document_accesses_owner_account_id_fkey"
+            columns: ["owner_account_id"]
+            isOneToOne: false
+            referencedRelation: "owner_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       owner_meeting_responses: {
         Row: {
           attendance: string
@@ -736,6 +793,111 @@ export type Database = {
           published_at?: string | null
           status?: string
           summary?: string | null
+          title?: string
+          updated_at?: string
+          visible_from?: string | null
+        }
+        Relationships: []
+      }
+      residence_document_targets: {
+        Row: {
+          building_code: string | null
+          created_at: string
+          document_id: string
+          id: string
+          owner_account_unit_id: string | null
+          target_type: string
+        }
+        Insert: {
+          building_code?: string | null
+          created_at?: string
+          document_id: string
+          id?: string
+          owner_account_unit_id?: string | null
+          target_type: string
+        }
+        Update: {
+          building_code?: string | null
+          created_at?: string
+          document_id?: string
+          id?: string
+          owner_account_unit_id?: string | null
+          target_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "residence_document_targets_document_id_fkey"
+            columns: ["document_id"]
+            isOneToOne: false
+            referencedRelation: "residence_documents"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "residence_document_targets_owner_account_unit_id_fkey"
+            columns: ["owner_account_unit_id"]
+            isOneToOne: false
+            referencedRelation: "owner_account_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      residence_documents: {
+        Row: {
+          archived_at: string | null
+          category: string
+          checksum_sha256: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          expires_at: string | null
+          file_size_bytes: number | null
+          id: string
+          mime_type: string | null
+          original_filename: string | null
+          published_at: string | null
+          status: string
+          storage_bucket: string
+          storage_path: string | null
+          title: string
+          updated_at: string
+          visible_from: string | null
+        }
+        Insert: {
+          archived_at?: string | null
+          category?: string
+          checksum_sha256?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          expires_at?: string | null
+          file_size_bytes?: number | null
+          id?: string
+          mime_type?: string | null
+          original_filename?: string | null
+          published_at?: string | null
+          status?: string
+          storage_bucket?: string
+          storage_path?: string | null
+          title: string
+          updated_at?: string
+          visible_from?: string | null
+        }
+        Update: {
+          archived_at?: string | null
+          category?: string
+          checksum_sha256?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          expires_at?: string | null
+          file_size_bytes?: number | null
+          id?: string
+          mime_type?: string | null
+          original_filename?: string | null
+          published_at?: string | null
+          status?: string
+          storage_bucket?: string
+          storage_path?: string | null
           title?: string
           updated_at?: string
           visible_from?: string | null
@@ -1110,6 +1272,10 @@ export type Database = {
         Args: { p_announcement_id: string }
         Returns: Json
       }
+      admin_archive_residence_document: {
+        Args: { p_document_id: string }
+        Returns: Json
+      }
       admin_cancel_residence_vote: {
         Args: { p_vote_id: string }
         Returns: Json
@@ -1128,6 +1294,10 @@ export type Database = {
         Returns: Json
       }
       admin_get_meeting_stats: { Args: { p_meeting_id: string }; Returns: Json }
+      admin_get_residence_document_stats: {
+        Args: { p_document_id: string }
+        Returns: Json
+      }
       admin_get_residence_vote_stats: {
         Args: { p_vote_id: string }
         Returns: Json
@@ -1138,6 +1308,10 @@ export type Database = {
       }
       admin_publish_residence_announcement: {
         Args: { p_announcement_id: string }
+        Returns: Json
+      }
+      admin_publish_residence_document: {
+        Args: { p_document_id: string }
         Returns: Json
       }
       admin_publish_residence_vote: {
@@ -1187,12 +1361,20 @@ export type Database = {
         Returns: Json
       }
       owner_get_syndic_summary: { Args: never; Returns: Json }
+      owner_log_document_access: {
+        Args: { p_action: string; p_document_id: string }
+        Returns: Json
+      }
       owner_mark_announcement_read: {
         Args: { p_announcement_id: string }
         Returns: Json
       }
       owner_matches_announcement_target: {
         Args: { p_announcement_id: string }
+        Returns: boolean
+      }
+      owner_matches_document_target: {
+        Args: { p_document_id: string }
         Returns: boolean
       }
       register_owner_with_session:
