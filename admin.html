@@ -1091,6 +1091,448 @@
     font-size: 13px;
 }
 
+
+/* ========================================= */
+/* VOTES V2                                  */
+/* ========================================= */
+
+.votes-panel {
+    background: white;
+    border: 1px solid #e1e8e5;
+    border-radius: 17px;
+    overflow: hidden;
+}
+
+.votes-panel-top {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid #e8eeeb;
+}
+
+.votes-panel-top h2 {
+    margin: 0;
+    color: #123d32;
+    font-size: 20px;
+}
+
+.votes-panel-top p {
+    margin: 5px 0 0;
+    color: #71847c;
+    font-size: 12px;
+}
+
+.create-vote-button {
+    min-height: 42px;
+    padding: 0 15px;
+    border: 0;
+    border-radius: 10px;
+    background: #174b3d;
+    color: white;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.create-vote-button:hover {
+    background: #103d32;
+}
+
+.votes-list {
+    display: grid;
+    gap: 12px;
+    padding: 18px;
+}
+
+.votes-loading,
+.votes-empty {
+    padding: 38px 22px;
+    text-align: center;
+    color: #71847c;
+    font-size: 13px;
+}
+
+.vote-card {
+    padding: 17px;
+    border: 1px solid #e3ebe7;
+    border-radius: 13px;
+    background: #fbfcfc;
+}
+
+.vote-card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.vote-card h3 {
+    margin: 0;
+    color: #143e33;
+    font-size: 16px;
+}
+
+.vote-question {
+    margin: 7px 0 0;
+    color: #37594d;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.vote-description {
+    margin: 11px 0 0;
+    color: #647970;
+    font-size: 11px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+}
+
+.vote-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px 13px;
+    margin-top: 10px;
+    color: #71847c;
+    font-size: 10px;
+}
+
+.vote-status {
+    display: inline-flex;
+    align-items: center;
+    min-height: 26px;
+    padding: 0 9px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 850;
+    white-space: nowrap;
+}
+
+.vote-status-draft {
+    background: #eef1f0;
+    color: #61736c;
+}
+
+.vote-status-published {
+    background: #e6f6ee;
+    color: #176c45;
+}
+
+.vote-status-closed {
+    background: #e8eef8;
+    color: #365b8d;
+}
+
+.vote-status-cancelled {
+    background: #fde8e8;
+    color: #a12626;
+}
+
+.vote-options-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 13px;
+}
+
+.vote-option-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 27px;
+    padding: 0 9px;
+    border: 1px solid #dfe7e3;
+    border-radius: 999px;
+    background: white;
+    color: #4e665c;
+    font-size: 9px;
+    font-weight: 750;
+}
+
+.vote-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.vote-action-button {
+    min-height: 35px;
+    padding: 0 11px;
+    border: 1px solid #d5e0db;
+    border-radius: 8px;
+    background: white;
+    color: #174b3d;
+    font-size: 11px;
+    font-weight: 750;
+    cursor: pointer;
+}
+
+.vote-action-button.primary {
+    border-color: #174b3d;
+    background: #174b3d;
+    color: white;
+}
+
+.vote-action-button.danger {
+    border-color: #ebcccc;
+    color: #9c2f2f;
+}
+
+.vote-stats {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid #e5ece8;
+}
+
+.vote-stats-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.vote-stat {
+    padding: 10px;
+    border: 1px solid #e6ece9;
+    border-radius: 9px;
+    background: white;
+}
+
+.vote-stat span {
+    display: block;
+    color: #7a8b84;
+    font-size: 9px;
+}
+
+.vote-stat strong {
+    display: block;
+    margin-top: 3px;
+    color: #143e33;
+    font-size: 18px;
+}
+
+.vote-results-list {
+    display: grid;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.vote-result-row {
+    padding: 10px 11px;
+    border: 1px solid #e6ece9;
+    border-radius: 9px;
+    background: white;
+}
+
+.vote-result-row-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: #264a3e;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.vote-result-bar {
+    height: 7px;
+    margin-top: 7px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #edf2ef;
+}
+
+.vote-result-bar > span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: #30735e;
+}
+
+.vote-modal-card {
+    max-width: 760px;
+}
+
+.vote-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.vote-form-field {
+    min-width: 0;
+}
+
+.vote-form-field.full {
+    grid-column: 1 / -1;
+}
+
+.vote-form-field label {
+    display: block;
+    margin-bottom: 6px;
+    color: #405a50;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.vote-form-field input,
+.vote-form-field select,
+.vote-form-field textarea {
+    width: 100%;
+    border: 1px solid #d7e2dd;
+    border-radius: 9px;
+    background: white;
+    color: #24463b;
+    outline: none;
+}
+
+.vote-form-field input,
+.vote-form-field select {
+    min-height: 44px;
+    padding: 0 11px;
+}
+
+.vote-form-field textarea {
+    min-height: 95px;
+    padding: 11px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.vote-form-field input:focus,
+.vote-form-field select:focus,
+.vote-form-field textarea:focus {
+    border-color: #30735e;
+    box-shadow: 0 0 0 3px rgba(48, 115, 94, 0.10);
+}
+
+.vote-toggle-row {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 0 11px;
+    border: 1px solid #d7e2dd;
+    border-radius: 9px;
+    background: #fbfcfc;
+    color: #405a50;
+    font-size: 11px;
+}
+
+.vote-toggle-row input {
+    width: auto;
+    min-height: auto;
+}
+
+.vote-options-editor {
+    display: grid;
+    gap: 8px;
+}
+
+.vote-option-editor-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+}
+
+.vote-option-editor-row input {
+    min-height: 42px;
+}
+
+.vote-option-remove {
+    width: 42px;
+    min-height: 42px;
+    border: 1px solid #ead0d0;
+    border-radius: 9px;
+    background: white;
+    color: #a12626;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.add-vote-option {
+    min-height: 38px;
+    padding: 0 12px;
+    border: 1px dashed #bfcfc8;
+    border-radius: 9px;
+    background: #f8faf9;
+    color: #305f50;
+    font-size: 10px;
+    font-weight: 850;
+    cursor: pointer;
+}
+
+.vote-form-message {
+    min-height: 20px;
+    margin: 12px 0 0;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.vote-form-message.error {
+    color: #b42318;
+}
+
+.vote-form-message.success {
+    color: #167347;
+}
+
+.vote-modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 9px;
+}
+
+.vote-save-button,
+.vote-cancel-button {
+    min-height: 43px;
+    padding: 0 16px;
+    border-radius: 9px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.vote-save-button {
+    border: 0;
+    background: #174b3d;
+    color: white;
+}
+
+.vote-cancel-button {
+    border: 1px solid #d5e0db;
+    background: white;
+    color: #52675e;
+}
+
+@media (max-width: 760px) {
+    .votes-panel-top,
+    .vote-card-head {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .create-vote-button {
+        width: 100%;
+    }
+
+    .vote-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vote-form-field.full {
+        grid-column: auto;
+    }
+
+    .vote-stats-summary {
+        grid-template-columns: 1fr;
+    }
+}
+
+
 @media (max-width: 760px) {
     .meetings-panel-top {
         align-items: stretch;
@@ -1255,6 +1697,14 @@
                 type="button"
             >
                 Réunions
+            </button>
+
+            <button
+                id="votesTabButton"
+                class="admin-tab-button"
+                type="button"
+            >
+                Votes
             </button>
 
         </div>
@@ -1493,6 +1943,65 @@
             <div
                 id="meetingsList"
                 class="meetings-list"
+                hidden
+            >
+            </div>
+
+        </section>
+
+
+        <!-- VOTES V2 -->
+
+
+        <section
+            id="votesSection"
+            class="votes-panel"
+            hidden
+        >
+
+            <div class="votes-panel-top">
+
+                <div>
+
+                    <h2>
+                        Votes
+                    </h2>
+
+                    <p>
+                        Créez les consultations, publiez-les
+                        et suivez les résultats agrégés.
+                    </p>
+
+                </div>
+
+                <button
+                    id="createVoteButton"
+                    class="create-vote-button"
+                    type="button"
+                >
+                    + Créer un vote
+                </button>
+
+            </div>
+
+            <div
+                id="votesLoading"
+                class="votes-loading"
+            >
+                Chargement des votes...
+            </div>
+
+            <div
+                id="votesEmpty"
+                class="votes-empty"
+                hidden
+            >
+                Aucun vote créé pour le moment.
+            </div>
+
+            <div
+                id="votesList"
+                class="votes-list"
                 hidden
             >
             </div>
@@ -1934,6 +2443,223 @@
                     type="submit"
                 >
                     Enregistrer
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- MODAL VOTE -->
+
+
+<div
+    id="voteModal"
+    class="modal"
+>
+
+    <div class="modal-card vote-modal-card">
+
+        <div class="modal-head">
+
+            <div>
+
+                <span
+                    style="
+                        color:#30735e;
+                        font-size:11px;
+                        font-weight:800;
+                    "
+                >
+                    VOTE
+                </span>
+
+                <h2 id="voteModalTitle">
+                    Nouveau vote
+                </h2>
+
+            </div>
+
+            <button
+                id="voteModalClose"
+                class="modal-close"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <form id="voteForm">
+
+            <div class="vote-form-grid">
+
+                <div class="vote-form-field full">
+
+                    <label for="voteTitle">
+                        Titre *
+                    </label>
+
+                    <input
+                        id="voteTitle"
+                        type="text"
+                        maxlength="180"
+                        required
+                    >
+
+                </div>
+
+                <div class="vote-form-field full">
+
+                    <label for="voteQuestion">
+                        Question soumise au vote *
+                    </label>
+
+                    <textarea
+                        id="voteQuestion"
+                        maxlength="1000"
+                        required
+                        placeholder="Ex. Approuvez-vous le budget proposé ?"
+                    ></textarea>
+
+                </div>
+
+                <div class="vote-form-field">
+
+                    <label for="voteOpensAt">
+                        Ouverture
+                    </label>
+
+                    <input
+                        id="voteOpensAt"
+                        type="datetime-local"
+                    >
+
+                </div>
+
+                <div class="vote-form-field">
+
+                    <label for="voteClosesAt">
+                        Clôture *
+                    </label>
+
+                    <input
+                        id="voteClosesAt"
+                        type="datetime-local"
+                        required
+                    >
+
+                </div>
+
+                <div class="vote-form-field">
+
+                    <label>
+                        Modification du vote
+                    </label>
+
+                    <label class="vote-toggle-row">
+
+                        <input
+                            id="voteAllowChange"
+                            type="checkbox"
+                        >
+
+                        Autoriser la modification jusqu'à la clôture
+
+                    </label>
+
+                </div>
+
+                <div class="vote-form-field">
+
+                    <label for="voteResultsVisibility">
+                        Visibilité des résultats
+                    </label>
+
+                    <select id="voteResultsVisibility">
+
+                        <option value="after_close">
+                            Après la clôture
+                        </option>
+
+                        <option value="admin_only">
+                            Administrateurs uniquement
+                        </option>
+
+                        <option value="live">
+                            En direct
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="vote-form-field full">
+
+                    <label for="voteDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="voteDescription"
+                        maxlength="5000"
+                        placeholder="Informations complémentaires..."
+                    ></textarea>
+
+                </div>
+
+                <div class="vote-form-field full">
+
+                    <label>
+                        Options *
+                    </label>
+
+                    <div
+                        id="voteOptionsEditor"
+                        class="vote-options-editor"
+                    >
+                    </div>
+
+                    <button
+                        id="addVoteOptionButton"
+                        class="add-vote-option"
+                        type="button"
+                        style="margin-top:8px;"
+                    >
+                        + Ajouter une option
+                    </button>
+
+                </div>
+
+            </div>
+
+            <p
+                id="voteFormMessage"
+                class="vote-form-message"
+                aria-live="polite"
+            ></p>
+
+            <div class="vote-modal-actions">
+
+                <button
+                    id="voteFormCancel"
+                    class="vote-cancel-button"
+                    type="button"
+                >
+                    Annuler
+                </button>
+
+                <button
+                    id="voteSaveButton"
+                    class="vote-save-button"
+                    type="submit"
+                >
+                    Enregistrer le brouillon
                 </button>
 
             </div>
@@ -3304,6 +4030,11 @@ const meetingsTabButton =
         "meetingsTabButton"
     );
 
+const votesTabButton =
+    document.getElementById(
+        "votesTabButton"
+    );
+
 const ownersStatsSection =
     document.getElementById(
         "ownersStatsSection"
@@ -3319,20 +4050,31 @@ const meetingsSection =
         "meetingsSection"
     );
 
+const votesSection =
+    document.getElementById(
+        "votesSection"
+    );
+
 
 function showAdminSection(
     section
 ) {
 
+    const showOwners =
+        section === "owners";
+
     const showMeetings =
         section === "meetings";
+
+    const showVotes =
+        section === "votes";
 
 
     ownersTabButton
         .classList
         .toggle(
             "active",
-            !showMeetings
+            showOwners
         );
 
 
@@ -3344,16 +4086,28 @@ function showAdminSection(
         );
 
 
+    votesTabButton
+        .classList
+        .toggle(
+            "active",
+            showVotes
+        );
+
+
     ownersStatsSection.hidden =
-        showMeetings;
+        !showOwners;
 
 
     ownersPanelSection.hidden =
-        showMeetings;
+        !showOwners;
 
 
     meetingsSection.hidden =
         !showMeetings;
+
+
+    votesSection.hidden =
+        !showVotes;
 
 
     if (
@@ -3361,6 +4115,15 @@ function showAdminSection(
     ) {
 
         loadMeetings();
+
+    }
+
+
+    if (
+        showVotes
+    ) {
+
+        loadVotes();
 
     }
 
@@ -3387,6 +4150,19 @@ meetingsTabButton
 
             showAdminSection(
                 "meetings"
+            );
+
+        }
+    );
+
+
+votesTabButton
+    .addEventListener(
+        "click",
+        () => {
+
+            showAdminSection(
+                "votes"
             );
 
         }
@@ -4760,6 +5536,1991 @@ meetingModal
 
         }
     );
+
+
+
+
+/* =========================================================
+ * VOTES V2
+ * ========================================================= */
+
+let residenceVotes =
+    [];
+
+let residenceVoteOptions =
+    new Map();
+
+let selectedVoteId =
+    null;
+
+
+const votesLoading =
+    document.getElementById(
+        "votesLoading"
+    );
+
+const votesEmpty =
+    document.getElementById(
+        "votesEmpty"
+    );
+
+const votesList =
+    document.getElementById(
+        "votesList"
+    );
+
+const voteModal =
+    document.getElementById(
+        "voteModal"
+    );
+
+const voteForm =
+    document.getElementById(
+        "voteForm"
+    );
+
+const voteSaveButton =
+    document.getElementById(
+        "voteSaveButton"
+    );
+
+const voteFormMessage =
+    document.getElementById(
+        "voteFormMessage"
+    );
+
+const voteOptionsEditor =
+    document.getElementById(
+        "voteOptionsEditor"
+    );
+
+
+function voteStatusLabel(
+    status
+) {
+
+    switch (
+        status
+    ) {
+
+        case "published":
+            return "Publié";
+
+        case "closed":
+            return "Clôturé";
+
+        case "cancelled":
+            return "Annulé";
+
+        case "draft":
+        default:
+            return "Brouillon";
+
+    }
+
+}
+
+
+function voteStatusClass(
+    status
+) {
+
+    switch (
+        status
+    ) {
+
+        case "published":
+            return "vote-status-published";
+
+        case "closed":
+            return "vote-status-closed";
+
+        case "cancelled":
+            return "vote-status-cancelled";
+
+        case "draft":
+        default:
+            return "vote-status-draft";
+
+    }
+
+}
+
+
+function voteResultsVisibilityLabel(
+    visibility
+) {
+
+    switch (
+        visibility
+    ) {
+
+        case "live":
+            return "Résultats en direct";
+
+        case "admin_only":
+            return "Résultats admin uniquement";
+
+        case "after_close":
+        default:
+            return "Résultats après clôture";
+
+    }
+
+}
+
+
+function addVoteOptionEditorRow(
+    value = ""
+) {
+
+    const row =
+        document.createElement(
+            "div"
+        );
+
+
+    row.className =
+        "vote-option-editor-row";
+
+
+    const input =
+        document.createElement(
+            "input"
+        );
+
+
+    input.type =
+        "text";
+
+    input.maxLength =
+        180;
+
+    input.placeholder =
+        "Libellé de l'option";
+
+    input.value =
+        value;
+
+
+    const removeButton =
+        document.createElement(
+            "button"
+        );
+
+
+    removeButton.type =
+        "button";
+
+    removeButton.className =
+        "vote-option-remove";
+
+    removeButton.textContent =
+        "×";
+
+
+    removeButton.addEventListener(
+        "click",
+        () => {
+
+            const rows =
+                voteOptionsEditor
+                    .querySelectorAll(
+                        ".vote-option-editor-row"
+                    );
+
+
+            if (
+                rows.length <= 2
+            ) {
+
+                voteFormMessage.textContent =
+                    "Un vote doit conserver au moins deux options.";
+
+                voteFormMessage.className =
+                    "vote-form-message error";
+
+                return;
+
+            }
+
+
+            row.remove();
+
+        }
+    );
+
+
+    row.appendChild(
+        input
+    );
+
+    row.appendChild(
+        removeButton
+    );
+
+
+    voteOptionsEditor
+        .appendChild(
+            row
+        );
+
+}
+
+
+function resetVoteOptionsEditor(
+    options = null
+) {
+
+    voteOptionsEditor.innerHTML =
+        "";
+
+
+    const values =
+        Array.isArray(
+            options
+        ) &&
+        options.length >= 2
+
+            ? options
+                .sort(
+                    (
+                        first,
+                        second
+                    ) =>
+                        first.position -
+                        second.position
+                )
+                .map(
+                    option =>
+                        option.label
+                )
+
+            : [
+                "Oui",
+                "Non",
+                "Abstention"
+            ];
+
+
+    values.forEach(
+        value => {
+
+            addVoteOptionEditorRow(
+                value
+            );
+
+        }
+    );
+
+}
+
+
+function getVoteOptionValues() {
+
+    return Array
+        .from(
+            voteOptionsEditor
+                .querySelectorAll(
+                    "input"
+                )
+        )
+        .map(
+            input =>
+                input.value.trim()
+        )
+        .filter(
+            value =>
+                value.length > 0
+        );
+
+}
+
+
+function openVoteModal(
+    vote = null
+) {
+
+    selectedVoteId =
+        vote?.id ||
+        null;
+
+
+    document
+        .getElementById(
+            "voteModalTitle"
+        )
+        .textContent =
+            vote
+                ? "Modifier le brouillon"
+                : "Nouveau vote";
+
+
+    document
+        .getElementById(
+            "voteTitle"
+        )
+        .value =
+            vote?.title ||
+            "";
+
+
+    document
+        .getElementById(
+            "voteQuestion"
+        )
+        .value =
+            vote?.question ||
+            "";
+
+
+    document
+        .getElementById(
+            "voteDescription"
+        )
+        .value =
+            vote?.description ||
+            "";
+
+
+    document
+        .getElementById(
+            "voteOpensAt"
+        )
+        .value =
+            toDatetimeLocalValue(
+                vote?.opens_at
+            );
+
+
+    document
+        .getElementById(
+            "voteClosesAt"
+        )
+        .value =
+            toDatetimeLocalValue(
+                vote?.closes_at
+            );
+
+
+    document
+        .getElementById(
+            "voteAllowChange"
+        )
+        .checked =
+            Boolean(
+                vote?.allow_vote_change
+            );
+
+
+    document
+        .getElementById(
+            "voteResultsVisibility"
+        )
+        .value =
+            vote?.results_visibility ||
+            "after_close";
+
+
+    resetVoteOptionsEditor(
+        vote
+            ? (
+                residenceVoteOptions
+                    .get(
+                        vote.id
+                    ) ||
+                []
+            )
+            : null
+    );
+
+
+    voteFormMessage.textContent =
+        "";
+
+    voteFormMessage.className =
+        "vote-form-message";
+
+
+    voteSaveButton.disabled =
+        false;
+
+    voteSaveButton.textContent =
+        selectedVoteId
+            ? "Enregistrer les modifications"
+            : "Enregistrer le brouillon";
+
+
+    voteModal
+        .classList
+        .add(
+            "visible"
+        );
+
+}
+
+
+function closeVoteModal() {
+
+    voteModal
+        .classList
+        .remove(
+            "visible"
+        );
+
+
+    selectedVoteId =
+        null;
+
+
+    voteForm.reset();
+
+
+    resetVoteOptionsEditor();
+
+
+    voteFormMessage.textContent =
+        "";
+
+    voteFormMessage.className =
+        "vote-form-message";
+
+}
+
+
+async function loadVotes() {
+
+    votesLoading.hidden =
+        false;
+
+    votesEmpty.hidden =
+        true;
+
+    votesList.hidden =
+        true;
+
+
+    const {
+        data: voteData,
+        error: voteError
+    } =
+        await supabaseClient
+            .from(
+                "residence_votes"
+            )
+            .select(
+                `
+                id,
+                title,
+                question,
+                description,
+                status,
+                allow_vote_change,
+                results_visibility,
+                opens_at,
+                closes_at,
+                published_at,
+                closed_at,
+                cancelled_at,
+                created_by,
+                created_at,
+                updated_at
+                `
+            )
+            .order(
+                "created_at",
+                {
+                    ascending:
+                        false
+                }
+            );
+
+
+    if (
+        voteError
+    ) {
+
+        console.error(
+            "Votes loading error:",
+            voteError
+        );
+
+
+        votesLoading.hidden =
+            true;
+
+        votesEmpty.hidden =
+            false;
+
+        votesEmpty.textContent =
+            "Impossible de charger les votes.";
+
+        return;
+
+    }
+
+
+    residenceVotes =
+        voteData ||
+        [];
+
+
+    residenceVoteOptions =
+        new Map();
+
+
+    if (
+        residenceVotes.length > 0
+    ) {
+
+        const voteIds =
+            residenceVotes
+                .map(
+                    vote =>
+                        vote.id
+                );
+
+
+        const {
+            data: optionData,
+            error: optionError
+        } =
+            await supabaseClient
+                .from(
+                    "residence_vote_options"
+                )
+                .select(
+                    `
+                    id,
+                    vote_id,
+                    label,
+                    description,
+                    position,
+                    created_at
+                    `
+                )
+                .in(
+                    "vote_id",
+                    voteIds
+                )
+                .order(
+                    "position",
+                    {
+                        ascending:
+                            true
+                    }
+                );
+
+
+        if (
+            optionError
+        ) {
+
+            console.error(
+                "Vote options loading error:",
+                optionError
+            );
+
+        }
+        else {
+
+            for (
+                const option
+                of optionData || []
+            ) {
+
+                if (
+                    !residenceVoteOptions
+                        .has(
+                            option.vote_id
+                        )
+                ) {
+
+                    residenceVoteOptions
+                        .set(
+                            option.vote_id,
+                            []
+                        );
+
+                }
+
+
+                residenceVoteOptions
+                    .get(
+                        option.vote_id
+                    )
+                    .push(
+                        option
+                    );
+
+            }
+
+        }
+
+    }
+
+
+    votesLoading.hidden =
+        true;
+
+
+    renderVotes();
+
+}
+
+
+function renderVotes() {
+
+    votesList.innerHTML =
+        "";
+
+
+    if (
+        residenceVotes.length === 0
+    ) {
+
+        votesEmpty.hidden =
+            false;
+
+        votesEmpty.textContent =
+            "Aucun vote créé pour le moment.";
+
+        votesList.hidden =
+            true;
+
+        return;
+
+    }
+
+
+    votesEmpty.hidden =
+        true;
+
+    votesList.hidden =
+        false;
+
+
+    for (
+        const vote
+        of residenceVotes
+    ) {
+
+        const options =
+            residenceVoteOptions
+                .get(
+                    vote.id
+                ) ||
+            [];
+
+
+        const optionsHtml =
+            options
+                .map(
+                    option =>
+                        `
+                            <span class="vote-option-chip">
+                                ${escapeHtml(option.label)}
+                            </span>
+                        `
+                )
+                .join(
+                    ""
+                );
+
+
+        const card =
+            document.createElement(
+                "article"
+            );
+
+
+        card.className =
+            "vote-card";
+
+
+        card.innerHTML = `
+
+            <div class="vote-card-head">
+
+                <div>
+
+                    <h3>
+                        ${escapeHtml(vote.title)}
+                    </h3>
+
+                    <p class="vote-question">
+                        ${escapeHtml(vote.question)}
+                    </p>
+
+                    <div class="vote-meta">
+
+                        <span>
+                            🕒 Ouverture :
+                            ${escapeHtml(formatDateTime(vote.opens_at))}
+                        </span>
+
+                        <span>
+                            ⏳ Clôture :
+                            ${escapeHtml(formatDateTime(vote.closes_at))}
+                        </span>
+
+                        <span>
+                            ${
+                                vote.allow_vote_change
+                                    ? "✎ Vote modifiable"
+                                    : "🔒 Vote définitif"
+                            }
+                        </span>
+
+                        <span>
+                            ${escapeHtml(voteResultsVisibilityLabel(vote.results_visibility))}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <span class="
+                    vote-status
+                    ${voteStatusClass(vote.status)}
+                ">
+                    ${escapeHtml(voteStatusLabel(vote.status))}
+                </span>
+
+            </div>
+
+
+            ${
+                vote.description
+                    ? `
+                        <p class="vote-description">
+                            ${escapeHtml(vote.description)}
+                        </p>
+                    `
+                    : ""
+            }
+
+
+            <div class="vote-options-preview">
+                ${optionsHtml}
+            </div>
+
+
+            <div class="vote-card-actions">
+
+                ${
+                    vote.status === "draft"
+                        ? `
+                            <button
+                                class="vote-action-button"
+                                type="button"
+                                data-vote-action="edit"
+                                data-vote-id="${escapeHtml(vote.id)}"
+                            >
+                                Modifier
+                            </button>
+
+                            <button
+                                class="vote-action-button primary"
+                                type="button"
+                                data-vote-action="publish"
+                                data-vote-id="${escapeHtml(vote.id)}"
+                            >
+                                Publier
+                            </button>
+
+                            <button
+                                class="vote-action-button danger"
+                                type="button"
+                                data-vote-action="delete"
+                                data-vote-id="${escapeHtml(vote.id)}"
+                            >
+                                Supprimer
+                            </button>
+                        `
+                        : ""
+                }
+
+
+                ${
+                    vote.status === "published"
+                        ? `
+                            <button
+                                class="vote-action-button"
+                                type="button"
+                                data-vote-action="stats"
+                                data-vote-id="${escapeHtml(vote.id)}"
+                            >
+                                Statistiques
+                            </button>
+
+                            <button
+                                class="vote-action-button primary"
+                                type="button"
+                                data-vote-action="close"
+                                data-vote-id="${escapeHtml(vote.id)}"
+                            >
+                                Clôturer
+                            </button>
+
+                            <button
+                                class="vote-action-button danger"
+                                type="button"
+                                data-vote-action="cancel"
+                                data-vote-id="${escapeHtml(vote.id)}"
+                            >
+                                Annuler
+                            </button>
+                        `
+                        : ""
+                }
+
+
+                ${
+                    vote.status === "closed" ||
+                    vote.status === "cancelled"
+                        ? `
+                            <button
+                                class="vote-action-button"
+                                type="button"
+                                data-vote-action="stats"
+                                data-vote-id="${escapeHtml(vote.id)}"
+                            >
+                                Statistiques
+                            </button>
+                        `
+                        : ""
+                }
+
+            </div>
+
+
+            <div
+                id="voteStats-${escapeHtml(vote.id)}"
+                class="vote-stats"
+                hidden
+            >
+            </div>
+
+        `;
+
+
+        votesList
+            .appendChild(
+                card
+            );
+
+    }
+
+
+    document
+        .querySelectorAll(
+            "[data-vote-action]"
+        )
+        .forEach(
+            button => {
+
+                button
+                    .addEventListener(
+                        "click",
+                        () => {
+
+                            handleVoteAction(
+                                button.dataset.voteAction,
+                                button.dataset.voteId
+                            );
+
+                        }
+                    );
+
+            }
+        );
+
+}
+
+
+async function handleVoteAction(
+    action,
+    voteId
+) {
+
+    const vote =
+        residenceVotes.find(
+            item =>
+                item.id ===
+                voteId
+        );
+
+
+    if (
+        !vote
+    ) {
+        return;
+    }
+
+
+    if (
+        action === "edit"
+    ) {
+
+        openVoteModal(
+            vote
+        );
+
+        return;
+
+    }
+
+
+    if (
+        action === "stats"
+    ) {
+
+        await loadVoteStats(
+            voteId
+        );
+
+        return;
+
+    }
+
+
+    if (
+        action === "publish"
+    ) {
+
+        const options =
+            residenceVoteOptions
+                .get(
+                    voteId
+                ) ||
+            [];
+
+
+        if (
+            options.length < 2
+        ) {
+
+            alert(
+                "Ce vote doit contenir au moins deux options avant publication."
+            );
+
+            return;
+
+        }
+
+
+        const confirmed =
+            window.confirm(
+                `Publier le vote "${vote.title}" ? La liste des propriétaires éligibles sera figée à cet instant.`
+            );
+
+
+        if (
+            !confirmed
+        ) {
+            return;
+        }
+
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .rpc(
+                    "admin_publish_residence_vote",
+                    {
+                        p_vote_id:
+                            voteId
+                    }
+                );
+
+
+        if (
+            error
+        ) {
+
+            console.error(
+                "Vote publication error:",
+                error
+            );
+
+            alert(
+                error.message ||
+                "Impossible de publier le vote."
+            );
+
+            return;
+
+        }
+
+
+        console.log(
+            "Vote published:",
+            data
+        );
+
+
+        await loadVotes();
+
+        return;
+
+    }
+
+
+    if (
+        action === "close"
+    ) {
+
+        const confirmed =
+            window.confirm(
+                `Clôturer le vote "${vote.title}" ? Aucun nouveau bulletin ne sera accepté.`
+            );
+
+
+        if (
+            !confirmed
+        ) {
+            return;
+        }
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .rpc(
+                    "admin_close_residence_vote",
+                    {
+                        p_vote_id:
+                            voteId
+                    }
+                );
+
+
+        if (
+            error
+        ) {
+
+            console.error(
+                "Vote closing error:",
+                error
+            );
+
+            alert(
+                error.message ||
+                "Impossible de clôturer le vote."
+            );
+
+            return;
+
+        }
+
+
+        await loadVotes();
+
+        return;
+
+    }
+
+
+    if (
+        action === "cancel"
+    ) {
+
+        const confirmed =
+            window.confirm(
+                `Annuler le vote "${vote.title}" ?`
+            );
+
+
+        if (
+            !confirmed
+        ) {
+            return;
+        }
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .rpc(
+                    "admin_cancel_residence_vote",
+                    {
+                        p_vote_id:
+                            voteId
+                    }
+                );
+
+
+        if (
+            error
+        ) {
+
+            console.error(
+                "Vote cancellation error:",
+                error
+            );
+
+            alert(
+                error.message ||
+                "Impossible d'annuler le vote."
+            );
+
+            return;
+
+        }
+
+
+        await loadVotes();
+
+        return;
+
+    }
+
+
+    if (
+        action === "delete"
+    ) {
+
+        const confirmed =
+            window.confirm(
+                `Supprimer définitivement le brouillon "${vote.title}" ?`
+            );
+
+
+        if (
+            !confirmed
+        ) {
+            return;
+        }
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .from(
+                    "residence_votes"
+                )
+                .delete()
+                .eq(
+                    "id",
+                    voteId
+                )
+                .eq(
+                    "status",
+                    "draft"
+                );
+
+
+        if (
+            error
+        ) {
+
+            console.error(
+                "Vote deletion error:",
+                error
+            );
+
+            alert(
+                "Impossible de supprimer ce brouillon."
+            );
+
+            return;
+
+        }
+
+
+        await loadVotes();
+
+    }
+
+}
+
+
+async function loadVoteStats(
+    voteId
+) {
+
+    const container =
+        document.getElementById(
+            `voteStats-${voteId}`
+        );
+
+
+    if (
+        !container
+    ) {
+        return;
+    }
+
+
+    if (
+        !container.hidden
+    ) {
+
+        container.hidden =
+            true;
+
+        return;
+
+    }
+
+
+    container.hidden =
+        false;
+
+    container.innerHTML =
+        "Chargement des statistiques...";
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .rpc(
+                "admin_get_residence_vote_stats",
+                {
+                    p_vote_id:
+                        voteId
+                }
+            );
+
+
+    if (
+        error
+    ) {
+
+        console.error(
+            "Vote stats error:",
+            error
+        );
+
+        container.innerHTML =
+            escapeHtml(
+                error.message ||
+                "Impossible de charger les statistiques."
+            );
+
+        return;
+
+    }
+
+
+    const stats =
+        data ||
+        {};
+
+
+    const options =
+        Array.isArray(
+            stats.options
+        )
+            ? stats.options
+            : [];
+
+
+    const optionRows =
+        options
+            .map(
+                option => {
+
+                    const percentage =
+                        Number(
+                            option.percentage ||
+                            0
+                        );
+
+
+                    const safePercentage =
+                        Math.max(
+                            0,
+                            Math.min(
+                                100,
+                                percentage
+                            )
+                        );
+
+
+                    return `
+
+                        <div class="vote-result-row">
+
+                            <div class="vote-result-row-head">
+
+                                <span>
+                                    ${escapeHtml(option.label)}
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(option.votes ?? 0)}
+                                    vote(s)
+                                    ·
+                                    ${escapeHtml(percentage.toFixed(2))}
+                                    %
+                                </span>
+
+                            </div>
+
+                            <div class="vote-result-bar">
+
+                                <span
+                                    style="
+                                        width:${safePercentage}%;
+                                    "
+                                ></span>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join(
+                ""
+            );
+
+
+    container.innerHTML = `
+
+        <div class="vote-stats-summary">
+
+            <div class="vote-stat">
+                <span>Éligibles</span>
+                <strong>${escapeHtml(stats.eligible ?? 0)}</strong>
+            </div>
+
+            <div class="vote-stat">
+                <span>Votes exprimés</span>
+                <strong>${escapeHtml(stats.votesCast ?? 0)}</strong>
+            </div>
+
+            <div class="vote-stat">
+                <span>Sans vote</span>
+                <strong>${escapeHtml(stats.noVote ?? 0)}</strong>
+            </div>
+
+        </div>
+
+        <div class="vote-results-list">
+            ${optionRows}
+        </div>
+
+    `;
+
+}
+
+
+voteForm
+    .addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+
+            voteFormMessage.textContent =
+                "";
+
+            voteFormMessage.className =
+                "vote-form-message";
+
+
+            const title =
+                document
+                    .getElementById(
+                        "voteTitle"
+                    )
+                    .value
+                    .trim();
+
+
+            const question =
+                document
+                    .getElementById(
+                        "voteQuestion"
+                    )
+                    .value
+                    .trim();
+
+
+            const description =
+                document
+                    .getElementById(
+                        "voteDescription"
+                    )
+                    .value
+                    .trim();
+
+
+            const opensAtValue =
+                document
+                    .getElementById(
+                        "voteOpensAt"
+                    )
+                    .value;
+
+
+            const closesAtValue =
+                document
+                    .getElementById(
+                        "voteClosesAt"
+                    )
+                    .value;
+
+
+            const allowVoteChange =
+                document
+                    .getElementById(
+                        "voteAllowChange"
+                    )
+                    .checked;
+
+
+            const resultsVisibility =
+                document
+                    .getElementById(
+                        "voteResultsVisibility"
+                    )
+                    .value;
+
+
+            const optionValues =
+                getVoteOptionValues();
+
+
+            if (
+                !title ||
+                !question
+            ) {
+
+                voteFormMessage.textContent =
+                    "Le titre et la question sont obligatoires.";
+
+                voteFormMessage.className =
+                    "vote-form-message error";
+
+                return;
+
+            }
+
+
+            if (
+                optionValues.length < 2
+            ) {
+
+                voteFormMessage.textContent =
+                    "Ajoutez au moins deux options non vides.";
+
+                voteFormMessage.className =
+                    "vote-form-message error";
+
+                return;
+
+            }
+
+
+            const normalizedOptions =
+                optionValues
+                    .map(
+                        value =>
+                            value
+                                .toLocaleLowerCase(
+                                    "fr-FR"
+                                )
+                    );
+
+
+            if (
+                new Set(
+                    normalizedOptions
+                ).size !==
+                normalizedOptions.length
+            ) {
+
+                voteFormMessage.textContent =
+                    "Deux options ne peuvent pas avoir le même libellé.";
+
+                voteFormMessage.className =
+                    "vote-form-message error";
+
+                return;
+
+            }
+
+
+            if (
+                !closesAtValue
+            ) {
+
+                voteFormMessage.textContent =
+                    "Une date de clôture est obligatoire.";
+
+                voteFormMessage.className =
+                    "vote-form-message error";
+
+                return;
+
+            }
+
+
+            const opensAt =
+                opensAtValue
+                    ? new Date(
+                        opensAtValue
+                    )
+                    : null;
+
+
+            const closesAt =
+                new Date(
+                    closesAtValue
+                );
+
+
+            if (
+                (
+                    opensAt &&
+                    Number.isNaN(
+                        opensAt.getTime()
+                    )
+                ) ||
+                Number.isNaN(
+                    closesAt.getTime()
+                )
+            ) {
+
+                voteFormMessage.textContent =
+                    "Les dates du vote sont invalides.";
+
+                voteFormMessage.className =
+                    "vote-form-message error";
+
+                return;
+
+            }
+
+
+            if (
+                opensAt &&
+                closesAt.getTime() <=
+                opensAt.getTime()
+            ) {
+
+                voteFormMessage.textContent =
+                    "La clôture doit être postérieure à l'ouverture.";
+
+                voteFormMessage.className =
+                    "vote-form-message error";
+
+                return;
+
+            }
+
+
+            voteSaveButton.disabled =
+                true;
+
+            voteSaveButton.textContent =
+                "Enregistrement...";
+
+
+            const votePayload = {
+
+                title,
+
+                question,
+
+                description:
+                    description ||
+                    null,
+
+                opens_at:
+                    opensAt
+                        ? opensAt.toISOString()
+                        : null,
+
+                closes_at:
+                    closesAt.toISOString(),
+
+                allow_vote_change:
+                    allowVoteChange,
+
+                results_visibility:
+                    resultsVisibility
+
+            };
+
+
+            let voteId =
+                selectedVoteId;
+
+
+            if (
+                selectedVoteId
+            ) {
+
+                const {
+                    error: updateError
+                } =
+                    await supabaseClient
+                        .from(
+                            "residence_votes"
+                        )
+                        .update(
+                            votePayload
+                        )
+                        .eq(
+                            "id",
+                            selectedVoteId
+                        )
+                        .eq(
+                            "status",
+                            "draft"
+                        );
+
+
+                if (
+                    updateError
+                ) {
+
+                    console.error(
+                        "Vote draft update error:",
+                        updateError
+                    );
+
+
+                    voteFormMessage.textContent =
+                        updateError.message ||
+                        "Impossible de modifier ce brouillon.";
+
+                    voteFormMessage.className =
+                        "vote-form-message error";
+
+
+                    voteSaveButton.disabled =
+                        false;
+
+                    voteSaveButton.textContent =
+                        "Enregistrer les modifications";
+
+                    return;
+
+                }
+
+
+                const {
+                    error: deleteOptionsError
+                } =
+                    await supabaseClient
+                        .from(
+                            "residence_vote_options"
+                        )
+                        .delete()
+                        .eq(
+                            "vote_id",
+                            selectedVoteId
+                        );
+
+
+                if (
+                    deleteOptionsError
+                ) {
+
+                    console.error(
+                        "Vote options replacement error:",
+                        deleteOptionsError
+                    );
+
+
+                    voteFormMessage.textContent =
+                        "Le vote a été modifié, mais les anciennes options n'ont pas pu être remplacées.";
+
+                    voteFormMessage.className =
+                        "vote-form-message error";
+
+
+                    voteSaveButton.disabled =
+                        false;
+
+                    voteSaveButton.textContent =
+                        "Enregistrer les modifications";
+
+                    return;
+
+                }
+
+            }
+            else {
+
+                const {
+                    data: {
+                        session
+                    }
+                } =
+                    await supabaseClient
+                        .auth
+                        .getSession();
+
+
+                if (
+                    !session
+                ) {
+
+                    window.location.href =
+                        "admin-login.html";
+
+                    return;
+
+                }
+
+
+                currentAdminAuthUserId =
+                    session.user.id;
+
+
+                const {
+                    data: createdVote,
+                    error: createError
+                } =
+                    await supabaseClient
+                        .from(
+                            "residence_votes"
+                        )
+                        .insert({
+                            ...votePayload,
+
+                            status:
+                                "draft",
+
+                            created_by:
+                                currentAdminAuthUserId
+                        })
+                        .select(
+                            "id"
+                        )
+                        .single();
+
+
+                if (
+                    createError ||
+                    !createdVote
+                ) {
+
+                    console.error(
+                        "Vote creation error:",
+                        createError
+                    );
+
+
+                    voteFormMessage.textContent =
+                        createError?.message ||
+                        "Impossible de créer le vote.";
+
+                    voteFormMessage.className =
+                        "vote-form-message error";
+
+
+                    voteSaveButton.disabled =
+                        false;
+
+                    voteSaveButton.textContent =
+                        "Enregistrer le brouillon";
+
+                    return;
+
+                }
+
+
+                voteId =
+                    createdVote.id;
+
+            }
+
+
+            const optionRows =
+                optionValues
+                    .map(
+                        (
+                            label,
+                            index
+                        ) => ({
+
+                            vote_id:
+                                voteId,
+
+                            label,
+
+                            position:
+                                index
+
+                        })
+                    );
+
+
+            const {
+                error: optionsInsertError
+            } =
+                await supabaseClient
+                    .from(
+                        "residence_vote_options"
+                    )
+                    .insert(
+                        optionRows
+                    );
+
+
+            if (
+                optionsInsertError
+            ) {
+
+                console.error(
+                    "Vote options creation error:",
+                    optionsInsertError
+                );
+
+
+                if (
+                    !selectedVoteId &&
+                    voteId
+                ) {
+
+                    await supabaseClient
+                        .from(
+                            "residence_votes"
+                        )
+                        .delete()
+                        .eq(
+                            "id",
+                            voteId
+                        )
+                        .eq(
+                            "status",
+                            "draft"
+                        );
+
+                }
+
+
+                voteFormMessage.textContent =
+                    optionsInsertError.message ||
+                    "Impossible d'enregistrer les options du vote.";
+
+                voteFormMessage.className =
+                    "vote-form-message error";
+
+
+                voteSaveButton.disabled =
+                    false;
+
+                voteSaveButton.textContent =
+                    selectedVoteId
+                        ? "Enregistrer les modifications"
+                        : "Enregistrer le brouillon";
+
+                return;
+
+            }
+
+
+            voteFormMessage.textContent =
+                selectedVoteId
+                    ? "Brouillon modifié avec succès."
+                    : "Brouillon créé avec succès.";
+
+            voteFormMessage.className =
+                "vote-form-message success";
+
+
+            setTimeout(
+                async () => {
+
+                    closeVoteModal();
+
+                    await loadVotes();
+
+                },
+                350
+            );
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "createVoteButton"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            openVoteModal();
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "addVoteOptionButton"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            addVoteOptionEditorRow();
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "voteModalClose"
+    )
+    .addEventListener(
+        "click",
+        closeVoteModal
+    );
+
+
+document
+    .getElementById(
+        "voteFormCancel"
+    )
+    .addEventListener(
+        "click",
+        closeVoteModal
+    );
+
+
+voteModal
+    .addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target.id ===
+                "voteModal"
+            ) {
+
+                closeVoteModal();
+
+            }
+
+        }
+    );
+
+
+resetVoteOptionsEditor();
 
 
 
