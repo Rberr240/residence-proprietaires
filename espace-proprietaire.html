@@ -1891,6 +1891,218 @@
     }
 
 
+
+    /* ======================================== */
+    /* DOCUMENTS                                */
+    /* ======================================== */
+
+    .documents-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      border: 1px solid var(--mg-border);
+      border-radius: 13px;
+      background: white;
+    }
+
+    .documents-toolbar strong {
+      display: block;
+      color: var(--mg-green-950);
+      font-size: 12px;
+    }
+
+    .documents-toolbar span {
+      display: block;
+      margin-top: 3px;
+      color: var(--mg-muted);
+      font-size: 9px;
+      line-height: 1.45;
+    }
+
+    .documents-refresh-button {
+      flex: 0 0 auto;
+      min-height: 35px;
+      padding: 0 12px;
+      border: 1px solid #d5e0db;
+      border-radius: 9px;
+      background: white;
+      color: var(--mg-green-800);
+      font-size: 9px;
+      font-weight: 900;
+    }
+
+    .owner-documents-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .owner-document-card {
+      overflow: hidden;
+      border: 1px solid var(--mg-border);
+      border-radius: 16px;
+      background: white;
+      box-shadow:
+        0 8px 28px
+        rgba(15, 50, 40, 0.04);
+    }
+
+    .owner-document-card-top {
+      padding: 18px 19px;
+      background:
+        linear-gradient(
+          145deg,
+          #ffffff,
+          #f8fbf9
+        );
+    }
+
+    .owner-document-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .owner-document-card h3 {
+      margin: 0;
+      color: var(--mg-green-950);
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .owner-document-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 12px;
+      margin-top: 8px;
+      color: var(--mg-muted);
+      font-size: 9px;
+    }
+
+    .owner-document-description {
+      margin: 12px 0 0;
+      color: #50685e;
+      font-size: 10px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+
+    .owner-document-badge {
+      min-height: 26px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 9px;
+      border: 1px solid #dfe7e3;
+      border-radius: 999px;
+      background: white;
+      color: #52675e;
+      font-size: 8px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .owner-document-filebox {
+      display: grid;
+      grid-template-columns:
+        minmax(0, 1fr)
+        auto;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 19px;
+      border-top: 1px solid #e7eeea;
+      background: #fbfcfc;
+    }
+
+    .owner-document-fileinfo strong {
+      display: block;
+      color: var(--mg-green-950);
+      font-size: 10px;
+      word-break: break-word;
+    }
+
+    .owner-document-fileinfo span {
+      display: block;
+      margin-top: 4px;
+      color: var(--mg-muted);
+      font-size: 8px;
+      line-height: 1.4;
+    }
+
+    .owner-document-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .owner-document-button {
+      min-height: 36px;
+      padding: 0 12px;
+      border-radius: 9px;
+      font-size: 9px;
+      font-weight: 900;
+    }
+
+    .owner-document-button.primary {
+      border: 0;
+      background: var(--mg-green-800);
+      color: white;
+    }
+
+    .owner-document-button.secondary {
+      border: 1px solid #d5e0db;
+      background: white;
+      color: var(--mg-green-800);
+    }
+
+    .owner-document-button:disabled {
+      opacity: .55;
+      cursor: wait;
+    }
+
+    .document-access-state {
+      padding: 10px 19px 14px;
+      border-top: 1px solid #edf2ef;
+      background: white;
+      color: var(--mg-muted);
+      font-size: 8px;
+      line-height: 1.45;
+    }
+
+    .documents-state {
+      padding: 38px 24px;
+      border: 1px dashed #cfdcd6;
+      border-radius: 15px;
+      background:
+        rgba(255, 255, 255, 0.78);
+      text-align: center;
+      color: var(--mg-muted);
+      font-size: 10px;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 700px) {
+      .documents-toolbar,
+      .owner-document-head,
+      .owner-document-filebox {
+        align-items: stretch;
+        grid-template-columns: 1fr;
+        flex-direction: column;
+      }
+
+      .documents-refresh-button,
+      .owner-document-button {
+        width: 100%;
+      }
+
+      .owner-document-actions {
+        display: grid;
+      }
+    }
+
+
     /* ======================================== */
     /* EMPTY MODULES                            */
     /* ======================================== */
@@ -2541,6 +2753,27 @@
 
                 </div>
 
+                <div class="module-row">
+
+                  <div class="module-row-left">
+                    <strong>
+                      Documents
+                    </strong>
+
+                    <small>
+                      Archives et fichiers privés
+                    </small>
+                  </div>
+
+                  <span
+                    class="module-row-status"
+                    style="color:#197149;font-weight:900;"
+                  >
+                    Actif
+                  </span>
+
+                </div>
+
               </div>
 
             </article>
@@ -3019,6 +3252,7 @@
         >
 
           <div class="section-heading">
+
             <div>
               <span>
                 ARCHIVES
@@ -3029,23 +3263,67 @@
               </h2>
 
               <p>
-                PV, convocations, règlements
-                et documents utiles.
+                Consultez et téléchargez les documents
+                privés accessibles à vos lots.
               </p>
             </div>
+
           </div>
 
-          <div class="empty-state">
+          <div class="documents-toolbar">
 
-            <strong>
-              Aucun document disponible
-            </strong>
+            <div>
 
-            <p>
-              Le stockage sécurisé des documents
-              sera connecté dans une prochaine étape.
-            </p>
+              <strong>
+                Mes documents
+              </strong>
 
+              <span>
+                Les fichiers sont stockés dans un espace privé
+                et accessibles uniquement lorsque votre compte
+                est autorisé.
+              </span>
+
+            </div>
+
+            <button
+              id="refreshDocumentsButton"
+              class="documents-refresh-button"
+              type="button"
+            >
+              Actualiser
+            </button>
+
+          </div>
+
+          <div
+            id="ownerDocumentsLoading"
+            class="documents-state"
+          >
+            Chargement de vos documents...
+          </div>
+
+          <div
+            id="ownerDocumentsEmpty"
+            class="documents-state"
+            hidden
+          >
+            Aucun document publié pour votre compte.
+          </div>
+
+          <div
+            id="ownerDocumentsError"
+            class="documents-state"
+            hidden
+          >
+            Impossible de charger les documents.
+          </div>
+
+          <div
+            id="ownerDocumentsList"
+            class="owner-documents-list"
+            hidden
+          >
           </div>
 
         </section>
@@ -3253,6 +3531,15 @@
     let announcementsLoadedOnce =
       false;
 
+    let ownerDocuments =
+      [];
+
+    let ownerDocumentAccesses =
+      new Map();
+
+    let documentsLoadedOnce =
+      false;
+
 
     const SECTION_NAMES = {
       overview: {
@@ -3369,6 +3656,13 @@
         currentOwnerAccountId
       ) {
         loadOwnerAnnouncements();
+      }
+
+      if (
+        sectionName === "documents" &&
+        currentOwnerAccountId
+      ) {
+        loadOwnerDocuments();
       }
 
       window.scrollTo({
@@ -7121,6 +7415,877 @@ ${escapeHtml(announcement.content)}
             false;
 
           loadOwnerAnnouncements(
+            true
+          );
+        },
+      );
+
+
+
+    const OWNER_DOCUMENT_BUCKET =
+      "residence-documents";
+
+
+    function ownerDocumentCategoryLabel(
+      category,
+    ) {
+      const labels = {
+        minutes:
+          "Procès-verbal",
+
+        regulation:
+          "Règlement",
+
+        budget:
+          "Budget",
+
+        invoice:
+          "Facture",
+
+        contract:
+          "Contrat",
+
+        insurance:
+          "Assurance",
+
+        works:
+          "Travaux",
+
+        convocation:
+          "Convocation",
+
+        report:
+          "Rapport",
+
+        other:
+          "Autre",
+      };
+
+      return labels[
+        category
+      ] ||
+        "Autre";
+    }
+
+
+    function ownerDocumentFileSize(
+      bytes,
+    ) {
+      const value =
+        Number(
+          bytes || 0
+        );
+
+      if (
+        !Number.isFinite(
+          value
+        ) ||
+        value <= 0
+      ) {
+        return "—";
+      }
+
+      if (
+        value <
+        1024
+      ) {
+        return `${value} o`;
+      }
+
+      if (
+        value <
+        1024 *
+        1024
+      ) {
+        return `${(
+          value /
+          1024
+        ).toFixed(1)} Ko`;
+      }
+
+      return `${(
+        value /
+        (
+          1024 *
+          1024
+        )
+      ).toFixed(2)} Mo`;
+    }
+
+
+    function ownerDocumentDateTime(
+      value,
+    ) {
+      if (
+        !value
+      ) {
+        return "—";
+      }
+
+      const date =
+        new Date(
+          value
+        );
+
+      if (
+        Number.isNaN(
+          date.getTime()
+        )
+      ) {
+        return "—";
+      }
+
+      return date
+        .toLocaleString(
+          "fr-FR",
+          {
+            dateStyle:
+              "medium",
+
+            timeStyle:
+              "short",
+          }
+        );
+    }
+
+
+    async function loadOwnerDocuments(
+      force = false,
+    ) {
+      if (
+        !currentOwnerAccountId
+      ) {
+        return;
+      }
+
+      if (
+        documentsLoadedOnce &&
+        !force
+      ) {
+        renderOwnerDocuments();
+        return;
+      }
+
+      const loading =
+        document.getElementById(
+          "ownerDocumentsLoading"
+        );
+
+      const emptyState =
+        document.getElementById(
+          "ownerDocumentsEmpty"
+        );
+
+      const errorState =
+        document.getElementById(
+          "ownerDocumentsError"
+        );
+
+      const list =
+        document.getElementById(
+          "ownerDocumentsList"
+        );
+
+      loading.hidden =
+        false;
+
+      emptyState.hidden =
+        true;
+
+      errorState.hidden =
+        true;
+
+      list.hidden =
+        true;
+
+      const {
+        data: documentsData,
+        error: documentsError,
+      } =
+        await supabaseClient
+          .from(
+            "residence_documents"
+          )
+          .select(
+            `
+            id,
+            title,
+            description,
+            category,
+            status,
+            storage_bucket,
+            storage_path,
+            original_filename,
+            mime_type,
+            file_size_bytes,
+            checksum_sha256,
+            visible_from,
+            expires_at,
+            published_at,
+            created_at
+            `
+          )
+          .eq(
+            "status",
+            "published"
+          )
+          .order(
+            "visible_from",
+            {
+              ascending:
+                false,
+
+              nullsFirst:
+                false,
+            }
+          );
+
+      if (
+        documentsError
+      ) {
+        console.error(
+          "Owner documents loading error:",
+          documentsError
+        );
+
+        loading.hidden =
+          true;
+
+        errorState.hidden =
+          false;
+
+        return;
+      }
+
+      const {
+        data: accessesData,
+        error: accessesError,
+      } =
+        await supabaseClient
+          .from(
+            "owner_document_accesses"
+          )
+          .select(
+            `
+            id,
+            document_id,
+            owner_account_id,
+            first_view_at,
+            last_view_at,
+            view_count,
+            first_download_at,
+            last_download_at,
+            download_count
+            `
+          )
+          .eq(
+            "owner_account_id",
+            currentOwnerAccountId
+          );
+
+      if (
+        accessesError
+      ) {
+        console.error(
+          "Owner document accesses loading error:",
+          accessesError
+        );
+
+        loading.hidden =
+          true;
+
+        errorState.hidden =
+          false;
+
+        return;
+      }
+
+      ownerDocuments =
+        Array.isArray(
+          documentsData
+        )
+          ? documentsData
+          : [];
+
+      ownerDocumentAccesses =
+        new Map(
+          (
+            accessesData ||
+            []
+          )
+            .map(
+              access => [
+                access.document_id,
+                access,
+              ]
+            )
+        );
+
+      documentsLoadedOnce =
+        true;
+
+      loading.hidden =
+        true;
+
+      renderOwnerDocuments();
+    }
+
+
+    function renderOwnerDocuments() {
+      const list =
+        document.getElementById(
+          "ownerDocumentsList"
+        );
+
+      const emptyState =
+        document.getElementById(
+          "ownerDocumentsEmpty"
+        );
+
+      list.innerHTML =
+        "";
+
+      if (
+        ownerDocuments.length ===
+        0
+      ) {
+        emptyState.hidden =
+          false;
+
+        list.hidden =
+          true;
+
+        return;
+      }
+
+      emptyState.hidden =
+        true;
+
+      list.hidden =
+        false;
+
+      for (
+        const documentItem
+        of ownerDocuments
+      ) {
+        const access =
+          ownerDocumentAccesses
+            .get(
+              documentItem.id
+            ) ||
+          null;
+
+        const card =
+          document.createElement(
+            "article"
+          );
+
+        card.className =
+          "owner-document-card";
+
+        card.innerHTML = `
+          <div class="owner-document-card-top">
+
+            <div class="owner-document-head">
+
+              <div>
+
+                <h3>
+                  📄 ${escapeHtml(documentItem.title)}
+                </h3>
+
+                <div class="owner-document-meta">
+
+                  <span>
+                    ${escapeHtml(ownerDocumentCategoryLabel(documentItem.category))}
+                  </span>
+
+                  <span>
+                    Publié :
+                    ${escapeHtml(ownerDocumentDateTime(
+                      documentItem.visible_from ||
+                      documentItem.published_at
+                    ))}
+                  </span>
+
+                </div>
+
+              </div>
+
+              <span class="owner-document-badge">
+                Privé
+              </span>
+
+            </div>
+
+            ${
+              documentItem.description
+                ? `
+                  <p class="owner-document-description">
+                    ${escapeHtml(documentItem.description)}
+                  </p>
+                `
+                : ""
+            }
+
+          </div>
+
+          <div class="owner-document-filebox">
+
+            <div class="owner-document-fileinfo">
+
+              <strong>
+                ${escapeHtml(
+                  documentItem.original_filename ||
+                  "Document"
+                )}
+              </strong>
+
+              <span>
+                ${escapeHtml(documentItem.mime_type || "Type inconnu")}
+                ·
+                ${escapeHtml(ownerDocumentFileSize(documentItem.file_size_bytes))}
+              </span>
+
+            </div>
+
+            <div class="owner-document-actions">
+
+              <button
+                class="owner-document-button secondary"
+                type="button"
+                data-view-document="${escapeHtml(documentItem.id)}"
+              >
+                Consulter
+              </button>
+
+              <button
+                class="owner-document-button primary"
+                type="button"
+                data-download-document="${escapeHtml(documentItem.id)}"
+              >
+                Télécharger
+              </button>
+
+            </div>
+
+          </div>
+
+          <div
+            id="documentAccessState-${escapeHtml(documentItem.id)}"
+            class="document-access-state"
+          >
+            ${
+              access
+                ? `
+                  Consultations : ${escapeHtml(access.view_count || 0)}
+                  · Téléchargements : ${escapeHtml(access.download_count || 0)}
+                `
+                : `
+                  Aucun accès enregistré pour le moment.
+                `
+            }
+          </div>
+        `;
+
+        list.appendChild(
+          card
+        );
+      }
+
+
+      document
+        .querySelectorAll(
+          "[data-view-document]"
+        )
+        .forEach(
+          button => {
+            button.addEventListener(
+              "click",
+              () => {
+                viewOwnerDocument(
+                  button.dataset.viewDocument,
+                  button
+                );
+              },
+            );
+          },
+        );
+
+
+      document
+        .querySelectorAll(
+          "[data-download-document]"
+        )
+        .forEach(
+          button => {
+            button.addEventListener(
+              "click",
+              () => {
+                downloadOwnerDocument(
+                  button.dataset.downloadDocument,
+                  button
+                );
+              },
+            );
+          },
+        );
+    }
+
+
+    function updateOwnerDocumentAccessState(
+      documentId,
+      data,
+    ) {
+      const previous =
+        ownerDocumentAccesses
+          .get(
+            documentId
+          ) ||
+        {
+          document_id:
+            documentId,
+
+          owner_account_id:
+            currentOwnerAccountId,
+
+          view_count:
+            0,
+
+          download_count:
+            0,
+        };
+
+      const merged = {
+        ...previous,
+
+        view_count:
+          Number(
+            data?.viewCount ??
+            previous.view_count ??
+            0
+          ),
+
+        download_count:
+          Number(
+            data?.downloadCount ??
+            previous.download_count ??
+            0
+          ),
+
+        first_view_at:
+          data?.firstViewAt ??
+          previous.first_view_at ??
+          null,
+
+        last_view_at:
+          data?.lastViewAt ??
+          previous.last_view_at ??
+          null,
+
+        first_download_at:
+          data?.firstDownloadAt ??
+          previous.first_download_at ??
+          null,
+
+        last_download_at:
+          data?.lastDownloadAt ??
+          previous.last_download_at ??
+          null,
+      };
+
+      ownerDocumentAccesses.set(
+        documentId,
+        merged
+      );
+
+      const state =
+        document.getElementById(
+          `documentAccessState-${documentId}`
+        );
+
+      if (
+        state
+      ) {
+        state.textContent =
+          `Consultations : ${merged.view_count} · Téléchargements : ${merged.download_count}`;
+      }
+    }
+
+
+    async function logOwnerDocumentAccess(
+      documentId,
+      action,
+    ) {
+      const {
+        data,
+        error,
+      } =
+        await supabaseClient
+          .rpc(
+            "owner_log_document_access",
+            {
+              p_document_id:
+                documentId,
+
+              p_action:
+                action,
+            }
+          );
+
+      if (
+        error
+      ) {
+        console.error(
+          "Owner document access log error:",
+          error
+        );
+
+        return {
+          data:
+            null,
+
+          error,
+        };
+      }
+
+      updateOwnerDocumentAccessState(
+        documentId,
+        data
+      );
+
+      return {
+        data,
+        error:
+          null,
+      };
+    }
+
+
+    async function viewOwnerDocument(
+      documentId,
+      button,
+    ) {
+      const documentItem =
+        ownerDocuments.find(
+          item =>
+            item.id ===
+            documentId
+        );
+
+      if (
+        !documentItem?.storage_path
+      ) {
+        alert(
+          "Le fichier de ce document est indisponible."
+        );
+
+        return;
+      }
+
+      const originalLabel =
+        button.textContent;
+
+      button.disabled =
+        true;
+
+      button.textContent =
+        "Ouverture...";
+
+      try {
+        const {
+          data,
+          error,
+        } =
+          await supabaseClient
+            .storage
+            .from(
+              OWNER_DOCUMENT_BUCKET
+            )
+            .createSignedUrl(
+              documentItem.storage_path,
+              120
+            );
+
+        if (
+          error ||
+          !data?.signedUrl
+        ) {
+          throw error ||
+            new Error(
+              "URL privée indisponible."
+            );
+        }
+
+        const logResult =
+          await logOwnerDocumentAccess(
+            documentId,
+            "view"
+          );
+
+        if (
+          logResult.error
+        ) {
+          throw logResult.error;
+        }
+
+        window.open(
+          data.signedUrl,
+          "_blank",
+          "noopener,noreferrer"
+        );
+      } catch (
+        error
+      ) {
+        console.error(
+          "Owner document view error:",
+          error
+        );
+
+        alert(
+          "Impossible d'ouvrir ce document."
+        );
+      } finally {
+        button.disabled =
+          false;
+
+        button.textContent =
+          originalLabel;
+      }
+    }
+
+
+    async function downloadOwnerDocument(
+      documentId,
+      button,
+    ) {
+      const documentItem =
+        ownerDocuments.find(
+          item =>
+            item.id ===
+            documentId
+        );
+
+      if (
+        !documentItem?.storage_path
+      ) {
+        alert(
+          "Le fichier de ce document est indisponible."
+        );
+
+        return;
+      }
+
+      const originalLabel =
+        button.textContent;
+
+      button.disabled =
+        true;
+
+      button.textContent =
+        "Téléchargement...";
+
+      try {
+        const {
+          data: blob,
+          error,
+        } =
+          await supabaseClient
+            .storage
+            .from(
+              OWNER_DOCUMENT_BUCKET
+            )
+            .download(
+              documentItem.storage_path
+            );
+
+        if (
+          error ||
+          !blob
+        ) {
+          throw error ||
+            new Error(
+              "Téléchargement privé indisponible."
+            );
+        }
+
+        const logResult =
+          await logOwnerDocumentAccess(
+            documentId,
+            "download"
+          );
+
+        if (
+          logResult.error
+        ) {
+          throw logResult.error;
+        }
+
+        const objectUrl =
+          URL.createObjectURL(
+            blob
+          );
+
+        const anchor =
+          document.createElement(
+            "a"
+          );
+
+        anchor.href =
+          objectUrl;
+
+        anchor.download =
+          documentItem.original_filename ||
+          "document";
+
+        document.body.appendChild(
+          anchor
+        );
+
+        anchor.click();
+
+        anchor.remove();
+
+        setTimeout(
+          () => {
+            URL.revokeObjectURL(
+              objectUrl
+            );
+          },
+          1000
+        );
+      } catch (
+        error
+      ) {
+        console.error(
+          "Owner document download error:",
+          error
+        );
+
+        alert(
+          "Impossible de télécharger ce document."
+        );
+      } finally {
+        button.disabled =
+          false;
+
+        button.textContent =
+          originalLabel;
+      }
+    }
+
+
+    document
+      .getElementById(
+        "refreshDocumentsButton"
+      )
+      .addEventListener(
+        "click",
+        () => {
+          documentsLoadedOnce =
+            false;
+
+          loadOwnerDocuments(
             true
           );
         },

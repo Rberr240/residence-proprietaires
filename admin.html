@@ -2358,6 +2358,428 @@
     color: #52675e;
 }
 
+
+/* ========================================= */
+/* DOCUMENTS V2                              */
+/* ========================================= */
+
+.documents-panel {
+    background: white;
+    border: 1px solid #e1e8e5;
+    border-radius: 17px;
+    overflow: hidden;
+}
+
+.documents-panel-top {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    border-bottom: 1px solid #e8eeeb;
+}
+
+.documents-panel-top h2 {
+    margin: 0;
+    color: #123d32;
+    font-size: 20px;
+}
+
+.documents-panel-top p {
+    margin: 5px 0 0;
+    color: #71847c;
+    font-size: 12px;
+}
+
+.create-document-button {
+    min-height: 42px;
+    padding: 0 15px;
+    border: 0;
+    border-radius: 10px;
+    background: #174b3d;
+    color: white;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.document-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    padding: 18px;
+    border-bottom: 1px solid #e8eeeb;
+    background: #f9fbfa;
+}
+
+.document-summary-card {
+    padding: 14px;
+    border: 1px solid #e3ebe7;
+    border-radius: 12px;
+    background: white;
+}
+
+.document-summary-card span {
+    display: block;
+    color: #7b8c85;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .5px;
+}
+
+.document-summary-card strong {
+    display: block;
+    margin-top: 5px;
+    color: #143e33;
+    font-size: 20px;
+}
+
+.documents-list {
+    display: grid;
+    gap: 12px;
+    padding: 18px;
+}
+
+.documents-loading,
+.documents-empty {
+    padding: 38px 22px;
+    text-align: center;
+    color: #71847c;
+    font-size: 12px;
+}
+
+.document-card {
+    padding: 17px;
+    border: 1px solid #e3ebe7;
+    border-radius: 13px;
+    background: #fbfcfc;
+}
+
+.document-card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.document-card h3 {
+    margin: 0;
+    color: #143e33;
+    font-size: 16px;
+}
+
+.document-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px 13px;
+    margin-top: 8px;
+    color: #71847c;
+    font-size: 10px;
+}
+
+.document-description {
+    margin: 11px 0 0;
+    color: #52675e;
+    font-size: 11px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+}
+
+.document-status {
+    min-height: 26px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 9px;
+    border-radius: 999px;
+    font-size: 9px;
+    font-weight: 850;
+    white-space: nowrap;
+}
+
+.document-status-draft {
+    background: #eef1f0;
+    color: #61736c;
+}
+
+.document-status-published {
+    background: #e6f6ee;
+    color: #176c45;
+}
+
+.document-status-archived {
+    background: #e8eef8;
+    color: #365b8d;
+}
+
+.document-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.document-chip {
+    min-height: 25px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 8px;
+    border: 1px solid #dfe7e3;
+    border-radius: 999px;
+    background: white;
+    color: #52675e;
+    font-size: 8px;
+    font-weight: 800;
+}
+
+.document-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.document-action-button {
+    min-height: 35px;
+    padding: 0 11px;
+    border: 1px solid #d5e0db;
+    border-radius: 8px;
+    background: white;
+    color: #174b3d;
+    font-size: 10px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.document-action-button.primary {
+    border-color: #174b3d;
+    background: #174b3d;
+    color: white;
+}
+
+.document-action-button.danger {
+    border-color: #ebcccc;
+    color: #a12626;
+}
+
+.document-stats {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid #e5ece8;
+}
+
+.document-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.document-stat {
+    padding: 10px;
+    border: 1px solid #e6ece9;
+    border-radius: 9px;
+    background: white;
+}
+
+.document-stat span {
+    display: block;
+    color: #7a8b84;
+    font-size: 9px;
+}
+
+.document-stat strong {
+    display: block;
+    margin-top: 3px;
+    color: #143e33;
+    font-size: 17px;
+}
+
+.document-modal-card {
+    max-width: 820px;
+}
+
+.document-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.document-form-field {
+    min-width: 0;
+}
+
+.document-form-field.full {
+    grid-column: 1 / -1;
+}
+
+.document-form-field label {
+    display: block;
+    margin-bottom: 6px;
+    color: #405a50;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.document-form-field input,
+.document-form-field select,
+.document-form-field textarea {
+    width: 100%;
+    border: 1px solid #d7e2dd;
+    border-radius: 9px;
+    background: white;
+    color: #24463b;
+    outline: none;
+}
+
+.document-form-field input,
+.document-form-field select {
+    min-height: 44px;
+    padding: 0 11px;
+}
+
+.document-form-field textarea {
+    min-height: 105px;
+    padding: 11px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.document-form-field input:focus,
+.document-form-field select:focus,
+.document-form-field textarea:focus {
+    border-color: #30735e;
+    box-shadow: 0 0 0 3px rgba(48, 115, 94, 0.10);
+}
+
+.document-current-file {
+    margin-top: 7px;
+    padding: 10px 11px;
+    border: 1px solid #e0e9e5;
+    border-radius: 9px;
+    background: #f8faf9;
+    color: #60736b;
+    font-size: 9px;
+    line-height: 1.5;
+}
+
+.document-audience-box {
+    grid-column: 1 / -1;
+    padding: 14px;
+    border: 1px solid #dfe8e3;
+    border-radius: 11px;
+    background: #f9fbfa;
+}
+
+.document-audience-box h3 {
+    margin: 0 0 11px;
+    color: #254a3e;
+    font-size: 12px;
+}
+
+.document-unit-select {
+    min-height: 180px !important;
+    padding: 8px !important;
+}
+
+.document-help {
+    margin-top: 6px;
+    color: #7b8c85;
+    font-size: 9px;
+    line-height: 1.45;
+}
+
+.document-form-message {
+    min-height: 20px;
+    margin: 12px 0 0;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.document-form-message.error {
+    color: #b42318;
+}
+
+.document-form-message.success {
+    color: #167347;
+}
+
+.document-progress {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 9px;
+    background: #edf6f2;
+    color: #2d5c4c;
+    font-size: 10px;
+    text-align: center;
+}
+
+.document-modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 9px;
+}
+
+.document-save-button,
+.document-cancel-button {
+    min-height: 43px;
+    padding: 0 16px;
+    border-radius: 9px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.document-save-button {
+    border: 0;
+    background: #174b3d;
+    color: white;
+}
+
+.document-save-button:disabled {
+    opacity: .55;
+    cursor: wait;
+}
+
+.document-cancel-button {
+    border: 1px solid #d5e0db;
+    background: white;
+    color: #52675e;
+}
+
+@media (max-width: 900px) {
+    .document-stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .documents-panel-top,
+    .document-card-head {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .create-document-button {
+        width: 100%;
+    }
+
+    .document-summary-grid,
+    .document-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .document-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .document-form-field.full,
+    .document-audience-box {
+        grid-column: auto;
+    }
+}
+
+
 @media (max-width: 760px) {
     .announcements-panel-top,
     .announcement-card-head {
@@ -2634,6 +3056,14 @@
                 type="button"
             >
                 Annonces
+            </button>
+
+            <button
+                id="documentsTabButton"
+                class="admin-tab-button"
+                type="button"
+            >
+                Documents
             </button>
 
         </div>
@@ -3154,6 +3584,84 @@
             <div
                 id="announcementsList"
                 class="announcements-list"
+                hidden
+            >
+            </div>
+
+        </section>
+
+
+        <!-- DOCUMENTS V2 -->
+
+
+        <section
+            id="documentsSection"
+            class="documents-panel"
+            hidden
+        >
+
+            <div class="documents-panel-top">
+
+                <div>
+
+                    <h2>
+                        Documents
+                    </h2>
+
+                    <p>
+                        Publiez des documents privés
+                        pour tous, un bloc ou des lots précis.
+                    </p>
+
+                </div>
+
+                <button
+                    id="createDocumentButton"
+                    class="create-document-button"
+                    type="button"
+                >
+                    + Ajouter un document
+                </button>
+
+            </div>
+
+            <div class="document-summary-grid">
+
+                <div class="document-summary-card">
+                    <span>BROUILLONS</span>
+                    <strong id="documentDraftCount">0</strong>
+                </div>
+
+                <div class="document-summary-card">
+                    <span>PUBLIÉS</span>
+                    <strong id="documentPublishedCount">0</strong>
+                </div>
+
+                <div class="document-summary-card">
+                    <span>ARCHIVÉS</span>
+                    <strong id="documentArchivedCount">0</strong>
+                </div>
+
+            </div>
+
+            <div
+                id="documentsLoading"
+                class="documents-loading"
+            >
+                Chargement des documents...
+            </div>
+
+            <div
+                id="documentsEmpty"
+                class="documents-empty"
+                hidden
+            >
+                Aucun document ajouté.
+            </div>
+
+            <div
+                id="documentsList"
+                class="documents-list"
                 hidden
             >
             </div>
@@ -4292,6 +4800,244 @@
                 <button
                     id="announcementSaveButton"
                     class="announcement-save-button"
+                    type="submit"
+                >
+                    Enregistrer le brouillon
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- MODAL DOCUMENT -->
+
+
+<div
+    id="documentModal"
+    class="modal"
+>
+
+    <div class="modal-card document-modal-card">
+
+        <div class="modal-head">
+
+            <div>
+                <span style="color:#30735e;font-size:11px;font-weight:800;">
+                    DOCUMENT
+                </span>
+
+                <h2 id="documentModalTitle">
+                    Ajouter un document
+                </h2>
+            </div>
+
+            <button
+                id="documentModalClose"
+                class="modal-close"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <form id="documentForm">
+
+            <div class="document-form-grid">
+
+                <div class="document-form-field full">
+
+                    <label for="documentFile">
+                        Fichier *
+                    </label>
+
+                    <input
+                        id="documentFile"
+                        type="file"
+                        accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.txt"
+                    >
+
+                    <div
+                        id="documentCurrentFile"
+                        class="document-current-file"
+                        hidden
+                    ></div>
+
+                    <div class="document-help">
+                        Maximum 25 MB. PDF, Word, Excel,
+                        PowerPoint, JPG, PNG ou texte.
+                    </div>
+
+                </div>
+
+                <div class="document-form-field full">
+                    <label for="documentTitle">Titre *</label>
+                    <input
+                        id="documentTitle"
+                        type="text"
+                        maxlength="180"
+                        required
+                    >
+                </div>
+
+                <div class="document-form-field">
+                    <label for="documentCategory">Catégorie</label>
+                    <select id="documentCategory">
+                        <option value="minutes">Procès-verbal</option>
+                        <option value="regulation">Règlement</option>
+                        <option value="budget">Budget</option>
+                        <option value="invoice">Facture</option>
+                        <option value="contract">Contrat</option>
+                        <option value="insurance">Assurance</option>
+                        <option value="works">Travaux</option>
+                        <option value="convocation">Convocation</option>
+                        <option value="report">Rapport</option>
+                        <option value="other">Autre</option>
+                    </select>
+                </div>
+
+                <div class="document-form-field">
+                    <label for="documentVisibleFrom">Visible à partir de</label>
+                    <input
+                        id="documentVisibleFrom"
+                        type="datetime-local"
+                    >
+                </div>
+
+                <div class="document-form-field">
+                    <label for="documentExpiresAt">Expiration</label>
+                    <input
+                        id="documentExpiresAt"
+                        type="datetime-local"
+                    >
+                </div>
+
+                <div class="document-form-field full">
+                    <label for="documentDescription">Description</label>
+                    <textarea
+                        id="documentDescription"
+                        maxlength="5000"
+                    ></textarea>
+                </div>
+
+                <div class="document-audience-box">
+
+                    <h3>
+                        Audience *
+                    </h3>
+
+                    <div
+                        class="document-form-grid"
+                        style="margin-top:0;"
+                    >
+
+                        <div class="document-form-field full">
+
+                            <label for="documentAudienceType">
+                                Ciblage
+                            </label>
+
+                            <select id="documentAudienceType">
+
+                                <option value="all">
+                                    Tous les propriétaires
+                                </option>
+
+                                <option value="building">
+                                    Un ou plusieurs blocs
+                                </option>
+
+                                <option value="unit">
+                                    Un ou plusieurs lots
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div
+                            id="documentBuildingField"
+                            class="document-form-field full"
+                            hidden
+                        >
+
+                            <label for="documentBuildings">
+                                Blocs
+                            </label>
+
+                            <input
+                                id="documentBuildings"
+                                type="text"
+                                maxlength="300"
+                                placeholder="Ex. A, B, H"
+                            >
+
+                            <div class="document-help">
+                                Séparez les blocs par une virgule.
+                            </div>
+
+                        </div>
+
+                        <div
+                            id="documentUnitsField"
+                            class="document-form-field full"
+                            hidden
+                        >
+
+                            <label for="documentUnits">
+                                Lots
+                            </label>
+
+                            <select
+                                id="documentUnits"
+                                class="document-unit-select"
+                                multiple
+                            >
+                            </select>
+
+                            <div class="document-help">
+                                Maintenez Ctrl pour sélectionner plusieurs lots.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div
+                id="documentProgress"
+                class="document-progress"
+                hidden
+            ></div>
+
+            <p
+                id="documentFormMessage"
+                class="document-form-message"
+                aria-live="polite"
+            ></p>
+
+            <div class="document-modal-actions">
+
+                <button
+                    id="documentFormCancel"
+                    class="document-cancel-button"
+                    type="button"
+                >
+                    Annuler
+                </button>
+
+                <button
+                    id="documentSaveButton"
+                    class="document-save-button"
                     type="submit"
                 >
                     Enregistrer le brouillon
@@ -5680,6 +6426,11 @@ const announcementsTabButton =
         "announcementsTabButton"
     );
 
+const documentsTabButton =
+    document.getElementById(
+        "documentsTabButton"
+    );
+
 const ownersStatsSection =
     document.getElementById(
         "ownersStatsSection"
@@ -5710,6 +6461,11 @@ const announcementsSection =
         "announcementsSection"
     );
 
+const documentsSection =
+    document.getElementById(
+        "documentsSection"
+    );
+
 
 function showAdminSection(
     section
@@ -5729,6 +6485,9 @@ function showAdminSection(
 
     const showAnnouncements =
         section === "announcements";
+
+    const showDocuments =
+        section === "documents";
 
 
     ownersTabButton.classList.toggle(
@@ -5756,6 +6515,11 @@ function showAdminSection(
         showAnnouncements
     );
 
+    documentsTabButton.classList.toggle(
+        "active",
+        showDocuments
+    );
+
 
     ownersStatsSection.hidden =
         !showOwners;
@@ -5774,6 +6538,9 @@ function showAdminSection(
 
     announcementsSection.hidden =
         !showAnnouncements;
+
+    documentsSection.hidden =
+        !showDocuments;
 
 
     if (
@@ -5801,6 +6568,13 @@ function showAdminSection(
         showAnnouncements
     ) {
         loadAnnouncements();
+    }
+
+
+    if (
+        showDocuments
+    ) {
+        loadDocuments();
     }
 
 }
@@ -5851,6 +6625,16 @@ announcementsTabButton.addEventListener(
     () => {
         showAdminSection(
             "announcements"
+        );
+    }
+);
+
+
+documentsTabButton.addEventListener(
+    "click",
+    () => {
+        showAdminSection(
+            "documents"
         );
     }
 );
@@ -13904,6 +14688,2615 @@ announcementModal.addEventListener(
 
 
 updateAnnouncementAudienceFields();
+
+
+
+
+/* =========================================================
+ * DOCUMENTS V2
+ * ========================================================= */
+
+const DOCUMENT_BUCKET =
+    "residence-documents";
+
+const DOCUMENT_MAX_BYTES =
+    25 *
+    1024 *
+    1024;
+
+const DOCUMENT_ALLOWED_TYPES =
+    new Set([
+        "application/pdf",
+        "image/jpeg",
+        "image/png",
+        "text/plain",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "application/vnd.ms-excel",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "application/vnd.ms-powerpoint",
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+    ]);
+
+let residenceDocuments =
+    [];
+
+let residenceDocumentTargets =
+    new Map();
+
+let documentUnits =
+    [];
+
+let documentOwners =
+    [];
+
+let selectedDocumentId =
+    null;
+
+
+const documentsLoading =
+    document.getElementById(
+        "documentsLoading"
+    );
+
+const documentsEmpty =
+    document.getElementById(
+        "documentsEmpty"
+    );
+
+const documentsList =
+    document.getElementById(
+        "documentsList"
+    );
+
+const documentModal =
+    document.getElementById(
+        "documentModal"
+    );
+
+const documentForm =
+    document.getElementById(
+        "documentForm"
+    );
+
+const documentFormMessage =
+    document.getElementById(
+        "documentFormMessage"
+    );
+
+const documentProgress =
+    document.getElementById(
+        "documentProgress"
+    );
+
+const documentSaveButton =
+    document.getElementById(
+        "documentSaveButton"
+    );
+
+
+function documentStatusLabel(
+    status
+) {
+
+    switch (
+        status
+    ) {
+
+        case "published":
+            return "Publié";
+
+        case "archived":
+            return "Archivé";
+
+        default:
+            return "Brouillon";
+
+    }
+
+}
+
+
+function documentStatusClass(
+    status
+) {
+
+    switch (
+        status
+    ) {
+
+        case "published":
+            return "document-status-published";
+
+        case "archived":
+            return "document-status-archived";
+
+        default:
+            return "document-status-draft";
+
+    }
+
+}
+
+
+function documentCategoryLabel(
+    category
+) {
+
+    const labels = {
+
+        minutes:
+            "Procès-verbal",
+
+        regulation:
+            "Règlement",
+
+        budget:
+            "Budget",
+
+        invoice:
+            "Facture",
+
+        contract:
+            "Contrat",
+
+        insurance:
+            "Assurance",
+
+        works:
+            "Travaux",
+
+        convocation:
+            "Convocation",
+
+        report:
+            "Rapport",
+
+        other:
+            "Autre"
+
+    };
+
+
+    return labels[category] ||
+        "Autre";
+
+}
+
+
+function formatFileSize(
+    bytes
+) {
+
+    const value =
+        Number(
+            bytes ||
+            0
+        );
+
+
+    if (
+        !Number.isFinite(
+            value
+        ) ||
+        value <= 0
+    ) {
+
+        return "—";
+
+    }
+
+
+    if (
+        value <
+        1024
+    ) {
+
+        return `${value} o`;
+
+    }
+
+
+    if (
+        value <
+        1024 *
+        1024
+    ) {
+
+        return `${(
+            value /
+            1024
+        ).toFixed(1)} Ko`;
+
+    }
+
+
+    return `${(
+        value /
+        (
+            1024 *
+            1024
+        )
+    ).toFixed(2)} Mo`;
+
+}
+
+
+function sanitizeStorageFilename(
+    filename
+) {
+
+    const normalized =
+        String(
+            filename ||
+            "document"
+        )
+        .normalize(
+            "NFD"
+        )
+        .replace(
+            /[\u0300-\u036f]/g,
+            ""
+        )
+        .replace(
+            /[^a-zA-Z0-9._-]+/g,
+            "-"
+        )
+        .replace(
+            /-+/g,
+            "-"
+        )
+        .replace(
+            /^[-.]+|[-.]+$/g,
+            ""
+        );
+
+
+    return normalized ||
+        "document";
+
+}
+
+
+function toHex(
+    buffer
+) {
+
+    return Array
+        .from(
+            new Uint8Array(
+                buffer
+            )
+        )
+        .map(
+            byte =>
+                byte
+                    .toString(
+                        16
+                    )
+                    .padStart(
+                        2,
+                        "0"
+                    )
+        )
+        .join(
+            ""
+        );
+
+}
+
+
+async function sha256File(
+    file
+) {
+
+    const arrayBuffer =
+        await file
+            .arrayBuffer();
+
+
+    const digest =
+        await crypto
+            .subtle
+            .digest(
+                "SHA-256",
+                arrayBuffer
+            );
+
+
+    return toHex(
+        digest
+    );
+
+}
+
+
+function getDocumentAudienceLabel(
+    documentId
+) {
+
+    const targets =
+        residenceDocumentTargets
+            .get(
+                documentId
+            ) ||
+        [];
+
+
+    if (
+        targets.some(
+            target =>
+                target.target_type ===
+                "all"
+        )
+    ) {
+
+        return "Tous les propriétaires";
+
+    }
+
+
+    const buildings =
+        targets
+            .filter(
+                target =>
+                    target.target_type ===
+                    "building"
+            )
+            .map(
+                target =>
+                    target.building_code
+            );
+
+
+    if (
+        buildings.length > 0
+    ) {
+
+        return `Bloc(s) ${buildings.join(", ")}`;
+
+    }
+
+
+    const units =
+        targets
+            .filter(
+                target =>
+                    target.target_type ===
+                    "unit"
+            );
+
+
+    if (
+        units.length > 0
+    ) {
+
+        return `${units.length} lot(s) ciblé(s)`;
+
+    }
+
+
+    return "Audience non définie";
+
+}
+
+
+async function loadDocuments() {
+
+    documentsLoading.hidden =
+        false;
+
+    documentsEmpty.hidden =
+        true;
+
+    documentsList.hidden =
+        true;
+
+
+    const [
+        documentsResult,
+        targetsResult,
+        unitsResult,
+        ownersResult
+    ] =
+        await Promise.all([
+
+            supabaseClient
+                .from(
+                    "residence_documents"
+                )
+                .select(
+                    `
+                    id,
+                    title,
+                    description,
+                    category,
+                    status,
+                    storage_bucket,
+                    storage_path,
+                    original_filename,
+                    mime_type,
+                    file_size_bytes,
+                    checksum_sha256,
+                    visible_from,
+                    expires_at,
+                    published_at,
+                    archived_at,
+                    created_by,
+                    created_at,
+                    updated_at
+                    `
+                )
+                .order(
+                    "created_at",
+                    {
+                        ascending:
+                            false
+                    }
+                ),
+
+            supabaseClient
+                .from(
+                    "residence_document_targets"
+                )
+                .select(
+                    `
+                    id,
+                    document_id,
+                    target_type,
+                    building_code,
+                    owner_account_unit_id,
+                    created_at
+                    `
+                ),
+
+            supabaseClient
+                .from(
+                    "owner_account_units"
+                )
+                .select(
+                    `
+                    id,
+                    owner_account_id,
+                    building_code,
+                    apartment_number,
+                    is_primary
+                    `
+                )
+                .order(
+                    "building_code",
+                    {
+                        ascending:
+                            true
+                    }
+                )
+                .order(
+                    "apartment_number",
+                    {
+                        ascending:
+                            true
+                    }
+                ),
+
+            supabaseClient
+                .from(
+                    "owner_accounts"
+                )
+                .select(
+                    `
+                    id,
+                    first_name,
+                    last_name,
+                    phone,
+                    status
+                    `
+                )
+
+        ]);
+
+
+    if (
+        documentsResult.error
+    ) {
+
+        console.error(
+            "Documents loading error:",
+            documentsResult.error
+        );
+
+
+        documentsLoading.hidden =
+            true;
+
+        documentsEmpty.hidden =
+            false;
+
+        documentsEmpty.textContent =
+            "Impossible de charger les documents.";
+
+        return;
+
+    }
+
+
+    residenceDocuments =
+        documentsResult.data ||
+        [];
+
+
+    documentUnits =
+        unitsResult.data ||
+        [];
+
+
+    documentOwners =
+        ownersResult.data ||
+        [];
+
+
+    residenceDocumentTargets =
+        new Map();
+
+
+    for (
+        const target
+        of targetsResult.data ||
+        []
+    ) {
+
+        if (
+            !residenceDocumentTargets
+                .has(
+                    target.document_id
+                )
+        ) {
+
+            residenceDocumentTargets
+                .set(
+                    target.document_id,
+                    []
+                );
+
+        }
+
+
+        residenceDocumentTargets
+            .get(
+                target.document_id
+            )
+            .push(
+                target
+            );
+
+    }
+
+
+    populateDocumentUnits();
+
+
+    documentsLoading.hidden =
+        true;
+
+
+    renderDocuments();
+
+}
+
+
+function renderDocuments() {
+
+    documentsList.innerHTML =
+        "";
+
+
+    document
+        .getElementById(
+            "documentDraftCount"
+        )
+        .textContent =
+            String(
+                residenceDocuments
+                    .filter(
+                        item =>
+                            item.status ===
+                            "draft"
+                    )
+                    .length
+            );
+
+
+    document
+        .getElementById(
+            "documentPublishedCount"
+        )
+        .textContent =
+            String(
+                residenceDocuments
+                    .filter(
+                        item =>
+                            item.status ===
+                            "published"
+                    )
+                    .length
+            );
+
+
+    document
+        .getElementById(
+            "documentArchivedCount"
+        )
+        .textContent =
+            String(
+                residenceDocuments
+                    .filter(
+                        item =>
+                            item.status ===
+                            "archived"
+                    )
+                    .length
+            );
+
+
+    if (
+        residenceDocuments.length ===
+        0
+    ) {
+
+        documentsEmpty.hidden =
+            false;
+
+        documentsList.hidden =
+            true;
+
+        return;
+
+    }
+
+
+    documentsEmpty.hidden =
+        true;
+
+    documentsList.hidden =
+        false;
+
+
+    for (
+        const documentItem
+        of residenceDocuments
+    ) {
+
+        const card =
+            document.createElement(
+                "article"
+            );
+
+
+        card.className =
+            "document-card";
+
+
+        card.innerHTML = `
+
+            <div class="document-card-head">
+
+                <div>
+
+                    <h3>
+                        📄 ${escapeHtml(documentItem.title)}
+                    </h3>
+
+                    <div class="document-meta">
+
+                        <span>
+                            ${escapeHtml(documentCategoryLabel(documentItem.category))}
+                        </span>
+
+                        <span>
+                            Audience :
+                            ${escapeHtml(getDocumentAudienceLabel(documentItem.id))}
+                        </span>
+
+                        <span>
+                            Fichier :
+                            ${escapeHtml(documentItem.original_filename || "Absent")}
+                        </span>
+
+                        <span>
+                            Taille :
+                            ${escapeHtml(formatFileSize(documentItem.file_size_bytes))}
+                        </span>
+
+                        <span>
+                            Visible :
+                            ${escapeHtml(formatDateTime(documentItem.visible_from))}
+                        </span>
+
+                        <span>
+                            Expire :
+                            ${escapeHtml(formatDateTime(documentItem.expires_at))}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <span class="
+                    document-status
+                    ${documentStatusClass(documentItem.status)}
+                ">
+                    ${escapeHtml(documentStatusLabel(documentItem.status))}
+                </span>
+
+            </div>
+
+
+            ${
+                documentItem.description
+                    ? `
+                        <p class="document-description">
+                            ${escapeHtml(documentItem.description)}
+                        </p>
+                    `
+                    : ""
+            }
+
+
+            <div class="document-chips">
+
+                <span class="document-chip">
+                    ${escapeHtml(documentItem.mime_type || "Type inconnu")}
+                </span>
+
+                ${
+                    documentItem.storage_path
+                        ? `
+                            <span class="document-chip">
+                                Fichier chargé
+                            </span>
+                        `
+                        : `
+                            <span class="document-chip">
+                                Fichier manquant
+                            </span>
+                        `
+                }
+
+            </div>
+
+
+            <div class="document-actions">
+
+                ${
+                    documentItem.storage_path
+                        ? `
+                            <button
+                                class="document-action-button"
+                                type="button"
+                                data-document-action="preview"
+                                data-document-id="${escapeHtml(documentItem.id)}"
+                            >
+                                Consulter
+                            </button>
+                        `
+                        : ""
+                }
+
+
+                ${
+                    documentItem.status ===
+                    "draft"
+                        ? `
+                            <button
+                                class="document-action-button"
+                                type="button"
+                                data-document-action="edit"
+                                data-document-id="${escapeHtml(documentItem.id)}"
+                            >
+                                Modifier
+                            </button>
+
+                            <button
+                                class="document-action-button primary"
+                                type="button"
+                                data-document-action="publish"
+                                data-document-id="${escapeHtml(documentItem.id)}"
+                            >
+                                Publier
+                            </button>
+
+                            <button
+                                class="document-action-button danger"
+                                type="button"
+                                data-document-action="delete"
+                                data-document-id="${escapeHtml(documentItem.id)}"
+                            >
+                                Supprimer
+                            </button>
+                        `
+                        : ""
+                }
+
+
+                ${
+                    documentItem.status ===
+                    "published"
+                        ? `
+                            <button
+                                class="document-action-button"
+                                type="button"
+                                data-document-action="stats"
+                                data-document-id="${escapeHtml(documentItem.id)}"
+                            >
+                                Statistiques
+                            </button>
+
+                            <button
+                                class="document-action-button primary"
+                                type="button"
+                                data-document-action="archive"
+                                data-document-id="${escapeHtml(documentItem.id)}"
+                            >
+                                Archiver
+                            </button>
+                        `
+                        : ""
+                }
+
+
+                ${
+                    documentItem.status ===
+                    "archived"
+                        ? `
+                            <button
+                                class="document-action-button"
+                                type="button"
+                                data-document-action="stats"
+                                data-document-id="${escapeHtml(documentItem.id)}"
+                            >
+                                Statistiques
+                            </button>
+                        `
+                        : ""
+                }
+
+            </div>
+
+
+            <div
+                id="documentStats-${escapeHtml(documentItem.id)}"
+                class="document-stats"
+                hidden
+            ></div>
+
+        `;
+
+
+        documentsList
+            .appendChild(
+                card
+            );
+
+    }
+
+
+    document
+        .querySelectorAll(
+            "[data-document-action]"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        handleDocumentAction(
+                            button.dataset.documentAction,
+                            button.dataset.documentId
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+}
+
+
+function populateDocumentUnits() {
+
+    const select =
+        document.getElementById(
+            "documentUnits"
+        );
+
+
+    const ownerMap =
+        new Map(
+            documentOwners
+                .map(
+                    owner => [
+                        owner.id,
+                        owner
+                    ]
+                )
+        );
+
+
+    select.innerHTML =
+        "";
+
+
+    for (
+        const unit
+        of documentUnits
+    ) {
+
+        const owner =
+            ownerMap.get(
+                unit.owner_account_id
+            );
+
+
+        const ownerName =
+            owner
+                ? `${owner.first_name || ""} ${owner.last_name || ""}`.trim()
+                : "Propriétaire";
+
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+
+        option.value =
+            unit.id;
+
+
+        option.textContent =
+            `Bloc ${unit.building_code} · Appartement ${unit.apartment_number} · ${ownerName}`;
+
+
+        select.appendChild(
+            option
+        );
+
+    }
+
+}
+
+
+function updateDocumentAudienceFields() {
+
+    const type =
+        document
+            .getElementById(
+                "documentAudienceType"
+            )
+            .value;
+
+
+    document
+        .getElementById(
+            "documentBuildingField"
+        )
+        .hidden =
+            type !==
+            "building";
+
+
+    document
+        .getElementById(
+            "documentUnitsField"
+        )
+        .hidden =
+            type !==
+            "unit";
+
+}
+
+
+function openDocumentModal(
+    documentItem = null
+) {
+
+    selectedDocumentId =
+        documentItem?.id ||
+        null;
+
+
+    document
+        .getElementById(
+            "documentModalTitle"
+        )
+        .textContent =
+            documentItem
+                ? "Modifier le document"
+                : "Ajouter un document";
+
+
+    document
+        .getElementById(
+            "documentFile"
+        )
+        .value =
+            "";
+
+
+    document
+        .getElementById(
+            "documentTitle"
+        )
+        .value =
+            documentItem?.title ||
+            "";
+
+
+    document
+        .getElementById(
+            "documentDescription"
+        )
+        .value =
+            documentItem?.description ||
+            "";
+
+
+    document
+        .getElementById(
+            "documentCategory"
+        )
+        .value =
+            documentItem?.category ||
+            "minutes";
+
+
+    document
+        .getElementById(
+            "documentVisibleFrom"
+        )
+        .value =
+            toLocalDatetimeInput(
+                documentItem?.visible_from
+            );
+
+
+    document
+        .getElementById(
+            "documentExpiresAt"
+        )
+        .value =
+            toLocalDatetimeInput(
+                documentItem?.expires_at
+            );
+
+
+    const currentFile =
+        document
+            .getElementById(
+                "documentCurrentFile"
+            );
+
+
+    if (
+        documentItem?.storage_path
+    ) {
+
+        currentFile.hidden =
+            false;
+
+        currentFile.textContent =
+            `Fichier actuel : ${documentItem.original_filename || documentItem.storage_path} · ${formatFileSize(documentItem.file_size_bytes)}`;
+
+    }
+    else {
+
+        currentFile.hidden =
+            true;
+
+        currentFile.textContent =
+            "";
+
+    }
+
+
+    const targets =
+        documentItem
+            ? (
+                residenceDocumentTargets
+                    .get(
+                        documentItem.id
+                    ) ||
+                []
+            )
+            : [];
+
+
+    let audienceType =
+        "all";
+
+
+    if (
+        targets.some(
+            target =>
+                target.target_type ===
+                "building"
+        )
+    ) {
+
+        audienceType =
+            "building";
+
+    }
+
+
+    if (
+        targets.some(
+            target =>
+                target.target_type ===
+                "unit"
+        )
+    ) {
+
+        audienceType =
+            "unit";
+
+    }
+
+
+    document
+        .getElementById(
+            "documentAudienceType"
+        )
+        .value =
+            audienceType;
+
+
+    document
+        .getElementById(
+            "documentBuildings"
+        )
+        .value =
+            targets
+                .filter(
+                    target =>
+                        target.target_type ===
+                        "building"
+                )
+                .map(
+                    target =>
+                        target.building_code
+                )
+                .join(
+                    ", "
+                );
+
+
+    const selectedUnitIds =
+        new Set(
+            targets
+                .filter(
+                    target =>
+                        target.target_type ===
+                        "unit"
+                )
+                .map(
+                    target =>
+                        target.owner_account_unit_id
+                )
+        );
+
+
+    Array
+        .from(
+            document
+                .getElementById(
+                    "documentUnits"
+                )
+                .options
+        )
+        .forEach(
+            option => {
+
+                option.selected =
+                    selectedUnitIds.has(
+                        option.value
+                    );
+
+            }
+        );
+
+
+    updateDocumentAudienceFields();
+
+
+    documentFormMessage.textContent =
+        "";
+
+    documentFormMessage.className =
+        "document-form-message";
+
+
+    documentProgress.hidden =
+        true;
+
+    documentProgress.textContent =
+        "";
+
+
+    documentSaveButton.disabled =
+        false;
+
+
+    documentModal
+        .classList
+        .add(
+            "visible"
+        );
+
+}
+
+
+function closeDocumentModal() {
+
+    if (
+        documentSaveButton.disabled
+    ) {
+        return;
+    }
+
+
+    selectedDocumentId =
+        null;
+
+
+    documentForm.reset();
+
+
+    document
+        .getElementById(
+            "documentAudienceType"
+        )
+        .value =
+            "all";
+
+
+    updateDocumentAudienceFields();
+
+
+    documentFormMessage.textContent =
+        "";
+
+
+    documentProgress.hidden =
+        true;
+
+
+    documentModal
+        .classList
+        .remove(
+            "visible"
+        );
+
+}
+
+
+function getDocumentTargetsPayload(
+    documentId
+) {
+
+    const audienceType =
+        document
+            .getElementById(
+                "documentAudienceType"
+            )
+            .value;
+
+
+    if (
+        audienceType ===
+        "all"
+    ) {
+
+        return [
+            {
+                document_id:
+                    documentId,
+
+                target_type:
+                    "all",
+
+                building_code:
+                    null,
+
+                owner_account_unit_id:
+                    null
+            }
+        ];
+
+    }
+
+
+    if (
+        audienceType ===
+        "building"
+    ) {
+
+        const buildings =
+            document
+                .getElementById(
+                    "documentBuildings"
+                )
+                .value
+                .split(
+                    ","
+                )
+                .map(
+                    value =>
+                        value
+                            .trim()
+                            .toUpperCase()
+                )
+                .filter(
+                    Boolean
+                );
+
+
+        return [
+            ...new Set(
+                buildings
+            )
+        ]
+        .map(
+            buildingCode => ({
+
+                document_id:
+                    documentId,
+
+                target_type:
+                    "building",
+
+                building_code:
+                    buildingCode,
+
+                owner_account_unit_id:
+                    null
+
+            })
+        );
+
+    }
+
+
+    return Array
+        .from(
+            document
+                .getElementById(
+                    "documentUnits"
+                )
+                .selectedOptions
+        )
+        .map(
+            option => ({
+
+                document_id:
+                    documentId,
+
+                target_type:
+                    "unit",
+
+                building_code:
+                    null,
+
+                owner_account_unit_id:
+                    option.value
+
+            })
+        );
+
+}
+
+
+function validateDocumentFile(
+    file
+) {
+
+    if (
+        !file
+    ) {
+
+        return {
+            ok:
+                false,
+
+            message:
+                "Sélectionnez un fichier."
+        };
+
+    }
+
+
+    if (
+        file.size <= 0 ||
+        file.size >
+        DOCUMENT_MAX_BYTES
+    ) {
+
+        return {
+            ok:
+                false,
+
+            message:
+                "Le fichier doit faire au maximum 25 MB."
+        };
+
+    }
+
+
+    if (
+        !DOCUMENT_ALLOWED_TYPES.has(
+            file.type
+        )
+    ) {
+
+        return {
+            ok:
+                false,
+
+            message:
+                "Ce type de fichier n'est pas autorisé."
+        };
+
+    }
+
+
+    return {
+        ok:
+            true
+    };
+
+}
+
+
+async function uploadDocumentFile(
+    documentId,
+    file
+) {
+
+    const safeName =
+        sanitizeStorageFilename(
+            file.name
+        );
+
+
+    const storagePath =
+        `${documentId}/${crypto.randomUUID()}-${safeName}`;
+
+
+    const checksum =
+        await sha256File(
+            file
+        );
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+            .storage
+            .from(
+                DOCUMENT_BUCKET
+            )
+            .upload(
+                storagePath,
+                file,
+                {
+                    cacheControl:
+                        "3600",
+
+                    contentType:
+                        file.type,
+
+                    upsert:
+                        false
+                }
+            );
+
+
+    if (
+        error
+    ) {
+
+        throw error;
+
+    }
+
+
+    return {
+        storagePath,
+
+        checksum
+    };
+
+}
+
+
+async function removeDocumentStorageFile(
+    path
+) {
+
+    if (
+        !path
+    ) {
+        return;
+    }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+            .storage
+            .from(
+                DOCUMENT_BUCKET
+            )
+            .remove([
+                path
+            ]);
+
+
+    if (
+        error
+    ) {
+
+        console.warn(
+            "Storage cleanup failed:",
+            error
+        );
+
+    }
+
+}
+
+
+documentForm.addEventListener(
+    "submit",
+    async event => {
+
+        event.preventDefault();
+
+
+        documentFormMessage.textContent =
+            "";
+
+        documentFormMessage.className =
+            "document-form-message";
+
+
+        const title =
+            document
+                .getElementById(
+                    "documentTitle"
+                )
+                .value
+                .trim();
+
+
+        const description =
+            document
+                .getElementById(
+                    "documentDescription"
+                )
+                .value
+                .trim();
+
+
+        const category =
+            document
+                .getElementById(
+                    "documentCategory"
+                )
+                .value;
+
+
+        const visibleFromValue =
+            document
+                .getElementById(
+                    "documentVisibleFrom"
+                )
+                .value;
+
+
+        const expiresAtValue =
+            document
+                .getElementById(
+                    "documentExpiresAt"
+                )
+                .value;
+
+
+        const visibleFrom =
+            visibleFromValue
+                ? new Date(
+                    visibleFromValue
+                )
+                : null;
+
+
+        const expiresAt =
+            expiresAtValue
+                ? new Date(
+                    expiresAtValue
+                )
+                : null;
+
+
+        const file =
+            document
+                .getElementById(
+                    "documentFile"
+                )
+                .files[0] ||
+            null;
+
+
+        const existingDocument =
+            selectedDocumentId
+                ? residenceDocuments.find(
+                    item =>
+                        item.id ===
+                        selectedDocumentId
+                )
+                : null;
+
+
+        if (
+            !title
+        ) {
+
+            documentFormMessage.textContent =
+                "Le titre est obligatoire.";
+
+            documentFormMessage.className =
+                "document-form-message error";
+
+            return;
+
+        }
+
+
+        if (
+            !existingDocument?.storage_path &&
+            !file
+        ) {
+
+            documentFormMessage.textContent =
+                "Sélectionnez un fichier.";
+
+            documentFormMessage.className =
+                "document-form-message error";
+
+            return;
+
+        }
+
+
+        if (
+            file
+        ) {
+
+            const validation =
+                validateDocumentFile(
+                    file
+                );
+
+
+            if (
+                !validation.ok
+            ) {
+
+                documentFormMessage.textContent =
+                    validation.message;
+
+                documentFormMessage.className =
+                    "document-form-message error";
+
+                return;
+
+            }
+
+        }
+
+
+        if (
+            visibleFrom &&
+            expiresAt &&
+            expiresAt.getTime() <=
+            visibleFrom.getTime()
+        ) {
+
+            documentFormMessage.textContent =
+                "L'expiration doit être postérieure à la publication.";
+
+            documentFormMessage.className =
+                "document-form-message error";
+
+            return;
+
+        }
+
+
+        const targetsPreview =
+            getDocumentTargetsPayload(
+                selectedDocumentId ||
+                "preview"
+            );
+
+
+        if (
+            targetsPreview.length ===
+            0
+        ) {
+
+            documentFormMessage.textContent =
+                "Sélectionnez au moins une audience.";
+
+            documentFormMessage.className =
+                "document-form-message error";
+
+            return;
+
+        }
+
+
+        const {
+            data: {
+                session
+            }
+        } =
+            await supabaseClient
+                .auth
+                .getSession();
+
+
+        if (
+            !session
+        ) {
+
+            window.location.href =
+                "admin-login.html";
+
+            return;
+
+        }
+
+
+        documentSaveButton.disabled =
+            true;
+
+        documentProgress.hidden =
+            false;
+
+        documentProgress.textContent =
+            "Préparation du document...";
+
+
+        let documentId =
+            selectedDocumentId;
+
+        let createdNewDocument =
+            false;
+
+        let newStoragePath =
+            null;
+
+        let oldStoragePath =
+            existingDocument?.storage_path ||
+            null;
+
+
+        try {
+
+            if (
+                !documentId
+            ) {
+
+                const {
+                    data: created,
+                    error
+                } =
+                    await supabaseClient
+                        .from(
+                            "residence_documents"
+                        )
+                        .insert({
+                            title,
+
+                            description:
+                                description ||
+                                null,
+
+                            category,
+
+                            status:
+                                "draft",
+
+                            storage_bucket:
+                                DOCUMENT_BUCKET,
+
+                            visible_from:
+                                visibleFrom
+                                    ? visibleFrom.toISOString()
+                                    : null,
+
+                            expires_at:
+                                expiresAt
+                                    ? expiresAt.toISOString()
+                                    : null,
+
+                            created_by:
+                                session.user.id
+                        })
+                        .select(
+                            "id"
+                        )
+                        .single();
+
+
+                if (
+                    error ||
+                    !created
+                ) {
+
+                    throw error ||
+                        new Error(
+                            "Impossible de créer le brouillon."
+                        );
+
+                }
+
+
+                documentId =
+                    created.id;
+
+                createdNewDocument =
+                    true;
+
+            }
+
+
+            let fileFields =
+                {};
+
+
+            if (
+                file
+            ) {
+
+                documentProgress.textContent =
+                    "Calcul de l'empreinte et envoi sécurisé du fichier...";
+
+
+                const uploaded =
+                    await uploadDocumentFile(
+                        documentId,
+                        file
+                    );
+
+
+                newStoragePath =
+                    uploaded.storagePath;
+
+
+                fileFields = {
+
+                    storage_bucket:
+                        DOCUMENT_BUCKET,
+
+                    storage_path:
+                        uploaded.storagePath,
+
+                    original_filename:
+                        file.name,
+
+                    mime_type:
+                        file.type,
+
+                    file_size_bytes:
+                        file.size,
+
+                    checksum_sha256:
+                        uploaded.checksum
+
+                };
+
+            }
+
+
+            documentProgress.textContent =
+                "Enregistrement des métadonnées...";
+
+
+            const {
+                error: updateError
+            } =
+                await supabaseClient
+                    .from(
+                        "residence_documents"
+                    )
+                    .update({
+                        title,
+
+                        description:
+                            description ||
+                            null,
+
+                        category,
+
+                        visible_from:
+                            visibleFrom
+                                ? visibleFrom.toISOString()
+                                : null,
+
+                        expires_at:
+                            expiresAt
+                                ? expiresAt.toISOString()
+                                : null,
+
+                        ...fileFields
+                    })
+                    .eq(
+                        "id",
+                        documentId
+                    )
+                    .eq(
+                        "status",
+                        "draft"
+                    );
+
+
+            if (
+                updateError
+            ) {
+
+                throw updateError;
+
+            }
+
+
+            documentProgress.textContent =
+                "Enregistrement de l'audience...";
+
+
+            const {
+                error: deleteTargetsError
+            } =
+                await supabaseClient
+                    .from(
+                        "residence_document_targets"
+                    )
+                    .delete()
+                    .eq(
+                        "document_id",
+                        documentId
+                    );
+
+
+            if (
+                deleteTargetsError
+            ) {
+
+                throw deleteTargetsError;
+
+            }
+
+
+            const targets =
+                getDocumentTargetsPayload(
+                    documentId
+                );
+
+
+            const {
+                error: targetsError
+            } =
+                await supabaseClient
+                    .from(
+                        "residence_document_targets"
+                    )
+                    .insert(
+                        targets
+                    );
+
+
+            if (
+                targetsError
+            ) {
+
+                throw targetsError;
+
+            }
+
+
+            if (
+                newStoragePath &&
+                oldStoragePath &&
+                oldStoragePath !==
+                newStoragePath
+            ) {
+
+                await removeDocumentStorageFile(
+                    oldStoragePath
+                );
+
+            }
+
+
+            documentProgress.textContent =
+                "Document enregistré avec succès.";
+
+
+            documentFormMessage.textContent =
+                "Brouillon enregistré.";
+
+            documentFormMessage.className =
+                "document-form-message success";
+
+
+            setTimeout(
+                async () => {
+
+                    documentSaveButton.disabled =
+                        false;
+
+                    closeDocumentModal();
+
+                    await loadDocuments();
+
+                },
+                350
+            );
+
+        }
+        catch (
+            error
+        ) {
+
+            console.error(
+                "Document save error:",
+                error
+            );
+
+
+            if (
+                newStoragePath
+            ) {
+
+                await removeDocumentStorageFile(
+                    newStoragePath
+                );
+
+            }
+
+
+            if (
+                createdNewDocument &&
+                documentId
+            ) {
+
+                await supabaseClient
+                    .from(
+                        "residence_documents"
+                    )
+                    .delete()
+                    .eq(
+                        "id",
+                        documentId
+                    )
+                    .eq(
+                        "status",
+                        "draft"
+                    );
+
+            }
+
+
+            documentProgress.hidden =
+                true;
+
+
+            documentFormMessage.textContent =
+                error?.message ||
+                "Impossible d'enregistrer le document.";
+
+            documentFormMessage.className =
+                "document-form-message error";
+
+
+            documentSaveButton.disabled =
+                false;
+
+        }
+
+    }
+);
+
+
+async function previewAdminDocument(
+    documentItem
+) {
+
+    if (
+        !documentItem.storage_path
+    ) {
+
+        alert(
+            "Aucun fichier n'est associé à ce document."
+        );
+
+        return;
+
+    }
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .storage
+            .from(
+                DOCUMENT_BUCKET
+            )
+            .createSignedUrl(
+                documentItem.storage_path,
+                120
+            );
+
+
+    if (
+        error ||
+        !data?.signedUrl
+    ) {
+
+        console.error(
+            "Signed URL error:",
+            error
+        );
+
+        alert(
+            "Impossible d'ouvrir ce fichier."
+        );
+
+        return;
+
+    }
+
+
+    window.open(
+        data.signedUrl,
+        "_blank",
+        "noopener,noreferrer"
+    );
+
+}
+
+
+async function handleDocumentAction(
+    action,
+    documentId
+) {
+
+    const documentItem =
+        residenceDocuments.find(
+            item =>
+                item.id ===
+                documentId
+        );
+
+
+    if (
+        !documentItem
+    ) {
+        return;
+    }
+
+
+    if (
+        action ===
+        "preview"
+    ) {
+
+        await previewAdminDocument(
+            documentItem
+        );
+
+        return;
+
+    }
+
+
+    if (
+        action ===
+        "edit"
+    ) {
+
+        openDocumentModal(
+            documentItem
+        );
+
+        return;
+
+    }
+
+
+    if (
+        action ===
+        "stats"
+    ) {
+
+        await loadDocumentStats(
+            documentId
+        );
+
+        return;
+
+    }
+
+
+    if (
+        action ===
+        "publish"
+    ) {
+
+        if (
+            !window.confirm(
+                `Publier le document "${documentItem.title}" ?`
+            )
+        ) {
+            return;
+        }
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .rpc(
+                    "admin_publish_residence_document",
+                    {
+                        p_document_id:
+                            documentId
+                    }
+                );
+
+
+        if (
+            error
+        ) {
+
+            console.error(
+                "Document publication error:",
+                error
+            );
+
+            alert(
+                error.message ||
+                "Impossible de publier le document."
+            );
+
+            return;
+
+        }
+
+
+        await loadDocuments();
+
+        return;
+
+    }
+
+
+    if (
+        action ===
+        "archive"
+    ) {
+
+        if (
+            !window.confirm(
+                `Archiver le document "${documentItem.title}" ?`
+            )
+        ) {
+            return;
+        }
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .rpc(
+                    "admin_archive_residence_document",
+                    {
+                        p_document_id:
+                            documentId
+                    }
+                );
+
+
+        if (
+            error
+        ) {
+
+            alert(
+                error.message ||
+                "Impossible d'archiver le document."
+            );
+
+            return;
+
+        }
+
+
+        await loadDocuments();
+
+        return;
+
+    }
+
+
+    if (
+        action ===
+        "delete"
+    ) {
+
+        if (
+            !window.confirm(
+                `Supprimer définitivement le brouillon "${documentItem.title}" et son fichier ?`
+            )
+        ) {
+            return;
+        }
+
+
+        if (
+            documentItem.storage_path
+        ) {
+
+            const {
+                error: storageError
+            } =
+                await supabaseClient
+                    .storage
+                    .from(
+                        DOCUMENT_BUCKET
+                    )
+                    .remove([
+                        documentItem.storage_path
+                    ]);
+
+
+            if (
+                storageError
+            ) {
+
+                console.error(
+                    "Document storage delete error:",
+                    storageError
+                );
+
+                alert(
+                    "Impossible de supprimer le fichier Storage. Le document n'a pas été supprimé."
+                );
+
+                return;
+
+            }
+
+        }
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .from(
+                    "residence_documents"
+                )
+                .delete()
+                .eq(
+                    "id",
+                    documentId
+                )
+                .eq(
+                    "status",
+                    "draft"
+                );
+
+
+        if (
+            error
+        ) {
+
+            alert(
+                "Le fichier a été supprimé, mais la fiche document n'a pas pu être supprimée."
+            );
+
+            return;
+
+        }
+
+
+        await loadDocuments();
+
+    }
+
+}
+
+
+async function loadDocumentStats(
+    documentId
+) {
+
+    const container =
+        document.getElementById(
+            `documentStats-${documentId}`
+        );
+
+
+    if (
+        !container
+    ) {
+        return;
+    }
+
+
+    if (
+        !container.hidden
+    ) {
+
+        container.hidden =
+            true;
+
+        return;
+
+    }
+
+
+    container.hidden =
+        false;
+
+    container.textContent =
+        "Chargement des statistiques...";
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .rpc(
+                "admin_get_residence_document_stats",
+                {
+                    p_document_id:
+                        documentId
+                }
+            );
+
+
+    if (
+        error
+    ) {
+
+        container.textContent =
+            error.message ||
+            "Impossible de charger les statistiques.";
+
+        return;
+
+    }
+
+
+    container.innerHTML = `
+
+        <div class="document-stats-grid">
+
+            <div class="document-stat">
+                <span>Destinataires</span>
+                <strong>${escapeHtml(data.eligibleOwners ?? 0)}</strong>
+            </div>
+
+            <div class="document-stat">
+                <span>Ont consulté</span>
+                <strong>${escapeHtml(data.viewedOwners ?? 0)}</strong>
+            </div>
+
+            <div class="document-stat">
+                <span>Ont téléchargé</span>
+                <strong>${escapeHtml(data.downloadedOwners ?? 0)}</strong>
+            </div>
+
+            <div class="document-stat">
+                <span>Consultations</span>
+                <strong>${escapeHtml(data.totalViews ?? 0)}</strong>
+            </div>
+
+            <div class="document-stat">
+                <span>Téléchargements</span>
+                <strong>${escapeHtml(data.totalDownloads ?? 0)}</strong>
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+document
+    .getElementById(
+        "documentAudienceType"
+    )
+    .addEventListener(
+        "change",
+        updateDocumentAudienceFields
+    );
+
+
+document
+    .getElementById(
+        "createDocumentButton"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            openDocumentModal();
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "documentModalClose"
+    )
+    .addEventListener(
+        "click",
+        closeDocumentModal
+    );
+
+
+document
+    .getElementById(
+        "documentFormCancel"
+    )
+    .addEventListener(
+        "click",
+        closeDocumentModal
+    );
+
+
+documentModal.addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target.id ===
+            "documentModal"
+        ) {
+
+            closeDocumentModal();
+
+        }
+
+    }
+);
+
+
+updateDocumentAudienceFields();
 
 
 
