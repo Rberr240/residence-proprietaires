@@ -991,6 +991,356 @@
 
 
     /* ======================================== */
+    /* VOTES                                    */
+    /* ======================================== */
+
+    .votes-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 16px;
+      padding: 15px 17px;
+      border: 1px solid var(--mg-border);
+      border-radius: 14px;
+      background: white;
+    }
+
+    .votes-toolbar strong {
+      display: block;
+      color: var(--mg-green-950);
+      font-size: 13px;
+    }
+
+    .votes-toolbar span {
+      display: block;
+      margin-top: 3px;
+      color: var(--mg-muted);
+      font-size: 10px;
+    }
+
+    .votes-refresh {
+      min-height: 36px;
+      padding: 0 12px;
+      border: 1px solid #d6e1dc;
+      border-radius: 9px;
+      background: white;
+      color: var(--mg-green-800);
+      font-size: 10px;
+      font-weight: 850;
+    }
+
+    .owner-votes-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .owner-vote-card {
+      overflow: hidden;
+      border: 1px solid var(--mg-border);
+      border-radius: 17px;
+      background: white;
+      box-shadow:
+        0 8px 28px
+        rgba(15, 50, 40, 0.045);
+    }
+
+    .owner-vote-card-top {
+      padding: 20px;
+      background:
+        linear-gradient(
+          145deg,
+          #ffffff,
+          #f8fbf9
+        );
+    }
+
+    .owner-vote-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .owner-vote-card h3 {
+      margin: 0;
+      color: var(--mg-green-950);
+      font-size: 17px;
+      line-height: 1.3;
+    }
+
+    .owner-vote-question {
+      margin: 8px 0 0;
+      color: #315347;
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.55;
+    }
+
+    .owner-vote-description {
+      margin: 10px 0 0;
+      color: #5f756c;
+      font-size: 11px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .owner-vote-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px 14px;
+      margin-top: 11px;
+      color: var(--mg-muted);
+      font-size: 10px;
+    }
+
+    .owner-vote-status {
+      flex: 0 0 auto;
+      min-height: 27px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 9px;
+      border-radius: 999px;
+      font-size: 9px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .owner-vote-status.open {
+      background: var(--mg-success-bg);
+      color: var(--mg-success);
+    }
+
+    .owner-vote-status.upcoming {
+      background: #fff7df;
+      color: #8b6600;
+    }
+
+    .owner-vote-status.closed {
+      background: #edf1f7;
+      color: #506787;
+    }
+
+    .owner-vote-status.cancelled {
+      background: #fde8e8;
+      color: #9d2e2e;
+    }
+
+    .owner-ballot-box {
+      padding: 18px 20px 20px;
+      border-top: 1px solid #e7eeea;
+      background: #fbfcfc;
+    }
+
+    .owner-ballot-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .owner-ballot-title strong {
+      color: var(--mg-green-950);
+      font-size: 12px;
+    }
+
+    .owner-ballot-title span {
+      color: var(--mg-muted);
+      font-size: 9px;
+      text-align: right;
+    }
+
+    .vote-options-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .vote-option-choice {
+      position: relative;
+      display: block;
+    }
+
+    .vote-option-choice input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .vote-option-choice span {
+      min-height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 13px;
+      border: 1px solid #d7e2dd;
+      border-radius: 10px;
+      background: white;
+      color: #52675e;
+      font-size: 11px;
+      font-weight: 800;
+      transition:
+        border-color 0.15s,
+        background 0.15s,
+        color 0.15s;
+    }
+
+    .vote-option-choice input:checked + span {
+      border-color: var(--mg-green-700);
+      background: var(--mg-green-100);
+      color: var(--mg-green-800);
+    }
+
+    .vote-option-choice input:disabled + span {
+      opacity: 0.62;
+      cursor: not-allowed;
+    }
+
+    .owner-ballot-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .vote-save-message {
+      min-height: 18px;
+      color: var(--mg-muted);
+      font-size: 10px;
+      line-height: 1.45;
+    }
+
+    .vote-save-message.success {
+      color: var(--mg-success);
+      font-weight: 800;
+    }
+
+    .vote-save-message.error {
+      color: #b42318;
+      font-weight: 800;
+    }
+
+    .save-owner-vote {
+      flex: 0 0 auto;
+      min-height: 40px;
+      padding: 0 14px;
+      border: 0;
+      border-radius: 9px;
+      background: var(--mg-green-800);
+      color: white;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .save-owner-vote:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .owner-vote-current {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 9px;
+      background: var(--mg-green-50);
+      color: #52675e;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    .owner-vote-current strong {
+      color: var(--mg-green-800);
+    }
+
+    .vote-results-owner {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid #e4ece8;
+    }
+
+    .vote-results-button {
+      min-height: 36px;
+      padding: 0 12px;
+      border: 1px solid #d6e1dc;
+      border-radius: 9px;
+      background: white;
+      color: var(--mg-green-800);
+      font-size: 10px;
+      font-weight: 850;
+    }
+
+    .owner-vote-results-content {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .owner-vote-result-row {
+      padding: 10px 11px;
+      border: 1px solid #e6ece9;
+      border-radius: 9px;
+      background: white;
+    }
+
+    .owner-vote-result-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: #264a3e;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .owner-vote-result-bar {
+      height: 7px;
+      margin-top: 7px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #edf2ef;
+    }
+
+    .owner-vote-result-bar > span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: #30735e;
+    }
+
+    .votes-state {
+      padding: 38px 24px;
+      border: 1px dashed #cfdcd6;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.76);
+      text-align: center;
+      color: var(--mg-muted);
+      font-size: 11px;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 620px) {
+      .votes-toolbar,
+      .owner-vote-head,
+      .owner-ballot-title,
+      .owner-ballot-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .owner-ballot-title span {
+        text-align: left;
+      }
+
+      .votes-refresh,
+      .save-owner-vote,
+      .vote-results-button {
+        width: 100%;
+      }
+    }
+
+
+    /* ======================================== */
     /* EMPTY MODULES                            */
     /* ======================================== */
 
@@ -1589,8 +1939,11 @@
                     </small>
                   </div>
 
-                  <span class="module-row-status">
-                    À connecter
+                  <span
+                    class="module-row-status"
+                    style="color:#197149;font-weight:900;"
+                  >
+                    Actif
                   </span>
 
                 </div>
@@ -1776,41 +2129,65 @@
               </h2>
 
               <p>
-                Participez aux votes ouverts
-                à votre compte propriétaire.
+                Consultez les consultations auxquelles
+                votre compte est éligible et votez de manière
+                sécurisée.
               </p>
             </div>
           </div>
 
-          <div class="module-hero">
+          <div class="votes-toolbar">
 
-            <div class="module-hero-icon">
-              V
+            <div>
+              <strong>
+                Mes votes
+              </strong>
+
+              <span>
+                Votre bulletin est lié uniquement à votre compte.
+                Les résultats affichés dépendent des règles choisies
+                par l'administration.
+              </span>
             </div>
 
-            <h3>
-              Vote propriétaire sécurisé
-            </h3>
-
-            <p>
-              Ce module sera relié à Supabase avec
-              contrôle d'éligibilité, vote unique,
-              traçabilité et règles RLS.
-            </p>
+            <button
+              id="refreshVotesButton"
+              class="votes-refresh"
+              type="button"
+            >
+              Actualiser
+            </button>
 
           </div>
 
-          <div class="empty-state">
+          <div
+            id="votesLoadingState"
+            class="votes-state"
+          >
+            Chargement des votes...
+          </div>
 
-            <strong>
-              Aucun vote ouvert
-            </strong>
+          <div
+            id="votesEmptyState"
+            class="votes-state"
+            hidden
+          >
+            Aucun vote disponible pour votre compte.
+          </div>
 
-            <p>
-              Les futurs votes actifs apparaîtront ici
-              automatiquement.
-            </p>
+          <div
+            id="votesErrorState"
+            class="votes-state"
+            hidden
+          >
+            Impossible de charger les votes.
+          </div>
 
+          <div
+            id="ownerVotesList"
+            class="owner-votes-list"
+            hidden
+          >
           </div>
 
         </section>
@@ -2136,6 +2513,21 @@
     let meetingsLoadedOnce =
       false;
 
+    let ownerVotes =
+      [];
+
+    let ownerVoteOptions =
+      new Map();
+
+    let ownerVoteBallots =
+      new Map();
+
+    let ownerVoteResults =
+      new Map();
+
+    let votesLoadedOnce =
+      false;
+
 
     const SECTION_NAMES = {
       overview: {
@@ -2231,6 +2623,13 @@
         currentOwnerAccountId
       ) {
         loadMeetings();
+      }
+
+      if (
+        sectionName === "votes" &&
+        currentOwnerAccountId
+      ) {
+        loadVotes();
       }
 
       window.scrollTo({
@@ -3324,6 +3723,1232 @@
             false;
 
           loadMeetings(
+            true
+          );
+        },
+      );
+
+
+
+    function voteOptionLabel(
+      voteId,
+      optionId,
+    ) {
+      const options =
+        ownerVoteOptions.get(
+          voteId
+        ) || [];
+
+      const option =
+        options.find(
+          item =>
+            item.id === optionId
+        );
+
+      return option?.label ||
+        "Option sélectionnée";
+    }
+
+
+    function getOwnerVotePhase(
+      vote,
+    ) {
+      if (
+        vote.status ===
+        "cancelled"
+      ) {
+        return {
+          code: "cancelled",
+          label: "Annulé",
+          className: "cancelled",
+        };
+      }
+
+      if (
+        vote.status ===
+        "closed"
+      ) {
+        return {
+          code: "closed",
+          label: "Clôturé",
+          className: "closed",
+        };
+      }
+
+      const now =
+        Date.now();
+
+      if (
+        vote.opens_at
+      ) {
+        const opensAt =
+          new Date(
+            vote.opens_at
+          ).getTime();
+
+        if (
+          !Number.isNaN(
+            opensAt
+          ) &&
+          opensAt > now
+        ) {
+          return {
+            code: "upcoming",
+            label: "À venir",
+            className: "upcoming",
+          };
+        }
+      }
+
+      if (
+        vote.closes_at
+      ) {
+        const closesAt =
+          new Date(
+            vote.closes_at
+          ).getTime();
+
+        if (
+          !Number.isNaN(
+            closesAt
+          ) &&
+          closesAt <= now
+        ) {
+          return {
+            code: "closed",
+            label: "Terminé",
+            className: "closed",
+          };
+        }
+      }
+
+      return {
+        code: "open",
+        label: "Ouvert",
+        className: "open",
+      };
+    }
+
+
+    function canOwnerVote(
+      vote,
+      ballot,
+    ) {
+      const phase =
+        getOwnerVotePhase(
+          vote
+        );
+
+      if (
+        phase.code !==
+        "open"
+      ) {
+        return false;
+      }
+
+      if (
+        !ballot
+      ) {
+        return true;
+      }
+
+      return Boolean(
+        vote.allow_vote_change
+      );
+    }
+
+
+    function canOwnerSeeVoteResults(
+      vote,
+    ) {
+      if (
+        vote.results_visibility ===
+        "admin_only"
+      ) {
+        return false;
+      }
+
+      if (
+        vote.results_visibility ===
+        "live"
+      ) {
+        return true;
+      }
+
+      const phase =
+        getOwnerVotePhase(
+          vote
+        );
+
+      return phase.code ===
+        "closed";
+    }
+
+
+    async function loadVotes(
+      force = false,
+    ) {
+      if (
+        !currentOwnerAccountId
+      ) {
+        return;
+      }
+
+      if (
+        votesLoadedOnce &&
+        !force
+      ) {
+        renderVotes();
+        return;
+      }
+
+      const loadingState =
+        document.getElementById(
+          "votesLoadingState"
+        );
+
+      const emptyState =
+        document.getElementById(
+          "votesEmptyState"
+        );
+
+      const errorState =
+        document.getElementById(
+          "votesErrorState"
+        );
+
+      const list =
+        document.getElementById(
+          "ownerVotesList"
+        );
+
+      loadingState.hidden =
+        false;
+
+      emptyState.hidden =
+        true;
+
+      errorState.hidden =
+        true;
+
+      list.hidden =
+        true;
+
+      const {
+        data: votesData,
+        error: votesError,
+      } =
+        await supabaseClient
+          .from(
+            "residence_votes"
+          )
+          .select(
+            `
+            id,
+            title,
+            question,
+            description,
+            status,
+            allow_vote_change,
+            results_visibility,
+            opens_at,
+            closes_at,
+            published_at,
+            closed_at,
+            cancelled_at
+            `
+          )
+          .in(
+            "status",
+            [
+              "published",
+              "closed",
+              "cancelled",
+            ]
+          )
+          .order(
+            "created_at",
+            {
+              ascending:
+                false,
+            }
+          );
+
+      if (
+        votesError
+      ) {
+        console.error(
+          "Owner votes loading error:",
+          votesError
+        );
+
+        loadingState.hidden =
+          true;
+
+        errorState.hidden =
+          false;
+
+        return;
+      }
+
+      ownerVotes =
+        Array.isArray(
+          votesData
+        )
+          ? votesData
+          : [];
+
+      ownerVoteOptions =
+        new Map();
+
+      ownerVoteBallots =
+        new Map();
+
+      if (
+        ownerVotes.length > 0
+      ) {
+        const voteIds =
+          ownerVotes.map(
+            vote =>
+              vote.id
+          );
+
+        const {
+          data: optionsData,
+          error: optionsError,
+        } =
+          await supabaseClient
+            .from(
+              "residence_vote_options"
+            )
+            .select(
+              `
+              id,
+              vote_id,
+              label,
+              description,
+              position
+              `
+            )
+            .in(
+              "vote_id",
+              voteIds
+            )
+            .order(
+              "position",
+              {
+                ascending:
+                  true,
+              }
+            );
+
+        if (
+          optionsError
+        ) {
+          console.error(
+            "Owner vote options loading error:",
+            optionsError
+          );
+
+          loadingState.hidden =
+            true;
+
+          errorState.hidden =
+            false;
+
+          return;
+        }
+
+        for (
+          const option
+          of optionsData || []
+        ) {
+          if (
+            !ownerVoteOptions.has(
+              option.vote_id
+            )
+          ) {
+            ownerVoteOptions.set(
+              option.vote_id,
+              []
+            );
+          }
+
+          ownerVoteOptions
+            .get(
+              option.vote_id
+            )
+            .push(
+              option
+            );
+        }
+
+        const {
+          data: ballotsData,
+          error: ballotsError,
+        } =
+          await supabaseClient
+            .from(
+              "owner_vote_ballots"
+            )
+            .select(
+              `
+              id,
+              vote_id,
+              owner_account_id,
+              option_id,
+              submitted_at,
+              updated_at
+              `
+            )
+            .eq(
+              "owner_account_id",
+              currentOwnerAccountId
+            );
+
+        if (
+          ballotsError
+        ) {
+          console.error(
+            "Owner ballots loading error:",
+            ballotsError
+          );
+
+          loadingState.hidden =
+            true;
+
+          errorState.hidden =
+            false;
+
+          return;
+        }
+
+        for (
+          const ballot
+          of ballotsData || []
+        ) {
+          ownerVoteBallots.set(
+            ballot.vote_id,
+            ballot
+          );
+        }
+      }
+
+      votesLoadedOnce =
+        true;
+
+      loadingState.hidden =
+        true;
+
+      renderVotes();
+    }
+
+
+    function renderVotes() {
+      const list =
+        document.getElementById(
+          "ownerVotesList"
+        );
+
+      const emptyState =
+        document.getElementById(
+          "votesEmptyState"
+        );
+
+      const errorState =
+        document.getElementById(
+          "votesErrorState"
+        );
+
+      list.innerHTML =
+        "";
+
+      errorState.hidden =
+        true;
+
+      if (
+        ownerVotes.length === 0
+      ) {
+        emptyState.hidden =
+          false;
+
+        list.hidden =
+          true;
+
+        return;
+      }
+
+      emptyState.hidden =
+        true;
+
+      list.hidden =
+        false;
+
+      const sortedVotes =
+        [...ownerVotes]
+          .sort(
+            (
+              first,
+              second,
+            ) => {
+              const phaseOrder = {
+                open: 0,
+                upcoming: 1,
+                closed: 2,
+                cancelled: 3,
+              };
+
+              const firstPhase =
+                getOwnerVotePhase(
+                  first
+                ).code;
+
+              const secondPhase =
+                getOwnerVotePhase(
+                  second
+                ).code;
+
+              return (
+                phaseOrder[firstPhase] -
+                phaseOrder[secondPhase]
+              );
+            }
+          );
+
+      for (
+        const vote
+        of sortedVotes
+      ) {
+        const options =
+          ownerVoteOptions.get(
+            vote.id
+          ) || [];
+
+        const ballot =
+          ownerVoteBallots.get(
+            vote.id
+          ) || null;
+
+        const phase =
+          getOwnerVotePhase(
+            vote
+          );
+
+        const canVote =
+          canOwnerVote(
+            vote,
+            ballot
+          );
+
+        const resultAllowed =
+          canOwnerSeeVoteResults(
+            vote
+          );
+
+        const optionsHtml =
+          options
+            .map(
+              option => {
+                const checked =
+                  ballot?.option_id ===
+                  option.id
+                    ? "checked"
+                    : "";
+
+                const disabled =
+                  canVote
+                    ? ""
+                    : "disabled";
+
+                return `
+                  <label class="vote-option-choice">
+                    <input
+                      type="radio"
+                      name="owner-vote-${escapeHtml(vote.id)}"
+                      value="${escapeHtml(option.id)}"
+                      ${checked}
+                      ${disabled}
+                    >
+                    <span>
+                      <span>
+                        ${escapeHtml(option.label)}
+                      </span>
+                      <span>
+                        ○
+                      </span>
+                    </span>
+                  </label>
+                `;
+              }
+            )
+            .join(
+              ""
+            );
+
+        let helpText =
+          "";
+
+        if (
+          phase.code ===
+          "upcoming"
+        ) {
+          helpText =
+            `Le vote ouvrira le ${formatMeetingDate(vote.opens_at)}.`;
+        }
+        else if (
+          phase.code ===
+          "cancelled"
+        ) {
+          helpText =
+            "Ce vote a été annulé.";
+        }
+        else if (
+          phase.code ===
+          "closed"
+        ) {
+          helpText =
+            "La période de vote est terminée.";
+        }
+        else if (
+          ballot &&
+          !vote.allow_vote_change
+        ) {
+          helpText =
+            "Votre vote est définitif et ne peut plus être modifié.";
+        }
+        else if (
+          ballot &&
+          vote.allow_vote_change
+        ) {
+          helpText =
+            "Vous pouvez modifier votre choix jusqu'à la clôture.";
+        }
+        else if (
+          vote.allow_vote_change
+        ) {
+          helpText =
+            "Votre choix pourra être modifié jusqu'à la clôture.";
+        }
+        else {
+          helpText =
+            "Après confirmation, votre choix sera définitif.";
+        }
+
+        const currentBallotHtml =
+          ballot
+            ? `
+              <div class="owner-vote-current">
+                Votre choix actuel :
+                <strong>
+                  ${escapeHtml(voteOptionLabel(vote.id, ballot.option_id))}
+                </strong>
+                ${
+                  ballot.updated_at
+                    ? ` · enregistré le ${escapeHtml(formatMeetingDate(ballot.updated_at))}`
+                    : ""
+                }
+              </div>
+            `
+            : "";
+
+        const actionButtonHtml =
+          canVote
+            ? `
+              <button
+                class="save-owner-vote"
+                type="button"
+                data-save-owner-vote="${escapeHtml(vote.id)}"
+              >
+                ${
+                  ballot
+                    ? "Modifier mon vote"
+                    : (
+                      vote.allow_vote_change
+                        ? "Enregistrer mon vote"
+                        : "Confirmer définitivement"
+                    )
+                }
+              </button>
+            `
+            : "";
+
+        const resultsHtml =
+          resultAllowed
+            ? `
+              <div class="vote-results-owner">
+                <button
+                  class="vote-results-button"
+                  type="button"
+                  data-owner-vote-results="${escapeHtml(vote.id)}"
+                >
+                  Voir les résultats
+                </button>
+
+                <div
+                  id="ownerVoteResults-${escapeHtml(vote.id)}"
+                  class="owner-vote-results-content"
+                  hidden
+                >
+                </div>
+              </div>
+            `
+            : "";
+
+        const card =
+          document.createElement(
+            "article"
+          );
+
+        card.className =
+          "owner-vote-card";
+
+        card.innerHTML = `
+          <div class="owner-vote-card-top">
+
+            <div class="owner-vote-head">
+
+              <div>
+                <h3>
+                  ${escapeHtml(vote.title)}
+                </h3>
+
+                <p class="owner-vote-question">
+                  ${escapeHtml(vote.question)}
+                </p>
+
+                <div class="owner-vote-meta">
+                  <span>
+                    🕒 Ouverture : ${escapeHtml(formatMeetingDate(vote.opens_at))}
+                  </span>
+
+                  <span>
+                    ⏳ Clôture : ${escapeHtml(formatMeetingDate(vote.closes_at))}
+                  </span>
+
+                  <span>
+                    ${
+                      vote.allow_vote_change
+                        ? "✎ Vote modifiable"
+                        : "🔒 Vote définitif"
+                    }
+                  </span>
+                </div>
+              </div>
+
+              <span class="owner-vote-status ${escapeHtml(phase.className)}">
+                ${escapeHtml(phase.label)}
+              </span>
+
+            </div>
+
+            ${
+              vote.description
+                ? `
+                  <p class="owner-vote-description">
+                    ${escapeHtml(vote.description)}
+                  </p>
+                `
+                : ""
+            }
+
+          </div>
+
+          <div class="owner-ballot-box">
+
+            <div class="owner-ballot-title">
+              <strong>
+                Mon bulletin
+              </strong>
+
+              <span>
+                ${escapeHtml(helpText)}
+              </span>
+            </div>
+
+            <div class="vote-options-list">
+              ${optionsHtml}
+            </div>
+
+            ${currentBallotHtml}
+
+            <div class="owner-ballot-actions">
+
+              <div
+                id="ownerVoteMessage-${escapeHtml(vote.id)}"
+                class="vote-save-message"
+                aria-live="polite"
+              >
+              </div>
+
+              ${actionButtonHtml}
+
+            </div>
+
+            ${resultsHtml}
+
+          </div>
+        `;
+
+        list.appendChild(
+          card
+        );
+      }
+
+      document
+        .querySelectorAll(
+          "[data-save-owner-vote]"
+        )
+        .forEach(
+          button => {
+            button.addEventListener(
+              "click",
+              () => {
+                saveOwnerVote(
+                  button.dataset.saveOwnerVote,
+                  button
+                );
+              },
+            );
+          },
+        );
+
+      document
+        .querySelectorAll(
+          "[data-owner-vote-results]"
+        )
+        .forEach(
+          button => {
+            button.addEventListener(
+              "click",
+              () => {
+                toggleOwnerVoteResults(
+                  button.dataset.ownerVoteResults,
+                  button
+                );
+              },
+            );
+          },
+        );
+    }
+
+
+    async function saveOwnerVote(
+      voteId,
+      button,
+    ) {
+      if (
+        !currentOwnerAccountId
+      ) {
+        return;
+      }
+
+      const vote =
+        ownerVotes.find(
+          item =>
+            item.id === voteId
+        );
+
+      const existingBallot =
+        ownerVoteBallots.get(
+          voteId
+        ) || null;
+
+      if (
+        !vote ||
+        !canOwnerVote(
+          vote,
+          existingBallot
+        )
+      ) {
+        return;
+      }
+
+      const selectedOption =
+        document.querySelector(
+          `input[name="owner-vote-${voteId}"]:checked`
+        );
+
+      const message =
+        document.getElementById(
+          `ownerVoteMessage-${voteId}`
+        );
+
+      message.textContent =
+        "";
+
+      message.className =
+        "vote-save-message";
+
+      if (
+        !selectedOption
+      ) {
+        message.textContent =
+          "Choisissez une option avant de confirmer.";
+
+        message.className =
+          "vote-save-message error";
+
+        return;
+      }
+
+      const optionId =
+        selectedOption.value;
+
+      if (
+        existingBallot &&
+        existingBallot.option_id ===
+        optionId
+      ) {
+        message.textContent =
+          "Cette option est déjà votre choix actuel.";
+
+        message.className =
+          "vote-save-message success";
+
+        return;
+      }
+
+      if (
+        !existingBallot &&
+        !vote.allow_vote_change
+      ) {
+        const selectedLabel =
+          voteOptionLabel(
+            voteId,
+            optionId
+          );
+
+        const confirmed =
+          window.confirm(
+            `Confirmer définitivement votre vote « ${selectedLabel} » ? Après validation, il ne pourra plus être modifié.`
+          );
+
+        if (
+          !confirmed
+        ) {
+          return;
+        }
+      }
+
+      button.disabled =
+        true;
+
+      button.textContent =
+        "Enregistrement...";
+
+      let ballotData =
+        null;
+
+      let ballotError =
+        null;
+
+      if (
+        existingBallot
+      ) {
+        const result =
+          await supabaseClient
+            .from(
+              "owner_vote_ballots"
+            )
+            .update({
+              option_id:
+                optionId,
+            })
+            .eq(
+              "id",
+              existingBallot.id
+            )
+            .eq(
+              "owner_account_id",
+              currentOwnerAccountId
+            )
+            .select(
+              `
+              id,
+              vote_id,
+              owner_account_id,
+              option_id,
+              submitted_at,
+              updated_at
+              `
+            )
+            .maybeSingle();
+
+        ballotData =
+          result.data;
+
+        ballotError =
+          result.error;
+      }
+      else {
+        const result =
+          await supabaseClient
+            .from(
+              "owner_vote_ballots"
+            )
+            .insert({
+              vote_id:
+                voteId,
+
+              owner_account_id:
+                currentOwnerAccountId,
+
+              option_id:
+                optionId,
+            })
+            .select(
+              `
+              id,
+              vote_id,
+              owner_account_id,
+              option_id,
+              submitted_at,
+              updated_at
+              `
+            )
+            .maybeSingle();
+
+        ballotData =
+          result.data;
+
+        ballotError =
+          result.error;
+      }
+
+      if (
+        ballotError ||
+        !ballotData
+      ) {
+        console.error(
+          "Owner vote save error:",
+          ballotError
+        );
+
+        message.textContent =
+          ballotError?.message ||
+          "Impossible d'enregistrer votre vote.";
+
+        message.className =
+          "vote-save-message error";
+
+        button.disabled =
+          false;
+
+        button.textContent =
+          existingBallot
+            ? "Modifier mon vote"
+            : (
+              vote.allow_vote_change
+                ? "Enregistrer mon vote"
+                : "Confirmer définitivement"
+            );
+
+        return;
+      }
+
+      ownerVoteBallots.set(
+        voteId,
+        ballotData
+      );
+
+      ownerVoteResults.delete(
+        voteId
+      );
+
+      message.textContent =
+        vote.allow_vote_change
+          ? "Votre vote a été enregistré."
+          : "Votre vote définitif a été enregistré.";
+
+      message.className =
+        "vote-save-message success";
+
+      setTimeout(
+        () => {
+          renderVotes();
+        },
+        550
+      );
+    }
+
+
+    async function toggleOwnerVoteResults(
+      voteId,
+      button,
+    ) {
+      const container =
+        document.getElementById(
+          `ownerVoteResults-${voteId}`
+        );
+
+      if (
+        !container
+      ) {
+        return;
+      }
+
+      if (
+        !container.hidden
+      ) {
+        container.hidden =
+          true;
+
+        button.textContent =
+          "Voir les résultats";
+
+        return;
+      }
+
+      container.hidden =
+        false;
+
+      button.textContent =
+        "Masquer les résultats";
+
+      if (
+        ownerVoteResults.has(
+          voteId
+        )
+      ) {
+        renderOwnerVoteResults(
+          voteId,
+          container
+        );
+
+        return;
+      }
+
+      container.innerHTML =
+        "Chargement des résultats...";
+
+      const {
+        data,
+        error,
+      } =
+        await supabaseClient
+          .rpc(
+            "owner_get_residence_vote_results",
+            {
+              p_vote_id:
+                voteId,
+            }
+          );
+
+      if (
+        error
+      ) {
+        console.error(
+          "Owner vote results error:",
+          error
+        );
+
+        container.innerHTML =
+          `<div class="vote-save-message error">${escapeHtml(error.message || "Résultats indisponibles.")}</div>`;
+
+        return;
+      }
+
+      ownerVoteResults.set(
+        voteId,
+        data || {}
+      );
+
+      renderOwnerVoteResults(
+        voteId,
+        container
+      );
+    }
+
+
+    function renderOwnerVoteResults(
+      voteId,
+      container,
+    ) {
+      const data =
+        ownerVoteResults.get(
+          voteId
+        ) || {};
+
+      const options =
+        Array.isArray(
+          data.options
+        )
+          ? data.options
+          : [];
+
+      if (
+        options.length === 0
+      ) {
+        container.innerHTML =
+          '<div class="vote-save-message">Aucun résultat disponible.</div>';
+
+        return;
+      }
+
+      container.innerHTML =
+        options
+          .map(
+            option => {
+              const percentage =
+                Number(
+                  option.percentage ||
+                  0
+                );
+
+              const safePercentage =
+                Math.max(
+                  0,
+                  Math.min(
+                    100,
+                    percentage
+                  )
+                );
+
+              return `
+                <div class="owner-vote-result-row">
+
+                  <div class="owner-vote-result-head">
+                    <span>
+                      ${escapeHtml(option.label)}
+                    </span>
+
+                    <span>
+                      ${escapeHtml(option.votes ?? 0)} vote(s)
+                      ·
+                      ${escapeHtml(percentage.toFixed(2))} %
+                    </span>
+                  </div>
+
+                  <div class="owner-vote-result-bar">
+                    <span
+                      style="width:${safePercentage}%;"
+                    ></span>
+                  </div>
+
+                </div>
+              `;
+            }
+          )
+          .join(
+            ""
+          );
+    }
+
+
+    document
+      .getElementById(
+        "refreshVotesButton"
+      )
+      .addEventListener(
+        "click",
+        () => {
+          votesLoadedOnce =
+            false;
+
+          ownerVoteResults =
+            new Map();
+
+          loadVotes(
             true
           );
         },
