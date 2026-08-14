@@ -684,6 +684,312 @@
       font-weight: 900;
     }
 
+
+    /* ======================================== */
+    /* MEETINGS                                 */
+    /* ======================================== */
+
+    .meetings-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 16px;
+      padding: 15px 17px;
+      border: 1px solid var(--mg-border);
+      border-radius: 14px;
+      background: white;
+    }
+
+    .meetings-toolbar strong {
+      display: block;
+      color: var(--mg-green-950);
+      font-size: 13px;
+    }
+
+    .meetings-toolbar span {
+      display: block;
+      margin-top: 3px;
+      color: var(--mg-muted);
+      font-size: 10px;
+    }
+
+    .meetings-refresh {
+      min-height: 36px;
+      padding: 0 12px;
+      border: 1px solid #d6e1dc;
+      border-radius: 9px;
+      background: white;
+      color: var(--mg-green-800);
+      font-size: 10px;
+      font-weight: 850;
+    }
+
+    .owner-meetings-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .owner-meeting-card {
+      overflow: hidden;
+      border: 1px solid var(--mg-border);
+      border-radius: 17px;
+      background: white;
+      box-shadow:
+        0 8px 28px
+        rgba(15, 50, 40, 0.045);
+    }
+
+    .owner-meeting-card-top {
+      padding: 20px;
+      background:
+        linear-gradient(
+          145deg,
+          #ffffff,
+          #f8fbf9
+        );
+    }
+
+    .owner-meeting-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .owner-meeting-card h3 {
+      margin: 0;
+      color: var(--mg-green-950);
+      font-size: 17px;
+      line-height: 1.3;
+    }
+
+    .owner-meeting-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px 14px;
+      margin-top: 9px;
+      color: var(--mg-muted);
+      font-size: 10px;
+    }
+
+    .owner-meeting-description {
+      margin: 13px 0 0;
+      color: #5f756c;
+      font-size: 12px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .owner-meeting-status {
+      flex: 0 0 auto;
+      min-height: 27px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 9px;
+      border-radius: 999px;
+      font-size: 9px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .owner-meeting-status.published {
+      background: var(--mg-success-bg);
+      color: var(--mg-success);
+    }
+
+    .owner-meeting-status.closed {
+      background: #edf1f7;
+      color: #506787;
+    }
+
+    .owner-response-box {
+      padding: 18px 20px 20px;
+      border-top: 1px solid #e7eeea;
+      background: #fbfcfc;
+    }
+
+    .owner-response-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .owner-response-title strong {
+      color: var(--mg-green-950);
+      font-size: 12px;
+    }
+
+    .owner-response-title span {
+      color: var(--mg-muted);
+      font-size: 9px;
+    }
+
+    .attendance-options {
+      display: grid;
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .attendance-option {
+      position: relative;
+      display: block;
+    }
+
+    .attendance-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .attendance-option span {
+      min-height: 43px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 10px;
+      border: 1px solid #d7e2dd;
+      border-radius: 10px;
+      background: white;
+      color: #52675e;
+      font-size: 10px;
+      font-weight: 850;
+      text-align: center;
+      transition:
+        border-color 0.15s,
+        background 0.15s,
+        color 0.15s;
+    }
+
+    .attendance-option input:checked + span {
+      border-color: var(--mg-green-700);
+      background: var(--mg-green-100);
+      color: var(--mg-green-800);
+    }
+
+    .attendance-option input:disabled + span {
+      opacity: 0.58;
+      cursor: not-allowed;
+    }
+
+    .meeting-comment {
+      width: 100%;
+      min-height: 86px;
+      margin-top: 10px;
+      padding: 11px 12px;
+      border: 1px solid #d7e2dd;
+      border-radius: 10px;
+      background: white;
+      color: var(--mg-text);
+      font: inherit;
+      font-size: 11px;
+      line-height: 1.5;
+      resize: vertical;
+      outline: none;
+    }
+
+    .meeting-comment:focus {
+      border-color: var(--mg-green-700);
+      box-shadow:
+        0 0 0 3px
+        rgba(33, 102, 83, 0.10);
+    }
+
+    .meeting-comment:disabled {
+      background: #f3f5f4;
+      color: #7f8e88;
+    }
+
+    .owner-response-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 11px;
+    }
+
+    .meeting-response-message {
+      min-height: 18px;
+      color: var(--mg-muted);
+      font-size: 10px;
+      line-height: 1.45;
+    }
+
+    .meeting-response-message.success {
+      color: var(--mg-success);
+      font-weight: 800;
+    }
+
+    .meeting-response-message.error {
+      color: #b42318;
+      font-weight: 800;
+    }
+
+    .save-meeting-response {
+      flex: 0 0 auto;
+      min-height: 40px;
+      padding: 0 14px;
+      border: 0;
+      border-radius: 9px;
+      background: var(--mg-green-800);
+      color: white;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .save-meeting-response:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .meeting-current-response {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 9px;
+      background: var(--mg-green-50);
+      color: #52675e;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    .meeting-current-response strong {
+      color: var(--mg-green-800);
+    }
+
+    .meetings-state {
+      padding: 38px 24px;
+      border: 1px dashed #cfdcd6;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.76);
+      text-align: center;
+      color: var(--mg-muted);
+      font-size: 11px;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 620px) {
+      .owner-meeting-head,
+      .owner-response-title,
+      .owner-response-actions,
+      .meetings-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .attendance-options {
+        grid-template-columns: 1fr;
+      }
+
+      .save-meeting-response,
+      .meetings-refresh {
+        width: 100%;
+      }
+    }
+
+
     /* ======================================== */
     /* EMPTY MODULES                            */
     /* ======================================== */
@@ -1262,8 +1568,11 @@
                     </small>
                   </div>
 
-                  <span class="module-row-status">
-                    À connecter
+                  <span
+                    class="module-row-status"
+                    style="color:#197149;font-weight:900;"
+                  >
+                    Actif
                   </span>
 
                 </div>
@@ -1383,41 +1692,64 @@
               </h2>
 
               <p>
-                Consultez les prochaines réunions,
-                convocations et historiques.
+                Consultez les réunions publiées,
+                répondez à votre convocation et retrouvez
+                l'historique des réunions clôturées.
               </p>
             </div>
           </div>
 
-          <div class="module-hero">
+          <div class="meetings-toolbar">
 
-            <div class="module-hero-icon">
-              R
+            <div>
+              <strong>
+                Mes réunions
+              </strong>
+
+              <span>
+                Seules les réunions publiées ou clôturées
+                auxquelles votre compte a accès sont affichées.
+              </span>
             </div>
 
-            <h3>
-              Module Réunions
-            </h3>
-
-            <p>
-              L'interface est prête. La prochaine étape
-              consistera à connecter ce module aux réunions
-              créées par l'administration.
-            </p>
+            <button
+              id="refreshMeetingsButton"
+              class="meetings-refresh"
+              type="button"
+            >
+              Actualiser
+            </button>
 
           </div>
 
-          <div class="empty-state">
+          <div
+            id="meetingsLoadingState"
+            class="meetings-state"
+          >
+            Chargement des réunions...
+          </div>
 
-            <strong>
-              Aucune réunion chargée pour le moment
-            </strong>
+          <div
+            id="meetingsEmptyState"
+            class="meetings-state"
+            hidden
+          >
+            Aucune réunion publiée pour le moment.
+          </div>
 
-            <p>
-              Nous connecterons ici les convocations,
-              dates, réponses de présence et comptes rendus.
-            </p>
+          <div
+            id="meetingsErrorState"
+            class="meetings-state"
+            hidden
+          >
+            Impossible de charger les réunions.
+          </div>
 
+          <div
+            id="ownerMeetingsList"
+            class="owner-meetings-list"
+            hidden
+          >
           </div>
 
         </section>
@@ -1792,6 +2124,19 @@
       );
 
 
+    let currentOwnerAccountId =
+      null;
+
+    let ownerMeetings =
+      [];
+
+    let ownerMeetingResponses =
+      new Map();
+
+    let meetingsLoadedOnce =
+      false;
+
+
     const SECTION_NAMES = {
       overview: {
         label: "MIRADOR GOLF 1",
@@ -1880,6 +2225,13 @@
       sidebar.classList.remove(
         "open"
       );
+
+      if (
+        sectionName === "meetings" &&
+        currentOwnerAccountId
+      ) {
+        loadMeetings();
+      }
 
       window.scrollTo({
         top: 0,
@@ -2092,6 +2444,892 @@
     }
 
 
+
+    function escapeHtml(
+      value,
+    ) {
+      return String(
+        value ?? ""
+      )
+        .replaceAll(
+          "&",
+          "&amp;"
+        )
+        .replaceAll(
+          "<",
+          "&lt;"
+        )
+        .replaceAll(
+          ">",
+          "&gt;"
+        )
+        .replaceAll(
+          '"',
+          "&quot;"
+        )
+        .replaceAll(
+          "'",
+          "&#039;"
+        );
+    }
+
+
+    function formatMeetingDate(
+      value,
+    ) {
+      if (
+        !value
+      ) {
+        return "Date non précisée";
+      }
+
+      const date =
+        new Date(
+          value
+        );
+
+      if (
+        Number.isNaN(
+          date.getTime()
+        )
+      ) {
+        return "Date non précisée";
+      }
+
+      return date
+        .toLocaleString(
+          "fr-FR",
+          {
+            dateStyle:
+              "medium",
+
+            timeStyle:
+              "short",
+          }
+        );
+    }
+
+
+    function attendanceLabel(
+      value,
+    ) {
+      switch (
+        value
+      ) {
+        case "present":
+          return "Présent";
+
+        case "absent":
+          return "Absent";
+
+        case "maybe":
+          return "Peut-être";
+
+        default:
+          return "Aucune réponse";
+      }
+    }
+
+
+    function canRespondToMeeting(
+      meeting,
+    ) {
+      if (
+        meeting.status !==
+        "published"
+      ) {
+        return false;
+      }
+
+      const now =
+        Date.now();
+
+      if (
+        meeting.response_deadline
+      ) {
+        const deadline =
+          new Date(
+            meeting.response_deadline
+          )
+            .getTime();
+
+        if (
+          !Number.isNaN(
+            deadline
+          ) &&
+          deadline <= now
+        ) {
+          return false;
+        }
+      }
+      else if (
+        meeting.meeting_date
+      ) {
+        const meetingTime =
+          new Date(
+            meeting.meeting_date
+          )
+            .getTime();
+
+        if (
+          !Number.isNaN(
+            meetingTime
+          ) &&
+          meetingTime <= now
+        ) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+
+    async function loadMeetings(
+      force = false,
+    ) {
+      if (
+        !currentOwnerAccountId
+      ) {
+        return;
+      }
+
+      if (
+        meetingsLoadedOnce &&
+        !force
+      ) {
+        renderMeetings();
+        return;
+      }
+
+      const loadingState =
+        document.getElementById(
+          "meetingsLoadingState"
+        );
+
+      const emptyState =
+        document.getElementById(
+          "meetingsEmptyState"
+        );
+
+      const errorState =
+        document.getElementById(
+          "meetingsErrorState"
+        );
+
+      const list =
+        document.getElementById(
+          "ownerMeetingsList"
+        );
+
+      loadingState.hidden =
+        false;
+
+      emptyState.hidden =
+        true;
+
+      errorState.hidden =
+        true;
+
+      list.hidden =
+        true;
+
+      const {
+        data: meetingsData,
+        error: meetingsError,
+      } =
+        await supabaseClient
+          .from(
+            "meetings"
+          )
+          .select(
+            `
+            id,
+            title,
+            description,
+            location,
+            meeting_date,
+            response_deadline,
+            status,
+            published_at,
+            closed_at
+            `
+          )
+          .in(
+            "status",
+            [
+              "published",
+              "closed",
+            ]
+          )
+          .order(
+            "meeting_date",
+            {
+              ascending:
+                false,
+
+              nullsFirst:
+                false,
+            }
+          );
+
+      if (
+        meetingsError
+      ) {
+        console.error(
+          "Owner meetings loading error:",
+          meetingsError
+        );
+
+        loadingState.hidden =
+          true;
+
+        errorState.hidden =
+          false;
+
+        return;
+      }
+
+      ownerMeetings =
+        Array.isArray(
+          meetingsData
+        )
+          ? meetingsData
+          : [];
+
+      const {
+        data: responsesData,
+        error: responsesError,
+      } =
+        await supabaseClient
+          .from(
+            "owner_meeting_responses"
+          )
+          .select(
+            `
+            id,
+            meeting_id,
+            owner_account_id,
+            attendance,
+            comment,
+            responded_at,
+            updated_at
+            `
+          )
+          .eq(
+            "owner_account_id",
+            currentOwnerAccountId
+          );
+
+      if (
+        responsesError
+      ) {
+        console.error(
+          "Owner meeting responses loading error:",
+          responsesError
+        );
+
+        loadingState.hidden =
+          true;
+
+        errorState.hidden =
+          false;
+
+        return;
+      }
+
+      ownerMeetingResponses =
+        new Map(
+          (
+            responsesData ||
+            []
+          )
+            .map(
+              response => [
+                response.meeting_id,
+                response,
+              ]
+            )
+        );
+
+      meetingsLoadedOnce =
+        true;
+
+      loadingState.hidden =
+        true;
+
+      renderMeetings();
+    }
+
+
+    function renderMeetings() {
+      const list =
+        document.getElementById(
+          "ownerMeetingsList"
+        );
+
+      const emptyState =
+        document.getElementById(
+          "meetingsEmptyState"
+        );
+
+      const errorState =
+        document.getElementById(
+          "meetingsErrorState"
+        );
+
+      list.innerHTML =
+        "";
+
+      errorState.hidden =
+        true;
+
+      if (
+        ownerMeetings.length ===
+        0
+      ) {
+        emptyState.hidden =
+          false;
+
+        list.hidden =
+          true;
+
+        return;
+      }
+
+      emptyState.hidden =
+        true;
+
+      list.hidden =
+        false;
+
+      const sortedMeetings =
+        [
+          ...ownerMeetings,
+        ]
+          .sort(
+            (
+              first,
+              second,
+            ) => {
+              if (
+                first.status !==
+                second.status
+              ) {
+                if (
+                  first.status ===
+                  "published"
+                ) {
+                  return -1;
+                }
+
+                if (
+                  second.status ===
+                  "published"
+                ) {
+                  return 1;
+                }
+              }
+
+              const firstTime =
+                first.meeting_date
+                  ? new Date(
+                      first.meeting_date
+                    )
+                      .getTime()
+                  : 0;
+
+              const secondTime =
+                second.meeting_date
+                  ? new Date(
+                      second.meeting_date
+                    )
+                      .getTime()
+                  : 0;
+
+              return secondTime -
+                firstTime;
+            }
+          );
+
+      for (
+        const meeting
+        of sortedMeetings
+      ) {
+        const response =
+          ownerMeetingResponses
+            .get(
+              meeting.id
+            ) ||
+          null;
+
+        const canRespond =
+          canRespondToMeeting(
+            meeting
+          );
+
+        const deadlineText =
+          meeting.response_deadline
+            ? formatMeetingDate(
+                meeting.response_deadline
+              )
+            : "Aucune date limite spécifique";
+
+        const statusLabel =
+          meeting.status ===
+          "closed"
+            ? "Clôturée"
+            : "Publiée";
+
+        const checkedPresent =
+          response?.attendance ===
+          "present"
+            ? "checked"
+            : "";
+
+        const checkedAbsent =
+          response?.attendance ===
+          "absent"
+            ? "checked"
+            : "";
+
+        const checkedMaybe =
+          response?.attendance ===
+          "maybe"
+            ? "checked"
+            : "";
+
+        const disabled =
+          canRespond
+            ? ""
+            : "disabled";
+
+        const currentResponseHtml =
+          response
+            ? `
+              <div class="meeting-current-response">
+                Votre réponse actuelle :
+                <strong>
+                  ${escapeHtml(attendanceLabel(response.attendance))}
+                </strong>
+                ${
+                  response.updated_at
+                    ? ` · mise à jour le ${escapeHtml(formatMeetingDate(response.updated_at))}`
+                    : ""
+                }
+              </div>
+            `
+            : "";
+
+        const card =
+          document.createElement(
+            "article"
+          );
+
+        card.className =
+          "owner-meeting-card";
+
+        card.innerHTML = `
+          <div class="owner-meeting-card-top">
+
+            <div class="owner-meeting-head">
+
+              <div>
+                <h3>
+                  ${escapeHtml(meeting.title)}
+                </h3>
+
+                <div class="owner-meeting-meta">
+                  <span>
+                    📅 ${escapeHtml(formatMeetingDate(meeting.meeting_date))}
+                  </span>
+
+                  <span>
+                    📍 ${escapeHtml(meeting.location || "Lieu non précisé")}
+                  </span>
+
+                  <span>
+                    ⏳ Réponse avant : ${escapeHtml(deadlineText)}
+                  </span>
+                </div>
+              </div>
+
+              <span class="owner-meeting-status ${escapeHtml(meeting.status)}">
+                ${escapeHtml(statusLabel)}
+              </span>
+
+            </div>
+
+            ${
+              meeting.description
+                ? `
+                  <p class="owner-meeting-description">
+                    ${escapeHtml(meeting.description)}
+                  </p>
+                `
+                : ""
+            }
+
+          </div>
+
+          <div class="owner-response-box">
+
+            <div class="owner-response-title">
+              <strong>
+                Ma réponse
+              </strong>
+
+              <span>
+                ${
+                  canRespond
+                    ? "Vous pouvez modifier votre réponse jusqu'à la date limite."
+                    : (
+                      meeting.status === "closed"
+                        ? "Cette réunion est clôturée."
+                        : "La période de réponse est terminée."
+                    )
+                }
+              </span>
+            </div>
+
+            <div class="attendance-options">
+
+              <label class="attendance-option">
+                <input
+                  type="radio"
+                  name="attendance-${escapeHtml(meeting.id)}"
+                  value="present"
+                  ${checkedPresent}
+                  ${disabled}
+                >
+                <span>
+                  ✓ Présent
+                </span>
+              </label>
+
+              <label class="attendance-option">
+                <input
+                  type="radio"
+                  name="attendance-${escapeHtml(meeting.id)}"
+                  value="absent"
+                  ${checkedAbsent}
+                  ${disabled}
+                >
+                <span>
+                  ✕ Absent
+                </span>
+              </label>
+
+              <label class="attendance-option">
+                <input
+                  type="radio"
+                  name="attendance-${escapeHtml(meeting.id)}"
+                  value="maybe"
+                  ${checkedMaybe}
+                  ${disabled}
+                >
+                <span>
+                  ? Peut-être
+                </span>
+              </label>
+
+            </div>
+
+            <textarea
+              id="meetingComment-${escapeHtml(meeting.id)}"
+              class="meeting-comment"
+              maxlength="500"
+              placeholder="Commentaire facultatif"
+              ${disabled}
+            >${escapeHtml(response?.comment || "")}</textarea>
+
+            ${currentResponseHtml}
+
+            <div class="owner-response-actions">
+
+              <div
+                id="meetingMessage-${escapeHtml(meeting.id)}"
+                class="meeting-response-message"
+                aria-live="polite"
+              >
+              </div>
+
+              <button
+                class="save-meeting-response"
+                type="button"
+                data-save-meeting-response="${escapeHtml(meeting.id)}"
+                ${disabled}
+              >
+                ${
+                  response
+                    ? "Modifier ma réponse"
+                    : "Enregistrer ma réponse"
+                }
+              </button>
+
+            </div>
+
+          </div>
+        `;
+
+        list.appendChild(
+          card
+        );
+      }
+
+      document
+        .querySelectorAll(
+          "[data-save-meeting-response]"
+        )
+        .forEach(
+          button => {
+            button.addEventListener(
+              "click",
+              () => {
+                saveMeetingResponse(
+                  button.dataset
+                    .saveMeetingResponse,
+                  button
+                );
+              },
+            );
+          },
+        );
+    }
+
+
+    async function saveMeetingResponse(
+      meetingId,
+      button,
+    ) {
+      if (
+        !currentOwnerAccountId
+      ) {
+        return;
+      }
+
+      const meeting =
+        ownerMeetings.find(
+          item =>
+            item.id ===
+            meetingId
+        );
+
+      if (
+        !meeting ||
+        !canRespondToMeeting(
+          meeting
+        )
+      ) {
+        return;
+      }
+
+      const selectedAttendance =
+        document.querySelector(
+          `input[name="attendance-${meetingId}"]:checked`
+        );
+
+      const message =
+        document.getElementById(
+          `meetingMessage-${meetingId}`
+        );
+
+      const commentInput =
+        document.getElementById(
+          `meetingComment-${meetingId}`
+        );
+
+      message.textContent =
+        "";
+
+      message.className =
+        "meeting-response-message";
+
+      if (
+        !selectedAttendance
+      ) {
+        message.textContent =
+          "Choisissez Présent, Absent ou Peut-être.";
+
+        message.className =
+          "meeting-response-message error";
+
+        return;
+      }
+
+      button.disabled =
+        true;
+
+      button.textContent =
+        "Enregistrement...";
+
+      const attendance =
+        selectedAttendance.value;
+
+      const comment =
+        String(
+          commentInput?.value ||
+          ""
+        )
+          .trim();
+
+      const existingResponse =
+        ownerMeetingResponses
+          .get(
+            meetingId
+          ) ||
+        null;
+
+      let responseData =
+        null;
+
+      let responseError =
+        null;
+
+      if (
+        existingResponse
+      ) {
+        const result =
+          await supabaseClient
+            .from(
+              "owner_meeting_responses"
+            )
+            .update({
+              attendance,
+              comment:
+                comment ||
+                null,
+            })
+            .eq(
+              "id",
+              existingResponse.id
+            )
+            .eq(
+              "owner_account_id",
+              currentOwnerAccountId
+            )
+            .select(
+              `
+              id,
+              meeting_id,
+              owner_account_id,
+              attendance,
+              comment,
+              responded_at,
+              updated_at
+              `
+            )
+            .maybeSingle();
+
+        responseData =
+          result.data;
+
+        responseError =
+          result.error;
+      }
+      else {
+        const result =
+          await supabaseClient
+            .from(
+              "owner_meeting_responses"
+            )
+            .insert({
+              meeting_id:
+                meetingId,
+
+              owner_account_id:
+                currentOwnerAccountId,
+
+              attendance,
+
+              comment:
+                comment ||
+                null,
+            })
+            .select(
+              `
+              id,
+              meeting_id,
+              owner_account_id,
+              attendance,
+              comment,
+              responded_at,
+              updated_at
+              `
+            )
+            .maybeSingle();
+
+        responseData =
+          result.data;
+
+        responseError =
+          result.error;
+      }
+
+      if (
+        responseError ||
+        !responseData
+      ) {
+        console.error(
+          "Meeting response save error:",
+          responseError
+        );
+
+        message.textContent =
+          responseError?.message ||
+          "Impossible d'enregistrer votre réponse.";
+
+        message.className =
+          "meeting-response-message error";
+
+        button.disabled =
+          false;
+
+        button.textContent =
+          existingResponse
+            ? "Modifier ma réponse"
+            : "Enregistrer ma réponse";
+
+        return;
+      }
+
+      ownerMeetingResponses.set(
+        meetingId,
+        responseData
+      );
+
+      message.textContent =
+        "Votre réponse a été enregistrée.";
+
+      message.className =
+        "meeting-response-message success";
+
+      setTimeout(
+        () => {
+          renderMeetings();
+        },
+        500
+      );
+    }
+
+
+    document
+      .getElementById(
+        "refreshMeetingsButton"
+      )
+      .addEventListener(
+        "click",
+        () => {
+          meetingsLoadedOnce =
+            false;
+
+          loadMeetings(
+            true
+          );
+        },
+      );
+
+
     async function loadOwnerSpace() {
       try {
         const {
@@ -2161,6 +3399,10 @@
 
           return;
         }
+
+
+        currentOwnerAccountId =
+          owner.id;
 
 
         const {
