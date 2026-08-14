@@ -33,10 +33,20 @@ const PUBLIC_APP_URL = (
     "https://rberr240.github.io/residence-proprietaires/"
 ).replace(/\/+$/, "");
 
-const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") ?? "";
+// ============================================================
+// EMAIL — BREVO
+// ============================================================
 
-const RESEND_FROM_EMAIL = Deno.env.get("RESEND_FROM_EMAIL") ??
-  "Mirador Golf 1 <notifications@example.com>";
+const BREVO_API_KEY = Deno.env.get("BREVO_API_KEY") ?? "";
+
+const BREVO_SENDER_NAME = Deno.env.get("BREVO_SENDER_NAME") ??
+  "Résidence Mirador Golf 1";
+
+const BREVO_SENDER_EMAIL = Deno.env.get("BREVO_SENDER_EMAIL") ?? "";
+
+// ============================================================
+// WHATSAPP — TWILIO
+// ============================================================
 
 const TWILIO_ACCOUNT_SID = Deno.env.get("TWILIO_ACCOUNT_SID") ?? "";
 
@@ -55,6 +65,10 @@ const TWILIO_WHATSAPP_ALLOW_FREEFORM = (
   Deno.env.get("TWILIO_WHATSAPP_ALLOW_FREEFORM") ??
     "false"
 ).toLowerCase() === "true";
+
+// ============================================================
+// PUSH — ONESIGNAL
+// ============================================================
 
 const ONESIGNAL_APP_ID = Deno.env.get("ONESIGNAL_APP_ID") ?? "";
 
@@ -115,7 +129,12 @@ function truncate(
     return text;
   }
 
-  return `${text.slice(0, maxLength - 1)}…`;
+  return `${
+    text.slice(
+      0,
+      maxLength - 1,
+    )
+  }…`;
 }
 
 function normalizeWhatsAppNumber(
@@ -123,14 +142,24 @@ function normalizeWhatsAppNumber(
 ): string {
   let value = rawValue
     .trim()
-    .replace(/^whatsapp:/i, "")
-    .replace(/[^\d+]/g, "");
+    .replace(
+      /^whatsapp:/i,
+      "",
+    )
+    .replace(
+      /[^\d+]/g,
+      "",
+    );
 
-  if (value.startsWith("00")) {
+  if (
+    value.startsWith("00")
+  ) {
     value = `+${value.slice(2)}`;
   }
 
-  if (value.startsWith("0")) {
+  if (
+    value.startsWith("0")
+  ) {
     value = `+212${value.slice(1)}`;
   } else if (
     value.startsWith("212")
@@ -138,11 +167,17 @@ function normalizeWhatsAppNumber(
     value = `+${value}`;
   }
 
-  if (!value.startsWith("+")) {
+  if (
+    !value.startsWith("+")
+  ) {
     value = `+${value}`;
   }
 
-  if (!/^\+\d{8,15}$/.test(value)) {
+  if (
+    !/^\+\d{8,15}$/.test(
+      value,
+    )
+  ) {
     throw new Error(
       "Numéro WhatsApp invalide.",
     );
@@ -158,14 +193,18 @@ function actionUrl(
     `${PUBLIC_APP_URL}/espace-proprietaire.html`,
   );
 
-  if (event.action_section) {
+  if (
+    event.action_section
+  ) {
     url.searchParams.set(
       "section",
       event.action_section,
     );
   }
 
-  if (event.action_entity_id) {
+  if (
+    event.action_entity_id
+  ) {
     url.searchParams.set(
       "entity",
       event.action_entity_id,
@@ -204,7 +243,9 @@ async function fetchNotificationEvent(
     data: ownerNotification,
     error: ownerNotificationError,
   } = await supabaseAdmin
-    .from("owner_notifications")
+    .from(
+      "owner_notifications",
+    )
     .select(
       "id,event_id,owner_account_id",
     )
@@ -228,17 +269,19 @@ async function fetchNotificationEvent(
     data: event,
     error: eventError,
   } = await supabaseAdmin
-    .from("notification_events")
+    .from(
+      "notification_events",
+    )
     .select(
       `
-      id,
-      title,
-      body,
-      priority,
-      action_section,
-      action_entity_id,
-      metadata
-      `,
+        id,
+        title,
+        body,
+        priority,
+        action_section,
+        action_entity_id,
+        metadata
+        `,
     )
     .eq(
       "id",
@@ -246,7 +289,10 @@ async function fetchNotificationEvent(
     )
     .single();
 
-  if (eventError || !event) {
+  if (
+    eventError ||
+    !event
+  ) {
     throw new Error(
       eventError?.message ??
         "Événement de notification introuvable.",
@@ -256,23 +302,33 @@ async function fetchNotificationEvent(
   return event as NotificationEvent;
 }
 
+// ============================================================
+// EMAIL — BREVO TRANSACTIONAL API
+// ============================================================
+
 async function sendEmail(
   delivery: Delivery,
   event: NotificationEvent,
 ): Promise<string> {
-  if (!RESEND_API_KEY) {
+  if (
+    !BREVO_API_KEY
+  ) {
     throw new Error(
-      "RESEND_API_KEY non configurée.",
+      "BREVO_API_KEY non configurée.",
     );
   }
 
-  if (!RESEND_FROM_EMAIL) {
+  if (
+    !BREVO_SENDER_EMAIL
+  ) {
     throw new Error(
-      "RESEND_FROM_EMAIL non configuré.",
+      "BREVO_SENDER_EMAIL non configuré.",
     );
   }
 
-  const portalUrl = actionUrl(event);
+  const portalUrl = actionUrl(
+    event,
+  );
 
   const html = `
     <!doctype html>
@@ -313,7 +369,11 @@ async function sendEmail(
                   font-size:18px;
                 "
               >
-                Mirador Golf 1
+                ${
+    escapeHtml(
+      BREVO_SENDER_NAME,
+    )
+  }
               </strong>
             </div>
 
@@ -329,7 +389,11 @@ async function sendEmail(
                   line-height:1.3;
                 "
               >
-                ${escapeHtml(event.title)}
+                ${
+    escapeHtml(
+      event.title,
+    )
+  }
               </h1>
 
               <p
@@ -340,11 +404,19 @@ async function sendEmail(
                   font-size:15px;
                 "
               >
-                ${escapeHtml(event.body)}
+                ${
+    escapeHtml(
+      event.body,
+    )
+  }
               </p>
 
               <a
-                href="${escapeHtml(portalUrl)}"
+                href="${
+    escapeHtml(
+      portalUrl,
+    )
+  }"
                 style="
                   display:inline-block;
                   margin-top:22px;
@@ -378,21 +450,29 @@ async function sendEmail(
   `;
 
   const response = await fetch(
-    "https://api.resend.com/emails",
+    "https://api.brevo.com/v3/smtp/email",
     {
       method: "POST",
+
       headers: {
-        authorization: `Bearer ${RESEND_API_KEY}`,
+        accept: "application/json",
+
+        "api-key": BREVO_API_KEY,
 
         "content-type": "application/json",
-
-        "idempotency-key": `mirador-${delivery.id}`,
       },
+
       body: JSON.stringify({
-        from: RESEND_FROM_EMAIL,
+        sender: {
+          name: BREVO_SENDER_NAME,
+
+          email: BREVO_SENDER_EMAIL,
+        },
 
         to: [
-          delivery.destination,
+          {
+            email: delivery.destination,
+          },
         ],
 
         subject: truncate(
@@ -400,9 +480,12 @@ async function sendEmail(
           180,
         ),
 
-        text: `${event.title}\n\n${event.body}\n\n${portalUrl}`,
+        htmlContent: html,
 
-        html,
+        tags: [
+          "mirador-golf-1",
+          "transactional-notification",
+        ],
       }),
     },
   );
@@ -413,37 +496,52 @@ async function sendEmail(
       () => ({}),
     );
 
-  if (!response.ok) {
+  if (
+    !response.ok
+  ) {
     throw new Error(
-      `Resend ${response.status}: ${
+      `Brevo ${response.status}: ${
         payload?.message ??
-          JSON.stringify(payload)
+          payload?.code ??
+          JSON.stringify(
+            payload,
+          )
       }`,
     );
   }
 
-  if (!payload?.id) {
+  if (
+    !payload?.messageId
+  ) {
     throw new Error(
-      "Resend n'a retourné aucun ID.",
+      "Brevo n'a retourné aucun messageId.",
     );
   }
 
   return String(
-    payload.id,
+    payload.messageId,
   );
 }
+
+// ============================================================
+// WHATSAPP — TWILIO
+// ============================================================
 
 async function sendWhatsApp(
   delivery: Delivery,
   event: NotificationEvent,
 ): Promise<string> {
-  if (!TWILIO_ACCOUNT_SID) {
+  if (
+    !TWILIO_ACCOUNT_SID
+  ) {
     throw new Error(
       "TWILIO_ACCOUNT_SID non configuré.",
     );
   }
 
-  if (!TWILIO_WHATSAPP_FROM) {
+  if (
+    !TWILIO_WHATSAPP_FROM
+  ) {
     throw new Error(
       "TWILIO_WHATSAPP_FROM non configuré.",
     );
@@ -455,7 +553,9 @@ async function sendWhatsApp(
   const authPassword = TWILIO_API_KEY_SECRET ||
     TWILIO_AUTH_TOKEN;
 
-  if (!authPassword) {
+  if (
+    !authPassword
+  ) {
     throw new Error(
       "Identifiants Twilio incomplets.",
     );
@@ -469,7 +569,9 @@ async function sendWhatsApp(
     TWILIO_WHATSAPP_FROM,
   );
 
-  const portalUrl = actionUrl(event);
+  const portalUrl = actionUrl(
+    event,
+  );
 
   const form = new URLSearchParams();
 
@@ -530,11 +632,13 @@ async function sendWhatsApp(
     `https://api.twilio.com/2010-04-01/Accounts/${TWILIO_ACCOUNT_SID}/Messages.json`,
     {
       method: "POST",
+
       headers: {
         authorization: `Basic ${auth}`,
 
         "content-type": "application/x-www-form-urlencoded",
       },
+
       body: form.toString(),
     },
   );
@@ -545,16 +649,22 @@ async function sendWhatsApp(
       () => ({}),
     );
 
-  if (!response.ok) {
+  if (
+    !response.ok
+  ) {
     throw new Error(
       `Twilio ${response.status}: ${
         payload?.message ??
-          JSON.stringify(payload)
+          JSON.stringify(
+            payload,
+          )
       }`,
     );
   }
 
-  if (!payload?.sid) {
+  if (
+    !payload?.sid
+  ) {
     throw new Error(
       "Twilio n'a retourné aucun SID.",
     );
@@ -565,12 +675,20 @@ async function sendWhatsApp(
   );
 }
 
+// ============================================================
+// PUSH — ONESIGNAL
+// ============================================================
+
 async function sendPush(
   delivery: Delivery,
   event: NotificationEvent,
 ): Promise<{
-  status: "sent" | "skipped";
-  providerMessageId: string | null;
+  status:
+    | "sent"
+    | "skipped";
+  providerMessageId:
+    | string
+    | null;
 }> {
   if (
     !ONESIGNAL_APP_ID ||
@@ -581,17 +699,21 @@ async function sendPush(
     );
   }
 
-  const portalUrl = actionUrl(event);
+  const portalUrl = actionUrl(
+    event,
+  );
 
   const response = await fetch(
     "https://api.onesignal.com/notifications?c=push",
     {
       method: "POST",
+
       headers: {
         authorization: `Key ${ONESIGNAL_API_KEY}`,
 
         "content-type": "application/json",
       },
+
       body: JSON.stringify({
         app_id: ONESIGNAL_APP_ID,
 
@@ -646,16 +768,22 @@ async function sendPush(
       () => ({}),
     );
 
-  if (!response.ok) {
+  if (
+    !response.ok
+  ) {
     throw new Error(
       `OneSignal ${response.status}: ${
         payload?.errors ??
-          JSON.stringify(payload)
+          JSON.stringify(
+            payload,
+          )
       }`,
     );
   }
 
-  if (!payload?.id) {
+  if (
+    !payload?.id
+  ) {
     return {
       status: "skipped",
 
@@ -674,7 +802,10 @@ async function sendPush(
 
 async function createAttempt(
   delivery: Delivery,
-): Promise<string | null> {
+): Promise<
+  | string
+  | null
+> {
   const {
     data,
     error,
@@ -691,12 +822,17 @@ async function createAttempt(
 
       status: "processing",
 
-      started_at: new Date().toISOString(),
+      started_at: new Date()
+        .toISOString(),
     })
-    .select("id")
+    .select(
+      "id",
+    )
     .single();
 
-  if (error) {
+  if (
+    error
+  ) {
     console.error(
       "Attempt insert failed:",
       error,
@@ -705,28 +841,41 @@ async function createAttempt(
     return null;
   }
 
-  return data?.id ?? null;
+  return data?.id ??
+    null;
 }
 
 async function finishAttempt(
-  attemptId: string | null,
+  attemptId:
+    | string
+    | null,
   values: {
     status:
       | "sent"
       | "delivered"
       | "failed"
       | "skipped";
-    httpStatus?: number | null;
-    providerMessageId?: string | null;
-    errorCode?: string | null;
-    errorMessage?: string | null;
+    httpStatus?:
+      | number
+      | null;
+    providerMessageId?:
+      | string
+      | null;
+    errorCode?:
+      | string
+      | null;
+    errorMessage?:
+      | string
+      | null;
     responseMetadata?: Record<
       string,
       unknown
     >;
   },
 ): Promise<void> {
-  if (!attemptId) {
+  if (
+    !attemptId
+  ) {
     return;
   }
 
@@ -754,14 +903,17 @@ async function finishAttempt(
       response_metadata: values.responseMetadata ??
         {},
 
-      completed_at: new Date().toISOString(),
+      completed_at: new Date()
+        .toISOString(),
     })
     .eq(
       "id",
       attemptId,
     );
 
-  if (error) {
+  if (
+    error
+  ) {
     console.error(
       "Attempt update failed:",
       error,
@@ -778,9 +930,15 @@ async function finishDelivery(
       | "failed"
       | "skipped"
       | "cancelled";
-    providerMessageId?: string | null;
-    lastError?: string | null;
-    nextAttemptAt?: string | null;
+    providerMessageId?:
+      | string
+      | null;
+    lastError?:
+      | string
+      | null;
+    nextAttemptAt?:
+      | string
+      | null;
   },
 ): Promise<void> {
   const {
@@ -804,7 +962,9 @@ async function finishDelivery(
       },
     );
 
-  if (error) {
+  if (
+    error
+  ) {
     throw new Error(
       `Impossible de finaliser la livraison: ${error.message}`,
     );
@@ -945,7 +1105,9 @@ async function processDelivery(
       `Canal non supporté: ${delivery.channel}`,
     );
   } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
+    const message = error instanceof Error ? error.message : String(
+      error,
+    );
 
     await finishAttempt(
       attemptId,
@@ -1000,7 +1162,9 @@ Deno.serve(
       );
     }
 
-    if (!WORKER_SECRET) {
+    if (
+      !WORKER_SECRET
+    ) {
       return jsonResponse(
         {
           error: "NOTIFICATION_WORKER_SECRET non configuré.",
@@ -1056,7 +1220,9 @@ Deno.serve(
         "service_requeue_stale_notification_deliveries",
       );
 
-    if (staleError) {
+    if (
+      staleError
+    ) {
       console.error(
         "Stale requeue error:",
         staleError,
@@ -1074,7 +1240,9 @@ Deno.serve(
         },
       );
 
-    if (claimError) {
+    if (
+      claimError
+    ) {
       return jsonResponse(
         {
           error: claimError.message,
@@ -1108,8 +1276,8 @@ Deno.serve(
       error?: string;
     }> = [];
 
-    // Traitement séquentiel pour rester prévisible et
-    // limiter la pression sur les providers.
+    // Traitement séquentiel :
+    // prévisible et plus doux pour les providers.
     for (
       const delivery of deliveries
     ) {
