@@ -1946,6 +1946,445 @@
     font-weight: 800;
 }
 
+
+/* ========================================= */
+/* ANNONCES V2                               */
+/* ========================================= */
+
+.announcements-panel {
+    background: white;
+    border: 1px solid #e1e8e5;
+    border-radius: 17px;
+    overflow: hidden;
+}
+
+.announcements-panel-top {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    border-bottom: 1px solid #e8eeeb;
+}
+
+.announcements-panel-top h2 {
+    margin: 0;
+    color: #123d32;
+    font-size: 20px;
+}
+
+.announcements-panel-top p {
+    margin: 5px 0 0;
+    color: #71847c;
+    font-size: 12px;
+}
+
+.create-announcement-button {
+    min-height: 42px;
+    padding: 0 15px;
+    border: 0;
+    border-radius: 10px;
+    background: #174b3d;
+    color: white;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.announcement-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    padding: 18px;
+    border-bottom: 1px solid #e8eeeb;
+    background: #f9fbfa;
+}
+
+.announcement-summary-card {
+    padding: 14px;
+    border: 1px solid #e3ebe7;
+    border-radius: 12px;
+    background: white;
+}
+
+.announcement-summary-card span {
+    display: block;
+    color: #7b8c85;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .5px;
+}
+
+.announcement-summary-card strong {
+    display: block;
+    margin-top: 5px;
+    color: #143e33;
+    font-size: 20px;
+}
+
+.announcements-list {
+    display: grid;
+    gap: 12px;
+    padding: 18px;
+}
+
+.announcements-loading,
+.announcements-empty {
+    padding: 38px 22px;
+    text-align: center;
+    color: #71847c;
+    font-size: 12px;
+}
+
+.announcement-card {
+    padding: 17px;
+    border: 1px solid #e3ebe7;
+    border-radius: 13px;
+    background: #fbfcfc;
+}
+
+.announcement-card.urgent {
+    border-color: #efc9c9;
+}
+
+.announcement-card.pinned {
+    box-shadow: inset 4px 0 0 #30735e;
+}
+
+.announcement-card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.announcement-card h3 {
+    margin: 0;
+    color: #143e33;
+    font-size: 16px;
+}
+
+.announcement-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px 13px;
+    margin-top: 8px;
+    color: #71847c;
+    font-size: 10px;
+}
+
+.announcement-summary-text {
+    margin: 11px 0 0;
+    color: #425f54;
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+.announcement-content-preview {
+    margin: 9px 0 0;
+    color: #647970;
+    font-size: 10px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+}
+
+.announcement-status {
+    min-height: 26px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 9px;
+    border-radius: 999px;
+    font-size: 9px;
+    font-weight: 850;
+    white-space: nowrap;
+}
+
+.announcement-status-draft {
+    background: #eef1f0;
+    color: #61736c;
+}
+
+.announcement-status-published {
+    background: #e6f6ee;
+    color: #176c45;
+}
+
+.announcement-status-archived {
+    background: #e8eef8;
+    color: #365b8d;
+}
+
+.announcement-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.announcement-chip {
+    min-height: 25px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 8px;
+    border: 1px solid #dfe7e3;
+    border-radius: 999px;
+    background: white;
+    color: #52675e;
+    font-size: 8px;
+    font-weight: 800;
+}
+
+.announcement-chip.priority-urgent {
+    border-color: #efcaca;
+    background: #fff5f5;
+    color: #a12626;
+}
+
+.announcement-chip.priority-high {
+    border-color: #ead9ad;
+    background: #fff9ea;
+    color: #8a6300;
+}
+
+.announcement-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.announcement-action-button {
+    min-height: 35px;
+    padding: 0 11px;
+    border: 1px solid #d5e0db;
+    border-radius: 8px;
+    background: white;
+    color: #174b3d;
+    font-size: 10px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.announcement-action-button.primary {
+    border-color: #174b3d;
+    background: #174b3d;
+    color: white;
+}
+
+.announcement-action-button.danger {
+    border-color: #ebcccc;
+    color: #a12626;
+}
+
+.announcement-stats {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid #e5ece8;
+}
+
+.announcement-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.announcement-stat {
+    padding: 10px;
+    border: 1px solid #e6ece9;
+    border-radius: 9px;
+    background: white;
+}
+
+.announcement-stat span {
+    display: block;
+    color: #7a8b84;
+    font-size: 9px;
+}
+
+.announcement-stat strong {
+    display: block;
+    margin-top: 3px;
+    color: #143e33;
+    font-size: 18px;
+}
+
+.announcement-modal-card {
+    max-width: 800px;
+}
+
+.announcement-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.announcement-form-field {
+    min-width: 0;
+}
+
+.announcement-form-field.full {
+    grid-column: 1 / -1;
+}
+
+.announcement-form-field label {
+    display: block;
+    margin-bottom: 6px;
+    color: #405a50;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.announcement-form-field input,
+.announcement-form-field select,
+.announcement-form-field textarea {
+    width: 100%;
+    border: 1px solid #d7e2dd;
+    border-radius: 9px;
+    background: white;
+    color: #24463b;
+    outline: none;
+}
+
+.announcement-form-field input,
+.announcement-form-field select {
+    min-height: 44px;
+    padding: 0 11px;
+}
+
+.announcement-form-field textarea {
+    min-height: 105px;
+    padding: 11px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.announcement-form-field textarea.large {
+    min-height: 180px;
+}
+
+.announcement-form-field input:focus,
+.announcement-form-field select:focus,
+.announcement-form-field textarea:focus {
+    border-color: #30735e;
+    box-shadow: 0 0 0 3px rgba(48, 115, 94, 0.10);
+}
+
+.announcement-toggle-row {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 0 11px;
+    border: 1px solid #d7e2dd;
+    border-radius: 9px;
+    background: #fbfcfc;
+    color: #405a50;
+    font-size: 11px;
+}
+
+.announcement-toggle-row input {
+    width: auto;
+    min-height: auto;
+}
+
+.announcement-audience-box {
+    grid-column: 1 / -1;
+    padding: 14px;
+    border: 1px solid #dfe8e3;
+    border-radius: 11px;
+    background: #f9fbfa;
+}
+
+.announcement-audience-box h3 {
+    margin: 0 0 11px;
+    color: #254a3e;
+    font-size: 12px;
+}
+
+.announcement-unit-select {
+    min-height: 180px !important;
+    padding: 8px !important;
+}
+
+.announcement-help {
+    margin-top: 6px;
+    color: #7b8c85;
+    font-size: 9px;
+    line-height: 1.45;
+}
+
+.announcement-form-message {
+    min-height: 20px;
+    margin: 12px 0 0;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.announcement-form-message.error {
+    color: #b42318;
+}
+
+.announcement-form-message.success {
+    color: #167347;
+}
+
+.announcement-modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 9px;
+}
+
+.announcement-save-button,
+.announcement-cancel-button {
+    min-height: 43px;
+    padding: 0 16px;
+    border-radius: 9px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.announcement-save-button {
+    border: 0;
+    background: #174b3d;
+    color: white;
+}
+
+.announcement-cancel-button {
+    border: 1px solid #d5e0db;
+    background: white;
+    color: #52675e;
+}
+
+@media (max-width: 760px) {
+    .announcements-panel-top,
+    .announcement-card-head {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .create-announcement-button {
+        width: 100%;
+    }
+
+    .announcement-summary-grid,
+    .announcement-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .announcement-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .announcement-form-field.full,
+    .announcement-audience-box {
+        grid-column: auto;
+    }
+}
+
+
 @media (max-width: 760px) {
     .syndic-panel-top,
     .charge-card-head,
@@ -2187,6 +2626,14 @@
                 type="button"
             >
                 Syndic
+            </button>
+
+            <button
+                id="announcementsTabButton"
+                class="admin-tab-button"
+                type="button"
+            >
+                Annonces
             </button>
 
         </div>
@@ -2631,6 +3078,84 @@
                 >
                 </div>
 
+            </div>
+
+        </section>
+
+
+        <!-- ANNONCES V2 -->
+
+
+        <section
+            id="announcementsSection"
+            class="announcements-panel"
+            hidden
+        >
+
+            <div class="announcements-panel-top">
+
+                <div>
+
+                    <h2>
+                        Annonces
+                    </h2>
+
+                    <p>
+                        Informez tous les propriétaires,
+                        certains blocs ou des lots précis.
+                    </p>
+
+                </div>
+
+                <button
+                    id="createAnnouncementButton"
+                    class="create-announcement-button"
+                    type="button"
+                >
+                    + Nouvelle annonce
+                </button>
+
+            </div>
+
+            <div class="announcement-summary-grid">
+
+                <div class="announcement-summary-card">
+                    <span>BROUILLONS</span>
+                    <strong id="announcementDraftCount">0</strong>
+                </div>
+
+                <div class="announcement-summary-card">
+                    <span>PUBLIÉES</span>
+                    <strong id="announcementPublishedCount">0</strong>
+                </div>
+
+                <div class="announcement-summary-card">
+                    <span>ARCHIVÉES</span>
+                    <strong id="announcementArchivedCount">0</strong>
+                </div>
+
+            </div>
+
+            <div
+                id="announcementsLoading"
+                class="announcements-loading"
+            >
+                Chargement des annonces...
+            </div>
+
+            <div
+                id="announcementsEmpty"
+                class="announcements-empty"
+                hidden
+            >
+                Aucune annonce créée.
+            </div>
+
+            <div
+                id="announcementsList"
+                class="announcements-list"
+                hidden
+            >
             </div>
 
         </section>
@@ -3531,6 +4056,245 @@
                     type="submit"
                 >
                     Enregistrer le paiement
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- MODAL ANNONCE -->
+
+
+<div
+    id="announcementModal"
+    class="modal"
+>
+
+    <div class="modal-card announcement-modal-card">
+
+        <div class="modal-head">
+
+            <div>
+                <span style="color:#30735e;font-size:11px;font-weight:800;">
+                    ANNONCE
+                </span>
+
+                <h2 id="announcementModalTitle">
+                    Nouvelle annonce
+                </h2>
+            </div>
+
+            <button
+                id="announcementModalClose"
+                class="modal-close"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <form id="announcementForm">
+
+            <div class="announcement-form-grid">
+
+                <div class="announcement-form-field full">
+                    <label for="announcementTitle">Titre *</label>
+                    <input
+                        id="announcementTitle"
+                        type="text"
+                        maxlength="180"
+                        required
+                    >
+                </div>
+
+                <div class="announcement-form-field">
+                    <label for="announcementCategory">Catégorie</label>
+                    <select id="announcementCategory">
+                        <option value="general">Général</option>
+                        <option value="information">Information</option>
+                        <option value="urgent">Urgent</option>
+                        <option value="works">Travaux</option>
+                        <option value="meeting">Réunion</option>
+                        <option value="security">Sécurité</option>
+                        <option value="maintenance">Maintenance</option>
+                        <option value="other">Autre</option>
+                    </select>
+                </div>
+
+                <div class="announcement-form-field">
+                    <label for="announcementPriority">Priorité</label>
+                    <select id="announcementPriority">
+                        <option value="normal">Normale</option>
+                        <option value="high">Haute</option>
+                        <option value="urgent">Urgente</option>
+                    </select>
+                </div>
+
+                <div class="announcement-form-field">
+                    <label for="announcementVisibleFrom">Visible à partir de</label>
+                    <input
+                        id="announcementVisibleFrom"
+                        type="datetime-local"
+                    >
+                </div>
+
+                <div class="announcement-form-field">
+                    <label for="announcementExpiresAt">Expiration</label>
+                    <input
+                        id="announcementExpiresAt"
+                        type="datetime-local"
+                    >
+                </div>
+
+                <div class="announcement-form-field full">
+
+                    <label>
+                        Mise en avant
+                    </label>
+
+                    <label class="announcement-toggle-row">
+                        <input
+                            id="announcementPinned"
+                            type="checkbox"
+                        >
+                        Épingler cette annonce
+                    </label>
+
+                </div>
+
+                <div class="announcement-form-field full">
+                    <label for="announcementSummary">Résumé</label>
+                    <textarea
+                        id="announcementSummary"
+                        maxlength="500"
+                        placeholder="Résumé court affiché dans la liste..."
+                    ></textarea>
+                </div>
+
+                <div class="announcement-form-field full">
+                    <label for="announcementContent">Contenu *</label>
+                    <textarea
+                        id="announcementContent"
+                        class="large"
+                        maxlength="10000"
+                        required
+                        placeholder="Texte complet de l'annonce..."
+                    ></textarea>
+                </div>
+
+                <div class="announcement-audience-box">
+
+                    <h3>
+                        Audience *
+                    </h3>
+
+                    <div class="announcement-form-grid" style="margin-top:0;">
+
+                        <div class="announcement-form-field full">
+
+                            <label for="announcementAudienceType">
+                                Ciblage
+                            </label>
+
+                            <select id="announcementAudienceType">
+
+                                <option value="all">
+                                    Tous les propriétaires
+                                </option>
+
+                                <option value="building">
+                                    Un ou plusieurs blocs
+                                </option>
+
+                                <option value="unit">
+                                    Un ou plusieurs lots
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div
+                            id="announcementBuildingField"
+                            class="announcement-form-field full"
+                            hidden
+                        >
+
+                            <label for="announcementBuildings">
+                                Blocs
+                            </label>
+
+                            <input
+                                id="announcementBuildings"
+                                type="text"
+                                maxlength="300"
+                                placeholder="Ex. A, B, H"
+                            >
+
+                            <div class="announcement-help">
+                                Séparez les blocs par une virgule.
+                            </div>
+
+                        </div>
+
+                        <div
+                            id="announcementUnitsField"
+                            class="announcement-form-field full"
+                            hidden
+                        >
+
+                            <label for="announcementUnits">
+                                Lots
+                            </label>
+
+                            <select
+                                id="announcementUnits"
+                                class="announcement-unit-select"
+                                multiple
+                            >
+                            </select>
+
+                            <div class="announcement-help">
+                                Maintenez Ctrl pour sélectionner plusieurs lots.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p
+                id="announcementFormMessage"
+                class="announcement-form-message"
+                aria-live="polite"
+            ></p>
+
+            <div class="announcement-modal-actions">
+
+                <button
+                    id="announcementFormCancel"
+                    class="announcement-cancel-button"
+                    type="button"
+                >
+                    Annuler
+                </button>
+
+                <button
+                    id="announcementSaveButton"
+                    class="announcement-save-button"
+                    type="submit"
+                >
+                    Enregistrer le brouillon
                 </button>
 
             </div>
@@ -4911,6 +5675,11 @@ const syndicTabButton =
         "syndicTabButton"
     );
 
+const announcementsTabButton =
+    document.getElementById(
+        "announcementsTabButton"
+    );
+
 const ownersStatsSection =
     document.getElementById(
         "ownersStatsSection"
@@ -4936,6 +5705,11 @@ const syndicSection =
         "syndicSection"
     );
 
+const announcementsSection =
+    document.getElementById(
+        "announcementsSection"
+    );
+
 
 function showAdminSection(
     section
@@ -4952,6 +5726,9 @@ function showAdminSection(
 
     const showSyndic =
         section === "syndic";
+
+    const showAnnouncements =
+        section === "announcements";
 
 
     ownersTabButton.classList.toggle(
@@ -4974,6 +5751,11 @@ function showAdminSection(
         showSyndic
     );
 
+    announcementsTabButton.classList.toggle(
+        "active",
+        showAnnouncements
+    );
+
 
     ownersStatsSection.hidden =
         !showOwners;
@@ -4989,6 +5771,9 @@ function showAdminSection(
 
     syndicSection.hidden =
         !showSyndic;
+
+    announcementsSection.hidden =
+        !showAnnouncements;
 
 
     if (
@@ -5009,6 +5794,13 @@ function showAdminSection(
         showSyndic
     ) {
         loadSyndic();
+    }
+
+
+    if (
+        showAnnouncements
+    ) {
+        loadAnnouncements();
     }
 
 }
@@ -5049,6 +5841,16 @@ syndicTabButton.addEventListener(
     () => {
         showAdminSection(
             "syndic"
+        );
+    }
+);
+
+
+announcementsTabButton.addEventListener(
+    "click",
+    () => {
+        showAdminSection(
+            "announcements"
         );
     }
 );
@@ -11041,6 +11843,2067 @@ document
 
         }
     );
+
+
+
+
+/* =========================================================
+ * ANNONCES V2
+ * ========================================================= */
+
+let residenceAnnouncements =
+    [];
+
+let residenceAnnouncementTargets =
+    new Map();
+
+let announcementUnits =
+    [];
+
+let announcementOwners =
+    [];
+
+let selectedAnnouncementId =
+    null;
+
+
+const announcementsLoading =
+    document.getElementById(
+        "announcementsLoading"
+    );
+
+const announcementsEmpty =
+    document.getElementById(
+        "announcementsEmpty"
+    );
+
+const announcementsList =
+    document.getElementById(
+        "announcementsList"
+    );
+
+const announcementModal =
+    document.getElementById(
+        "announcementModal"
+    );
+
+const announcementForm =
+    document.getElementById(
+        "announcementForm"
+    );
+
+const announcementFormMessage =
+    document.getElementById(
+        "announcementFormMessage"
+    );
+
+
+function announcementStatusLabel(
+    status
+) {
+
+    switch (
+        status
+    ) {
+
+        case "published":
+            return "Publiée";
+
+        case "archived":
+            return "Archivée";
+
+        default:
+            return "Brouillon";
+
+    }
+
+}
+
+
+function announcementStatusClass(
+    status
+) {
+
+    switch (
+        status
+    ) {
+
+        case "published":
+            return "announcement-status-published";
+
+        case "archived":
+            return "announcement-status-archived";
+
+        default:
+            return "announcement-status-draft";
+
+    }
+
+}
+
+
+function announcementCategoryLabel(
+    category
+) {
+
+    const labels = {
+
+        general:
+            "Général",
+
+        information:
+            "Information",
+
+        urgent:
+            "Urgent",
+
+        works:
+            "Travaux",
+
+        meeting:
+            "Réunion",
+
+        security:
+            "Sécurité",
+
+        maintenance:
+            "Maintenance",
+
+        other:
+            "Autre"
+
+    };
+
+
+    return labels[category] ||
+        "Général";
+
+}
+
+
+function announcementPriorityLabel(
+    priority
+) {
+
+    switch (
+        priority
+    ) {
+
+        case "urgent":
+            return "Urgente";
+
+        case "high":
+            return "Haute";
+
+        default:
+            return "Normale";
+
+    }
+
+}
+
+
+function getAnnouncementAudienceLabel(
+    announcementId
+) {
+
+    const targets =
+        residenceAnnouncementTargets
+            .get(
+                announcementId
+            ) ||
+        [];
+
+
+    if (
+        targets.some(
+            target =>
+                target.target_type ===
+                "all"
+        )
+    ) {
+
+        return "Tous les propriétaires";
+
+    }
+
+
+    const buildings =
+        targets
+            .filter(
+                target =>
+                    target.target_type ===
+                    "building"
+            )
+            .map(
+                target =>
+                    target.building_code
+            );
+
+
+    if (
+        buildings.length > 0
+    ) {
+
+        return `Bloc(s) ${buildings.join(", ")}`;
+
+    }
+
+
+    const units =
+        targets
+            .filter(
+                target =>
+                    target.target_type ===
+                    "unit"
+            );
+
+
+    if (
+        units.length > 0
+    ) {
+
+        return `${units.length} lot(s) ciblé(s)`;
+
+    }
+
+
+    return "Audience non définie";
+
+}
+
+
+function toLocalDatetimeInput(
+    value
+) {
+
+    if (
+        !value
+    ) {
+        return "";
+    }
+
+
+    return toDatetimeLocalValue(
+        value
+    );
+
+}
+
+
+async function loadAnnouncements() {
+
+    announcementsLoading.hidden =
+        false;
+
+    announcementsEmpty.hidden =
+        true;
+
+    announcementsList.hidden =
+        true;
+
+
+    const [
+        announcementsResult,
+        targetsResult,
+        unitsResult,
+        ownersResult
+    ] =
+        await Promise.all([
+
+            supabaseClient
+                .from(
+                    "residence_announcements"
+                )
+                .select(
+                    `
+                    id,
+                    title,
+                    summary,
+                    content,
+                    category,
+                    priority,
+                    is_pinned,
+                    status,
+                    visible_from,
+                    expires_at,
+                    published_at,
+                    archived_at,
+                    created_by,
+                    created_at,
+                    updated_at
+                    `
+                )
+                .order(
+                    "is_pinned",
+                    {
+                        ascending:
+                            false
+                    }
+                )
+                .order(
+                    "created_at",
+                    {
+                        ascending:
+                            false
+                    }
+                ),
+
+            supabaseClient
+                .from(
+                    "residence_announcement_targets"
+                )
+                .select(
+                    `
+                    id,
+                    announcement_id,
+                    target_type,
+                    building_code,
+                    owner_account_unit_id,
+                    created_at
+                    `
+                ),
+
+            supabaseClient
+                .from(
+                    "owner_account_units"
+                )
+                .select(
+                    `
+                    id,
+                    owner_account_id,
+                    building_code,
+                    apartment_number,
+                    is_primary
+                    `
+                )
+                .order(
+                    "building_code",
+                    {
+                        ascending:
+                            true
+                    }
+                )
+                .order(
+                    "apartment_number",
+                    {
+                        ascending:
+                            true
+                    }
+                ),
+
+            supabaseClient
+                .from(
+                    "owner_accounts"
+                )
+                .select(
+                    `
+                    id,
+                    first_name,
+                    last_name,
+                    phone,
+                    status
+                    `
+                )
+
+        ]);
+
+
+    if (
+        announcementsResult.error
+    ) {
+
+        console.error(
+            "Announcements loading error:",
+            announcementsResult.error
+        );
+
+
+        announcementsLoading.hidden =
+            true;
+
+        announcementsEmpty.hidden =
+            false;
+
+        announcementsEmpty.textContent =
+            "Impossible de charger les annonces.";
+
+        return;
+
+    }
+
+
+    residenceAnnouncements =
+        announcementsResult.data ||
+        [];
+
+
+    announcementUnits =
+        unitsResult.data ||
+        [];
+
+
+    announcementOwners =
+        ownersResult.data ||
+        [];
+
+
+    residenceAnnouncementTargets =
+        new Map();
+
+
+    for (
+        const target
+        of targetsResult.data ||
+        []
+    ) {
+
+        if (
+            !residenceAnnouncementTargets
+                .has(
+                    target.announcement_id
+                )
+        ) {
+
+            residenceAnnouncementTargets
+                .set(
+                    target.announcement_id,
+                    []
+                );
+
+        }
+
+
+        residenceAnnouncementTargets
+            .get(
+                target.announcement_id
+            )
+            .push(
+                target
+            );
+
+    }
+
+
+    populateAnnouncementUnits();
+
+
+    announcementsLoading.hidden =
+        true;
+
+
+    renderAnnouncements();
+
+}
+
+
+function renderAnnouncements() {
+
+    announcementsList.innerHTML =
+        "";
+
+
+    const draftCount =
+        residenceAnnouncements
+            .filter(
+                item =>
+                    item.status ===
+                    "draft"
+            )
+            .length;
+
+
+    const publishedCount =
+        residenceAnnouncements
+            .filter(
+                item =>
+                    item.status ===
+                    "published"
+            )
+            .length;
+
+
+    const archivedCount =
+        residenceAnnouncements
+            .filter(
+                item =>
+                    item.status ===
+                    "archived"
+            )
+            .length;
+
+
+    document
+        .getElementById(
+            "announcementDraftCount"
+        )
+        .textContent =
+            String(
+                draftCount
+            );
+
+
+    document
+        .getElementById(
+            "announcementPublishedCount"
+        )
+        .textContent =
+            String(
+                publishedCount
+            );
+
+
+    document
+        .getElementById(
+            "announcementArchivedCount"
+        )
+        .textContent =
+            String(
+                archivedCount
+            );
+
+
+    if (
+        residenceAnnouncements.length ===
+        0
+    ) {
+
+        announcementsEmpty.hidden =
+            false;
+
+        announcementsList.hidden =
+            true;
+
+        return;
+
+    }
+
+
+    announcementsEmpty.hidden =
+        true;
+
+    announcementsList.hidden =
+        false;
+
+
+    for (
+        const announcement
+        of residenceAnnouncements
+    ) {
+
+        const card =
+            document.createElement(
+                "article"
+            );
+
+
+        card.className =
+            "announcement-card";
+
+
+        if (
+            announcement.priority ===
+            "urgent"
+        ) {
+
+            card.classList.add(
+                "urgent"
+            );
+
+        }
+
+
+        if (
+            announcement.is_pinned
+        ) {
+
+            card.classList.add(
+                "pinned"
+            );
+
+        }
+
+
+        const audienceLabel =
+            getAnnouncementAudienceLabel(
+                announcement.id
+            );
+
+
+        card.innerHTML = `
+
+            <div class="announcement-card-head">
+
+                <div>
+
+                    <h3>
+                        ${announcement.is_pinned ? "📌 " : ""}
+                        ${escapeHtml(announcement.title)}
+                    </h3>
+
+                    <div class="announcement-meta">
+
+                        <span>
+                            ${escapeHtml(announcementCategoryLabel(announcement.category))}
+                        </span>
+
+                        <span>
+                            Audience :
+                            ${escapeHtml(audienceLabel)}
+                        </span>
+
+                        <span>
+                            Visible :
+                            ${escapeHtml(formatDateTime(announcement.visible_from))}
+                        </span>
+
+                        <span>
+                            Expire :
+                            ${escapeHtml(formatDateTime(announcement.expires_at))}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <span class="
+                    announcement-status
+                    ${announcementStatusClass(announcement.status)}
+                ">
+                    ${escapeHtml(announcementStatusLabel(announcement.status))}
+                </span>
+
+            </div>
+
+
+            ${
+                announcement.summary
+                    ? `
+                        <p class="announcement-summary-text">
+                            ${escapeHtml(announcement.summary)}
+                        </p>
+                    `
+                    : ""
+            }
+
+
+            <p class="announcement-content-preview">
+                ${escapeHtml(
+                    announcement.content.length > 400
+                        ? `${announcement.content.slice(0, 400)}…`
+                        : announcement.content
+                )}
+            </p>
+
+
+            <div class="announcement-chips">
+
+                <span class="
+                    announcement-chip
+                    priority-${escapeHtml(announcement.priority)}
+                ">
+                    Priorité :
+                    ${escapeHtml(announcementPriorityLabel(announcement.priority))}
+                </span>
+
+                ${
+                    announcement.is_pinned
+                        ? `
+                            <span class="announcement-chip">
+                                Épinglée
+                            </span>
+                        `
+                        : ""
+                }
+
+            </div>
+
+
+            <div class="announcement-actions">
+
+                ${
+                    announcement.status ===
+                    "draft"
+                        ? `
+                            <button
+                                class="announcement-action-button"
+                                type="button"
+                                data-announcement-action="edit"
+                                data-announcement-id="${escapeHtml(announcement.id)}"
+                            >
+                                Modifier
+                            </button>
+
+                            <button
+                                class="announcement-action-button primary"
+                                type="button"
+                                data-announcement-action="publish"
+                                data-announcement-id="${escapeHtml(announcement.id)}"
+                            >
+                                Publier
+                            </button>
+
+                            <button
+                                class="announcement-action-button danger"
+                                type="button"
+                                data-announcement-action="delete"
+                                data-announcement-id="${escapeHtml(announcement.id)}"
+                            >
+                                Supprimer
+                            </button>
+                        `
+                        : ""
+                }
+
+
+                ${
+                    announcement.status ===
+                    "published"
+                        ? `
+                            <button
+                                class="announcement-action-button"
+                                type="button"
+                                data-announcement-action="stats"
+                                data-announcement-id="${escapeHtml(announcement.id)}"
+                            >
+                                Statistiques
+                            </button>
+
+                            <button
+                                class="announcement-action-button primary"
+                                type="button"
+                                data-announcement-action="archive"
+                                data-announcement-id="${escapeHtml(announcement.id)}"
+                            >
+                                Archiver
+                            </button>
+                        `
+                        : ""
+                }
+
+
+                ${
+                    announcement.status ===
+                    "archived"
+                        ? `
+                            <button
+                                class="announcement-action-button"
+                                type="button"
+                                data-announcement-action="stats"
+                                data-announcement-id="${escapeHtml(announcement.id)}"
+                            >
+                                Statistiques
+                            </button>
+                        `
+                        : ""
+                }
+
+            </div>
+
+
+            <div
+                id="announcementStats-${escapeHtml(announcement.id)}"
+                class="announcement-stats"
+                hidden
+            ></div>
+
+        `;
+
+
+        announcementsList
+            .appendChild(
+                card
+            );
+
+    }
+
+
+    document
+        .querySelectorAll(
+            "[data-announcement-action]"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        handleAnnouncementAction(
+                            button.dataset.announcementAction,
+                            button.dataset.announcementId
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+}
+
+
+function populateAnnouncementUnits() {
+
+    const select =
+        document.getElementById(
+            "announcementUnits"
+        );
+
+
+    const ownerMap =
+        new Map(
+            announcementOwners
+                .map(
+                    owner => [
+                        owner.id,
+                        owner
+                    ]
+                )
+        );
+
+
+    select.innerHTML =
+        "";
+
+
+    for (
+        const unit
+        of announcementUnits
+    ) {
+
+        const owner =
+            ownerMap.get(
+                unit.owner_account_id
+            );
+
+
+        const ownerName =
+            owner
+                ? `${owner.first_name || ""} ${owner.last_name || ""}`.trim()
+                : "Propriétaire";
+
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+
+        option.value =
+            unit.id;
+
+
+        option.textContent =
+            `Bloc ${unit.building_code} · Appartement ${unit.apartment_number} · ${ownerName}`;
+
+
+        select.appendChild(
+            option
+        );
+
+    }
+
+}
+
+
+function updateAnnouncementAudienceFields() {
+
+    const type =
+        document
+            .getElementById(
+                "announcementAudienceType"
+            )
+            .value;
+
+
+    document
+        .getElementById(
+            "announcementBuildingField"
+        )
+        .hidden =
+            type !==
+            "building";
+
+
+    document
+        .getElementById(
+            "announcementUnitsField"
+        )
+        .hidden =
+            type !==
+            "unit";
+
+}
+
+
+function openAnnouncementModal(
+    announcement = null
+) {
+
+    selectedAnnouncementId =
+        announcement?.id ||
+        null;
+
+
+    document
+        .getElementById(
+            "announcementModalTitle"
+        )
+        .textContent =
+            announcement
+                ? "Modifier le brouillon"
+                : "Nouvelle annonce";
+
+
+    document
+        .getElementById(
+            "announcementTitle"
+        )
+        .value =
+            announcement?.title ||
+            "";
+
+
+    document
+        .getElementById(
+            "announcementSummary"
+        )
+        .value =
+            announcement?.summary ||
+            "";
+
+
+    document
+        .getElementById(
+            "announcementContent"
+        )
+        .value =
+            announcement?.content ||
+            "";
+
+
+    document
+        .getElementById(
+            "announcementCategory"
+        )
+        .value =
+            announcement?.category ||
+            "general";
+
+
+    document
+        .getElementById(
+            "announcementPriority"
+        )
+        .value =
+            announcement?.priority ||
+            "normal";
+
+
+    document
+        .getElementById(
+            "announcementPinned"
+        )
+        .checked =
+            Boolean(
+                announcement?.is_pinned
+            );
+
+
+    document
+        .getElementById(
+            "announcementVisibleFrom"
+        )
+        .value =
+            toLocalDatetimeInput(
+                announcement?.visible_from
+            );
+
+
+    document
+        .getElementById(
+            "announcementExpiresAt"
+        )
+        .value =
+            toLocalDatetimeInput(
+                announcement?.expires_at
+            );
+
+
+    const targets =
+        announcement
+            ? (
+                residenceAnnouncementTargets
+                    .get(
+                        announcement.id
+                    ) ||
+                []
+            )
+            : [];
+
+
+    let audienceType =
+        "all";
+
+
+    if (
+        targets.some(
+            target =>
+                target.target_type ===
+                "building"
+        )
+    ) {
+
+        audienceType =
+            "building";
+
+    }
+
+
+    if (
+        targets.some(
+            target =>
+                target.target_type ===
+                "unit"
+        )
+    ) {
+
+        audienceType =
+            "unit";
+
+    }
+
+
+    document
+        .getElementById(
+            "announcementAudienceType"
+        )
+        .value =
+            audienceType;
+
+
+    document
+        .getElementById(
+            "announcementBuildings"
+        )
+        .value =
+            targets
+                .filter(
+                    target =>
+                        target.target_type ===
+                        "building"
+                )
+                .map(
+                    target =>
+                        target.building_code
+                )
+                .join(
+                    ", "
+                );
+
+
+    const selectedUnitIds =
+        new Set(
+            targets
+                .filter(
+                    target =>
+                        target.target_type ===
+                        "unit"
+                )
+                .map(
+                    target =>
+                        target.owner_account_unit_id
+                )
+        );
+
+
+    Array
+        .from(
+            document
+                .getElementById(
+                    "announcementUnits"
+                )
+                .options
+        )
+        .forEach(
+            option => {
+
+                option.selected =
+                    selectedUnitIds.has(
+                        option.value
+                    );
+
+            }
+        );
+
+
+    updateAnnouncementAudienceFields();
+
+
+    announcementFormMessage.textContent =
+        "";
+
+    announcementFormMessage.className =
+        "announcement-form-message";
+
+
+    announcementModal
+        .classList
+        .add(
+            "visible"
+        );
+
+}
+
+
+function closeAnnouncementModal() {
+
+    selectedAnnouncementId =
+        null;
+
+
+    announcementForm.reset();
+
+
+    document
+        .getElementById(
+            "announcementAudienceType"
+        )
+        .value =
+            "all";
+
+
+    updateAnnouncementAudienceFields();
+
+
+    announcementFormMessage.textContent =
+        "";
+
+
+    announcementModal
+        .classList
+        .remove(
+            "visible"
+        );
+
+}
+
+
+function getAnnouncementTargetsPayload(
+    announcementId
+) {
+
+    const audienceType =
+        document
+            .getElementById(
+                "announcementAudienceType"
+            )
+            .value;
+
+
+    if (
+        audienceType ===
+        "all"
+    ) {
+
+        return [
+            {
+                announcement_id:
+                    announcementId,
+
+                target_type:
+                    "all",
+
+                building_code:
+                    null,
+
+                owner_account_unit_id:
+                    null
+            }
+        ];
+
+    }
+
+
+    if (
+        audienceType ===
+        "building"
+    ) {
+
+        const buildings =
+            document
+                .getElementById(
+                    "announcementBuildings"
+                )
+                .value
+                .split(
+                    ","
+                )
+                .map(
+                    value =>
+                        value
+                            .trim()
+                            .toUpperCase()
+                )
+                .filter(
+                    Boolean
+                );
+
+
+        const uniqueBuildings =
+            [
+                ...new Set(
+                    buildings
+                )
+            ];
+
+
+        return uniqueBuildings
+            .map(
+                buildingCode => ({
+
+                    announcement_id:
+                        announcementId,
+
+                    target_type:
+                        "building",
+
+                    building_code:
+                        buildingCode,
+
+                    owner_account_unit_id:
+                        null
+
+                })
+            );
+
+    }
+
+
+    const selectedUnitIds =
+        Array
+            .from(
+                document
+                    .getElementById(
+                        "announcementUnits"
+                    )
+                    .selectedOptions
+            )
+            .map(
+                option =>
+                    option.value
+            );
+
+
+    return selectedUnitIds
+        .map(
+            unitId => ({
+
+                announcement_id:
+                    announcementId,
+
+                target_type:
+                    "unit",
+
+                building_code:
+                    null,
+
+                owner_account_unit_id:
+                    unitId
+
+            })
+        );
+
+}
+
+
+announcementForm.addEventListener(
+    "submit",
+    async event => {
+
+        event.preventDefault();
+
+
+        announcementFormMessage.textContent =
+            "";
+
+        announcementFormMessage.className =
+            "announcement-form-message";
+
+
+        const title =
+            document
+                .getElementById(
+                    "announcementTitle"
+                )
+                .value
+                .trim();
+
+
+        const summary =
+            document
+                .getElementById(
+                    "announcementSummary"
+                )
+                .value
+                .trim();
+
+
+        const content =
+            document
+                .getElementById(
+                    "announcementContent"
+                )
+                .value
+                .trim();
+
+
+        const category =
+            document
+                .getElementById(
+                    "announcementCategory"
+                )
+                .value;
+
+
+        const priority =
+            document
+                .getElementById(
+                    "announcementPriority"
+                )
+                .value;
+
+
+        const isPinned =
+            document
+                .getElementById(
+                    "announcementPinned"
+                )
+                .checked;
+
+
+        const visibleFromValue =
+            document
+                .getElementById(
+                    "announcementVisibleFrom"
+                )
+                .value;
+
+
+        const expiresAtValue =
+            document
+                .getElementById(
+                    "announcementExpiresAt"
+                )
+                .value;
+
+
+        const visibleFrom =
+            visibleFromValue
+                ? new Date(
+                    visibleFromValue
+                )
+                : null;
+
+
+        const expiresAt =
+            expiresAtValue
+                ? new Date(
+                    expiresAtValue
+                )
+                : null;
+
+
+        if (
+            !title ||
+            !content
+        ) {
+
+            announcementFormMessage.textContent =
+                "Le titre et le contenu sont obligatoires.";
+
+            announcementFormMessage.className =
+                "announcement-form-message error";
+
+            return;
+
+        }
+
+
+        if (
+            visibleFrom &&
+            Number.isNaN(
+                visibleFrom.getTime()
+            )
+        ) {
+
+            announcementFormMessage.textContent =
+                "La date de publication est invalide.";
+
+            announcementFormMessage.className =
+                "announcement-form-message error";
+
+            return;
+
+        }
+
+
+        if (
+            expiresAt &&
+            Number.isNaN(
+                expiresAt.getTime()
+            )
+        ) {
+
+            announcementFormMessage.textContent =
+                "La date d'expiration est invalide.";
+
+            announcementFormMessage.className =
+                "announcement-form-message error";
+
+            return;
+
+        }
+
+
+        if (
+            visibleFrom &&
+            expiresAt &&
+            expiresAt.getTime() <=
+            visibleFrom.getTime()
+        ) {
+
+            announcementFormMessage.textContent =
+                "L'expiration doit être postérieure à la publication.";
+
+            announcementFormMessage.className =
+                "announcement-form-message error";
+
+            return;
+
+        }
+
+
+        const {
+            data: {
+                session
+            }
+        } =
+            await supabaseClient
+                .auth
+                .getSession();
+
+
+        if (
+            !session
+        ) {
+
+            window.location.href =
+                "admin-login.html";
+
+            return;
+
+        }
+
+
+        const payload = {
+
+            title,
+
+            summary:
+                summary ||
+                null,
+
+            content,
+
+            category,
+
+            priority,
+
+            is_pinned:
+                isPinned,
+
+            visible_from:
+                visibleFrom
+                    ? visibleFrom.toISOString()
+                    : null,
+
+            expires_at:
+                expiresAt
+                    ? expiresAt.toISOString()
+                    : null
+
+        };
+
+
+        let announcementId =
+            selectedAnnouncementId;
+
+
+        if (
+            selectedAnnouncementId
+        ) {
+
+            const {
+                error
+            } =
+                await supabaseClient
+                    .from(
+                        "residence_announcements"
+                    )
+                    .update(
+                        payload
+                    )
+                    .eq(
+                        "id",
+                        selectedAnnouncementId
+                    )
+                    .eq(
+                        "status",
+                        "draft"
+                    );
+
+
+            if (
+                error
+            ) {
+
+                announcementFormMessage.textContent =
+                    error.message ||
+                    "Impossible de modifier ce brouillon.";
+
+                announcementFormMessage.className =
+                    "announcement-form-message error";
+
+                return;
+
+            }
+
+
+            const {
+                error: deleteTargetsError
+            } =
+                await supabaseClient
+                    .from(
+                        "residence_announcement_targets"
+                    )
+                    .delete()
+                    .eq(
+                        "announcement_id",
+                        selectedAnnouncementId
+                    );
+
+
+            if (
+                deleteTargetsError
+            ) {
+
+                announcementFormMessage.textContent =
+                    "Le brouillon a été modifié mais l'audience précédente n'a pas pu être remplacée.";
+
+                announcementFormMessage.className =
+                    "announcement-form-message error";
+
+                return;
+
+            }
+
+        }
+        else {
+
+            const {
+                data: createdAnnouncement,
+                error
+            } =
+                await supabaseClient
+                    .from(
+                        "residence_announcements"
+                    )
+                    .insert({
+                        ...payload,
+
+                        status:
+                            "draft",
+
+                        created_by:
+                            session.user.id
+                    })
+                    .select(
+                        "id"
+                    )
+                    .single();
+
+
+            if (
+                error ||
+                !createdAnnouncement
+            ) {
+
+                announcementFormMessage.textContent =
+                    error?.message ||
+                    "Impossible de créer le brouillon.";
+
+                announcementFormMessage.className =
+                    "announcement-form-message error";
+
+                return;
+
+            }
+
+
+            announcementId =
+                createdAnnouncement.id;
+
+        }
+
+
+        const targets =
+            getAnnouncementTargetsPayload(
+                announcementId
+            );
+
+
+        if (
+            targets.length ===
+            0
+        ) {
+
+            announcementFormMessage.textContent =
+                "Sélectionnez au moins une audience.";
+
+            announcementFormMessage.className =
+                "announcement-form-message error";
+
+            return;
+
+        }
+
+
+        const {
+            error: targetInsertError
+        } =
+            await supabaseClient
+                .from(
+                    "residence_announcement_targets"
+                )
+                .insert(
+                    targets
+                );
+
+
+        if (
+            targetInsertError
+        ) {
+
+            if (
+                !selectedAnnouncementId
+            ) {
+
+                await supabaseClient
+                    .from(
+                        "residence_announcements"
+                    )
+                    .delete()
+                    .eq(
+                        "id",
+                        announcementId
+                    )
+                    .eq(
+                        "status",
+                        "draft"
+                    );
+
+            }
+
+
+            announcementFormMessage.textContent =
+                targetInsertError.message ||
+                "Impossible d'enregistrer l'audience.";
+
+            announcementFormMessage.className =
+                "announcement-form-message error";
+
+            return;
+
+        }
+
+
+        announcementFormMessage.textContent =
+            "Brouillon enregistré avec succès.";
+
+        announcementFormMessage.className =
+            "announcement-form-message success";
+
+
+        setTimeout(
+            async () => {
+
+                closeAnnouncementModal();
+
+                await loadAnnouncements();
+
+            },
+            300
+        );
+
+    }
+);
+
+
+async function handleAnnouncementAction(
+    action,
+    announcementId
+) {
+
+    const announcement =
+        residenceAnnouncements.find(
+            item =>
+                item.id ===
+                announcementId
+        );
+
+
+    if (
+        !announcement
+    ) {
+        return;
+    }
+
+
+    if (
+        action ===
+        "edit"
+    ) {
+
+        openAnnouncementModal(
+            announcement
+        );
+
+        return;
+
+    }
+
+
+    if (
+        action ===
+        "stats"
+    ) {
+
+        await loadAnnouncementStats(
+            announcementId
+        );
+
+        return;
+
+    }
+
+
+    if (
+        action ===
+        "publish"
+    ) {
+
+        if (
+            !window.confirm(
+                `Publier l'annonce "${announcement.title}" ?`
+            )
+        ) {
+            return;
+        }
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .rpc(
+                    "admin_publish_residence_announcement",
+                    {
+                        p_announcement_id:
+                            announcementId
+                    }
+                );
+
+
+        if (
+            error
+        ) {
+
+            console.error(
+                "Announcement publication error:",
+                error
+            );
+
+            alert(
+                error.message ||
+                "Impossible de publier l'annonce."
+            );
+
+            return;
+
+        }
+
+
+        await loadAnnouncements();
+
+        return;
+
+    }
+
+
+    if (
+        action ===
+        "archive"
+    ) {
+
+        if (
+            !window.confirm(
+                `Archiver l'annonce "${announcement.title}" ?`
+            )
+        ) {
+            return;
+        }
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .rpc(
+                    "admin_archive_residence_announcement",
+                    {
+                        p_announcement_id:
+                            announcementId
+                    }
+                );
+
+
+        if (
+            error
+        ) {
+
+            alert(
+                error.message ||
+                "Impossible d'archiver l'annonce."
+            );
+
+            return;
+
+        }
+
+
+        await loadAnnouncements();
+
+        return;
+
+    }
+
+
+    if (
+        action ===
+        "delete"
+    ) {
+
+        if (
+            !window.confirm(
+                `Supprimer définitivement le brouillon "${announcement.title}" ?`
+            )
+        ) {
+            return;
+        }
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .from(
+                    "residence_announcements"
+                )
+                .delete()
+                .eq(
+                    "id",
+                    announcementId
+                )
+                .eq(
+                    "status",
+                    "draft"
+                );
+
+
+        if (
+            error
+        ) {
+
+            alert(
+                "Impossible de supprimer ce brouillon."
+            );
+
+            return;
+
+        }
+
+
+        await loadAnnouncements();
+
+    }
+
+}
+
+
+async function loadAnnouncementStats(
+    announcementId
+) {
+
+    const container =
+        document.getElementById(
+            `announcementStats-${announcementId}`
+        );
+
+
+    if (
+        !container
+    ) {
+        return;
+    }
+
+
+    if (
+        !container.hidden
+    ) {
+
+        container.hidden =
+            true;
+
+        return;
+
+    }
+
+
+    container.hidden =
+        false;
+
+    container.textContent =
+        "Chargement des statistiques...";
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .rpc(
+                "admin_get_announcement_stats",
+                {
+                    p_announcement_id:
+                        announcementId
+                }
+            );
+
+
+    if (
+        error
+    ) {
+
+        container.textContent =
+            error.message ||
+            "Impossible de charger les statistiques.";
+
+        return;
+
+    }
+
+
+    container.innerHTML = `
+
+        <div class="announcement-stats-grid">
+
+            <div class="announcement-stat">
+                <span>Destinataires actifs</span>
+                <strong>${escapeHtml(data.eligibleOwners ?? 0)}</strong>
+            </div>
+
+            <div class="announcement-stat">
+                <span>Ont lu</span>
+                <strong>${escapeHtml(data.readOwners ?? 0)}</strong>
+            </div>
+
+            <div class="announcement-stat">
+                <span>Non lue</span>
+                <strong>${escapeHtml(data.unreadOwners ?? 0)}</strong>
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+document
+    .getElementById(
+        "announcementAudienceType"
+    )
+    .addEventListener(
+        "change",
+        updateAnnouncementAudienceFields
+    );
+
+
+document
+    .getElementById(
+        "createAnnouncementButton"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            openAnnouncementModal();
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "announcementModalClose"
+    )
+    .addEventListener(
+        "click",
+        closeAnnouncementModal
+    );
+
+
+document
+    .getElementById(
+        "announcementFormCancel"
+    )
+    .addEventListener(
+        "click",
+        closeAnnouncementModal
+    );
+
+
+announcementModal.addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target.id ===
+            "announcementModal"
+        ) {
+
+            closeAnnouncementModal();
+
+        }
+
+    }
+);
+
+
+updateAnnouncementAudienceFields();
 
 
 

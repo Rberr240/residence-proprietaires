@@ -1673,6 +1673,224 @@
     }
 
 
+
+    /* ======================================== */
+    /* ANNONCES                                 */
+    /* ======================================== */
+
+    .announcement-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      border: 1px solid var(--mg-border);
+      border-radius: 13px;
+      background: white;
+    }
+
+    .announcement-toolbar strong {
+      display: block;
+      color: var(--mg-green-950);
+      font-size: 12px;
+    }
+
+    .announcement-toolbar span {
+      display: block;
+      margin-top: 3px;
+      color: var(--mg-muted);
+      font-size: 9px;
+      line-height: 1.45;
+    }
+
+    .announcement-refresh-button {
+      flex: 0 0 auto;
+      min-height: 35px;
+      padding: 0 12px;
+      border: 1px solid #d5e0db;
+      border-radius: 9px;
+      background: white;
+      color: var(--mg-green-800);
+      font-size: 9px;
+      font-weight: 900;
+    }
+
+    .owner-announcements-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .owner-announcement-card {
+      overflow: hidden;
+      border: 1px solid var(--mg-border);
+      border-radius: 16px;
+      background: white;
+      box-shadow:
+        0 8px 28px
+        rgba(15, 50, 40, 0.04);
+    }
+
+    .owner-announcement-card.unread {
+      box-shadow:
+        inset 4px 0 0 var(--mg-green-700),
+        0 8px 28px
+        rgba(15, 50, 40, 0.04);
+    }
+
+    .owner-announcement-card.urgent {
+      border-color: #edcaca;
+    }
+
+    .owner-announcement-top {
+      padding: 18px 19px;
+      background:
+        linear-gradient(
+          145deg,
+          #ffffff,
+          #f8fbf9
+        );
+    }
+
+    .owner-announcement-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .owner-announcement-card h3 {
+      margin: 0;
+      color: var(--mg-green-950);
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .owner-announcement-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 12px;
+      margin-top: 8px;
+      color: var(--mg-muted);
+      font-size: 9px;
+    }
+
+    .owner-announcement-summary {
+      margin: 12px 0 0;
+      color: #50685e;
+      font-size: 11px;
+      line-height: 1.55;
+    }
+
+    .owner-announcement-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 11px;
+    }
+
+    .owner-announcement-badge {
+      min-height: 25px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 8px;
+      border-radius: 999px;
+      border: 1px solid #dfe7e3;
+      background: white;
+      color: #52675e;
+      font-size: 8px;
+      font-weight: 900;
+    }
+
+    .owner-announcement-badge.unread {
+      border-color: #bcd9cc;
+      background: var(--mg-green-50);
+      color: var(--mg-green-800);
+    }
+
+    .owner-announcement-badge.urgent {
+      border-color: #efcaca;
+      background: #fff4f4;
+      color: #a12626;
+    }
+
+    .owner-announcement-badge.high {
+      border-color: #ead9ad;
+      background: #fff9ea;
+      color: #8a6300;
+    }
+
+    .owner-announcement-content {
+      display: none;
+      padding: 0 19px 18px;
+      color: #445f55;
+      font-size: 11px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    .owner-announcement-content.visible {
+      display: block;
+    }
+
+    .owner-announcement-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 19px 17px;
+      border-top: 1px solid #e7eeea;
+      background: #fbfcfc;
+    }
+
+    .announcement-read-state {
+      color: var(--mg-muted);
+      font-size: 9px;
+    }
+
+    .announcement-read-state.read {
+      color: var(--mg-success);
+      font-weight: 850;
+    }
+
+    .announcement-open-button {
+      min-height: 36px;
+      padding: 0 12px;
+      border: 0;
+      border-radius: 9px;
+      background: var(--mg-green-800);
+      color: white;
+      font-size: 9px;
+      font-weight: 900;
+    }
+
+    .announcement-state {
+      padding: 38px 24px;
+      border: 1px dashed #cfdcd6;
+      border-radius: 15px;
+      background:
+        rgba(255, 255, 255, 0.78);
+      text-align: center;
+      color: var(--mg-muted);
+      font-size: 10px;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 700px) {
+      .owner-announcement-head,
+      .announcement-toolbar,
+      .owner-announcement-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .announcement-refresh-button,
+      .announcement-open-button {
+        width: 100%;
+      }
+    }
+
+
     /* ======================================== */
     /* EMPTY MODULES                            */
     /* ======================================== */
@@ -2306,7 +2524,7 @@
 
                   <div class="module-row-left">
                     <strong>
-                      Annonces & documents
+                      Annonces
                     </strong>
 
                     <small>
@@ -2314,8 +2532,11 @@
                     </small>
                   </div>
 
-                  <span class="module-row-status">
-                    À connecter
+                  <span
+                    class="module-row-status"
+                    style="color:#197149;font-weight:900;"
+                  >
+                    Actif
                   </span>
 
                 </div>
@@ -2713,6 +2934,7 @@
         >
 
           <div class="section-heading">
+
             <div>
               <span>
                 INFORMATIONS
@@ -2724,22 +2946,63 @@
 
               <p>
                 Communications officielles
-                de Mirador Golf 1.
+                destinées à votre compte propriétaire.
               </p>
             </div>
+
           </div>
 
-          <div class="empty-state">
+          <div class="announcement-toolbar">
 
-            <strong>
-              Aucune annonce publiée
-            </strong>
+            <div>
+              <strong>
+                Mes annonces
+              </strong>
 
-            <p>
-              Les annonces créées par l'administration
-              apparaîtront ici par ordre de publication.
-            </p>
+              <span>
+                Seules les annonces publiées
+                qui concernent vos lots sont affichées.
+              </span>
+            </div>
 
+            <button
+              id="refreshAnnouncementsButton"
+              class="announcement-refresh-button"
+              type="button"
+            >
+              Actualiser
+            </button>
+
+          </div>
+
+          <div
+            id="ownerAnnouncementsLoading"
+            class="announcement-state"
+          >
+            Chargement des annonces...
+          </div>
+
+          <div
+            id="ownerAnnouncementsEmpty"
+            class="announcement-state"
+            hidden
+          >
+            Aucune annonce publiée pour votre compte.
+          </div>
+
+          <div
+            id="ownerAnnouncementsError"
+            class="announcement-state"
+            hidden
+          >
+            Impossible de charger les annonces.
+          </div>
+
+          <div
+            id="ownerAnnouncementsList"
+            class="owner-announcements-list"
+            hidden
+          >
           </div>
 
         </section>
@@ -2981,6 +3244,15 @@
     let syndicLoadedOnce =
       false;
 
+    let ownerAnnouncements =
+      [];
+
+    let ownerAnnouncementReads =
+      new Map();
+
+    let announcementsLoadedOnce =
+      false;
+
 
     const SECTION_NAMES = {
       overview: {
@@ -3090,6 +3362,13 @@
         currentOwnerAccountId
       ) {
         loadSyndicSummary();
+      }
+
+      if (
+        sectionName === "announcements" &&
+        currentOwnerAccountId
+      ) {
+        loadOwnerAnnouncements();
       }
 
       window.scrollTo({
@@ -6197,6 +6476,655 @@
           lastError,
       };
     }
+
+
+
+    function ownerAnnouncementCategoryLabel(
+      category,
+    ) {
+      const labels = {
+        general:
+          "Général",
+
+        information:
+          "Information",
+
+        urgent:
+          "Urgent",
+
+        works:
+          "Travaux",
+
+        meeting:
+          "Réunion",
+
+        security:
+          "Sécurité",
+
+        maintenance:
+          "Maintenance",
+
+        other:
+          "Autre",
+      };
+
+      return labels[
+        category
+      ] ||
+        "Général";
+    }
+
+
+    function ownerAnnouncementPriorityLabel(
+      priority,
+    ) {
+      switch (
+        priority
+      ) {
+        case "urgent":
+          return "Priorité urgente";
+
+        case "high":
+          return "Priorité haute";
+
+        default:
+          return "Priorité normale";
+      }
+    }
+
+
+    function formatAnnouncementDateTime(
+      value,
+    ) {
+      if (
+        !value
+      ) {
+        return "—";
+      }
+
+      const date =
+        new Date(
+          value
+        );
+
+      if (
+        Number.isNaN(
+          date.getTime()
+        )
+      ) {
+        return "—";
+      }
+
+      return date
+        .toLocaleString(
+          "fr-FR",
+          {
+            dateStyle:
+              "medium",
+
+            timeStyle:
+              "short",
+          }
+        );
+    }
+
+
+    async function loadOwnerAnnouncements(
+      force = false,
+    ) {
+      if (
+        !currentOwnerAccountId
+      ) {
+        return;
+      }
+
+      if (
+        announcementsLoadedOnce &&
+        !force
+      ) {
+        renderOwnerAnnouncements();
+        return;
+      }
+
+      const loading =
+        document.getElementById(
+          "ownerAnnouncementsLoading"
+        );
+
+      const emptyState =
+        document.getElementById(
+          "ownerAnnouncementsEmpty"
+        );
+
+      const errorState =
+        document.getElementById(
+          "ownerAnnouncementsError"
+        );
+
+      const list =
+        document.getElementById(
+          "ownerAnnouncementsList"
+        );
+
+      loading.hidden =
+        false;
+
+      emptyState.hidden =
+        true;
+
+      errorState.hidden =
+        true;
+
+      list.hidden =
+        true;
+
+      const {
+        data: announcementsData,
+        error: announcementsError,
+      } =
+        await supabaseClient
+          .from(
+            "residence_announcements"
+          )
+          .select(
+            `
+            id,
+            title,
+            summary,
+            content,
+            category,
+            priority,
+            is_pinned,
+            status,
+            visible_from,
+            expires_at,
+            published_at,
+            created_at
+            `
+          )
+          .eq(
+            "status",
+            "published"
+          )
+          .order(
+            "is_pinned",
+            {
+              ascending:
+                false,
+            }
+          )
+          .order(
+            "visible_from",
+            {
+              ascending:
+                false,
+
+              nullsFirst:
+                false,
+            }
+          );
+
+      if (
+        announcementsError
+      ) {
+        console.error(
+          "Owner announcements loading error:",
+          announcementsError
+        );
+
+        loading.hidden =
+          true;
+
+        errorState.hidden =
+          false;
+
+        return;
+      }
+
+      const {
+        data: readsData,
+        error: readsError,
+      } =
+        await supabaseClient
+          .from(
+            "owner_announcement_reads"
+          )
+          .select(
+            `
+            id,
+            announcement_id,
+            owner_account_id,
+            first_read_at,
+            last_read_at,
+            read_count
+            `
+          )
+          .eq(
+            "owner_account_id",
+            currentOwnerAccountId
+          );
+
+      if (
+        readsError
+      ) {
+        console.error(
+          "Owner announcement reads loading error:",
+          readsError
+        );
+
+        loading.hidden =
+          true;
+
+        errorState.hidden =
+          false;
+
+        return;
+      }
+
+      ownerAnnouncements =
+        Array.isArray(
+          announcementsData
+        )
+          ? announcementsData
+          : [];
+
+      ownerAnnouncementReads =
+        new Map(
+          (
+            readsData ||
+            []
+          )
+            .map(
+              read => [
+                read.announcement_id,
+                read,
+              ]
+            )
+        );
+
+      announcementsLoadedOnce =
+        true;
+
+      loading.hidden =
+        true;
+
+      renderOwnerAnnouncements();
+    }
+
+
+    function renderOwnerAnnouncements() {
+      const list =
+        document.getElementById(
+          "ownerAnnouncementsList"
+        );
+
+      const emptyState =
+        document.getElementById(
+          "ownerAnnouncementsEmpty"
+        );
+
+      list.innerHTML =
+        "";
+
+      if (
+        ownerAnnouncements.length ===
+        0
+      ) {
+        emptyState.hidden =
+          false;
+
+        list.hidden =
+          true;
+
+        return;
+      }
+
+      emptyState.hidden =
+        true;
+
+      list.hidden =
+        false;
+
+      for (
+        const announcement
+        of ownerAnnouncements
+      ) {
+        const read =
+          ownerAnnouncementReads
+            .get(
+              announcement.id
+            ) ||
+          null;
+
+        const unread =
+          !read;
+
+        const priorityClass =
+          announcement.priority ===
+          "urgent"
+            ? "urgent"
+            : (
+              announcement.priority ===
+              "high"
+                ? "high"
+                : ""
+            );
+
+        const card =
+          document.createElement(
+            "article"
+          );
+
+        card.className =
+          "owner-announcement-card";
+
+        if (
+          unread
+        ) {
+          card.classList.add(
+            "unread"
+          );
+        }
+
+        if (
+          announcement.priority ===
+          "urgent"
+        ) {
+          card.classList.add(
+            "urgent"
+          );
+        }
+
+        card.innerHTML = `
+          <div class="owner-announcement-top">
+
+            <div class="owner-announcement-head">
+
+              <div>
+
+                <h3>
+                  ${announcement.is_pinned ? "📌 " : ""}
+                  ${escapeHtml(announcement.title)}
+                </h3>
+
+                <div class="owner-announcement-meta">
+
+                  <span>
+                    ${escapeHtml(ownerAnnouncementCategoryLabel(announcement.category))}
+                  </span>
+
+                  <span>
+                    Publiée :
+                    ${escapeHtml(formatAnnouncementDateTime(
+                      announcement.visible_from ||
+                      announcement.published_at
+                    ))}
+                  </span>
+
+                </div>
+
+              </div>
+
+              ${
+                unread
+                  ? `
+                    <span class="owner-announcement-badge unread">
+                      Non lue
+                    </span>
+                  `
+                  : `
+                    <span class="owner-announcement-badge">
+                      Lue
+                    </span>
+                  `
+              }
+
+            </div>
+
+            ${
+              announcement.summary
+                ? `
+                  <p class="owner-announcement-summary">
+                    ${escapeHtml(announcement.summary)}
+                  </p>
+                `
+                : ""
+            }
+
+            <div class="owner-announcement-badges">
+
+              <span class="owner-announcement-badge ${priorityClass}">
+                ${escapeHtml(ownerAnnouncementPriorityLabel(announcement.priority))}
+              </span>
+
+              ${
+                announcement.is_pinned
+                  ? `
+                    <span class="owner-announcement-badge">
+                      Épinglée
+                    </span>
+                  `
+                  : ""
+              }
+
+            </div>
+
+          </div>
+
+          <div
+            id="announcementContent-${escapeHtml(announcement.id)}"
+            class="owner-announcement-content"
+          >
+${escapeHtml(announcement.content)}
+          </div>
+
+          <div class="owner-announcement-actions">
+
+            <span
+              id="announcementReadState-${escapeHtml(announcement.id)}"
+              class="announcement-read-state ${read ? "read" : ""}"
+            >
+              ${
+                read
+                  ? `Lue le ${escapeHtml(formatAnnouncementDateTime(read.first_read_at))}`
+                  : "Cette annonce n'a pas encore été marquée comme lue."
+              }
+            </span>
+
+            <button
+              class="announcement-open-button"
+              type="button"
+              data-open-announcement="${escapeHtml(announcement.id)}"
+            >
+              Lire l'annonce
+            </button>
+
+          </div>
+        `;
+
+        list.appendChild(
+          card
+        );
+      }
+
+      document
+        .querySelectorAll(
+          "[data-open-announcement]"
+        )
+        .forEach(
+          button => {
+            button.addEventListener(
+              "click",
+              () => {
+                openOwnerAnnouncement(
+                  button.dataset.openAnnouncement,
+                  button
+                );
+              },
+            );
+          },
+        );
+    }
+
+
+    async function openOwnerAnnouncement(
+      announcementId,
+      button,
+    ) {
+      const content =
+        document.getElementById(
+          `announcementContent-${announcementId}`
+        );
+
+      const alreadyVisible =
+        content
+          .classList
+          .contains(
+            "visible"
+          );
+
+      content
+        .classList
+        .toggle(
+          "visible"
+        );
+
+      button.textContent =
+        alreadyVisible
+          ? "Lire l'annonce"
+          : "Masquer";
+
+
+      if (
+        alreadyVisible ||
+        ownerAnnouncementReads
+          .has(
+            announcementId
+          )
+      ) {
+        return;
+      }
+
+
+      const {
+        data,
+        error,
+      } =
+        await supabaseClient
+          .rpc(
+            "owner_mark_announcement_read",
+            {
+              p_announcement_id:
+                announcementId,
+            }
+          );
+
+
+      if (
+        error
+      ) {
+        console.error(
+          "Mark announcement read error:",
+          error
+        );
+
+        return;
+      }
+
+
+      ownerAnnouncementReads.set(
+        announcementId,
+        {
+          announcement_id:
+            announcementId,
+
+          owner_account_id:
+            currentOwnerAccountId,
+
+          first_read_at:
+            data?.firstReadAt ||
+            new Date()
+              .toISOString(),
+
+          last_read_at:
+            data?.lastReadAt ||
+            new Date()
+              .toISOString(),
+
+          read_count:
+            data?.readCount ||
+            1,
+        }
+      );
+
+
+      const readState =
+        document.getElementById(
+          `announcementReadState-${announcementId}`
+        );
+
+      if (
+        readState
+      ) {
+        readState.textContent =
+          `Lue le ${formatAnnouncementDateTime(
+            data?.firstReadAt ||
+            new Date()
+              .toISOString()
+          )}`;
+
+        readState.classList.add(
+          "read"
+        );
+      }
+
+
+      const card =
+        button.closest(
+          ".owner-announcement-card"
+        );
+
+      if (
+        card
+      ) {
+        card.classList.remove(
+          "unread"
+        );
+
+        const unreadBadge =
+          card.querySelector(
+            ".owner-announcement-badge.unread"
+          );
+
+        if (
+          unreadBadge
+        ) {
+          unreadBadge.textContent =
+            "Lue";
+
+          unreadBadge.classList.remove(
+            "unread"
+          );
+        }
+      }
+    }
+
+
+    document
+      .getElementById(
+        "refreshAnnouncementsButton"
+      )
+      .addEventListener(
+        "click",
+        () => {
+          announcementsLoadedOnce =
+            false;
+
+          loadOwnerAnnouncements(
+            true
+          );
+        },
+      );
 
 
     async function loadOwnerSpace() {
