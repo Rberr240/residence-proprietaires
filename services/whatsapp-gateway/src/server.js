@@ -232,19 +232,21 @@ async function startWhatsApp() {
  * Endpoint public local de santé.
  * Pas besoin de clé : aucune donnée sensible.
  */
-app.get('/health', (req, res) => {
-  res.json({
-    ok: true,
-    service: 'mirador-golf-whatsapp-gateway',
-    whatsapp: {
-      state: whatsappState,
-      connected:
-        whatsappState === 'connected',
-      user: sock?.user?.id || null,
-      lastError: lastConnectionError
-    }
-  });
-});
+app.get(
+  '/health',
+  apiKeyMiddleware,
+  (req, res) => {
+    res.json({
+      ok: true,
+      service: 'mirador-golf-whatsapp-gateway',
+      whatsapp: {
+        state: whatsappState,
+        connected:
+          whatsappState === 'connected'
+      }
+    });
+  }
+);
 
 /**
  * Endpoint d'envoi.

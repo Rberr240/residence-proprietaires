@@ -45,26 +45,15 @@ const BREVO_SENDER_NAME = Deno.env.get("BREVO_SENDER_NAME") ??
 const BREVO_SENDER_EMAIL = Deno.env.get("BREVO_SENDER_EMAIL") ?? "";
 
 // ============================================================
-// WHATSAPP — TWILIO
+// WHATSAPP — BAILEYS GATEWAY
 // ============================================================
 
-const TWILIO_ACCOUNT_SID = Deno.env.get("TWILIO_ACCOUNT_SID") ?? "";
+const WHATSAPP_GATEWAY_URL = (
+  Deno.env.get("WHATSAPP_GATEWAY_URL") ?? ""
+).replace(/\/+$/, "");
 
-const TWILIO_AUTH_TOKEN = Deno.env.get("TWILIO_AUTH_TOKEN") ?? "";
-
-const TWILIO_API_KEY_SID = Deno.env.get("TWILIO_API_KEY_SID") ?? "";
-
-const TWILIO_API_KEY_SECRET = Deno.env.get("TWILIO_API_KEY_SECRET") ?? "";
-
-const TWILIO_WHATSAPP_FROM = Deno.env.get("TWILIO_WHATSAPP_FROM") ?? "";
-
-const TWILIO_WHATSAPP_CONTENT_SID =
-  Deno.env.get("TWILIO_WHATSAPP_CONTENT_SID") ?? "";
-
-const TWILIO_WHATSAPP_ALLOW_FREEFORM = (
-  Deno.env.get("TWILIO_WHATSAPP_ALLOW_FREEFORM") ??
-    "false"
-).toLowerCase() === "true";
+const WHATSAPP_GATEWAY_API_KEY =
+  Deno.env.get("WHATSAPP_GATEWAY_API_KEY") ?? "";
 
 // ============================================================
 // PUSH — ONESIGNAL
@@ -524,7 +513,7 @@ async function sendEmail(
 }
 
 // ============================================================
-// WHATSAPP — TWILIO
+// WHATSAPP — BAILEYS GATEWAY
 // ============================================================
 
 async function sendWhatsApp(
@@ -532,32 +521,18 @@ async function sendWhatsApp(
   event: NotificationEvent,
 ): Promise<string> {
   if (
-    !TWILIO_ACCOUNT_SID
+    !WHATSAPP_GATEWAY_URL
   ) {
     throw new Error(
-      "TWILIO_ACCOUNT_SID non configuré.",
+      "WHATSAPP_GATEWAY_URL non configurée.",
     );
   }
 
   if (
-    !TWILIO_WHATSAPP_FROM
+    !WHATSAPP_GATEWAY_API_KEY
   ) {
     throw new Error(
-      "TWILIO_WHATSAPP_FROM non configuré.",
-    );
-  }
-
-  const authUsername = TWILIO_API_KEY_SID ||
-    TWILIO_ACCOUNT_SID;
-
-  const authPassword = TWILIO_API_KEY_SECRET ||
-    TWILIO_AUTH_TOKEN;
-
-  if (
-    !authPassword
-  ) {
-    throw new Error(
-      "Identifiants Twilio incomplets.",
+      "WHATSAPP_GATEWAY_API_KEY non configurée.",
     );
   }
 
@@ -565,81 +540,32 @@ async function sendWhatsApp(
     delivery.destination,
   );
 
-  const from = normalizeWhatsAppNumber(
-    TWILIO_WHATSAPP_FROM,
-  );
-
   const portalUrl = actionUrl(
     event,
   );
 
-  const form = new URLSearchParams();
-
-  form.set(
-    "From",
-    `whatsapp:${from}`,
-  );
-
-  form.set(
-    "To",
-    `whatsapp:${to}`,
-  );
-
-  if (
-    TWILIO_WHATSAPP_CONTENT_SID
-  ) {
-    form.set(
-      "ContentSid",
-      TWILIO_WHATSAPP_CONTENT_SID,
-    );
-
-    form.set(
-      "ContentVariables",
-      JSON.stringify({
-        1: truncate(
-          event.title,
-          120,
-        ),
-
-        2: truncate(
-          event.body,
-          700,
-        ),
-
-        3: portalUrl,
-      }),
-    );
-  } else {
-    if (
-      !TWILIO_WHATSAPP_ALLOW_FREEFORM
-    ) {
-      throw new Error(
-        "TWILIO_WHATSAPP_CONTENT_SID requis pour les messages WhatsApp initiés par la résidence.",
-      );
-    }
-
-    form.set(
-      "Body",
-      `${event.title}\n\n${event.body}\n\n${portalUrl}`,
-    );
-  }
-
-  const auth = btoa(
-    `${authUsername}:${authPassword}`,
-  );
+  const message = [
+    `*${truncate(event.title, 120)}*`,
+    truncate(event.body, 1200),
+    portalUrl,
+  ]
+    .filter(Boolean)
+    .join("\n\n");
 
   const response = await fetch(
-    `https://api.twilio.com/2010-04-01/Accounts/${TWILIO_ACCOUNT_SID}/Messages.json`,
+    `${WHATSAPP_GATEWAY_URL}/send`,
     {
       method: "POST",
 
       headers: {
-        authorization: `Basic ${auth}`,
-
-        "content-type": "application/x-www-form-urlencoded",
+        "content-type": "application/json",
+        "x-api-key": WHATSAPP_GATEWAY_API_KEY,
       },
 
-      body: form.toString(),
+      body: JSON.stringify({
+        to,
+        message,
+      }),
     },
   );
 
@@ -653,8 +579,9 @@ async function sendWhatsApp(
     !response.ok
   ) {
     throw new Error(
-      `Twilio ${response.status}: ${
+      `WhatsApp Gateway ${response.status}: ${
         payload?.message ??
+          payload?.error ??
           JSON.stringify(
             payload,
           )
@@ -663,15 +590,16 @@ async function sendWhatsApp(
   }
 
   if (
-    !payload?.sid
+    payload?.ok !== true ||
+    !payload?.provider_message_id
   ) {
     throw new Error(
-      "Twilio n'a retourné aucun SID.",
+      "Le WhatsApp Gateway n'a retourné aucun provider_message_id.",
     );
   }
 
   return String(
-    payload.sid,
+    payload.provider_message_id,
   );
 }
 
