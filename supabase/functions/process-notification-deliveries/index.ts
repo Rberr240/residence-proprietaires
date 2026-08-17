@@ -558,9 +558,10 @@ async function sendWhatsApp(
       method: "POST",
 
       headers: {
-        "content-type": "application/json",
-        "x-api-key": WHATSAPP_GATEWAY_API_KEY,
-      },
+  "content-type": "application/json",
+  "x-api-key": WHATSAPP_GATEWAY_API_KEY,
+  "ngrok-skip-browser-warning": "1",
+},
 
       body: JSON.stringify({
         to,
