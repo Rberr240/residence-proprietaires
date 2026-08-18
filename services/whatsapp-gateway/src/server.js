@@ -10,6 +10,8 @@ import makeWASocket, {
   useMultiFileAuthState
 } from '@whiskeysockets/baileys';
 
+import { timingSafeEqual, createHash } from 'node:crypto';
+
 const PORT = Number(process.env.PORT || 8080);
 const HOST = process.env.HOST || '127.0.0.1';
 
@@ -23,8 +25,41 @@ if (!API_KEY || API_KEY.length < 32) {
   process.exit(1);
 }
 
+// Logger applicatif : utilisé uniquement par notre propre code
+// (voir logger.info/error plus bas, tous nettoyés explicitement
+// à la source). Le redact ci-dessous reste un filet de sécurité
+// défensif secondaire, pas la protection principale.
 const logger = pino({
-  level: process.env.LOG_LEVEL || 'info'
+  level: process.env.LOG_LEVEL || 'info',
+  redact: {
+    paths: [
+      'jid',
+      'lid',
+      'user',
+      'to',
+      'destination',
+      '*.jid',
+      '*.lid',
+      '*.user',
+      '*.to',
+      '*.destination'
+    ],
+    censor: '[redacted]'
+  }
+});
+
+// Logger dédié, exclusivement transmis à makeWASocket().
+// Baileys journalise en interne, via cette instance, des données
+// protocolaires (numéro complet, JID, LID, état de session) sous
+// des noms de champs variables et non exhaustivement prévisibles
+// (ex. myPN, myLID, node.username, en plus de jid/lid déjà connus).
+// Plutôt que de maintenir une liste de redaction sans fin, ce
+// logger est rendu totalement silencieux : level 'silent' vaut
+// Infinity dans pino (vérifié sur la version installée, pino
+// 10.3.1) et désactive tous les niveaux, y compris 'fatal'.
+// Notre propre code ne s'appuie jamais sur ce logger.
+const baileysLogger = pino({
+  level: 'silent'
 });
 
 const app = express();
@@ -77,10 +112,49 @@ function normalizePhoneNumber(value) {
   return number;
 }
 
+/**
+ * Compare deux chaînes en temps constant.
+ *
+ * Les deux valeurs sont d'abord hachées (SHA-256) afin d'obtenir
+ * des buffers de longueur fixe et égale : timingSafeEqual exige
+ * des buffers de même taille et lèverait sinon une exception pour
+ * toute clé fournie de longueur différente de API_KEY.
+ *
+ * La clé elle-même n'est jamais journalisée.
+ */
+function safeCompare(a, b) {
+  const hashA = createHash('sha256').update(String(a)).digest();
+  const hashB = createHash('sha256').update(String(b)).digest();
+
+  return timingSafeEqual(hashA, hashB);
+}
+
+/**
+ * Extrait uniquement les métadonnées d'erreur non sensibles
+ * (nom, code HTTP éventuel) sans jamais journaliser error.message
+ * ou la pile d'appel, qui peuvent contenir un JID/numéro complet
+ * généré par Baileys.
+ */
+function safeErrorMeta(error) {
+  if (!(error instanceof Error)) {
+    return { name: 'UnknownError' };
+  }
+
+  const statusCode =
+    error?.output?.statusCode ??
+    error?.statusCode ??
+    null;
+
+  return {
+    name: error.name || 'Error',
+    statusCode
+  };
+}
+
 function apiKeyMiddleware(req, res, next) {
   const provided = req.header('x-api-key');
 
-  if (!provided || provided !== API_KEY) {
+  if (!provided || !safeCompare(provided, API_KEY)) {
     return res.status(401).json({
       ok: false,
       error: 'unauthorized'
@@ -100,7 +174,7 @@ function scheduleReconnect() {
 
     startWhatsApp().catch((error) => {
       logger.error(
-        { err: error },
+        safeErrorMeta(error),
         'WhatsApp reconnect failed'
       );
 
@@ -123,7 +197,7 @@ async function startWhatsApp() {
       'Mirador Golf 1 Notifications'
     ),
 
-    logger,
+    logger: baileysLogger,
 
     markOnlineOnConnect: false,
 
@@ -169,9 +243,6 @@ async function startWhatsApp() {
         lastConnectionError = null;
 
         logger.info(
-          {
-            user: newSock.user?.id || null
-          },
           'WhatsApp connected'
         );
 
@@ -198,8 +269,7 @@ async function startWhatsApp() {
 
         logger.warn(
           {
-            statusCode,
-            error: message
+            statusCode
           },
           'WhatsApp disconnected'
         );
@@ -302,9 +372,6 @@ app.post(
         `${number}@s.whatsapp.net`;
 
       logger.info(
-        {
-          jid
-        },
         'Sending WhatsApp notification'
       );
 
@@ -321,7 +388,6 @@ app.post(
 
       logger.info(
         {
-          jid,
           messageId
         },
         'WhatsApp notification sent'
@@ -336,19 +402,13 @@ app.post(
       });
     } catch (error) {
       logger.error(
-        {
-          err: error
-        },
+        safeErrorMeta(error),
         'WhatsApp send failed'
       );
 
       return res.status(500).json({
         ok: false,
-        error: 'send_failed',
-        message:
-          error instanceof Error
-            ? error.message
-            : 'Unknown error'
+        error: 'send_failed'
       });
     }
   }
@@ -383,7 +443,7 @@ startWhatsApp().catch((error) => {
   lastConnectionError = error.message;
 
   logger.error(
-    { err: error },
+    safeErrorMeta(error),
     'Initial WhatsApp connection failed'
   );
 
