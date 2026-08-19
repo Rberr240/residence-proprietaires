@@ -3951,14 +3951,21 @@
                     <strong>
                       WhatsApp
                     </strong>
-                    <small>
-                      Le canal sera disponible après configuration du provider.
+                    <small id="notificationWhatsappHint">
+                      Chargement de votre numéro WhatsApp...
                     </small>
                   </div>
 
-                  <span class="notification-pref-status soon">
-                    Bientôt
-                  </span>
+                  <label
+                    class="notification-switch"
+                    title="Activer ou désactiver WhatsApp"
+                  >
+                    <input
+                      id="notificationWhatsappToggle"
+                      type="checkbox"
+                    >
+                    <span></span>
+                  </label>
                 </div>
 
                 <div class="notification-preference-row">
@@ -4231,6 +4238,9 @@
     };
 
     let currentOwnerEmail =
+      "";
+
+    let currentOwnerWhatsapp =
       "";
 
     let currentSectionName =
@@ -9776,6 +9786,29 @@ ${escapeHtml(announcement.content)}
         currentOwnerEmail
           ? `Envoi vers ${currentOwnerEmail}`
           : "Aucune adresse email associée à votre compte.";
+
+      const whatsappToggle =
+        document.getElementById(
+          "notificationWhatsappToggle"
+        );
+
+      const whatsappHint =
+        document.getElementById(
+          "notificationWhatsappHint"
+        );
+
+      whatsappToggle.checked =
+        Boolean(
+          notificationPreferences.whatsappEnabled
+        );
+
+      whatsappToggle.disabled =
+        !currentOwnerWhatsapp;
+
+      whatsappHint.textContent =
+        currentOwnerWhatsapp
+          ? `Envoi vers ${currentOwnerWhatsapp}`
+          : "Aucun numéro WhatsApp associé à votre compte.";
     }
 
 
@@ -9859,6 +9892,24 @@ ${escapeHtml(announcement.content)}
         return;
       }
 
+      const whatsappEnabled =
+        Boolean(
+          document.getElementById(
+            "notificationWhatsappToggle"
+          ).checked
+        );
+
+      if (
+        whatsappEnabled &&
+        !currentOwnerWhatsapp
+      ) {
+        message.textContent =
+          "Ajoutez d'abord un numéro WhatsApp à votre compte.";
+        message.className =
+          "notification-preference-message error";
+        return;
+      }
+
       button.disabled =
         true;
       button.textContent =
@@ -9881,9 +9932,7 @@ ${escapeHtml(announcement.content)}
                 p_email_enabled:
                   emailEnabled,
                 p_whatsapp_enabled:
-                  Boolean(
-                    notificationPreferences.whatsappEnabled
-                  ),
+                  whatsappEnabled,
                 p_push_enabled:
                   Boolean(
                     notificationPreferences.pushEnabled
@@ -10136,6 +10185,14 @@ ${escapeHtml(announcement.content)}
         currentOwnerEmail =
           safeText(
             owner.email,
+            ""
+          );
+
+        currentOwnerWhatsapp =
+          safeText(
+            owner.whatsapp ||
+              owner.phone_e164 ||
+              owner.phone,
             ""
           );
 
