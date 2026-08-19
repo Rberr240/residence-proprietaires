@@ -12,6 +12,8 @@ import makeWASocket, {
 
 import { timingSafeEqual, createHash } from 'node:crypto';
 
+import { createTokenBucket } from './token-bucket.js';
+
 const PORT = Number(process.env.PORT || 8080);
 const HOST = process.env.HOST || '127.0.0.1';
 
@@ -149,6 +151,28 @@ function safeErrorMeta(error) {
     name: error.name || 'Error',
     statusCode
   };
+}
+
+// Borne la vitesse des tentatives d'envoi réelles vers Baileys
+// (POST /send), indépendamment de l'identité de l'appelant : une
+// seule clé légitime existe pour ce Gateway, donc un compteur par
+// IP ou par clé dégénère en compteur global. La topologie ngrok
+// ne garantit pas la fiabilité de X-Forwarded-For, cette limite
+// n'en dépend donc à aucun moment.
+//
+// Dimensionnée sur la cadence de production réelle (cron 1x/min,
+// batch = 20) avec une capacité de rafale tolérant jusqu'à 3
+// invocations chevauchées (20 x 3 = 60).
+const SEND_RATE_LIMIT_CAPACITY = 60;
+const SEND_RATE_LIMIT_REFILL_PER_MINUTE = 20;
+
+const sendRateLimitBucket = createTokenBucket({
+  capacity: SEND_RATE_LIMIT_CAPACITY,
+  refillPerMinute: SEND_RATE_LIMIT_REFILL_PER_MINUTE
+});
+
+function consumeSendToken() {
+  return sendRateLimitBucket.consume();
 }
 
 function apiKeyMiddleware(req, res, next) {
@@ -370,6 +394,21 @@ app.post(
 
       const jid =
         `${number}@s.whatsapp.net`;
+
+      const rateLimitResult = consumeSendToken();
+
+      if (!rateLimitResult.allowed) {
+        return res
+          .status(429)
+          .set(
+            'Retry-After',
+            String(rateLimitResult.retryAfterSeconds)
+          )
+          .json({
+            ok: false,
+            error: 'rate_limited'
+          });
+      }
 
       logger.info(
         'Sending WhatsApp notification'
