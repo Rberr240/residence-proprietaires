@@ -36,6 +36,42 @@
 
     <style>
 
+        /*
+         * Local tokens for this page only. admin.html predates the
+         * shared design system (assets/css/tokens.css, loaded above)
+         * and has ~300 hardcoded color values across its existing
+         * selectors — mass-converting all of them to the global
+         * --mirador-* scale was judged too high-risk to do blind in
+         * this sprint (no browser available to visually verify such a
+         * wide change). These --adm-* names capture admin.html's own
+         * existing dominant colors as literals (not re-aliased to
+         * --mirador-*, which differ by a few RGB units) specifically
+         * so any NEW or modified CSS in this file stays visually
+         * seamless with the ~17k lines of untouched existing CSS
+         * around it, rather than introducing a subtle two-tone seam
+         * within the same page. A full token migration of the legacy
+         * rules is recommended as explicit follow-up work — see
+         * docs/architecture.md.
+         */
+        :root {
+            --adm-green-950: #0b2f27;
+            --adm-green-900: #103d32;
+            --adm-primary: #174b3d;
+            --adm-green-600: #30735e;
+            --adm-muted: #71847c;
+            --adm-border: #e1e8e5;
+            --adm-border-strong: #d7e2dd;
+            --adm-surface-sunken: #f4f7f5;
+            --adm-danger: #b42318;
+            --adm-danger-bg: #fde8e8;
+            --adm-success: #167347;
+            --adm-success-bg: #e6f6ee;
+            --adm-warning: #9a6b00;
+            --adm-warning-bg: #fff4d8;
+            --adm-gold: var(--mirador-gold, #b39255);
+            --adm-gold-ink: var(--mirador-gold-ink, #7a6338);
+        }
+
         body {
             background: #f4f7f5;
         }
@@ -47,6 +83,14 @@
             background: #0b2f27;
 
             color: white;
+        }
+
+        /* The default global focus ring (tokens.css) is tuned for
+           light surfaces; this header is dark, so give its interactive
+           elements a ring with enough contrast against it instead. */
+        .admin-header :focus-visible {
+            outline: 2px solid white;
+            outline-offset: 2px;
         }
 
 
@@ -197,6 +241,12 @@
             margin-bottom: 28px;
         }
 
+
+        .modal-eyebrow {
+            color: var(--adm-green-600, #30735e);
+            font-size: 11px;
+            font-weight: 800;
+        }
 
         .stat-card {
             padding: 20px;
@@ -1451,6 +1501,7 @@
 
 .add-vote-option {
     min-height: 38px;
+    margin-top: 8px;
     padding: 0 12px;
     border: 1px dashed #bfcfc8;
     border-radius: 9px;
@@ -2216,6 +2267,10 @@
     margin-top: 20px;
 }
 
+.announcement-form-grid--flush {
+    margin-top: 0;
+}
+
 .announcement-form-field {
     min-width: 0;
 }
@@ -2599,6 +2654,10 @@
     grid-template-columns: 1fr 1fr;
     gap: 14px;
     margin-top: 20px;
+}
+
+.document-form-grid--flush {
+    margin-top: 0;
 }
 
 .document-form-field {
@@ -3014,12 +3073,15 @@
         </section>
 
 
-        <div class="admin-tabs">
+        <div class="admin-tabs" role="tablist" aria-label="Sections d'administration">
 
             <button
                 id="ownersTabButton"
                 class="admin-tab-button active"
                 type="button"
+                role="tab"
+                aria-selected="true"
+                aria-controls="ownersStatsSection ownersPanelSection"
             >
                 Propriétaires
             </button>
@@ -3028,6 +3090,9 @@
                 id="meetingsTabButton"
                 class="admin-tab-button"
                 type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="meetingsSection"
             >
                 Réunions
             </button>
@@ -3036,6 +3101,9 @@
                 id="votesTabButton"
                 class="admin-tab-button"
                 type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="votesSection"
             >
                 Votes
             </button>
@@ -3044,6 +3112,9 @@
                 id="syndicTabButton"
                 class="admin-tab-button"
                 type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="syndicSection"
             >
                 Syndic
             </button>
@@ -3052,6 +3123,9 @@
                 id="announcementsTabButton"
                 class="admin-tab-button"
                 type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="announcementsSection"
             >
                 Annonces
             </button>
@@ -3060,6 +3134,9 @@
                 id="documentsTabButton"
                 class="admin-tab-button"
                 type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="documentsSection"
             >
                 Documents
             </button>
@@ -3696,13 +3773,7 @@
 
             <div>
 
-                <span
-                    style="
-                        color:#30735e;
-                        font-size:11px;
-                        font-weight:800;
-                    "
-                >
+                <span class="modal-eyebrow">
                     PROPRIÉTAIRE
                 </span>
 
@@ -3950,13 +4021,7 @@
 
             <div>
 
-                <span
-                    style="
-                        color:#30735e;
-                        font-size:11px;
-                        font-weight:800;
-                    "
-                >
+                <span class="modal-eyebrow">
                     RÉUNION
                 </span>
 
@@ -4141,13 +4206,7 @@
 
             <div>
 
-                <span
-                    style="
-                        color:#30735e;
-                        font-size:11px;
-                        font-weight:800;
-                    "
-                >
+                <span class="modal-eyebrow">
                     VOTE
                 </span>
 
@@ -4301,7 +4360,6 @@
                         id="addVoteOptionButton"
                         class="add-vote-option"
                         type="button"
-                        style="margin-top:8px;"
                     >
                         + Ajouter une option
                     </button>
@@ -4360,7 +4418,7 @@
         <div class="modal-head">
 
             <div>
-                <span style="color:#30735e;font-size:11px;font-weight:800;">
+                <span class="modal-eyebrow">
                     SYNDIC
                 </span>
 
@@ -4474,7 +4532,7 @@
         <div class="modal-head">
 
             <div>
-                <span style="color:#30735e;font-size:11px;font-weight:800;">
+                <span class="modal-eyebrow">
                     ENCAISSEMENT
                 </span>
 
@@ -4610,7 +4668,7 @@
         <div class="modal-head">
 
             <div>
-                <span style="color:#30735e;font-size:11px;font-weight:800;">
+                <span class="modal-eyebrow">
                     ANNONCE
                 </span>
 
@@ -4724,7 +4782,7 @@
                         Audience *
                     </h3>
 
-                    <div class="announcement-form-grid" style="margin-top:0;">
+                    <div class="announcement-form-grid announcement-form-grid--flush">
 
                         <div class="announcement-form-field full">
 
@@ -4852,7 +4910,7 @@
         <div class="modal-head">
 
             <div>
-                <span style="color:#30735e;font-size:11px;font-weight:800;">
+                <span class="modal-eyebrow">
                     DOCUMENT
                 </span>
 
@@ -4956,10 +5014,7 @@
                         Audience *
                     </h3>
 
-                    <div
-                        class="document-form-grid"
-                        style="margin-top:0;"
-                    >
+                    <div class="document-form-grid document-form-grid--flush">
 
                         <div class="document-form-field full">
 
@@ -6520,9 +6575,19 @@ function showAdminSection(
         showOwners
     );
 
+    ownersTabButton.setAttribute(
+        "aria-selected",
+        showOwners ? "true" : "false"
+    );
+
     meetingsTabButton.classList.toggle(
         "active",
         showMeetings
+    );
+
+    meetingsTabButton.setAttribute(
+        "aria-selected",
+        showMeetings ? "true" : "false"
     );
 
     votesTabButton.classList.toggle(
@@ -6530,9 +6595,19 @@ function showAdminSection(
         showVotes
     );
 
+    votesTabButton.setAttribute(
+        "aria-selected",
+        showVotes ? "true" : "false"
+    );
+
     syndicTabButton.classList.toggle(
         "active",
         showSyndic
+    );
+
+    syndicTabButton.setAttribute(
+        "aria-selected",
+        showSyndic ? "true" : "false"
     );
 
     announcementsTabButton.classList.toggle(
@@ -6540,9 +6615,19 @@ function showAdminSection(
         showAnnouncements
     );
 
+    announcementsTabButton.setAttribute(
+        "aria-selected",
+        showAnnouncements ? "true" : "false"
+    );
+
     documentsTabButton.classList.toggle(
         "active",
         showDocuments
+    );
+
+    documentsTabButton.setAttribute(
+        "aria-selected",
+        showDocuments ? "true" : "false"
     );
 
 
