@@ -36,4 +36,8 @@ Aucune étape de build n'est nécessaire pour le frontend : les fichiers HTML so
 
 - Tests du gateway WhatsApp : `cd services/whatsapp-gateway && npm test`
 - Vérification de type des Edge Functions : `deno check` dans chaque dossier `supabase/functions/*`
-- CI : voir `.github/workflows/ci.yml` (tests WhatsApp, syntaxe JavaScript, `deno check`)
+- CI : voir `.github/workflows/ci.yml` (tests WhatsApp, syntaxe JavaScript, garde-fou sécurité frontend, `deno check`)
+
+## Design
+
+Voir [docs/architecture.md](docs/architecture.md#design-system-sprint-1--futuristic-ui-foundation) pour le système de design (`assets/css/tokens.css`, `assets/css/components.css`) et [docs/sprints/SPRINT-01-FUTURISTIC-UI-SECURITY.md](docs/sprints/SPRINT-01-FUTURISTIC-UI-SECURITY.md) pour le détail du Sprint 1 (fondation UI futuriste + durcissement sécurité frontend).

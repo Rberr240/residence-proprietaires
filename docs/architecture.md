@@ -29,9 +29,76 @@ Il n'y a pas de serveur d'application : toute la logique métier vit dans Postgr
 - HTML/CSS/JavaScript vanilla, sans framework ni bundler.
 - Pages principales à la racine : `index.html`, `inscription.html`, `collecte.html`, `confirmation.html`, `connexion.html`, `confidentialite.html`, `espace-proprietaire.html`, `admin-login.html`, `admin.html`, `admin/login.html`, `admin/dashboard.html`.
 - `espace-proprietaire.html` et `admin.html` concentrent l'essentiel de la logique applicative (CSS et JS inline, plusieurs milliers de lignes) : dashboard, réunions, votes, syndic, annonces, documents, notifications, préférences.
-- Scripts partagés dans `assets/js/` : `config.js` (constantes publiques), `supabase-client.js` (client Supabase, storage key différent admin/propriétaire), `admin-auth.js`, `dashboard.js`, `validation.js`, `access.js`, `inscription.js`.
+- Scripts partagés dans `assets/js/` : `config.js` (constantes publiques), `supabase-client.js` (client Supabase, storage key différent admin/propriétaire), `ui-helpers.js` (voir ci-dessous), `access.js`, `inscription.js`. `admin-auth.js`, `dashboard.js`, `validation.js` et `assets/css/admin.css` sont des fichiers vides, trackés mais non chargés par aucune page (scaffold antérieur jamais rempli) — laissés tels quels par le Sprint 1 (design/sécurité), pas de valeur claire à les toucher dans ce sprint.
 - Aucun processus de build : les fichiers sont servis tels quels par GitHub Pages.
 - Déployé en *project site* GitHub Pages, donc sous un sous-chemin (`/residence-proprietaires/`), pas à la racine du domaine. Le code qui dépend du chemin de déploiement (ex. scope du service worker OneSignal) le calcule dynamiquement depuis `window.location.pathname` plutôt que de le coder en dur, pour rester correct en cas de changement de nom de dépôt ou d'ajout d'un domaine personnalisé.
+
+### Design system (Sprint 1 — FUTURISTIC UI FOUNDATION)
+
+- `assets/css/tokens.css` : source canonique des couleurs, espacements,
+  rayons, ombres et transitions (`--mirador-*`), plus un reset minimal,
+  `prefers-reduced-motion`, un anneau de focus global (`:focus-visible`)
+  et les utilitaires `.sr-only` / `.sr-only-focusable`. Chargé en premier
+  sur les 9 pages HTML suivies.
+- `assets/css/components.css` : primitives réutilisables namespacées
+  `.mirador-*` (boutons, cartes, badges, champs, onglets, tables,
+  modales/drawers, toasts/alertes, skeleton/empty state, et le slot
+  `.mirador-residence-preview` — voir « Résidence 3D » ci-dessous).
+  Chargée sur les 9 pages, mais **adoptée partiellement** : `tokens.css`
+  est la transformation large (toutes les pages en héritent via leurs
+  variables CSS existantes, réaliasées avec fallback vers leur valeur
+  d'origine) ; les classes `.mirador-*` elles-mêmes ne sont utilisées
+  aujourd'hui que dans `admin-login.html` (formulaire + bouton),
+  `connexion.html` (spinners), `espace-proprietaire.html` (slot
+  résidence) et `index.html` (lien d'évitement). `admin.html` et le
+  reste d'`espace-proprietaire.html` gardent leurs classes existantes
+  (`.nav-button`, `.stat-card`, `.admin-tab-button`, etc.) recolorées
+  via les tokens plutôt que renommées, pour limiter le risque de
+  régression sur ~28 000 lignes non entièrement relues à l'œil. Le
+  reste de la bibliothèque (`.mirador-card`, `.mirador-badge`,
+  `.mirador-tabs`, `.mirador-table`, `.mirador-modal`, `.mirador-toggle`,
+  etc.) est prêt mais pas encore adopté — travail de suite naturel.
+- `assets/js/ui-helpers.js` (`window.MiradorUI`) : `trapFocus()` +
+  `focusDialog()` pour les futures modales/drawers, `hardenExternalLink()`
+  / `hardenExternalLinksIn()` (applique `rel="noopener noreferrer"` à
+  tout `target="_blank"` présent ou ajouté dynamiquement),
+  `prefersReducedMotion()`. Additif, ne dépend d'aucune logique
+  métier — inclus mais pas encore appelé par les pages existantes
+  (celles-ci gèrent déjà Escape/click-outside pour leurs propres
+  modales, voir `docs/security.md`).
+- `admin.html` n'avait aucune variable CSS avant ce sprint (~300
+  couleurs codées en dur). Un bloc `:root` local (`--adm-*`) a été
+  ajouté avec les couleurs déjà dominantes du fichier comme valeurs
+  (pas réaliasées vers `--mirador-*`, qui diffèrent de quelques
+  unités RGB) pour que le nouveau CSS reste visuellement homogène
+  avec les ~17 000 lignes existantes non converties. Une migration
+  complète vers les tokens partagés reste un chantier de suite
+  explicite, pas fait ce sprint (risque jugé disproportionné sans
+  navigateur pour vérifier visuellement un changement aussi large).
+
+### Résidence 3D (préparation Sprint 2)
+
+Sprint 1 ne charge aucune dépendance 3D. `.mirador-residence-preview`
+(dans `components.css`) est un bandeau décoratif 2D dégradé vert
+foncé, utilisé aujourd'hui dans la vue d'ensemble d'`espace-proprietaire.html`
+comme emplacement réservé (« Bientôt disponible »). Il porte déjà les
+classes de variante `--loading` et `--unsupported` (styles seulement,
+pas de logique JS) pour que Sprint 2 puisse y brancher :
+
+1. Détection de capacité WebGL avant tout chargement (`--unsupported`
+   en repli permanent si indisponible).
+2. Chargement paresseux de Three.js + GLTF/GLB uniquement quand ce
+   bandeau devient visible (`IntersectionObserver`), jamais au chargement
+   initial de la page — le frontend actuel ne doit pas dépendre de la 3D
+   pour s'afficher.
+3. État `--loading` pendant le téléchargement des assets.
+4. Repli vers ce même bandeau 2D si le WebGL échoue à l'exécution.
+5. LOD / limitation de qualité sur mobile, à décider en Sprint 2 selon
+   les contraintes de performance observées.
+
+Rien dans ce slot ne dépend d'un identifiant de logement particulier
+aujourd'hui — Sprint 2 devra le connecter aux données réelles du lot
+du propriétaire (`owner_account_units`).
 
 ## Authentification
 
@@ -102,6 +169,7 @@ Composant considéré stable (9 tests unitaires, tous verts) — ne pas le modif
 
 - les tests du gateway WhatsApp (`npm test`),
 - la vérification syntaxique de tout le JavaScript (fichiers `assets/js/*.js` et blocs `<script>` inline de toutes les pages HTML suivies),
+- un garde-fou de régression frontend (`check-frontend-security.js` — tout `target="_blank"` a `rel="noopener noreferrer"`, absence de `document.write`/`eval`/`new Function`/URL `javascript:`, présence d'un meta CSP sur chaque page non vide),
 - `deno check` sur chaque Edge Function.
 
 Aucune étape de déploiement automatique n'est incluse.
