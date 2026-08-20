@@ -46,6 +46,9 @@ jobs:
       - name: Check inline <script> blocks in HTML pages
         run: node .github/scripts/check-inline-js.js
 
+      - name: Check frontend security regressions
+        run: node .github/scripts/check-frontend-security.js
+
   deno-check:
     name: Deno type-check edge functions
     runs-on: ubuntu-latest
