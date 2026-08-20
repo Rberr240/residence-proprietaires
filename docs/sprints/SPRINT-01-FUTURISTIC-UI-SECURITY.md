@@ -53,8 +53,10 @@ anything touching production Supabase, GitHub Pages config, or secrets.
   see §8).
 - `assets/js/ui-helpers.js` (`window.MiradorUI`) — focus-trap + Escape
   helper for dialogs, `target="_blank"` hardening, reduced-motion check.
-  Additive only; not yet called by existing pages (which already implement
-  their own Escape/click-outside handling for their own modals — see §5).
+  Loaded by `espace-proprietaire.html` and used for the mobile sidebar
+  drawer's Tab-key focus trap (see §5) — an independent-audit finding
+  caught it shipped but genuinely unloaded by any page in the initial
+  version of this sprint; see §14.
 - `app.css`, `style.css`, `espace-proprietaire.html`'s inline `--mg-*` block
   were **re-aliased** to the canonical tokens (local variable *names* kept
   untouched, only their source changed, each with a fallback matching the
@@ -114,9 +116,15 @@ anything touching production Supabase, GitHub Pages config, or secrets.
 
 ### Admin control center (`admin.html`)
 
-- Admin tabs gained real ARIA tablist semantics (`role="tablist"`/`"tab"`,
-  `aria-selected` kept in sync with the existing `.active` class toggle,
-  `aria-controls`) — previously plain buttons with only a visual state.
+- Admin tabs implement the full WAI-ARIA APG "automatic activation" tabs
+  pattern: `role="tablist"`/`"tab"`, matching `role="tabpanel"` +
+  `aria-labelledby` on each of the 6 controlled sections, `aria-selected`
+  and roving `tabindex` (0 on the active tab, -1 on the rest) kept in sync
+  by `showAdminSection()`, and Left/Right/Home/End keyboard navigation
+  (new `keydown` handler on `.admin-tabs`, reuses the existing
+  `showAdminSection()` — no new activation path). The initial version of
+  this sprint shipped the ARIA roles without the rest of the pattern
+  (a half-implemented widget, arguably worse than no ARIA at all); see §14.
 - Dark header `:focus-visible` override, same rationale as the sidebar.
 - Removed remaining static inline styles: 7 duplicate modal "eyebrow label"
   instances (one per modal: owner/meeting/vote/charge/payment/announcement/
@@ -150,7 +158,7 @@ with zero risk since neither their HTML nor JS was touched.
 |---|---|---|
 | MEDIUM | Auth forms leaked raw Supabase error text for non-credential failures | **Fixed** (§3, Auth UX) |
 | LOW | `.residence-label`/`.residence-name` used a ~3:1-contrast gold as small bold text color (pre-existing, unchanged by the earlier token-aliasing pass — a genuine AA gap, not a regression) | **Fixed** — switched to `--mirador-gold-ink` (~5.9:1), verified by manual luminance/contrast computation, not assumed |
-| — | No CSP existed at all | **Added**, Report-Only (see below) |
+| — | No CSP existed at all | **Added**, enforcing (see below; an initial Report-Only version was corrected during independent audit — see §14) |
 | — | Static inline `style="..."` scattered across the two large app pages | **Reduced** to zero except genuinely per-instance dynamic values |
 | VERIFIED CLEAN | `innerHTML`/`outerHTML`/`insertAdjacentHTML`/`document.write`/`eval`/`new Function` | 50 `innerHTML` sites in `admin.html`+`espace-proprietaire.html` individually re-verified to route through `escapeHtml()` (which itself escapes `& < > " '` — all 5, not just 3); zero of the other sinks anywhere in tracked HTML/JS |
 | VERIFIED CLEAN | `target="_blank"` reverse-tabnabbing | Zero occurrences exist; the 3 `window.open()` calls in the app already pass `"noopener,noreferrer"` explicitly |
@@ -160,26 +168,30 @@ with zero risk since neither their HTML nor JS was touched.
 | VERIFIED CLEAN | Console logging | Every `console.error`/`.warn` call logs a generic `Error` object with a descriptive label, never a raw password/token/session/phone/email value |
 | VERIFIED CLEAN | Auth fail-closed ordering | `admin.html`'s first data fetch (`loadOwners()`) awaits `requireAdmin()` and returns before any query if it fails, so sensitive data can never reach the DOM ahead of the check; `espace-proprietaire.html` correctly distinguishes "no session" (redirect) from "network error checking session" (show error, keep session — does **not** grant access, does **not** force logout on a transient blip) |
 
-Content-Security-Policy: added as `Content-Security-Policy-Report-Only` on
-all 9 pages, with a per-page allowlist derived from an actual audit of what
-each page loads (not a copy-pasted blanket policy — see the table in
-`docs/security.md`). Deliberately **not enforcing**: this sprint had no
-browser automation available to verify a blocking policy doesn't silently
-break login/dashboard for every user, and that risk was judged
-disproportionate to push unverified. `frame-ancestors` is documented as a
-target but not set — it requires a real HTTP header, which GitHub Pages
-static hosting cannot send via `<meta>`.
+Content-Security-Policy: added as an **enforcing** `Content-Security-Policy`
+meta tag on all 9 pages, with a per-page allowlist derived from an actual
+audit of what each page loads (not a copy-pasted blanket policy — see the
+table in `docs/security.md`). `frame-ancestors` is documented as a target
+but not set — it requires a real HTTP header, which GitHub Pages static
+hosting cannot send via `<meta>`. This branch is not deployed, so shipping
+an enforcing policy for review is safe; see §14 for why this wasn't the
+original design and what changed.
 
 New CI guard (`.github/scripts/check-frontend-security.js`): every
 `target="_blank"` has `rel="noopener noreferrer"`, no
 `document.write`/`eval`/`new Function`/`javascript:` URL anywhere, every
-non-empty page has a CSP meta tag. Runs clean today (9/9 real pages OK, 2
-known-empty placeholders correctly skipped).
+non-empty page has a real `<meta http-equiv="Content-Security-Policy">` tag
+(exact attribute match against actual `<meta>` elements — not a text
+search, so a mention inside a comment does not satisfy it — and explicitly
+rejects the invalid `-Report-Only` variant). Runs clean today (9/9 real
+pages OK, 2 known-empty placeholders correctly skipped).
 
 ## 5. Accessibility — full findings
 
-- Admin tabs: added `role="tablist"`/`"tab"`/`aria-selected`/`aria-controls`
-  (previously plain buttons with only visual state).
+- Admin tabs: full WAI-ARIA tabs pattern (`role="tablist"`/`"tab"`/`"tabpanel"`,
+  `aria-selected`, `aria-controls`, `aria-labelledby`, roving `tabindex`,
+  Left/Right/Home/End) — see §3 and §14 for how this got completed after
+  an initial half-implemented version.
 - Owner sidebar nav: added `aria-current="page"`.
 - Mobile menu button (owner dashboard): added `aria-expanded`, dynamic
   `aria-label`, focus-in-on-open, focus-return-on-Escape.
@@ -203,12 +215,16 @@ known-empty placeholders correctly skipped).
 - **Verified, not changed**: all 7 admin modals already had
   `role="dialog"`, `aria-modal="true"`, `aria-labelledby`, and a shared
   Escape-to-close handler before this sprint.
-- **Not done**: a full keyboard focus-trap for the owner dashboard's mobile
-  drawer (the `ui-helpers.js` `trapFocus()` helper exists and is ready, but
-  wasn't wired in — Escape-to-close and click-outside-to-close already
-  provide an exit path, and trapping focus across 4 code paths without a
-  real browser to verify felt like a worse risk/value trade than leaving it
-  as documented follow-up).
+- Owner dashboard mobile drawer: `MiradorUI.trapFocus(sidebar)` now keeps
+  Tab from cycling into content hidden behind the open drawer. Deliberately
+  wired with **no** `onEscape` callback — the drawer already had a
+  document-level Escape handler that closes it and returns focus to
+  `mobileMenuButton`; passing a second Escape handler through the trap
+  would have raced it (whichever fired first would strip the "open" class
+  before the other's guard clause checked it, risking the focus-return step
+  silently not running). The trap only ever intercepts Tab/Shift+Tab at the
+  first/last focusable element, so it can't interfere with the existing
+  click/Escape/outside-click handling.
 
 ## 6. Responsive / mobile
 
@@ -324,10 +340,12 @@ foundation" deliverable — not dead code, and are documented as such in
 
 - `admin.html`'s ~300 pre-existing hardcoded colors were not migrated to
   the shared token scale (§3) — proportionate risk call, not an oversight.
-- CSP is Report-Only everywhere, pending a manual browser check (§4).
+- CSP is enforcing but still needs a human console check before merge (§4,
+  §14) — a wrong allowlist entry fails closed (resource doesn't load,
+  visible in console) rather than failing open, but it's still unverified
+  in a real browser.
 - `.mirador-*` component-class adoption is partial (§3) — the library is
   ready for broader adoption in a follow-up pass.
-- Mobile drawer focus-trap not wired in (§5) — helper exists, not applied.
 - No browser/E2E testing was performed at any point (§9) — this is the
   single biggest gap between "code review passed" and "verified working."
 
@@ -337,12 +355,13 @@ Before this branch is trusted beyond code review, a human needs to, in an
 actual browser:
 
 1. Open each of the 9 pages and confirm zero `Content-Security-Policy`
-   violations in DevTools console, then flip each page's meta tag from
-   `-Report-Only` to enforcing.
-2. Click through: admin login → dashboard → each tab; owner login/
+   console errors — the policy is enforcing now (§14), so anything
+   misconfigured will show up as a blocked resource, not a silent gap.
+2. Click through: admin login → dashboard → each tab (including
+   Left/Right/Home/End keyboard navigation, §14) → owner login/
    activation → dashboard → each sidebar section → each new overview
    quick-action button → mobile hamburger menu (open/close/Escape/
-   outside-click) → logout (both roles).
+   outside-click/Tab-trap, §14) → logout (both roles).
 3. Resize/device-test at 320, 375, 390, 430, 768, 1024, 1440px — confirm
    no horizontal overflow, no clipped modals, no unreadable text.
 4. Verify the visual design actually reads as "premium residence" and not
@@ -351,3 +370,75 @@ actual browser:
 5. Confirm the new focus rings, `aria-current`/`aria-selected`/
    `aria-expanded` states behave correctly with a real screen reader
    (NVDA/VoiceOver) and keyboard-only navigation.
+
+## 14. Independent audit fix pass (2026-08-20, same day)
+
+A review of the complete `app-v2...feat/sprint-ui-security` diff found 7
+real issues in the work above. None required touching business logic;
+none are reflected as separate "regression" rows in §10 because nothing
+they fixed had shipped to `app-v2`/production. Fixed, in the audit's own
+order:
+
+1. **CSP delivered as invalid `Content-Security-Policy-Report-Only` meta.**
+   The CSP3 spec doesn't define that `http-equiv` value — browsers ignore
+   it silently. Every page's original claim of "safe, observable-only"
+   protection was therefore false; the tag did nothing at all. Replaced
+   with enforcing `Content-Security-Policy` on all 9 pages (safe to do
+   directly since this branch isn't deployed), after re-confirming no page
+   uses Supabase Realtime/WebSockets (so no `wss://` host is needed in any
+   `connect-src`). §4 and `docs/security.md` rewritten to stop claiming the
+   old tag was functional.
+2. **CI CSP check was a loose text match.** `/Content-Security-Policy/i.test(html)`
+   would pass on a mention inside an HTML comment or on the invalid
+   `-Report-Only` value (which contains "Content-Security-Policy" as a
+   substring). Rewritten to parse actual `<meta>` tags and compare the
+   `http-equiv` attribute's exact value, and to explicitly fail if the
+   `-Report-Only` variant is found. Verified against 4 hand-built test
+   cases (comment-only, report-only meta, real enforcing meta, no `<head>`)
+   before trusting it.
+3. **Spinner CSS could override the `hidden` attribute.** `.mirador-spinner
+   { display: inline-block; }` and the browser's own `[hidden] { display:
+   none; }` UA-stylesheet rule have equal specificity; the later
+   (author) rule wins ties, so the spinner in `admin-login.html`/
+   `connexion.html` would have stayed visible even while marked `hidden`.
+   Added `.mirador-spinner[hidden] { display: none !important; }`. The JS
+   toggling the `hidden` property was already correct throughout (traced
+   every call site in both files) — this was a pure CSS fix.
+4. **`<button>` containing a `<div>`.** HTML5 only allows phrasing content
+   inside `<button>`; the 5 owner-dashboard quick-action buttons (§3)
+   wrapped their label/description in a `<div class="module-row-left">`.
+   Changed to `<span>` — safe with zero visual risk, since being a direct
+   child of a `display: flex` container blockifies a `<span>` identically
+   to how a `<div>` already rendered.
+5. **Half-implemented ARIA tabs widget.** The first version added
+   `role="tablist"`/`"tab"`/`aria-selected`/`aria-controls` but nothing
+   else — arguably worse than plain buttons, since assistive tech would
+   announce a tab widget that doesn't behave like one. Completed the
+   pattern instead of stripping it back to plain buttons: `role="tabpanel"`
+   + `aria-labelledby` on all 6 controlled sections, roving `tabindex`,
+   and Left/Right/Home/End keyboard handling that calls the existing
+   `showAdminSection()` (no new activation path, no business-logic
+   change). Needed adding `data-section="..."` to the 6 tab buttons, which
+   didn't exist before — the original click handlers used hardcoded
+   string literals instead.
+6. **`ui-helpers.js` shipped but was loaded by zero pages.** Wired it into
+   `espace-proprietaire.html` specifically (`<script src="assets/js/ui-helpers.js">`)
+   and used `MiradorUI.trapFocus(sidebar)` for the mobile drawer's Tab-key
+   trapping — deliberately without its optional `onEscape` callback, to
+   avoid creating a second Escape handler racing the drawer's existing one
+   (see §5 for why that specific ordering risk mattered). This was the
+   single most defensible real use already identified as a documented gap
+   in §5/§12 before the audit ran.
+7. **Component-library duplicate-rule check.** Re-scanned `components.css`
+   for accidentally-duplicated selectors; found one apparent hit
+   (`.mirador-textarea`) that turned out to be a false positive of the
+   detection method (one occurrence was the tail line of a 3-selector
+   group, not an independent rule) — confirmed intentional (shared base +
+   size-specific override, no property set twice with conflicting values)
+   and left in place with a clarifying comment. No genuine duplicates
+   found; nothing removed.
+
+All fixes re-verified with the full test suite (§9's checks re-run
+identically; results unchanged: all still PASS) plus the same secret scan
+and diff-scope check. See the final report message in this conversation
+for the literal command output from this pass.

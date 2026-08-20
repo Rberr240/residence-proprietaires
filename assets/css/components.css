@@ -226,6 +226,11 @@
     box-shadow var(--mirador-transition-fast);
 }
 
+/* Overrides part of the shared rule above for the textarea's own
+   size/resize needs. Not a duplicate: every property here is either
+   new (resize, font-family) or intentionally overriding the shared
+   default (min-height, padding) — verified during the independent
+   audit's duplicate-rule check, which otherwise found none. */
 .mirador-textarea {
   min-height: 110px;
   padding: var(--mirador-space-3) var(--mirador-space-4);
@@ -581,6 +586,13 @@
   border: 2px solid rgba(255, 255, 255, 0.4);
   border-top-color: #fff;
   border-radius: 50%;
+}
+
+/* The class selector above and the UA stylesheet's [hidden] rule have
+   equal specificity, so without this, the later (author) rule wins
+   the tie and the spinner stays visible even while hidden. */
+.mirador-spinner[hidden] {
+  display: none !important;
 }
 
 @media (prefers-reduced-motion: no-preference) {

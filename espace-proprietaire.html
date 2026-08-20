@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
 
-  <!-- Report-Only this sprint: see docs/security.md for rationale and upgrade path. -->
-  <meta http-equiv="Content-Security-Policy-Report-Only" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://cdn.onesignal.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.onesignal.com; font-src 'self'; connect-src 'self' https://hanbgkefeqgstnsaapel.supabase.co https://cdn.onesignal.com https://*.onesignal.com; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';">
+  <!-- Enforcing CSP (meta doesn't support Report-Only, see docs/security.md). Branch not deployed; Rachid confirms zero console errors before merge. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://cdn.onesignal.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.onesignal.com; font-src 'self'; connect-src 'self' https://hanbgkefeqgstnsaapel.supabase.co https://cdn.onesignal.com https://*.onesignal.com; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';">
 
   <meta
     name="viewport"
@@ -3241,7 +3241,7 @@
                   data-section="meetings"
                 >
 
-                  <div class="module-row-left">
+                  <span class="module-row-left">
                     <strong>
                       Réunions
                     </strong>
@@ -3249,7 +3249,7 @@
                     <small>
                       Convocations, réponses et historique
                     </small>
-                  </div>
+                  </span>
 
                   <span class="module-row-status module-row-status--active">
                     Ouvrir →
@@ -3263,7 +3263,7 @@
                   data-section="votes"
                 >
 
-                  <div class="module-row-left">
+                  <span class="module-row-left">
                     <strong>
                       Votes
                     </strong>
@@ -3271,7 +3271,7 @@
                     <small>
                       Votes sécurisés des propriétaires
                     </small>
-                  </div>
+                  </span>
 
                   <span class="module-row-status module-row-status--active">
                     Ouvrir →
@@ -3285,7 +3285,7 @@
                   data-section="syndic"
                 >
 
-                  <div class="module-row-left">
+                  <span class="module-row-left">
                     <strong>
                       Situation syndic
                     </strong>
@@ -3293,7 +3293,7 @@
                     <small>
                       Suivi payé / impayé et échéances
                     </small>
-                  </div>
+                  </span>
 
                   <span class="module-row-status module-row-status--active">
                     Ouvrir →
@@ -3307,7 +3307,7 @@
                   data-section="announcements"
                 >
 
-                  <div class="module-row-left">
+                  <span class="module-row-left">
                     <strong>
                       Annonces
                     </strong>
@@ -3315,7 +3315,7 @@
                     <small>
                       Informations officielles de la résidence
                     </small>
-                  </div>
+                  </span>
 
                   <span class="module-row-status module-row-status--active">
                     Ouvrir →
@@ -3329,7 +3329,7 @@
                   data-section="documents"
                 >
 
-                  <div class="module-row-left">
+                  <span class="module-row-left">
                     <strong>
                       Documents
                     </strong>
@@ -3337,7 +3337,7 @@
                     <small>
                       Archives et fichiers privés
                     </small>
-                  </div>
+                  </span>
 
                   <span class="module-row-status module-row-status--active">
                     Ouvrir →
@@ -4266,6 +4266,8 @@
 
   <script src="assets/js/supabase-client.js"></script>
 
+  <script src="assets/js/ui-helpers.js"></script>
+
   <!--
     SDK OneSignal (canal Push). Chargé de façon inconditionnelle : sans
     ONESIGNAL_APP_ID configuré (assets/js/config.js), le script ne fait
@@ -4628,6 +4630,9 @@
       );
 
 
+    let releaseSidebarFocusTrap =
+      null;
+
     function setSidebarOpen(isOpen) {
       sidebar.classList.toggle(
         "open",
@@ -4653,6 +4658,28 @@
         if (firstNavButton) {
           firstNavButton.focus();
         }
+
+        // Keep Tab from cycling into content hidden behind the mobile
+        // drawer. Escape is intentionally NOT wired through here: the
+        // existing document-level Escape handler below already closes
+        // the drawer and returns focus to mobileMenuButton, so this
+        // only adds Tab-trapping, avoiding a second competing handler.
+        if (
+          window.MiradorUI &&
+          !releaseSidebarFocusTrap
+        ) {
+          releaseSidebarFocusTrap =
+            window.MiradorUI.trapFocus(
+              sidebar,
+            );
+        }
+      } else if (
+        releaseSidebarFocusTrap
+      ) {
+        releaseSidebarFocusTrap();
+
+        releaseSidebarFocusTrap =
+          null;
       }
     }
 

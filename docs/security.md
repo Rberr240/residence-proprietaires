@@ -53,10 +53,13 @@ Rappel : le frontend n'est jamais la barrière de sécurité réelle (voir « Au
 
 ## Content Security Policy (Sprint 1)
 
-Chaque page HTML porte désormais un `<meta http-equiv="Content-Security-Policy-Report-Only">` adapté aux ressources qu'elle charge réellement (audité fichier par fichier : scripts externes, connexions réseau, présence de `<script>` inline). Volontairement en **Report-Only**, pas en mode bloquant :
+Chaque page HTML porte un `<meta http-equiv="Content-Security-Policy">` **bloquant** (enforcing), adapté aux ressources qu'elle charge réellement (audité fichier par fichier : scripts externes, connexions réseau, présence de `<script>` inline).
 
-- Ce sprint n'avait accès à aucun navigateur automatisé pour vérifier qu'une politique bloquante ne casse rien (voir « Tests navigateur non exécutés » dans le rapport de sprint). Une politique bloquante mal calibrée sur `admin.html`/`espace-proprietaire.html` (ex. un hôte de script oublié) romprait silencieusement la connexion pour tous les utilisateurs — un risque jugé disproportionné sans moyen de le vérifier avant mise en ligne.
-- Report-Only ne bloque jamais rien ; les violations restent visibles dans la console DevTools. Passage en mode bloquant recommandé : ouvrir chaque page dans un vrai navigateur, confirmer zéro violation en console, puis remplacer `Content-Security-Policy-Report-Only` par `Content-Security-Policy` (un seul mot par page).
+**Correction (audit indépendant, 2026-08-20)** : la première version de ce sprint utilisait `Content-Security-Policy-Report-Only` en balise `<meta>`. C'est une erreur — la spécification CSP3 ne définit `Content-Security-Policy-Report-Only` que comme un en-tête HTTP réel ; ce nom n'est **pas** un `http-equiv` reconnu par les navigateurs en balise `<meta>`. Concrètement, cette balise ne faisait rien du tout : ni blocage, ni rapport de violation, ni entrée console — elle était silencieusement inerte. La documentation et le test CI initiaux affirmaient à tort qu'elle offrait une protection observable ; ce n'était pas le cas. Corrigé en remplaçant chaque balise par un `Content-Security-Policy` réellement bloquant, et en durcissant `check-frontend-security.js` pour valider l'attribut `http-equiv` exact d'une vraie balise `<meta>` plutôt qu'une simple présence de texte (qui aurait aussi laissé passer une mention en commentaire).
+
+Cette branche n'étant pas déployée, passer directement en mode bloquant ici est sûr à but de revue : si une entrée d'allowlist est erronée, la pire conséquence est qu'une ressource ne se charge pas (visible immédiatement en console), jamais une compromission silencieuse. **Rachid doit néanmoins ouvrir chaque page dans un vrai navigateur et confirmer zéro erreur de console avant fusion** — voir le rapport de sprint, section « Tests navigateur non exécutés ».
+
+WebSocket / Supabase Realtime : vérifié explicitement (recherche `.channel(`, `realtime`, `WebSocket`, `wss:`, `.subscribe(`, `postgres_changes` dans tout le frontend) — **aucune utilisation nulle part**. L'application interroge Supabase exclusivement en requête/réponse HTTPS (client REST `.from().select()` et Edge Functions). `connect-src` n'a donc besoin d'aucun hôte `wss://` sur aucune page ; à réévaluer si une future fonctionnalité introduit du Realtime.
 
 Politique cible par famille de page (allowlist minimale observée) :
 

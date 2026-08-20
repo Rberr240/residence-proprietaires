@@ -5,8 +5,8 @@
 
     <meta charset="UTF-8">
 
-    <!-- Report-Only this sprint: see docs/security.md for rationale and upgrade path. -->
-    <meta http-equiv="Content-Security-Policy-Report-Only" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://hanbgkefeqgstnsaapel.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <!-- Enforcing CSP (meta doesn't support Report-Only, see docs/security.md). Branch not deployed; Rachid confirms zero console errors before merge. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://hanbgkefeqgstnsaapel.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self';">
 
     <meta
         name="viewport"

@@ -71,12 +71,48 @@ for (const relativePath of trackedHtmlFiles) {
     }
   }
 
-  // 3. Pages with a <head> should declare a CSP (Report-Only while
-  //    this sprint has no browser to verify an enforcing policy is
-  //    safe — see docs/security.md — but it must be present).
-  if (/<head[\s>]/i.test(html) && !/Content-Security-Policy/i.test(html)) {
+  // 3. Pages with a <head> must declare a real, *enforcing* CSP via an
+  //    actual <meta http-equiv="Content-Security-Policy"> tag — not a
+  //    loose text match (which would also pass on a mention inside a
+  //    comment) and not the Report-Only variant, which the CSP spec
+  //    does not support via <meta> at all: browsers silently ignore
+  //    it, so a tag with that http-equiv value provides zero
+  //    protection despite looking like it does. See docs/security.md.
+  const metaTags = [...html.matchAll(/<meta\b[^>]*>/gi)].map((m) => m[0]);
+
+  let hasEnforcingCsp = false;
+  let hasInvalidReportOnlyMeta = false;
+
+  for (const tag of metaTags) {
+    const httpEquivMatch = tag.match(/http-equiv\s*=\s*["']([^"']+)["']/i);
+
+    if (!httpEquivMatch) {
+      continue;
+    }
+
+    const httpEquivValue = httpEquivMatch[1].trim().toLowerCase();
+
+    if (httpEquivValue === "content-security-policy") {
+      hasEnforcingCsp = true;
+    }
+
+    if (httpEquivValue === "content-security-policy-report-only") {
+      hasInvalidReportOnlyMeta = true;
+    }
+  }
+
+  if (hasInvalidReportOnlyMeta) {
     failed = true;
-    console.error(`FAIL ${relativePath}: no Content-Security-Policy meta tag found`);
+    console.error(
+      `FAIL ${relativePath}: <meta http-equiv="Content-Security-Policy-Report-Only"> found — not supported via <meta>, silently does nothing; use http-equiv="Content-Security-Policy" instead`,
+    );
+  }
+
+  if (/<head[\s>]/i.test(html) && !hasEnforcingCsp) {
+    failed = true;
+    console.error(
+      `FAIL ${relativePath}: no <meta http-equiv="Content-Security-Policy"> tag found`,
+    );
   }
 
   console.log(`OK   ${relativePath}`);

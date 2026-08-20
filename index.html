@@ -5,14 +5,18 @@
     <meta charset="UTF-8">
 
     <!--
-      Report-Only for this sprint: enforcing mode needs a real-browser
-      smoke test this sprint had no way to run (no browser automation
-      available). Flip to Content-Security-Policy once DevTools shows
-      zero violations. See docs/security.md for the target policy and
-      why frame-ancestors isn't set here (needs an HTTP header, which
-      GitHub Pages static hosting cannot send).
+      Enforcing CSP. `Content-Security-Policy-Report-Only` is NOT a
+      supported <meta http-equiv> value per the CSP3 spec — report-only
+      can only be delivered as a real HTTP header, so a meta tag with
+      that name is silently inert in every browser. This branch is not
+      deployed, so an enforcing policy here is safe to ship for review;
+      Rachid must still confirm zero console errors on a real page load
+      before merge (a wrong host in an allowlist fails closed: the
+      resource just doesn't load). See docs/security.md for the
+      allowlist rationale and why frame-ancestors isn't set here (needs
+      an HTTP header, which GitHub Pages static hosting cannot send).
     -->
-    <meta http-equiv="Content-Security-Policy-Report-Only" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';">
 
     <meta
         name="viewport"

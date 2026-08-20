@@ -5,8 +5,8 @@
 
     <meta charset="UTF-8">
 
-    <!-- Report-Only this sprint: see docs/security.md for rationale and upgrade path. -->
-    <meta http-equiv="Content-Security-Policy-Report-Only" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://hanbgkefeqgstnsaapel.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <!-- Enforcing CSP (meta doesn't support Report-Only, see docs/security.md). Branch not deployed; Rachid confirms zero console errors before merge. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://hanbgkefeqgstnsaapel.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self';">
 
     <meta
         name="viewport"
@@ -3082,6 +3082,8 @@
                 role="tab"
                 aria-selected="true"
                 aria-controls="ownersStatsSection ownersPanelSection"
+                data-section="owners"
+                tabindex="0"
             >
                 Propriétaires
             </button>
@@ -3093,6 +3095,8 @@
                 role="tab"
                 aria-selected="false"
                 aria-controls="meetingsSection"
+                data-section="meetings"
+                tabindex="-1"
             >
                 Réunions
             </button>
@@ -3104,6 +3108,8 @@
                 role="tab"
                 aria-selected="false"
                 aria-controls="votesSection"
+                data-section="votes"
+                tabindex="-1"
             >
                 Votes
             </button>
@@ -3115,6 +3121,8 @@
                 role="tab"
                 aria-selected="false"
                 aria-controls="syndicSection"
+                data-section="syndic"
+                tabindex="-1"
             >
                 Syndic
             </button>
@@ -3126,6 +3134,8 @@
                 role="tab"
                 aria-selected="false"
                 aria-controls="announcementsSection"
+                data-section="announcements"
+                tabindex="-1"
             >
                 Annonces
             </button>
@@ -3137,6 +3147,8 @@
                 role="tab"
                 aria-selected="false"
                 aria-controls="documentsSection"
+                data-section="documents"
+                tabindex="-1"
             >
                 Documents
             </button>
@@ -3148,7 +3160,7 @@
         <!-- STATISTIQUES -->
 
 
-        <section id="ownersStatsSection" class="stats-grid">
+        <section id="ownersStatsSection" class="stats-grid" role="tabpanel" aria-labelledby="ownersTabButton">
 
 
             <article class="stat-card">
@@ -3210,7 +3222,7 @@
         <!-- TABLEAU -->
 
 
-        <section id="ownersPanelSection" class="owners-panel">
+        <section id="ownersPanelSection" class="owners-panel" role="tabpanel" aria-labelledby="ownersTabButton">
 
 
             <div class="panel-top">
@@ -3331,6 +3343,8 @@
         <section
             id="meetingsSection"
             class="meetings-panel"
+            role="tabpanel"
+            aria-labelledby="meetingsTabButton"
             hidden
         >
 
@@ -3394,6 +3408,8 @@
         <section
             id="votesSection"
             class="votes-panel"
+            role="tabpanel"
+            aria-labelledby="votesTabButton"
             hidden
         >
 
@@ -3453,6 +3469,8 @@
         <section
             id="syndicSection"
             class="syndic-panel"
+            role="tabpanel"
+            aria-labelledby="syndicTabButton"
             hidden
         >
 
@@ -3598,6 +3616,8 @@
         <section
             id="announcementsSection"
             class="announcements-panel"
+            role="tabpanel"
+            aria-labelledby="announcementsTabButton"
             hidden
         >
 
@@ -3676,6 +3696,8 @@
         <section
             id="documentsSection"
             class="documents-panel"
+            role="tabpanel"
+            aria-labelledby="documentsTabButton"
             hidden
         >
 
@@ -6580,6 +6602,11 @@ function showAdminSection(
         showOwners ? "true" : "false"
     );
 
+    ownersTabButton.setAttribute(
+        "tabindex",
+        showOwners ? "0" : "-1"
+    );
+
     meetingsTabButton.classList.toggle(
         "active",
         showMeetings
@@ -6588,6 +6615,11 @@ function showAdminSection(
     meetingsTabButton.setAttribute(
         "aria-selected",
         showMeetings ? "true" : "false"
+    );
+
+    meetingsTabButton.setAttribute(
+        "tabindex",
+        showMeetings ? "0" : "-1"
     );
 
     votesTabButton.classList.toggle(
@@ -6600,6 +6632,11 @@ function showAdminSection(
         showVotes ? "true" : "false"
     );
 
+    votesTabButton.setAttribute(
+        "tabindex",
+        showVotes ? "0" : "-1"
+    );
+
     syndicTabButton.classList.toggle(
         "active",
         showSyndic
@@ -6608,6 +6645,11 @@ function showAdminSection(
     syndicTabButton.setAttribute(
         "aria-selected",
         showSyndic ? "true" : "false"
+    );
+
+    syndicTabButton.setAttribute(
+        "tabindex",
+        showSyndic ? "0" : "-1"
     );
 
     announcementsTabButton.classList.toggle(
@@ -6620,6 +6662,11 @@ function showAdminSection(
         showAnnouncements ? "true" : "false"
     );
 
+    announcementsTabButton.setAttribute(
+        "tabindex",
+        showAnnouncements ? "0" : "-1"
+    );
+
     documentsTabButton.classList.toggle(
         "active",
         showDocuments
@@ -6628,6 +6675,11 @@ function showAdminSection(
     documentsTabButton.setAttribute(
         "aria-selected",
         showDocuments ? "true" : "false"
+    );
+
+    documentsTabButton.setAttribute(
+        "tabindex",
+        showDocuments ? "0" : "-1"
     );
 
 
@@ -6748,6 +6800,84 @@ documentsTabButton.addEventListener(
         );
     }
 );
+
+
+/*
+ * WAI-ARIA APG "automatic activation" tabs pattern: Left/Right move
+ * focus between tabs (wrapping) and also select the tab they land on,
+ * matching what a click already does; Home/End jump to the first/last
+ * tab. Roving tabindex (only the active tab has tabindex="0") is kept
+ * in sync by showAdminSection() above.
+ */
+document
+    .querySelector(".admin-tabs")
+    .addEventListener(
+        "keydown",
+        (event) => {
+            if (
+                !["ArrowLeft", "ArrowRight", "Home", "End"].includes(
+                    event.key
+                )
+            ) {
+                return;
+            }
+
+            const tabs =
+                Array.from(
+                    document.querySelectorAll(
+                        '.admin-tabs [role="tab"]'
+                    )
+                );
+
+            const currentIndex =
+                tabs.indexOf(
+                    document.activeElement
+                );
+
+            if (
+                currentIndex === -1
+            ) {
+                return;
+            }
+
+            event.preventDefault();
+
+            let nextIndex =
+                currentIndex;
+
+            if (
+                event.key === "ArrowLeft"
+            ) {
+                nextIndex =
+                    (currentIndex - 1 + tabs.length) %
+                    tabs.length;
+            } else if (
+                event.key === "ArrowRight"
+            ) {
+                nextIndex =
+                    (currentIndex + 1) %
+                    tabs.length;
+            } else if (
+                event.key === "Home"
+            ) {
+                nextIndex = 0;
+            } else if (
+                event.key === "End"
+            ) {
+                nextIndex =
+                    tabs.length - 1;
+            }
+
+            const nextTab =
+                tabs[nextIndex];
+
+            nextTab.focus();
+
+            showAdminSection(
+                nextTab.dataset.section
+            );
+        }
+    );
 
 
 
