@@ -52,9 +52,9 @@
             background:
                 linear-gradient(
                     145deg,
-                    #082a23 0%,
-                    #124638 55%,
-                    #1c624e 100%
+                    var(--mirador-green-950, #082a23) 0%,
+                    var(--mirador-green-800, #124638) 55%,
+                    var(--mirador-green-600, #1c624e) 100%
                 );
         }
 
@@ -158,7 +158,7 @@
             justify-content: center;
 
             background: white;
-            color: #174b3d;
+            color: var(--mirador-primary, #174b3d);
 
             font-weight: 900;
             font-size: 19px;
@@ -296,7 +296,7 @@
 
             padding: 40px 25px;
 
-            background: #f6f8f7;
+            background: var(--mirador-bg, #f6f8f7);
         }
 
 
@@ -307,11 +307,11 @@
             padding: 38px;
 
             border:
-                1px solid #e1e8e5;
+                1px solid var(--mirador-border, #e1e8e5);
 
-            border-radius: 22px;
+            border-radius: var(--mirador-radius-xl, 22px);
 
-            background: white;
+            background: var(--mirador-surface, white);
 
             box-shadow:
                 0
@@ -332,12 +332,13 @@
 
 
         .auth-card-header span {
-            color: #30735e;
+            color: var(--mirador-green-600, #30735e);
 
             font-size: 11px;
             font-weight: 800;
 
             letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
 
 
@@ -347,7 +348,7 @@
                 0
                 8px;
 
-            color: #0b2f27;
+            color: var(--mirador-green-950, #0b2f27);
 
             font-size: 29px;
         }
@@ -356,7 +357,7 @@
         .auth-card-header p {
             margin: 0;
 
-            color: #6b7c75;
+            color: var(--mirador-text-muted, #6b7c75);
 
             line-height: 1.55;
 
@@ -385,7 +386,7 @@
 
             border-radius: 12px;
 
-            background: #f0f4f2;
+            background: var(--mirador-surface-sunken, #f0f4f2);
         }
 
 
@@ -397,19 +398,22 @@
 
             background: transparent;
 
-            color: #687b73;
+            color: var(--mirador-text-muted, #687b73);
 
             font-size: 13px;
             font-weight: 700;
 
             cursor: pointer;
+
+            transition: background var(--mirador-transition-fast, 0.15s),
+                color var(--mirador-transition-fast, 0.15s);
         }
 
 
         .auth-tab.active {
-            background: white;
+            background: var(--mirador-surface, white);
 
-            color: #174b3d;
+            color: var(--mirador-primary, #174b3d);
 
             box-shadow:
                 0
@@ -440,7 +444,7 @@
 
             margin-bottom: 7px;
 
-            color: #344a42;
+            color: var(--mirador-ink-700, #344a42);
 
             font-size: 13px;
             font-weight: 700;
@@ -457,13 +461,13 @@
                 14px;
 
             border:
-                1px solid #d9e3df;
+                1px solid var(--mirador-border-strong, #d9e3df);
 
             border-radius: 11px;
 
-            background: white;
+            background: var(--mirador-surface, white);
 
-            color: #16352b;
+            color: var(--mirador-text, #16352b);
 
             font-size: 15px;
 
@@ -476,14 +480,9 @@
 
 
         .field input:focus {
-            border-color: #30735e;
+            border-color: var(--mirador-green-600, #30735e);
 
-            box-shadow:
-                0
-                0
-                0
-                3px
-                rgba(48,115,94,0.11);
+            box-shadow: var(--mirador-shadow-focus, 0 0 0 3px rgba(48,115,94,0.11));
         }
 
 
@@ -492,7 +491,7 @@
 
             margin-top: 6px;
 
-            color: #81908a;
+            color: var(--mirador-text-muted, #81908a);
 
             line-height: 1.45;
 
@@ -523,12 +522,13 @@
 
             background: transparent;
 
-            color: #5c7168;
+            color: var(--mirador-ink-700, #5c7168);
 
             font-size: 11px;
             font-weight: 700;
 
             cursor: pointer;
+            border-radius: var(--mirador-radius-sm, 4px);
         }
 
 
@@ -546,15 +546,20 @@
 
             border-radius: 10px;
 
-            background: #f7f9f8;
+            background: var(--mirador-surface-sunken, #f7f9f8);
 
-            color: #75877f;
+            color: var(--mirador-text-muted, #75877f);
 
             font-size: 11px;
         }
 
 
         .auth-submit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--mirador-space-2, 8px);
+
             width: 100%;
 
             min-height: 52px;
@@ -564,7 +569,7 @@
             border: 0;
             border-radius: 11px;
 
-            background: #174b3d;
+            background: var(--mirador-primary, #174b3d);
 
             color: white;
 
@@ -580,7 +585,7 @@
 
 
         .auth-submit:hover {
-            background: #103d32;
+            background: var(--mirador-primary-hover, #103d32);
         }
 
 
@@ -606,12 +611,12 @@
 
 
         .auth-message.error {
-            color: #b42318;
+            color: var(--mirador-danger, #b42318);
         }
 
 
         .auth-message.success {
-            color: #167347;
+            color: var(--mirador-success, #167347);
         }
 
 
@@ -623,9 +628,9 @@
 
             border-radius: 12px;
 
-            background: #eef8f3;
+            background: var(--mirador-success-bg, #eef8f3);
 
-            color: #176541;
+            color: var(--mirador-success, #176541);
 
             text-align: center;
 
@@ -641,13 +646,13 @@
             padding-top: 20px;
 
             border-top:
-                1px solid #e7ecea;
+                1px solid var(--mirador-border, #e7ecea);
 
             display: flex;
 
             gap: 8px;
 
-            color: #85938e;
+            color: var(--mirador-text-muted, #85938e);
 
             font-size: 11px;
 
@@ -662,9 +667,13 @@
 
             text-align: center;
 
-            color: #536c62;
+            color: var(--mirador-ink-700, #536c62);
 
             font-size: 12px;
+        }
+
+        .back-home:hover {
+            color: var(--mirador-primary, #174b3d);
         }
 
 
@@ -710,7 +719,7 @@
 
                 border-radius: 14px;
 
-                background: #174b3d;
+                background: var(--mirador-primary, #174b3d);
                 color: white;
 
                 font-weight: 900;
@@ -983,6 +992,7 @@
                             type="button"
                             class="show-password"
                             data-target="newPassword"
+                            aria-pressed="false"
                         >
                             Afficher
                         </button>
@@ -1014,6 +1024,7 @@
                             type="button"
                             class="show-password"
                             data-target="confirmPassword"
+                            aria-pressed="false"
                         >
                             Afficher
                         </button>
@@ -1047,7 +1058,13 @@
                     class="auth-submit"
                     type="submit"
                 >
-                    Activer mon compte →
+                    <span
+                        id="activationSpinner"
+                        class="mirador-spinner"
+                        hidden
+                        aria-hidden="true"
+                    ></span>
+                    <span id="activationButtonLabel">Activer mon compte →</span>
                 </button>
 
 
@@ -1118,6 +1135,7 @@
                             type="button"
                             class="show-password"
                             data-target="loginPassword"
+                            aria-pressed="false"
                         >
                             Afficher
                         </button>
@@ -1133,7 +1151,13 @@
                     class="auth-submit"
                     type="submit"
                 >
-                    Se connecter →
+                    <span
+                        id="loginSpinner"
+                        class="mirador-spinner"
+                        hidden
+                        aria-hidden="true"
+                    ></span>
+                    <span id="loginButtonLabel">Se connecter →</span>
                 </button>
 
 
@@ -1252,6 +1276,80 @@ const loginButton =
     );
 
 
+const activationButtonLabel =
+    document.getElementById(
+        "activationButtonLabel"
+    );
+
+
+const activationSpinner =
+    document.getElementById(
+        "activationSpinner"
+    );
+
+
+const loginButtonLabel =
+    document.getElementById(
+        "loginButtonLabel"
+    );
+
+
+const loginSpinner =
+    document.getElementById(
+        "loginSpinner"
+    );
+
+
+function setActivationLoading(isLoading) {
+    activationButton.disabled = isLoading;
+    activationSpinner.hidden = !isLoading;
+    activationButtonLabel.textContent =
+        isLoading
+            ? "Activation en cours..."
+            : "Activer mon compte →";
+}
+
+
+function setLoginLoading(isLoading) {
+    loginButton.disabled = isLoading;
+    loginSpinner.hidden = !isLoading;
+    loginButtonLabel.textContent =
+        isLoading ? "Connexion..." : "Se connecter →";
+}
+
+
+// Maps known, expected sign-in outcomes to a safe French message.
+// Anything else (network errors, rate limiting, unexpected Supabase
+// error text, etc.) falls back to a generic message instead of leaking
+// internal error details to the user.
+const KNOWN_LOGIN_ERRORS = {
+    "Invalid login credentials":
+        "Téléphone ou mot de passe incorrect.",
+};
+
+const GENERIC_LOGIN_ERROR =
+    "Impossible de vous connecter pour le moment. Veuillez réessayer.";
+
+function safeLoginErrorMessage(error) {
+    if (error && error.miradorSafeMessage) {
+        return error.message;
+    }
+
+    if (
+        error &&
+        typeof error.message === "string" &&
+        Object.prototype.hasOwnProperty.call(
+            KNOWN_LOGIN_ERRORS,
+            error.message
+        )
+    ) {
+        return KNOWN_LOGIN_ERRORS[error.message];
+    }
+
+    return GENERIC_LOGIN_ERROR;
+}
+
+
 
 /*
  * =========================================================
@@ -1366,6 +1464,12 @@ document
                         hidden
                             ? "Masquer"
                             : "Afficher";
+
+
+                    button.setAttribute(
+                        "aria-pressed",
+                        hidden ? "true" : "false"
+                    );
 
 
                 }
@@ -1720,12 +1824,7 @@ activationForm.addEventListener(
 
 
 
-        activationButton.disabled =
-            true;
-
-
-        activationButton.textContent =
-            "Activation en cours...";
+        setActivationLoading(true);
 
 
         try {
@@ -1865,7 +1964,10 @@ activationForm.addEventListener(
                 "auth-message success";
 
 
-            activationButton.textContent =
+            activationSpinner.hidden =
+                true;
+
+            activationButtonLabel.textContent =
                 "Compte activé ✓";
 
 
@@ -1902,12 +2004,7 @@ activationForm.addEventListener(
                 "auth-message error";
 
 
-            activationButton.disabled =
-                false;
-
-
-            activationButton.textContent =
-                "Activer mon compte →";
+            setActivationLoading(false);
 
 
         }
@@ -1988,12 +2085,7 @@ loginForm.addEventListener(
         }
 
 
-        loginButton.disabled =
-            true;
-
-
-        loginButton.textContent =
-            "Connexion...";
+        setLoginLoading(true);
 
 
         try {
@@ -2034,9 +2126,15 @@ loginForm.addEventListener(
                 !data.session
             ) {
 
-                throw new Error(
-                    "Impossible de créer la session."
-                );
+                const sessionError =
+                    new Error(
+                        "Impossible de créer la session."
+                    );
+
+                sessionError.miradorSafeMessage =
+                    true;
+
+                throw sessionError;
 
             }
 
@@ -2067,28 +2165,14 @@ loginForm.addEventListener(
 
 
             loginMessage.textContent =
-
-                error.message ===
-                "Invalid login credentials"
-
-                    ? "Téléphone ou mot de passe incorrect."
-
-                    : (
-                        error.message ||
-                        "Impossible de vous connecter."
-                    );
+                safeLoginErrorMessage(error);
 
 
             loginMessage.className =
                 "auth-message error";
 
 
-            loginButton.disabled =
-                false;
-
-
-            loginButton.textContent =
-                "Se connecter →";
+            setLoginLoading(false);
 
 
         }

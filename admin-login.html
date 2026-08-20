@@ -38,10 +38,15 @@
         body {
             min-height: 100vh;
             background:
+                radial-gradient(
+                    circle at 80% 10%,
+                    rgba(179, 146, 85, 0.10),
+                    transparent 40%
+                ),
                 linear-gradient(
                     135deg,
-                    #0b2f27,
-                    #174b3d
+                    var(--mirador-green-950),
+                    var(--mirador-green-800)
                 );
         }
 
@@ -59,9 +64,9 @@
             width: 100%;
             max-width: 450px;
 
-            background: white;
+            background: var(--mirador-surface);
 
-            border-radius: 22px;
+            border-radius: var(--mirador-radius-xl);
 
             padding: 38px;
 
@@ -80,9 +85,9 @@
 
             margin-bottom: 25px;
 
-            border-radius: 16px;
+            border-radius: var(--mirador-radius-lg);
 
-            background: #174b3d;
+            background: var(--mirador-primary);
 
             color: white;
 
@@ -93,18 +98,19 @@
         .admin-label {
             margin: 0 0 5px;
 
-            color: #30735e;
+            color: var(--mirador-gold-ink);
 
             font-size: 12px;
             font-weight: 800;
 
             letter-spacing: 1.7px;
+            text-transform: uppercase;
         }
 
         h1 {
             margin: 0;
 
-            color: #0b2f27;
+            color: var(--mirador-green-950);
 
             font-size: 30px;
         }
@@ -115,7 +121,7 @@
                 0
                 28px;
 
-            color: #687a73;
+            color: var(--mirador-text-muted);
 
             line-height: 1.6;
         }
@@ -129,68 +135,25 @@
 
             margin-bottom: 7px;
 
-            color: #354941;
+            color: var(--mirador-ink-700);
 
             font-size: 14px;
             font-weight: 650;
         }
 
-        .field input {
-            width: 100%;
-
-            min-height: 50px;
-
-            padding: 0 14px;
-
-            border:
-                1px
-                solid
-                #d8e3de;
-
-            border-radius: 11px;
-
-            outline: none;
-
-            font-size: 15px;
-        }
-
-        .field input:focus {
-            border-color: #30735e;
-
-            box-shadow:
-                0
-                0
-                0
-                3px
-                rgba(48, 115, 94, 0.12);
-        }
-
         .login-submit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--mirador-space-2);
+
             width: 100%;
 
             min-height: 52px;
 
             margin-top: 7px;
 
-            border: none;
-            border-radius: 11px;
-
-            background: #174b3d;
-            color: white;
-
-            font-weight: 700;
             font-size: 15px;
-
-            cursor: pointer;
-        }
-
-        .login-submit:hover {
-            background: #103d32;
-        }
-
-        .login-submit:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
         }
 
         #loginMessage {
@@ -208,11 +171,11 @@
         }
 
         .error {
-            color: #b42318;
+            color: var(--mirador-danger);
         }
 
         .success {
-            color: #16764b;
+            color: var(--mirador-success);
         }
 
         .security {
@@ -221,9 +184,9 @@
             padding-top: 18px;
 
             border-top:
-                1px solid #e9efec;
+                1px solid var(--mirador-border);
 
-            color: #81908a;
+            color: var(--mirador-text-muted);
 
             text-align: center;
 
@@ -237,9 +200,19 @@
 
             text-align: center;
 
-            color: #536a61;
+            color: var(--mirador-ink-700);
 
             font-size: 13px;
+        }
+
+        .back-link:hover {
+            color: var(--mirador-primary);
+        }
+
+        @media (max-width: 480px) {
+            .admin-login-card {
+                padding: 28px 22px;
+            }
         }
 
     </style>
@@ -280,32 +253,36 @@
         <form id="adminLoginForm">
 
 
-            <div class="field">
+            <div class="field mirador-field">
 
-                <label for="email">
+                <label class="mirador-label" for="email">
                     Adresse email
                 </label>
 
                 <input
                     id="email"
+                    class="mirador-input"
                     type="email"
                     autocomplete="email"
+                    aria-required="true"
                     required
                 >
 
             </div>
 
 
-            <div class="field">
+            <div class="field mirador-field">
 
-                <label for="password">
+                <label class="mirador-label" for="password">
                     Mot de passe
                 </label>
 
                 <input
                     id="password"
+                    class="mirador-input"
                     type="password"
                     autocomplete="current-password"
+                    aria-required="true"
                     required
                 >
 
@@ -314,10 +291,16 @@
 
             <button
                 id="loginButton"
-                class="login-submit"
+                class="login-submit mirador-btn"
                 type="submit"
             >
-                Se connecter
+                <span
+                    id="loginSpinner"
+                    class="mirador-spinner"
+                    hidden
+                    aria-hidden="true"
+                ></span>
+                <span id="loginButtonLabel">Se connecter</span>
             </button>
 
 
@@ -331,7 +314,7 @@
 
 
         <div class="security">
-            🔒 Accès réservé aux administrateurs autorisés
+            <span aria-hidden="true">🔒</span> Accès réservé aux administrateurs autorisés
         </div>
 
 
@@ -368,10 +351,60 @@ const loginButton =
         "loginButton"
     );
 
+const loginButtonLabel =
+    document.getElementById(
+        "loginButtonLabel"
+    );
+
+const loginSpinner =
+    document.getElementById(
+        "loginSpinner"
+    );
+
 const loginMessage =
     document.getElementById(
         "loginMessage"
     );
+
+// Maps known, expected auth outcomes to a safe French message. Anything
+// not in this list (network errors, rate limiting, unexpected Supabase
+// error text, etc.) falls back to a single generic message instead of
+// leaking internal error details to the user.
+const KNOWN_LOGIN_ERRORS = {
+    "Invalid login credentials":
+        "Email ou mot de passe incorrect.",
+    "Email not confirmed":
+        "Ce compte n'a pas encore été confirmé.",
+};
+
+const GENERIC_LOGIN_ERROR =
+    "Connexion impossible pour le moment. Veuillez réessayer.";
+
+function safeLoginErrorMessage(error) {
+    if (error && error.miradorSafeMessage) {
+        return error.message;
+    }
+
+    if (
+        error &&
+        typeof error.message === "string" &&
+        Object.prototype.hasOwnProperty.call(
+            KNOWN_LOGIN_ERRORS,
+            error.message
+        )
+    ) {
+        return KNOWN_LOGIN_ERRORS[error.message];
+    }
+
+    return GENERIC_LOGIN_ERROR;
+}
+
+function setLoginLoading(isLoading) {
+    loginButton.disabled = isLoading;
+    loginSpinner.hidden = !isLoading;
+    loginButtonLabel.textContent =
+        isLoading ? "Connexion..." : "Se connecter";
+}
 
 
 async function redirectIfAlreadyAdmin() {
@@ -435,11 +468,7 @@ form.addEventListener(
             "";
 
 
-        loginButton.disabled =
-            true;
-
-        loginButton.textContent =
-            "Connexion...";
+        setLoginLoading(true);
 
 
         const email =
@@ -519,9 +548,15 @@ form.addEventListener(
                     .signOut();
 
 
-                throw new Error(
-                    "Ce compte n'est pas autorisé à accéder à l'administration."
-                );
+                const unauthorizedError =
+                    new Error(
+                        "Ce compte n'est pas autorisé à accéder à l'administration."
+                    );
+
+                unauthorizedError.miradorSafeMessage =
+                    true;
+
+                throw unauthorizedError;
 
             }
 
@@ -549,23 +584,14 @@ form.addEventListener(
 
 
             loginMessage.textContent =
-                error.message ===
-                "Invalid login credentials"
-
-                    ? "Email ou mot de passe incorrect."
-
-                    : error.message;
+                safeLoginErrorMessage(error);
 
 
             loginMessage.className =
                 "error";
 
 
-            loginButton.disabled =
-                false;
-
-            loginButton.textContent =
-                "Se connecter";
+            setLoginLoading(false);
 
 
         }
