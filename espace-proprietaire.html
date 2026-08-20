@@ -20,6 +20,10 @@
 
   <title>Mon espace | Mirador Golf 1</title>
 
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://hanbgkefeqgstnsaapel.supabase.co">
+  <link rel="preconnect" href="https://cdn.onesignal.com">
+
   <link
     rel="stylesheet"
     href="assets/css/app.css"
@@ -2675,6 +2679,11 @@
       color: var(--mg-warning);
     }
 
+    .notification-pref-status.blocked {
+      background: #fdecea;
+      color: #b42318;
+    }
+
     .notification-switch {
       position: relative;
       width: 44px;
@@ -3941,6 +3950,7 @@
                     <input
                       id="notificationEmailToggle"
                       type="checkbox"
+                      aria-label="Activer ou désactiver les notifications par email"
                     >
                     <span></span>
                   </label>
@@ -3963,6 +3973,7 @@
                     <input
                       id="notificationWhatsappToggle"
                       type="checkbox"
+                      aria-label="Activer ou désactiver les notifications WhatsApp"
                     >
                     <span></span>
                   </label>
@@ -3973,13 +3984,39 @@
                     <strong>
                       Notifications push
                     </strong>
-                    <small>
-                      Le canal sera disponible après intégration OneSignal.
+                    <small id="notificationPushHint">
+                      Vérification de la compatibilité du navigateur...
                     </small>
                   </div>
 
-                  <span class="notification-pref-status soon">
-                    Bientôt
+                  <button
+                    id="notificationPushEnableButton"
+                    class="notification-secondary-button"
+                    type="button"
+                    hidden
+                  >
+                    Activer les notifications Push
+                  </button>
+
+                  <label
+                    id="notificationPushSwitchWrap"
+                    class="notification-switch"
+                    title="Activer ou désactiver Push sur cet appareil"
+                    hidden
+                  >
+                    <input
+                      id="notificationPushToggle"
+                      type="checkbox"
+                      aria-label="Activer ou désactiver les notifications push sur cet appareil"
+                    >
+                    <span></span>
+                  </label>
+
+                  <span
+                    id="notificationPushStatus"
+                    class="notification-pref-status"
+                    hidden
+                  >
                   </span>
                 </div>
 
@@ -4124,6 +4161,16 @@
 
   <script src="assets/js/supabase-client.js"></script>
 
+  <!--
+    SDK OneSignal (canal Push). Chargé de façon inconditionnelle : sans
+    ONESIGNAL_APP_ID configuré (assets/js/config.js), le script ne fait
+    rien d'observable — aucune init n'est déclenchée côté application.
+  -->
+  <script
+    src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
+    defer
+  ></script>
+
   <script>
     const loadingScreen =
       document.getElementById(
@@ -4242,6 +4289,27 @@
 
     let currentOwnerWhatsapp =
       "";
+
+    const ONESIGNAL_SERVICE_WORKER_PATH =
+      "OneSignalSDKWorker.js";
+
+    function getDeployedBasePath() {
+      // Dérivé de l'URL réelle plutôt que codé en dur : reste correct
+      // que le site soit servi à la racine du domaine, sous un
+      // sous-chemin GitHub Pages (/residence-proprietaires/), ou plus
+      // tard sous un domaine personnalisé.
+      return window.location.pathname.replace(
+        /[^/]*$/,
+        ""
+      );
+    }
+
+    let pushSubscriptionState =
+      "checking";
+    // checking | unsupported | not-configured | blocked | inactive | active | error
+
+    let oneSignalInitPromise =
+      null;
 
     let currentSectionName =
       "overview";
@@ -4455,6 +4523,30 @@
           ) ||
           mobileMenuButton.contains(
             event.target
+          )
+        ) {
+          return;
+        }
+
+        sidebar.classList.remove(
+          "open"
+        );
+      },
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
+        if (
+          event.key !== "Escape"
+        ) {
+          return;
+        }
+
+        if (
+          !sidebar.classList.contains(
+            "open"
           )
         ) {
           return;
@@ -5208,6 +5300,7 @@
               class="meeting-comment"
               maxlength="500"
               placeholder="Commentaire facultatif"
+              aria-label="Commentaire facultatif pour la réunion ${escapeHtml(meeting.title)}"
               ${disabled}
             >${escapeHtml(response?.comment || "")}</textarea>
 
@@ -9763,6 +9856,533 @@ ${escapeHtml(announcement.content)}
     }
 
 
+    // ============================================================
+    // PUSH — ONESIGNAL WEB SDK
+    // ============================================================
+
+    function isPushSupported() {
+      return Boolean(
+        typeof window !== "undefined" &&
+        window.isSecureContext &&
+        "serviceWorker" in navigator &&
+        "PushManager" in window &&
+        "Notification" in window
+      );
+    }
+
+    function initOneSignal() {
+      if (
+        oneSignalInitPromise
+      ) {
+        return oneSignalInitPromise;
+      }
+
+      oneSignalInitPromise = new Promise(
+        (resolve, reject) => {
+          if (
+            !ONESIGNAL_APP_ID
+          ) {
+            reject(
+              new Error(
+                "not-configured"
+              )
+            );
+            return;
+          }
+
+          (
+            window.OneSignalDeferred =
+              window.OneSignalDeferred ||
+              []
+          ).push(
+            async (OneSignal) => {
+              try {
+                const basePath =
+                  getDeployedBasePath();
+
+                await OneSignal.init({
+                  appId:
+                    ONESIGNAL_APP_ID,
+                  serviceWorkerPath:
+                    `${basePath.replace(/^\//, "")}${ONESIGNAL_SERVICE_WORKER_PATH}`,
+                  serviceWorkerParam: {
+                    scope: basePath,
+                  },
+                });
+
+                resolve(
+                  OneSignal
+                );
+              } catch (error) {
+                reject(
+                  error
+                );
+              }
+            }
+          );
+        }
+      );
+
+      return oneSignalInitPromise;
+    }
+
+    function setPushControlVisibility(mode) {
+      // mode: "button" | "switch" | "status"
+      document.getElementById(
+        "notificationPushEnableButton"
+      ).hidden =
+        mode !== "button";
+
+      document.getElementById(
+        "notificationPushSwitchWrap"
+      ).hidden =
+        mode !== "switch";
+
+      document.getElementById(
+        "notificationPushStatus"
+      ).hidden =
+        mode !== "status";
+    }
+
+    function renderPushPreference() {
+      const hint =
+        document.getElementById(
+          "notificationPushHint"
+        );
+
+      const statusBadge =
+        document.getElementById(
+          "notificationPushStatus"
+        );
+
+      const toggle =
+        document.getElementById(
+          "notificationPushToggle"
+        );
+
+      statusBadge.classList.remove(
+        "soon",
+        "blocked"
+      );
+
+      if (
+        pushSubscriptionState ===
+        "checking"
+      ) {
+        setPushControlVisibility(
+          "status"
+        );
+        statusBadge.textContent =
+          "Vérification...";
+        statusBadge.classList.add(
+          "soon"
+        );
+        hint.textContent =
+          "Vérification de la compatibilité du navigateur...";
+        return;
+      }
+
+      if (
+        pushSubscriptionState ===
+        "unsupported"
+      ) {
+        setPushControlVisibility(
+          "status"
+        );
+        statusBadge.textContent =
+          "Non compatible";
+        statusBadge.classList.add(
+          "blocked"
+        );
+        hint.textContent =
+          "Notifications Push non compatibles avec ce navigateur.";
+        return;
+      }
+
+      if (
+        pushSubscriptionState ===
+        "not-configured"
+      ) {
+        setPushControlVisibility(
+          "status"
+        );
+        statusBadge.textContent =
+          "Indisponible";
+        statusBadge.classList.add(
+          "soon"
+        );
+        hint.textContent =
+          "Le canal Push n'est pas encore configuré pour cette résidence.";
+        return;
+      }
+
+      if (
+        pushSubscriptionState ===
+        "blocked"
+      ) {
+        setPushControlVisibility(
+          "status"
+        );
+        statusBadge.textContent =
+          "Bloqué";
+        statusBadge.classList.add(
+          "blocked"
+        );
+        hint.textContent =
+          "Notifications bloquées dans le navigateur. Autorisez-les dans les réglages du site pour les activer.";
+        return;
+      }
+
+      if (
+        pushSubscriptionState ===
+        "error"
+      ) {
+        setPushControlVisibility(
+          "status"
+        );
+        statusBadge.textContent =
+          "Erreur";
+        statusBadge.classList.add(
+          "blocked"
+        );
+        hint.textContent =
+          "Impossible d'activer Push pour le moment. Réessayez plus tard.";
+        return;
+      }
+
+      if (
+        pushSubscriptionState ===
+        "active"
+      ) {
+        setPushControlVisibility(
+          "switch"
+        );
+        toggle.checked =
+          true;
+        hint.textContent =
+          "Push activé sur cet appareil.";
+        return;
+      }
+
+      // "inactive" : compatible, configuré, permission non bloquée,
+      // mais pas encore d'abonnement actif sur cet appareil.
+      setPushControlVisibility(
+        "button"
+      );
+      hint.textContent =
+        "Recevez les alertes importantes même hors de l'application.";
+    }
+
+    async function detectPushState() {
+      if (
+        !isPushSupported()
+      ) {
+        pushSubscriptionState =
+          "unsupported";
+        renderPushPreference();
+        return;
+      }
+
+      if (
+        !ONESIGNAL_APP_ID
+      ) {
+        pushSubscriptionState =
+          "not-configured";
+        renderPushPreference();
+        return;
+      }
+
+      if (
+        Notification.permission ===
+        "denied"
+      ) {
+        pushSubscriptionState =
+          "blocked";
+        renderPushPreference();
+        return;
+      }
+
+      try {
+        const OneSignal =
+          await initOneSignal();
+
+        const optedIn =
+          Boolean(
+            OneSignal?.User
+              ?.PushSubscription
+              ?.optedIn
+          );
+
+        pushSubscriptionState =
+          Notification.permission ===
+            "granted" &&
+          optedIn &&
+          notificationPreferences.pushEnabled
+            ? "active"
+            : "inactive";
+      } catch (error) {
+        console.error(
+          "OneSignal init error:",
+          error
+        );
+
+        pushSubscriptionState =
+          error?.message ===
+          "not-configured"
+            ? "not-configured"
+            : "error";
+      }
+
+      renderPushPreference();
+    }
+
+    async function enablePushNotifications() {
+      const button =
+        document.getElementById(
+          "notificationPushEnableButton"
+        );
+
+      const message =
+        document.getElementById(
+          "notificationPreferenceMessage"
+        );
+
+      button.disabled =
+        true;
+      button.textContent =
+        "Activation...";
+
+      message.textContent =
+        "";
+      message.className =
+        "notification-preference-message";
+
+      try {
+        const OneSignal =
+          await initOneSignal();
+
+        const granted =
+          await OneSignal.Notifications.requestPermission();
+
+        if (
+          !granted ||
+          Notification.permission !==
+            "granted"
+        ) {
+          pushSubscriptionState =
+            Notification.permission ===
+            "denied"
+              ? "blocked"
+              : "inactive";
+          renderPushPreference();
+          return;
+        }
+
+        if (
+          currentOwnerAccountId
+        ) {
+          await OneSignal.login(
+            currentOwnerAccountId
+          );
+        }
+
+        await OneSignal.User.PushSubscription.optIn();
+
+        const {
+          data,
+          error,
+        } =
+          await supabaseClient
+            .rpc(
+              "owner_update_notification_preferences",
+              {
+                p_email_enabled:
+                  Boolean(
+                    document.getElementById(
+                      "notificationEmailToggle"
+                    ).checked
+                  ),
+                p_whatsapp_enabled:
+                  Boolean(
+                    document.getElementById(
+                      "notificationWhatsappToggle"
+                    ).checked
+                  ),
+                p_push_enabled:
+                  true,
+                p_digest_mode:
+                  notificationPreferences.digestMode ||
+                  "immediate",
+                p_quiet_hours_start:
+                  notificationPreferences.quietHoursStart,
+                p_quiet_hours_end:
+                  notificationPreferences.quietHoursEnd,
+                p_timezone:
+                  notificationPreferences.timezone ||
+                  "Africa/Casablanca",
+              },
+            );
+
+        if (
+          error
+        ) {
+          throw error;
+        }
+
+        notificationPreferences.emailEnabled =
+          Boolean(
+            data?.emailEnabled
+          );
+        notificationPreferences.whatsappEnabled =
+          Boolean(
+            data?.whatsappEnabled
+          );
+        notificationPreferences.pushEnabled =
+          Boolean(
+            data?.pushEnabled
+          );
+
+        pushSubscriptionState =
+          "active";
+
+        renderNotificationPreferences();
+        renderPushPreference();
+
+        message.textContent =
+          "Notifications Push activées.";
+        message.className =
+          "notification-preference-message success";
+      } catch (error) {
+        console.error(
+          "Push enable error:",
+          error
+        );
+
+        pushSubscriptionState =
+          "error";
+        renderPushPreference();
+
+        message.textContent =
+          "Impossible d'activer les notifications Push.";
+        message.className =
+          "notification-preference-message error";
+      } finally {
+        button.disabled =
+          false;
+        button.textContent =
+          "Activer les notifications Push";
+      }
+    }
+
+    async function disablePushNotifications() {
+      const toggle =
+        document.getElementById(
+          "notificationPushToggle"
+        );
+
+      const message =
+        document.getElementById(
+          "notificationPreferenceMessage"
+        );
+
+      toggle.disabled =
+        true;
+
+      message.textContent =
+        "";
+      message.className =
+        "notification-preference-message";
+
+      try {
+        const OneSignal =
+          await initOneSignal();
+
+        await OneSignal.User.PushSubscription.optOut();
+
+        const {
+          data,
+          error,
+        } =
+          await supabaseClient
+            .rpc(
+              "owner_update_notification_preferences",
+              {
+                p_email_enabled:
+                  Boolean(
+                    document.getElementById(
+                      "notificationEmailToggle"
+                    ).checked
+                  ),
+                p_whatsapp_enabled:
+                  Boolean(
+                    document.getElementById(
+                      "notificationWhatsappToggle"
+                    ).checked
+                  ),
+                p_push_enabled:
+                  false,
+                p_digest_mode:
+                  notificationPreferences.digestMode ||
+                  "immediate",
+                p_quiet_hours_start:
+                  notificationPreferences.quietHoursStart,
+                p_quiet_hours_end:
+                  notificationPreferences.quietHoursEnd,
+                p_timezone:
+                  notificationPreferences.timezone ||
+                  "Africa/Casablanca",
+              },
+            );
+
+        if (
+          error
+        ) {
+          throw error;
+        }
+
+        notificationPreferences.emailEnabled =
+          Boolean(
+            data?.emailEnabled
+          );
+        notificationPreferences.whatsappEnabled =
+          Boolean(
+            data?.whatsappEnabled
+          );
+        notificationPreferences.pushEnabled =
+          Boolean(
+            data?.pushEnabled
+          );
+
+        pushSubscriptionState =
+          "inactive";
+
+        renderNotificationPreferences();
+        renderPushPreference();
+
+        message.textContent =
+          "Notifications Push désactivées.";
+        message.className =
+          "notification-preference-message success";
+      } catch (error) {
+        console.error(
+          "Push disable error:",
+          error
+        );
+
+        toggle.checked =
+          true;
+
+        message.textContent =
+          "Impossible de désactiver les notifications Push.";
+        message.className =
+          "notification-preference-message error";
+      } finally {
+        toggle.disabled =
+          false;
+      }
+    }
+
+
     function renderNotificationPreferences() {
       const emailToggle =
         document.getElementById(
@@ -9860,6 +10480,7 @@ ${escapeHtml(announcement.content)}
       };
 
       renderNotificationPreferences();
+      detectPushState();
     }
 
 
@@ -10069,6 +10690,34 @@ ${escapeHtml(announcement.content)}
         "click",
         () => {
           saveNotificationPreferences();
+        },
+      );
+
+
+    document
+      .getElementById(
+        "notificationPushEnableButton"
+      )
+      .addEventListener(
+        "click",
+        () => {
+          enablePushNotifications();
+        },
+      );
+
+
+    document
+      .getElementById(
+        "notificationPushToggle"
+      )
+      .addEventListener(
+        "change",
+        (event) => {
+          if (
+            !event.target.checked
+          ) {
+            disablePushNotifications();
+          }
         },
       );
 
@@ -10461,6 +11110,22 @@ ${escapeHtml(announcement.content)}
 
         logoutButton.textContent =
           "Déconnexion...";
+
+        try {
+          if (
+            oneSignalInitPromise
+          ) {
+            const OneSignal =
+              await oneSignalInitPromise;
+
+            await OneSignal.logout();
+          }
+        } catch (error) {
+          console.error(
+            "OneSignal logout error:",
+            error
+          );
+        }
 
         await supabaseClient
           .auth

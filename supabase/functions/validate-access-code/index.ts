@@ -132,8 +132,8 @@ export default {
           p_first_name: firstName,
           p_last_name: lastName,
           p_phone: phone,
-          p_whatsapp: whatsapp,
-          p_email: email,
+          p_whatsapp: whatsapp ?? undefined,
+          p_email: email ?? undefined,
           p_consent: consent,
         },
       );

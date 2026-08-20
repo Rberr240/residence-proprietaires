@@ -19,6 +19,9 @@
         Tableau de bord | Mirador Golf 1
     </title>
 
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://hanbgkefeqgstnsaapel.supabase.co">
+
     <link
         rel="stylesheet"
         href="assets/css/app.css"
@@ -278,6 +281,12 @@
             border-radius: 9px;
 
             outline: none;
+        }
+
+        .filters input:focus,
+        .filters select:focus {
+            border-color: #30735e;
+            box-shadow: 0 0 0 3px rgba(48, 115, 94, 0.10);
         }
 
 
@@ -546,24 +555,6 @@
             font-size: 14px;
 
             word-break: break-word;
-        }
-
-
-        .coming-soon {
-            margin-top: 22px;
-
-            padding: 15px;
-
-            border:
-                1px dashed #cfdcd6;
-
-            border-radius: 11px;
-
-            background: #fafcfb;
-
-            color: #60756c;
-
-            font-size: 13px;
         }
 
 
@@ -2985,6 +2976,7 @@
         <button
             id="logoutButton"
             class="logout-button"
+            type="button"
         >
             Déconnexion
         </button>
@@ -3153,10 +3145,14 @@
                         id="searchInput"
                         type="search"
                         placeholder="Rechercher..."
+                        aria-label="Rechercher un propriétaire"
                     >
 
 
-                    <select id="buildingFilter">
+                    <select
+                        id="buildingFilter"
+                        aria-label="Filtrer par bloc"
+                    >
 
                         <option value="">
                             Tous les blocs
@@ -3681,6 +3677,9 @@
 <div
     id="ownerModal"
     class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalName"
 >
 
     <div class="modal-card">
@@ -3711,6 +3710,7 @@
             <button
                 id="modalClose"
                 class="modal-close"
+                type="button"
             >
                 ×
             </button>
@@ -3932,6 +3932,9 @@
 <div
     id="meetingModal"
     class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="meetingModalTitle"
 >
 
     <div class="modal-card meeting-modal-card">
@@ -4121,6 +4124,9 @@
 <div
     id="voteModal"
     class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="voteModalTitle"
 >
 
     <div class="modal-card vote-modal-card">
@@ -4338,6 +4344,9 @@
 <div
     id="chargeCallModal"
     class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="chargeCallModalTitle"
 >
 
     <div class="modal-card syndic-modal-card">
@@ -4449,6 +4458,9 @@
 <div
     id="paymentModal"
     class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="paymentModalTitle"
 >
 
     <div class="modal-card syndic-modal-card">
@@ -4460,7 +4472,7 @@
                     ENCAISSEMENT
                 </span>
 
-                <h2>
+                <h2 id="paymentModalTitle">
                     Enregistrer un paiement
                 </h2>
             </div>
@@ -4582,6 +4594,9 @@
 <div
     id="announcementModal"
     class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="announcementModalTitle"
 >
 
     <div class="modal-card announcement-modal-card">
@@ -4821,6 +4836,9 @@
 <div
     id="documentModal"
     class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="documentModalTitle"
 >
 
     <div class="modal-card document-modal-card">
@@ -5417,6 +5435,7 @@ function renderOwners() {
                 <button
                     class="details-button"
                     data-id="${escapeHtml(owner.id)}"
+                    type="button"
                 >
                     Voir
                 </button>
@@ -9028,12 +9047,6 @@ async function handleVoteAction(
         }
 
 
-        console.log(
-            "Vote published:",
-            data
-        );
-
-
         await loadVotes();
 
         return;
@@ -11987,6 +12000,7 @@ function renderOwnerPaymentCharges(
                 value="0"
                 data-allocation-charge-id="${escapeHtml(item.charge.id)}"
                 data-allocation-max="${escapeHtml(item.outstanding)}"
+                aria-label="Montant à ventiler pour ${escapeHtml(item.call?.title || "cet appel de fonds")}, bloc ${escapeHtml(item.charge.building_code)}, appartement ${escapeHtml(item.charge.apartment_number)}"
             >
 
         `;
@@ -12206,6 +12220,33 @@ document
                 "syndic-form-message";
 
 
+            const saveButton =
+                document.getElementById(
+                    "paymentSaveButton"
+                );
+
+            if (
+                saveButton.disabled
+            ) {
+                // Soumission déjà en cours : ignore le clic/Entrée
+                // supplémentaire plutôt que d'envoyer une deuxième
+                // requête. La protection réelle contre un
+                // double-enregistrement reste côté base de données
+                // (verrouillage des créances) ; ceci n'est qu'une
+                // défense UX complémentaire contre un double-clic.
+                return;
+            }
+
+            saveButton.disabled =
+                true;
+
+            const originalSaveButtonLabel =
+                saveButton.textContent;
+
+            saveButton.textContent =
+                "Enregistrement...";
+
+
             const ownerAccountId =
                 document
                     .getElementById(
@@ -12278,6 +12319,12 @@ document
                 message.className =
                     "syndic-form-message error";
 
+                saveButton.disabled =
+                    false;
+
+                saveButton.textContent =
+                    originalSaveButtonLabel;
+
                 return;
 
             }
@@ -12333,6 +12380,12 @@ document
                 message.className =
                     "syndic-form-message error";
 
+                saveButton.disabled =
+                    false;
+
+                saveButton.textContent =
+                    originalSaveButtonLabel;
+
                 return;
 
             }
@@ -12343,6 +12396,12 @@ document
 
             message.className =
                 "syndic-form-message success";
+
+            saveButton.disabled =
+                false;
+
+            saveButton.textContent =
+                originalSaveButtonLabel;
 
 
             setTimeout(
@@ -17297,6 +17356,33 @@ documentModal.addEventListener(
 
 
 updateDocumentAudienceFields();
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key !== "Escape"
+        ) {
+            return;
+        }
+
+        const openModal =
+            document.querySelector(
+                ".modal.visible"
+            );
+
+        if (
+            openModal
+        ) {
+            openModal.classList.remove(
+                "visible"
+            );
+        }
+
+    }
+);
 
 
 

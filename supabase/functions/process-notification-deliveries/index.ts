@@ -15,6 +15,7 @@ type NotificationEvent = {
   id: string;
   title: string;
   body: string;
+  category: string;
   priority: "normal" | "high" | "urgent";
   action_section: string | null;
   action_entity_id: string | null;
@@ -62,6 +63,33 @@ const WHATSAPP_GATEWAY_API_KEY =
 const ONESIGNAL_APP_ID = Deno.env.get("ONESIGNAL_APP_ID") ?? "";
 
 const ONESIGNAL_API_KEY = Deno.env.get("ONESIGNAL_API_KEY") ?? "";
+
+// Catégories dont le corps peut contenir des données sensibles
+// (montants syndic). Le push transite par un provider tiers
+// (OneSignal) : on y affiche un message générique et on renvoie
+// vers l'espace propriétaire authentifié pour le détail. Le titre
+// de ces événements ne contient déjà aucun montant (voir la
+// migration create_notifications_v2.sql), seul le corps l'exige.
+const PUSH_GENERIC_BODY_CATEGORIES = new Set([
+  "syndic",
+]);
+
+const PUSH_GENERIC_BODY_FALLBACK =
+  "Une nouvelle information est disponible dans votre espace MIRADOR.";
+
+function pushNotificationBody(
+  event: NotificationEvent,
+): string {
+  if (
+    PUSH_GENERIC_BODY_CATEGORIES.has(
+      event.category,
+    )
+  ) {
+    return PUSH_GENERIC_BODY_FALLBACK;
+  }
+
+  return event.body;
+}
 
 const DEFAULT_BATCH_SIZE = 20;
 const MAX_BATCH_SIZE = 100;
@@ -266,6 +294,7 @@ async function fetchNotificationEvent(
         id,
         title,
         body,
+        category,
         priority,
         action_section,
         action_entity_id,
@@ -475,6 +504,21 @@ async function sendEmail(
           "mirador-golf-1",
           "transactional-notification",
         ],
+
+        // Déduplication assistée par le provider (best-effort) : si
+        // ce worker retente l'envoi d'une livraison déjà acceptée
+        // par Brevo (ex. crash entre l'envoi et la mise à jour de
+        // notification_deliveries), la même clé — dérivée de l'id
+        // de livraison, stable pour toute tentative de CETTE
+        // livraison — permet à Brevo de rejeter le doublon au lieu
+        // de renvoyer l'email. Documentation Brevo actuelle
+        // (développeurs.brevo.com, endpoint /v3/smtp/email) :
+        // fenêtre de 30 minutes ; au-delà, retour au comportement
+        // "au moins une fois" habituel. La clé va dans le corps
+        // JSON sous "headers", pas comme en-tête HTTP.
+        headers: {
+          idempotencyKey: delivery.id,
+        },
       }),
     },
   );
@@ -488,6 +532,21 @@ async function sendEmail(
   if (
     !response.ok
   ) {
+    // Rejeu détecté par Brevo via idempotencyKey : cette livraison a
+    // déjà été acceptée par Brevo lors d'une tentative précédente
+    // (ex. crash de ce worker entre l'envoi et la mise à jour de
+    // notification_deliveries). Ce n'est pas un échec réel — le
+    // traiter comme tel provoquerait des nouvelles tentatives qui
+    // rencontreraient indéfiniment le même conflit jusqu'à
+    // épuisement de max_attempts, sans jamais marquer la livraison
+    // comme envoyée.
+    if (
+      payload?.code ===
+        "duplicate_parameter"
+    ) {
+      return "brevo-deduplicated";
+    }
+
     throw new Error(
       `Brevo ${response.status}: ${
         payload?.message ??
@@ -632,6 +691,10 @@ async function sendPush(
     event,
   );
 
+  const pushBody = pushNotificationBody(
+    event,
+  );
+
   const response = await fetch(
     "https://api.onesignal.com/notifications?c=push",
     {
@@ -645,6 +708,14 @@ async function sendPush(
 
       body: JSON.stringify({
         app_id: ONESIGNAL_APP_ID,
+
+        // Rejeu-sécurité (voir sendEmail ci-dessus) : si cette
+        // livraison est retentée après avoir déjà été acceptée par
+        // OneSignal, la même clé — dérivée de l'id de livraison —
+        // fait renvoyer par OneSignal le résultat de l'envoi
+        // d'origine au lieu de notifier une seconde fois. Fenêtre
+        // garantie par OneSignal : 30 jours.
+        idempotency_key: delivery.id,
 
         include_aliases: {
           external_id: [
@@ -668,12 +739,12 @@ async function sendPush(
 
         contents: {
           fr: truncate(
-            event.body,
+            pushBody,
             220,
           ),
 
           en: truncate(
-            event.body,
+            pushBody,
             220,
           ),
         },
