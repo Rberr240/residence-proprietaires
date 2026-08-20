@@ -4,22 +4,28 @@
     box-sizing: border-box;
 }
 
+/*
+ * Colors are aliased to the canonical tokens in tokens.css (loaded
+ * before this file) so the auth pages share one palette with the rest
+ * of the app. Local names are kept as-is to avoid touching every
+ * selector below.
+ */
 :root {
-    --background: #f3f5f4;
-    --card: #ffffff;
+    --background: var(--mirador-bg, #f3f5f4);
+    --card: var(--mirador-surface, #ffffff);
 
-    --primary: #163c32;
-    --primary-hover: #0f2e26;
+    --primary: var(--mirador-primary, #163c32);
+    --primary-hover: var(--mirador-primary-hover, #0f2e26);
 
-    --secondary: #b39255;
+    --secondary: var(--mirador-gold, #b39255);
 
-    --text: #18201e;
-    --text-light: #6f7774;
+    --text: var(--mirador-text, #18201e);
+    --text-light: var(--mirador-text-muted, #6f7774);
 
-    --border: #dfe5e2;
-    --error: #b42318;
+    --border: var(--mirador-border, #dfe5e2);
+    --error: var(--mirador-danger, #b42318);
 
-    --shadow: 0 20px 60px rgba(20, 40, 35, 0.10);
+    --shadow: var(--mirador-shadow-lg, 0 20px 60px rgba(20, 40, 35, 0.10));
 }
 
 body {

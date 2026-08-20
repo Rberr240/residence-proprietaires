@@ -1,0 +1,723 @@
+/*
+ * MIRADOR Component Primitives
+ * Reusable, framework-free building blocks on top of tokens.css.
+ * Namespaced with a `.mirador-` prefix so these can be adopted
+ * incrementally inside admin.html / espace-proprietaire.html without
+ * colliding with their existing page-specific class names.
+ *
+ * Requires tokens.css to be loaded first.
+ */
+
+/* ============================= Buttons ============================= */
+
+.mirador-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mirador-space-2);
+  min-height: 44px;
+  padding: 0 var(--mirador-space-5);
+  border: 1px solid transparent;
+  border-radius: var(--mirador-radius-md);
+  background: var(--mirador-primary);
+  color: #fff;
+  font-family: var(--mirador-font-sans);
+  font-size: var(--mirador-text-base);
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    background var(--mirador-transition-fast),
+    border-color var(--mirador-transition-fast),
+    transform var(--mirador-transition-fast),
+    box-shadow var(--mirador-transition-fast);
+}
+
+.mirador-btn:hover {
+  background: var(--mirador-primary-hover);
+}
+
+.mirador-btn:active {
+  transform: translateY(1px);
+}
+
+.mirador-btn:disabled,
+.mirador-btn[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.mirador-btn--secondary {
+  background: var(--mirador-surface);
+  color: var(--mirador-primary);
+  border-color: var(--mirador-border-strong);
+}
+
+.mirador-btn--secondary:hover {
+  background: var(--mirador-primary-soft);
+  border-color: var(--mirador-primary);
+}
+
+.mirador-btn--ghost {
+  background: transparent;
+  color: var(--mirador-text);
+  border-color: transparent;
+}
+
+.mirador-btn--ghost:hover {
+  background: var(--mirador-ink-100);
+}
+
+.mirador-btn--danger {
+  background: var(--mirador-danger);
+  color: #fff;
+}
+
+.mirador-btn--danger:hover {
+  background: #8f1b12;
+}
+
+.mirador-btn--danger-outline {
+  background: var(--mirador-danger-bg);
+  color: var(--mirador-danger);
+  border-color: rgba(180, 35, 24, 0.28);
+}
+
+.mirador-btn--danger-outline:hover {
+  background: #fbdad6;
+}
+
+.mirador-btn--sm {
+  min-height: 36px;
+  padding: 0 var(--mirador-space-4);
+  font-size: var(--mirador-text-sm);
+}
+
+.mirador-btn--block {
+  width: 100%;
+}
+
+.mirador-btn .mirador-spinner {
+  margin-right: calc(var(--mirador-space-1) * -1);
+}
+
+/* ============================== Cards ================================ */
+
+.mirador-card {
+  background: var(--mirador-surface);
+  border: 1px solid var(--mirador-border);
+  border-radius: var(--mirador-radius-lg);
+  box-shadow: var(--mirador-shadow-sm);
+  transition:
+    transform var(--mirador-transition-base),
+    box-shadow var(--mirador-transition-base);
+}
+
+.mirador-card--interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--mirador-shadow-md);
+}
+
+.mirador-card--elevated {
+  box-shadow: var(--mirador-shadow-md);
+  border-color: transparent;
+}
+
+.mirador-card__body {
+  padding: var(--mirador-space-5);
+}
+
+.mirador-card--dark {
+  background: linear-gradient(
+    150deg,
+    var(--mirador-green-900),
+    var(--mirador-green-700)
+  );
+  border-color: transparent;
+  color: var(--mirador-text-inverse);
+}
+
+.mirador-card--dark .mirador-text-muted {
+  color: var(--mirador-text-inverse-muted);
+}
+
+/* ============================= Badges ================================ */
+
+.mirador-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mirador-space-1);
+  padding: 4px var(--mirador-space-3);
+  border-radius: var(--mirador-radius-full);
+  font-size: var(--mirador-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.mirador-badge--neutral {
+  background: var(--mirador-ink-100);
+  color: var(--mirador-ink-700);
+}
+
+.mirador-badge--success {
+  background: var(--mirador-success-bg);
+  color: var(--mirador-success);
+}
+
+.mirador-badge--warning {
+  background: var(--mirador-warning-bg);
+  color: var(--mirador-warning);
+}
+
+.mirador-badge--danger {
+  background: var(--mirador-danger-bg);
+  color: var(--mirador-danger);
+}
+
+.mirador-badge--info {
+  background: var(--mirador-info-bg);
+  color: var(--mirador-info);
+}
+
+.mirador-badge--gold {
+  background: var(--mirador-gold-bg);
+  color: var(--mirador-gold-ink);
+}
+
+/* Sensitive / irreversible action marker — must stay visually distinct
+   from ordinary badges and buttons per the sprint's admin UI mandate. */
+.mirador-badge--critical {
+  background: var(--mirador-danger);
+  color: #fff;
+}
+
+/* ============================= Forms ================================= */
+
+.mirador-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mirador-space-2);
+}
+
+.mirador-label {
+  font-size: var(--mirador-text-sm);
+  font-weight: 600;
+  color: var(--mirador-text);
+}
+
+.mirador-input,
+.mirador-select,
+.mirador-textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--mirador-space-4);
+  border: 1px solid var(--mirador-border-strong);
+  border-radius: var(--mirador-radius-md);
+  background: var(--mirador-surface-sunken);
+  color: var(--mirador-text);
+  font-family: var(--mirador-font-sans);
+  font-size: var(--mirador-text-base);
+  transition:
+    border-color var(--mirador-transition-fast),
+    background var(--mirador-transition-fast),
+    box-shadow var(--mirador-transition-fast);
+}
+
+.mirador-textarea {
+  min-height: 110px;
+  padding: var(--mirador-space-3) var(--mirador-space-4);
+  resize: vertical;
+  font-family: inherit;
+}
+
+.mirador-input:focus,
+.mirador-select:focus,
+.mirador-textarea:focus {
+  outline: none;
+  border-color: var(--mirador-primary);
+  background: var(--mirador-surface);
+  box-shadow: var(--mirador-shadow-focus);
+}
+
+.mirador-input[aria-invalid="true"],
+.mirador-select[aria-invalid="true"],
+.mirador-textarea[aria-invalid="true"] {
+  border-color: var(--mirador-danger);
+}
+
+.mirador-help-text {
+  font-size: var(--mirador-text-xs);
+  color: var(--mirador-text-muted);
+}
+
+.mirador-error-text {
+  font-size: var(--mirador-text-xs);
+  color: var(--mirador-danger);
+  min-height: 1em;
+}
+
+/* Custom checkbox/toggle — kept on a real <input type="checkbox"> so
+   keyboard, screen reader and form semantics stay native; only the
+   visual box/track is themed. */
+.mirador-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--mirador-primary);
+}
+
+.mirador-toggle {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.mirador-toggle input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.mirador-toggle__track {
+  position: absolute;
+  inset: 0;
+  background: var(--mirador-ink-200);
+  border-radius: var(--mirador-radius-full);
+  transition: background var(--mirador-transition-fast);
+  pointer-events: none;
+}
+
+.mirador-toggle__track::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: var(--mirador-shadow-sm);
+  transition: transform var(--mirador-transition-fast);
+}
+
+.mirador-toggle input:checked + .mirador-toggle__track {
+  background: var(--mirador-primary);
+}
+
+.mirador-toggle input:checked + .mirador-toggle__track::before {
+  transform: translateX(18px);
+}
+
+.mirador-toggle input:focus-visible + .mirador-toggle__track {
+  outline: 2px solid var(--mirador-green-600);
+  outline-offset: 2px;
+}
+
+/* ============================== Tabs ================================= */
+
+.mirador-tabs {
+  display: flex;
+  gap: var(--mirador-space-2);
+  border-bottom: 1px solid var(--mirador-border);
+  overflow-x: auto;
+}
+
+.mirador-tab {
+  appearance: none;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: var(--mirador-space-3) var(--mirador-space-2);
+  color: var(--mirador-text-muted);
+  font-family: var(--mirador-font-sans);
+  font-size: var(--mirador-text-base);
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color var(--mirador-transition-fast),
+    border-color var(--mirador-transition-fast);
+}
+
+.mirador-tab:hover {
+  color: var(--mirador-text);
+}
+
+.mirador-tab[aria-selected="true"] {
+  color: var(--mirador-primary);
+  border-bottom-color: var(--mirador-primary);
+}
+
+/* ============================= Tables ================================= */
+
+.mirador-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--mirador-border);
+  border-radius: var(--mirador-radius-lg);
+  background: var(--mirador-surface);
+}
+
+.mirador-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: var(--mirador-text-base);
+}
+
+.mirador-table th {
+  text-align: left;
+  padding: var(--mirador-space-3) var(--mirador-space-4);
+  background: var(--mirador-surface-sunken);
+  color: var(--mirador-text-muted);
+  font-size: var(--mirador-text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--mirador-border);
+  position: sticky;
+  top: 0;
+}
+
+.mirador-table td {
+  padding: var(--mirador-space-3) var(--mirador-space-4);
+  border-bottom: 1px solid var(--mirador-border);
+  vertical-align: middle;
+}
+
+.mirador-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.mirador-table tbody tr:hover {
+  background: var(--mirador-surface-sunken);
+}
+
+/* ======================= Modals / Drawers ============================= */
+
+.mirador-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--mirador-space-4);
+  background: rgba(10, 20, 17, 0.55);
+  backdrop-filter: blur(3px);
+}
+
+.mirador-overlay[hidden] {
+  display: none;
+}
+
+.mirador-modal {
+  width: 100%;
+  max-width: 520px;
+  max-height: calc(100vh - var(--mirador-space-6));
+  overflow-y: auto;
+  background: var(--mirador-surface);
+  border-radius: var(--mirador-radius-xl);
+  box-shadow: var(--mirador-shadow-lg);
+  padding: var(--mirador-space-6);
+}
+
+.mirador-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(10, 20, 17, 0.5);
+}
+
+.mirador-drawer-overlay[hidden] {
+  display: none;
+}
+
+.mirador-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1001;
+  width: min(420px, 100vw);
+  background: var(--mirador-surface);
+  box-shadow: var(--mirador-shadow-lg);
+  overflow-y: auto;
+  padding: var(--mirador-space-5);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mirador-modal,
+  .mirador-drawer {
+    animation: mirador-rise var(--mirador-transition-slow);
+  }
+}
+
+@keyframes mirador-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ======================= Toasts / Feedback ============================= */
+
+.mirador-toast-region {
+  position: fixed;
+  bottom: var(--mirador-space-5);
+  right: var(--mirador-space-5);
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  gap: var(--mirador-space-2);
+  max-width: min(360px, calc(100vw - var(--mirador-space-6)));
+}
+
+.mirador-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--mirador-space-3);
+  padding: var(--mirador-space-4);
+  border-radius: var(--mirador-radius-md);
+  background: var(--mirador-ink-950);
+  color: #fff;
+  box-shadow: var(--mirador-shadow-lg);
+  font-size: var(--mirador-text-sm);
+}
+
+.mirador-toast--success {
+  background: var(--mirador-success);
+}
+
+.mirador-toast--danger {
+  background: var(--mirador-danger);
+}
+
+.mirador-toast--warning {
+  background: var(--mirador-warning);
+}
+
+.mirador-alert {
+  display: flex;
+  gap: var(--mirador-space-3);
+  padding: var(--mirador-space-4);
+  border-radius: var(--mirador-radius-md);
+  border: 1px solid transparent;
+  font-size: var(--mirador-text-sm);
+  line-height: 1.5;
+}
+
+.mirador-alert--success {
+  background: var(--mirador-success-bg);
+  color: var(--mirador-success);
+  border-color: rgba(25, 113, 73, 0.2);
+}
+
+.mirador-alert--warning {
+  background: var(--mirador-warning-bg);
+  color: var(--mirador-warning);
+  border-color: rgba(154, 107, 0, 0.2);
+}
+
+.mirador-alert--danger {
+  background: var(--mirador-danger-bg);
+  color: var(--mirador-danger);
+  border-color: rgba(180, 35, 24, 0.2);
+}
+
+.mirador-alert--info {
+  background: var(--mirador-info-bg);
+  color: var(--mirador-info);
+  border-color: rgba(31, 99, 80, 0.18);
+}
+
+/* ==================== Skeleton / loading / empty ======================= */
+
+.mirador-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--mirador-ink-100);
+  border-radius: var(--mirador-radius-sm);
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mirador-skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    );
+    animation: mirador-shimmer 1.4s ease-in-out infinite;
+  }
+}
+
+@keyframes mirador-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.mirador-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mirador-spinner {
+    animation: mirador-spin 0.7s linear infinite;
+  }
+}
+
+@keyframes mirador-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.mirador-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--mirador-space-2);
+  padding: var(--mirador-space-7) var(--mirador-space-4);
+  color: var(--mirador-text-muted);
+}
+
+.mirador-empty-state__icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--mirador-radius-full);
+  background: var(--mirador-primary-soft);
+  color: var(--mirador-primary);
+  font-size: 22px;
+  margin-bottom: var(--mirador-space-2);
+}
+
+.mirador-empty-state h3 {
+  margin: 0;
+  color: var(--mirador-text);
+  font-size: var(--mirador-text-md);
+}
+
+.mirador-empty-state p {
+  margin: 0;
+  max-width: 420px;
+  font-size: var(--mirador-text-sm);
+}
+
+/* ==================== Residence experience (Sprint 2 slot) ============= */
+/* Decorative 2D placeholder for the future 3D "My Residence" view. No
+   Three.js, no WebGL, no GLB — see docs/architecture.md for how Sprint 2
+   is expected to slot a real 3D canvas into this same container. */
+
+.mirador-residence-preview {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--mirador-radius-xl);
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--mirador-space-2);
+  padding: var(--mirador-space-6) var(--mirador-space-5);
+  color: #fff;
+  background:
+    radial-gradient(
+      circle at 80% 15%,
+      rgba(255, 255, 255, 0.12),
+      transparent 45%
+    ),
+    linear-gradient(
+      150deg,
+      var(--mirador-green-950) 0%,
+      var(--mirador-green-800) 55%,
+      var(--mirador-green-600) 100%
+    );
+}
+
+.mirador-residence-preview__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px var(--mirador-space-3);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: var(--mirador-radius-full);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: var(--mirador-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.mirador-residence-preview h3 {
+  margin: 0;
+  font-size: var(--mirador-text-lg);
+}
+
+.mirador-residence-preview p {
+  margin: 0;
+  max-width: 380px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: var(--mirador-text-sm);
+}
+
+/* Loading state: shown while capability detection / lazy asset loading
+   for Sprint 2 would run. Kept here so Sprint 2 can reuse the class. */
+.mirador-residence-preview--loading .mirador-residence-preview__icon {
+  opacity: 0.6;
+}
+
+/* Unsupported state: shown when a future WebGL check fails and the UI
+   must fall back to this same 2D view permanently for that visitor. */
+.mirador-residence-preview--unsupported {
+  background: linear-gradient(
+    150deg,
+    var(--mirador-ink-900) 0%,
+    var(--mirador-ink-700) 100%
+  );
+}
+
+/* ============================ Utilities ================================ */
+
+.mirador-text-muted {
+  color: var(--mirador-text-muted);
+}
+
+.mirador-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

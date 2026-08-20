@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
 
+  <!-- Report-Only this sprint: see docs/security.md for rationale and upgrade path. -->
+  <meta http-equiv="Content-Security-Policy-Report-Only" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://cdn.onesignal.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.onesignal.com; font-src 'self'; connect-src 'self' https://hanbgkefeqgstnsaapel.supabase.co https://cdn.onesignal.com https://*.onesignal.com; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';">
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
@@ -24,6 +27,9 @@
   <link rel="preconnect" href="https://hanbgkefeqgstnsaapel.supabase.co">
   <link rel="preconnect" href="https://cdn.onesignal.com">
 
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+
   <link
     rel="stylesheet"
     href="assets/css/app.css"
@@ -31,23 +37,35 @@
 
   <style>
     :root {
-      --mg-green-950: #092c25;
-      --mg-green-900: #0d392f;
-      --mg-green-800: #154d40;
-      --mg-green-700: #216653;
-      --mg-green-100: #eaf4f0;
-      --mg-green-50: #f4f8f6;
+      /* Aliased to the canonical tokens in assets/css/tokens.css (loaded
+         above) so this dashboard shares one palette with the rest of the
+         app. Local --mg-* names are kept to avoid touching every selector
+         in this file; fallbacks preserve the exact prior look if
+         tokens.css is ever unavailable. */
+      --mg-green-950: var(--mirador-green-950, #092c25);
+      --mg-green-900: var(--mirador-green-900, #0d392f);
+      --mg-green-800: var(--mirador-green-800, #154d40);
+      --mg-green-700: var(--mirador-green-700, #216653);
+      --mg-green-100: var(--mirador-green-100, #eaf4f0);
+      --mg-green-50: var(--mirador-green-50, #f4f8f6);
 
-      --mg-text: #17372d;
-      --mg-muted: #6f8179;
-      --mg-border: #dfe8e4;
+      --mg-text: var(--mirador-text, #17372d);
+      --mg-muted: var(--mirador-text-muted, #6f8179);
+      --mg-border: var(--mirador-border, #dfe8e4);
       --mg-white: #ffffff;
 
-      --mg-warning: #9a6b00;
-      --mg-warning-bg: #fff7df;
+      --mg-warning: var(--mirador-warning, #9a6b00);
+      --mg-warning-bg: var(--mirador-warning-bg, #fff7df);
 
-      --mg-success: #197149;
-      --mg-success-bg: #eaf7f0;
+      --mg-success: var(--mirador-success, #197149);
+      --mg-success-bg: var(--mirador-success-bg, #eaf7f0);
+
+      --mg-danger: var(--mirador-danger, #b42318);
+      --mg-danger-bg: var(--mirador-danger-bg, #fdecea);
+
+      --mg-gold: var(--mirador-gold, #b39255);
+      --mg-gold-ink: var(--mirador-gold-ink, #7a6338);
+      --mg-gold-bg: var(--mirador-gold-bg, #faf5eb);
 
       --mg-shadow:
         0 16px 45px

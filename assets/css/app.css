@@ -1,17 +1,23 @@
+/*
+ * Colors are aliased to the canonical tokens in tokens.css (loaded
+ * before this file) so the marketing page shares one palette with the
+ * rest of the app instead of maintaining its own copy. Local names are
+ * kept as-is to avoid touching every selector below.
+ */
 :root {
-    --green-950: #0b2f27;
-    --green-900: #103d32;
-    --green-800: #174b3d;
-    --green-700: #23634f;
-    --green-600: #30735e;
+    --green-950: var(--mirador-green-950, #0b2f27);
+    --green-900: var(--mirador-green-900, #103d32);
+    --green-800: var(--mirador-green-800, #174b3d);
+    --green-700: var(--mirador-green-700, #23634f);
+    --green-600: var(--mirador-green-600, #30735e);
 
-    --green-100: #eaf3ef;
-    --green-50: #f4f8f6;
+    --green-100: var(--mirador-green-100, #eaf3ef);
+    --green-50: var(--mirador-green-50, #f4f8f6);
 
-    --text: #182822;
-    --text-secondary: #5f716a;
+    --text: var(--mirador-text, #182822);
+    --text-secondary: var(--mirador-text-muted, #5f716a);
 
-    --border: #e0e8e4;
+    --border: var(--mirador-border, #e0e8e4);
 
     --white: #ffffff;
 

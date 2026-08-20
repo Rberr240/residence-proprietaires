@@ -55,7 +55,7 @@
 
     border-radius: 14px;
 
-    background: #163c32;
+    background: var(--mirador-primary, #163c32);
 
     color: white;
 
@@ -69,7 +69,7 @@
 .residence-name {
     margin-bottom: 5px;
 
-    color: #b39255;
+    color: var(--mirador-gold, #b39255);
 
     font-size: 11px;
     font-weight: 700;
@@ -81,7 +81,7 @@
 .registration-header h1 {
     font-size: 23px;
 
-    color: #163c32;
+    color: var(--mirador-primary, #163c32);
 }
 
 
@@ -114,7 +114,7 @@
 
 
 .apartment-status strong {
-    color: #163c32;
+    color: var(--mirador-primary, #163c32);
 
     font-size: 18px;
 }
@@ -216,7 +216,7 @@
 
 .field input:focus,
 .field textarea:focus {
-    border-color: #163c32;
+    border-color: var(--mirador-primary, #163c32);
 
     background: white;
 
@@ -248,7 +248,7 @@
 .form-section h3 {
     margin-bottom: 6px;
 
-    color: #163c32;
+    color: var(--mirador-primary, #163c32);
 
     font-size: 15px;
 }
@@ -294,12 +294,12 @@
 
 
 .choice-card:hover {
-    border-color: #163c32;
+    border-color: var(--mirador-primary, #163c32);
 }
 
 
 .choice-card input {
-    accent-color: #163c32;
+    accent-color: var(--mirador-primary, #163c32);
 }
 
 
@@ -339,7 +339,7 @@
 .consent-box input {
     margin-top: 3px;
 
-    accent-color: #163c32;
+    accent-color: var(--mirador-primary, #163c32);
 }
 
 
@@ -357,7 +357,7 @@
 
     margin-top: 15px;
 
-    color: #b42318;
+    color: var(--mirador-danger, #b42318);
 
     font-size: 12px;
 }
@@ -379,7 +379,7 @@
     border: none;
     border-radius: 12px;
 
-    background: #163c32;
+    background: var(--mirador-primary, #163c32);
 
     color: white;
 
@@ -393,7 +393,7 @@
 
 
 .submit-button:hover {
-    background: #0f2e26;
+    background: var(--mirador-primary-hover, #0f2e26);
 
     transform: translateY(-1px);
 }

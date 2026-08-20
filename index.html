@@ -4,6 +4,16 @@
 <head>
     <meta charset="UTF-8">
 
+    <!--
+      Report-Only for this sprint: enforcing mode needs a real-browser
+      smoke test this sprint had no way to run (no browser automation
+      available). Flip to Content-Security-Policy once DevTools shows
+      zero violations. See docs/security.md for the target policy and
+      why frame-ancestors isn't set here (needs an HTTP header, which
+      GitHub Pages static hosting cannot send).
+    -->
+    <meta http-equiv="Content-Security-Policy-Report-Only" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';">
+
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
@@ -16,6 +26,8 @@
 
     <title>Mirador Golf 1 | Espace propriétaires</title>
 
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/app.css">
 </head>
 
