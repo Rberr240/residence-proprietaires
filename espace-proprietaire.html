@@ -240,6 +240,16 @@
       background:
         rgba(255, 255, 255, 0.12);
       color: white;
+      box-shadow: inset 3px 0 0 var(--mg-gold, #b39255);
+    }
+
+    /* The default global focus ring (tokens.css) is tuned for light
+       surfaces; this sidebar is dark, so give it a ring with enough
+       contrast against its own background instead. */
+    .sidebar :focus-visible,
+    .logout-button:focus-visible {
+      outline: 2px solid white;
+      outline-offset: 2px;
     }
 
     .nav-icon {
@@ -305,6 +315,13 @@
     }
 
     .topbar-title {
+      min-width: 0;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       min-width: 0;
     }
 
@@ -544,9 +561,41 @@
     .summary-card small {
       display: block;
       margin-top: 5px;
-      color: #8b9993;
+      color: var(--mg-muted);
       font-size: 10px;
       line-height: 1.45;
+    }
+
+    .summary-card-value--success {
+      color: var(--mg-success);
+    }
+
+    .summary-card-value--compact {
+      font-size: 15px;
+    }
+
+    .owner-residence-preview {
+      margin-top: 18px;
+    }
+
+    .owner-profile-units-card {
+      margin-top: 16px;
+    }
+
+    .owner-retry-button {
+      width: 100%;
+      min-height: 42px;
+      margin-top: 16px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--mg-green-900, #0d392f);
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .owner-retry-button:hover {
+      background: var(--mg-green-950, #092c25);
     }
 
     .dashboard-grid {
@@ -621,9 +670,11 @@
       gap: 15px;
       padding: 13px;
       border:
-        1px solid #e8eeeb;
+        1px solid var(--mg-border, #e8eeeb);
       border-radius: 11px;
-      background: #fbfcfc;
+      background: var(--mg-green-50, #fbfcfc);
+      text-align: left;
+      font: inherit;
     }
 
     .module-row-left {
@@ -645,9 +696,31 @@
 
     .module-row-status {
       flex: 0 0 auto;
-      color: #88968f;
+      color: var(--mg-muted);
       font-size: 9px;
       font-weight: 800;
+    }
+
+    .module-row-status--active {
+      color: var(--mg-success);
+    }
+
+    .module-row.module-row--action {
+      cursor: pointer;
+      width: 100%;
+      transition: border-color var(--mirador-transition-fast, 0.15s),
+        background var(--mirador-transition-fast, 0.15s);
+    }
+
+    .module-row.module-row--action:hover {
+      border-color: var(--mg-green-700);
+      background: var(--mg-green-50);
+    }
+
+    .module-row--action .module-row-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
 
     .units-list {
@@ -2867,6 +2940,7 @@
           class="nav-button active"
           type="button"
           data-section="overview"
+          aria-current="page"
         >
           <span class="nav-icon">⌂</span>
           Vue d'ensemble
@@ -2967,20 +3041,15 @@
 
       <header class="topbar">
 
-        <div
-          style="
-            display:flex;
-            align-items:center;
-            gap:12px;
-            min-width:0;
-          "
-        >
+        <div class="topbar-left">
 
           <button
             id="mobileMenuButton"
             class="mobile-menu-button"
             type="button"
             aria-label="Ouvrir le menu"
+            aria-expanded="false"
+            aria-controls="sidebar"
           >
             ☰
           </button>
@@ -3097,7 +3166,7 @@
                 STATUT DU COMPTE
               </span>
 
-              <strong style="color:#197149;">
+              <strong class="summary-card-value--success">
                 Actif
               </strong>
 
@@ -3113,7 +3182,7 @@
 
               <strong
                 id="summaryPhone"
-                style="font-size:15px;"
+                class="summary-card-value--compact"
               >
                 —
               </strong>
@@ -3123,6 +3192,22 @@
               </small>
             </article>
 
+          </div>
+
+          <div class="mirador-residence-preview owner-residence-preview">
+            <span class="mirador-residence-preview__badge">
+              Bientôt disponible
+            </span>
+
+            <h3>
+              My Residence — vue 3D de votre résidence
+            </h3>
+
+            <p>
+              Une vue interactive de votre bâtiment et de votre lot
+              arrive dans une prochaine mise à jour. Cet emplacement
+              est réservé pour cette fonctionnalité.
+            </p>
           </div>
 
           <div class="dashboard-grid">
@@ -3150,7 +3235,11 @@
 
               <div class="module-list">
 
-                <div class="module-row">
+                <button
+                  type="button"
+                  class="module-row module-row--action"
+                  data-section="meetings"
+                >
 
                   <div class="module-row-left">
                     <strong>
@@ -3162,16 +3251,17 @@
                     </small>
                   </div>
 
-                  <span
-                    class="module-row-status"
-                    style="color:#197149;font-weight:900;"
-                  >
-                    Actif
+                  <span class="module-row-status module-row-status--active">
+                    Ouvrir →
                   </span>
 
-                </div>
+                </button>
 
-                <div class="module-row">
+                <button
+                  type="button"
+                  class="module-row module-row--action"
+                  data-section="votes"
+                >
 
                   <div class="module-row-left">
                     <strong>
@@ -3183,16 +3273,17 @@
                     </small>
                   </div>
 
-                  <span
-                    class="module-row-status"
-                    style="color:#197149;font-weight:900;"
-                  >
-                    Actif
+                  <span class="module-row-status module-row-status--active">
+                    Ouvrir →
                   </span>
 
-                </div>
+                </button>
 
-                <div class="module-row">
+                <button
+                  type="button"
+                  class="module-row module-row--action"
+                  data-section="syndic"
+                >
 
                   <div class="module-row-left">
                     <strong>
@@ -3204,16 +3295,17 @@
                     </small>
                   </div>
 
-                  <span
-                    class="module-row-status"
-                    style="color:#197149;font-weight:900;"
-                  >
-                    Actif
+                  <span class="module-row-status module-row-status--active">
+                    Ouvrir →
                   </span>
 
-                </div>
+                </button>
 
-                <div class="module-row">
+                <button
+                  type="button"
+                  class="module-row module-row--action"
+                  data-section="announcements"
+                >
 
                   <div class="module-row-left">
                     <strong>
@@ -3225,16 +3317,17 @@
                     </small>
                   </div>
 
-                  <span
-                    class="module-row-status"
-                    style="color:#197149;font-weight:900;"
-                  >
-                    Actif
+                  <span class="module-row-status module-row-status--active">
+                    Ouvrir →
                   </span>
 
-                </div>
+                </button>
 
-                <div class="module-row">
+                <button
+                  type="button"
+                  class="module-row module-row--action"
+                  data-section="documents"
+                >
 
                   <div class="module-row-left">
                     <strong>
@@ -3246,14 +3339,11 @@
                     </small>
                   </div>
 
-                  <span
-                    class="module-row-status"
-                    style="color:#197149;font-weight:900;"
-                  >
-                    Actif
+                  <span class="module-row-status module-row-status--active">
+                    Ouvrir →
                   </span>
 
-                </div>
+                </button>
 
               </div>
 
@@ -4127,17 +4217,14 @@
                 STATUT
               </span>
 
-              <strong style="color:#197149;">
+              <strong class="summary-card-value--success">
                 Compte actif
               </strong>
             </div>
 
           </div>
 
-          <div
-            class="panel-card"
-            style="margin-top:16px;"
-          >
+          <div class="panel-card owner-profile-units-card">
 
             <div class="panel-card-header">
 
@@ -4413,11 +4500,25 @@
 
       navigationButtons.forEach(
         (button) => {
+          const isActive =
+            button.dataset.section ===
+            sectionName;
+
           button.classList.toggle(
             "active",
-            button.dataset.section ===
-              sectionName,
+            isActive,
           );
+
+          if (isActive) {
+            button.setAttribute(
+              "aria-current",
+              "page",
+            );
+          } else {
+            button.removeAttribute(
+              "aria-current",
+            );
+          }
         },
       );
 
@@ -4427,9 +4528,7 @@
       topbarSectionTitle.textContent =
         configuration.title;
 
-      sidebar.classList.remove(
-        "open"
-      );
+      setSidebarOpen(false);
 
       if (
         sectionName === "meetings" &&
@@ -4494,6 +4593,27 @@
     );
 
 
+    // Overview "quick action" rows mirror the sidebar nav buttons —
+    // same showSection() call, just a second entry point into the
+    // same sections from the dashboard summary.
+    document
+      .querySelectorAll(
+        ".module-row--action[data-section]",
+      )
+      .forEach(
+        (button) => {
+          button.addEventListener(
+            "click",
+            () => {
+              showSection(
+                button.dataset.section
+              );
+            },
+          );
+        },
+      );
+
+
     document
       .getElementById(
         "topbarNotificationsButton"
@@ -4508,11 +4628,42 @@
       );
 
 
+    function setSidebarOpen(isOpen) {
+      sidebar.classList.toggle(
+        "open",
+        isOpen,
+      );
+
+      mobileMenuButton.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false",
+      );
+
+      mobileMenuButton.setAttribute(
+        "aria-label",
+        isOpen ? "Fermer le menu" : "Ouvrir le menu",
+      );
+
+      if (isOpen) {
+        const firstNavButton =
+          sidebar.querySelector(
+            ".nav-button",
+          );
+
+        if (firstNavButton) {
+          firstNavButton.focus();
+        }
+      }
+    }
+
+
     mobileMenuButton.addEventListener(
       "click",
       () => {
-        sidebar.classList.toggle(
-          "open"
+        setSidebarOpen(
+          !sidebar.classList.contains(
+            "open"
+          ),
         );
       },
     );
@@ -4546,9 +4697,7 @@
           return;
         }
 
-        sidebar.classList.remove(
-          "open"
-        );
+        setSidebarOpen(false);
       },
     );
 
@@ -4570,9 +4719,9 @@
           return;
         }
 
-        sidebar.classList.remove(
-          "open"
-        );
+        setSidebarOpen(false);
+
+        mobileMenuButton.focus();
       },
     );
 
@@ -7509,17 +7658,7 @@
           <button
             id="ownerRetryButton"
             type="button"
-            style="
-              width:100%;
-              min-height:42px;
-              margin-top:16px;
-              border:0;
-              border-radius:10px;
-              background:#0d392f;
-              color:white;
-              font-weight:800;
-              cursor:pointer;
-            "
+            class="owner-retry-button"
           >
             Réessayer
           </button>
