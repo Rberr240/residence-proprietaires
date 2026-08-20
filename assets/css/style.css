@@ -109,7 +109,11 @@ body {
 }
 
 .residence-label {
-    color: var(--secondary);
+    /* Small bold text needs the darker gold-ink token for AA contrast
+       on white — the lighter --secondary/--mirador-gold tone used for
+       .separator below is only ~3:1, fine for a decorative bar but not
+       for text this size. */
+    color: var(--mirador-gold-ink, #7a6338);
 
     font-size: 12px;
     font-weight: 700;

@@ -69,7 +69,10 @@
 .residence-name {
     margin-bottom: 5px;
 
-    color: var(--mirador-gold, #b39255);
+    /* gold-ink, not the lighter --mirador-gold: this is small bold
+       text and needs AA contrast on white (~3:1 for the lighter tone
+       isn't enough for text this size). */
+    color: var(--mirador-gold-ink, #7a6338);
 
     font-size: 11px;
     font-weight: 700;
