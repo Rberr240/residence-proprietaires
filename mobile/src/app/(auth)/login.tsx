@@ -11,53 +11,7 @@ import {
   View,
 } from 'react-native';
 
-import * as Crypto from 'expo-crypto';
-
-import { supabase } from '../lib/supabase';
-
-function normalizeMoroccoPhone(value: string) {
-  let digits = value.replace(/\D/g, '');
-
-  if (digits.startsWith('00212')) {
-    digits = digits.slice(2);
-  }
-
-  if (digits.startsWith('212')) {
-    const local = digits.slice(3);
-
-    if (
-      local.length === 9 &&
-      (local.startsWith('6') || local.startsWith('7'))
-    ) {
-      return `+212${local}`;
-    }
-  }
-
-  if (
-    digits.length === 10 &&
-    (digits.startsWith('06') || digits.startsWith('07'))
-  ) {
-    return `+212${digits.slice(1)}`;
-  }
-
-  if (
-    digits.length === 9 &&
-    (digits.startsWith('6') || digits.startsWith('7'))
-  ) {
-    return `+212${digits}`;
-  }
-
-  return null;
-}
-
-async function buildInternalLoginEmail(phoneE164: string) {
-  const digest = await Crypto.digestStringAsync(
-    Crypto.CryptoDigestAlgorithm.SHA256,
-    `mirador-golf-1:${phoneE164}`
-  );
-
-  return `owner-${digest.slice(0, 40)}@auth.mirador-golf.invalid`;
-}
+import { signInOwner } from '@/lib/auth';
 
 export default function LoginScreen() {
   const [phone, setPhone] = useState('');
@@ -65,48 +19,34 @@ export default function LoginScreen() {
   const [loading, setLoading] = useState(false);
 
   async function handleLogin() {
-    const normalizedPhone = normalizeMoroccoPhone(phone);
-
-    if (!normalizedPhone) {
-      Alert.alert(
-        'Téléphone invalide',
-        'Saisissez un numéro marocain valide, par exemple 06XXXXXXXX.'
-      );
-      return;
-    }
-
-    if (!password) {
-      Alert.alert(
-        'Mot de passe requis',
-        'Veuillez saisir votre mot de passe.'
-      );
-      return;
-    }
-
     try {
       setLoading(true);
 
-      const loginEmail =
-        await buildInternalLoginEmail(normalizedPhone);
+      const result = await signInOwner(phone, password);
 
-      const { error } =
-        await supabase.auth.signInWithPassword({
-          email: loginEmail,
-          password,
-        });
+      if (!result.ok) {
+        if (result.reason === 'invalid-phone') {
+          Alert.alert(
+            'Téléphone invalide',
+            'Saisissez un numéro marocain valide, par exemple 06XXXXXXXX.'
+          );
+          return;
+        }
 
-      if (error) {
+        if (result.reason === 'missing-password') {
+          Alert.alert(
+            'Mot de passe requis',
+            'Veuillez saisir votre mot de passe.'
+          );
+          return;
+        }
+
         Alert.alert(
           'Connexion impossible',
           'Téléphone ou mot de passe incorrect.'
         );
         return;
       }
-
-      Alert.alert(
-        'Connexion réussie',
-        'Bienvenue dans MIRADOR Golf.'
-      );
     } catch {
       Alert.alert(
         'Erreur',
