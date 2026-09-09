@@ -1,98 +1,276 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useState } from 'react';
+import {
+  ActivityIndicator,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+import * as Crypto from 'expo-crypto';
 
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
+import { supabase } from '../lib/supabase';
+
+function normalizeMoroccoPhone(value: string) {
+  let digits = value.replace(/\D/g, '');
+
+  if (digits.startsWith('00212')) {
+    digits = digits.slice(2);
   }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    );
+
+  if (digits.startsWith('212')) {
+    const local = digits.slice(3);
+
+    if (
+      local.length === 9 &&
+      (local.startsWith('6') || local.startsWith('7'))
+    ) {
+      return `+212${local}`;
+    }
   }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
-  return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
+
+  if (
+    digits.length === 10 &&
+    (digits.startsWith('06') || digits.startsWith('07'))
+  ) {
+    return `+212${digits.slice(1)}`;
+  }
+
+  if (
+    digits.length === 9 &&
+    (digits.startsWith('6') || digits.startsWith('7'))
+  ) {
+    return `+212${digits}`;
+  }
+
+  return null;
 }
 
-export default function HomeScreen() {
+async function buildInternalLoginEmail(phoneE164: string) {
+  const digest = await Crypto.digestStringAsync(
+    Crypto.CryptoDigestAlgorithm.SHA256,
+    `mirador-golf-1:${phoneE164}`
+  );
+
+  return `owner-${digest.slice(0, 40)}@auth.mirador-golf.invalid`;
+}
+
+export default function LoginScreen() {
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  async function handleLogin() {
+    const normalizedPhone = normalizeMoroccoPhone(phone);
+
+    if (!normalizedPhone) {
+      Alert.alert(
+        'Téléphone invalide',
+        'Saisissez un numéro marocain valide, par exemple 06XXXXXXXX.'
+      );
+      return;
+    }
+
+    if (!password) {
+      Alert.alert(
+        'Mot de passe requis',
+        'Veuillez saisir votre mot de passe.'
+      );
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const loginEmail =
+        await buildInternalLoginEmail(normalizedPhone);
+
+      const { error } =
+        await supabase.auth.signInWithPassword({
+          email: loginEmail,
+          password,
+        });
+
+      if (error) {
+        Alert.alert(
+          'Connexion impossible',
+          'Téléphone ou mot de passe incorrect.'
+        );
+        return;
+      }
+
+      Alert.alert(
+        'Connexion réussie',
+        'Bienvenue dans MIRADOR Golf.'
+      );
+    } catch {
+      Alert.alert(
+        'Erreur',
+        'Une erreur inattendue est survenue.'
+      );
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-        </ThemedView>
+    <KeyboardAvoidingView
+      style={styles.page}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
+      <View style={styles.card}>
+        <View style={styles.logo}>
+          <Text style={styles.logoText}>MG</Text>
+        </View>
 
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
+        <Text style={styles.brand}>MIRADOR GOLF 1</Text>
 
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
+        <Text style={styles.title}>
+          Espace propriétaire
+        </Text>
 
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
+        <Text style={styles.subtitle}>
+          Connectez-vous avec votre numéro de téléphone.
+        </Text>
+
+        <Text style={styles.label}>
+          Numéro de téléphone
+        </Text>
+
+        <TextInput
+          value={phone}
+          onChangeText={setPhone}
+          placeholder="06 XX XX XX XX"
+          keyboardType="phone-pad"
+          textContentType="telephoneNumber"
+          editable={!loading}
+          style={styles.input}
+        />
+
+        <Text style={styles.label}>
+          Mot de passe
+        </Text>
+
+        <TextInput
+          value={password}
+          onChangeText={setPassword}
+          placeholder="Votre mot de passe"
+          secureTextEntry
+          textContentType="password"
+          editable={!loading}
+          style={styles.input}
+          onSubmitEditing={handleLogin}
+        />
+
+        <Pressable
+          onPress={handleLogin}
+          disabled={loading}
+          style={[
+            styles.button,
+            loading && styles.buttonDisabled,
+          ]}
+        >
+          {loading ? (
+            <ActivityIndicator color="#ffffff" />
+          ) : (
+            <Text style={styles.buttonText}>
+              Se connecter
+            </Text>
+          )}
+        </Pressable>
+
+        <Text style={styles.security}>
+          Connexion sécurisée • MIRADOR Golf
+        </Text>
+      </View>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  page: {
     flex: 1,
     justifyContent: 'center',
-    flexDirection: 'row',
+    padding: 22,
+    backgroundColor: '#0b3028',
   },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
+  card: {
+    padding: 26,
+    borderRadius: 22,
+    backgroundColor: '#ffffff',
   },
-  heroSection: {
+  logo: {
+    width: 56,
+    height: 56,
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
+    borderRadius: 16,
+    backgroundColor: '#174b3d',
+    marginBottom: 16,
+  },
+  logoText: {
+    color: '#ffffff',
+    fontWeight: '900',
+    fontSize: 18,
+  },
+  brand: {
+    color: '#30735e',
+    fontWeight: '800',
+    fontSize: 12,
+    letterSpacing: 1.4,
   },
   title: {
+    marginTop: 7,
+    color: '#0b2f27',
+    fontWeight: '800',
+    fontSize: 29,
+  },
+  subtitle: {
+    marginTop: 8,
+    marginBottom: 28,
+    color: '#6b7c75',
+    fontSize: 14,
+  },
+  label: {
+    marginBottom: 7,
+    color: '#344a42',
+    fontSize: 13,
+    fontWeight: '700',
+  },
+  input: {
+    minHeight: 52,
+    marginBottom: 18,
+    paddingHorizontal: 14,
+    borderWidth: 1,
+    borderColor: '#d9e3df',
+    borderRadius: 11,
+    color: '#16352b',
+    backgroundColor: '#ffffff',
+    fontSize: 15,
+  },
+  button: {
+    minHeight: 54,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 11,
+    backgroundColor: '#174b3d',
+  },
+  buttonDisabled: {
+    opacity: 0.55,
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontWeight: '800',
+    fontSize: 15,
+  },
+  security: {
+    marginTop: 22,
     textAlign: 'center',
-  },
-  code: {
-    textTransform: 'uppercase',
-  },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
+    color: '#85938e',
+    fontSize: 11,
   },
 });
