@@ -1130,7 +1130,7 @@
                                 Bloc K
                             </option>
 
-                             <option value="K">
+                             <option value="L">
                                 Bloc L
                             </option>
 
@@ -1380,7 +1380,74 @@
 
                 </div>
 
+<!-- ========================= -->
+<!-- RESIDENCE                 -->
+<!-- ========================= -->
 
+<div class="form-section-title">
+    <span>📍</span>
+    <h2>Lieu de résidence</h2>
+</div>
+
+<div class="collection-grid">
+
+    <div class="collection-field">
+        <label for="residenceType">
+            Résidez-vous au Maroc ou à l'étranger ? *
+        </label>
+
+        <select
+            id="residenceType"
+            required
+        >
+            <option value="">
+                Sélectionnez
+            </option>
+
+            <option value="morocco">
+                🇲🇦 Maroc
+            </option>
+
+            <option value="abroad">
+                🌍 Étranger
+            </option>
+        </select>
+    </div>
+
+    <div class="collection-field">
+        <label for="residenceCity">
+            Ville de résidence *
+        </label>
+
+        <input
+            id="residenceCity"
+            type="text"
+            maxlength="100"
+            required
+            autocomplete="address-level2"
+            placeholder="Exemple : Tétouan"
+        >
+    </div>
+
+</div>
+
+<div
+    class="collection-field"
+    id="residenceCountryContainer"
+    style="display: none;"
+>
+    <label for="residenceCountry">
+        Pays de résidence *
+    </label>
+
+    <input
+        id="residenceCountry"
+        type="text"
+        maxlength="100"
+        autocomplete="country-name"
+        placeholder="Exemple : France, Belgique, Espagne..."
+    >
+</div>
 
                 <!-- ========================= -->
                 <!-- REUNION                   -->
@@ -1685,6 +1752,74 @@ const sameWhatsapp =
     );
 
 
+const residenceTypeSelect =
+    document.getElementById(
+        "residenceType"
+    );
+
+
+const residenceCountryContainer =
+    document.getElementById(
+        "residenceCountryContainer"
+    );
+
+
+const residenceCountryInput =
+    document.getElementById(
+        "residenceCountry"
+    );
+
+
+
+/*
+ * =========================================================
+ * PAYS DE RESIDENCE CONDITIONNEL
+ * =========================================================
+ */
+
+
+residenceTypeSelect.addEventListener(
+    "change",
+    () => {
+
+
+        if (
+            residenceTypeSelect.value === "abroad"
+        ) {
+
+
+            residenceCountryContainer.style.display =
+                "";
+
+
+            residenceCountryInput.required =
+                true;
+
+
+        }
+
+        else {
+
+
+            residenceCountryContainer.style.display =
+                "none";
+
+
+            residenceCountryInput.required =
+                false;
+
+
+            residenceCountryInput.value =
+                "";
+
+
+        }
+
+
+    }
+);
+
+
 
 /*
  * =========================================================
@@ -1913,6 +2048,33 @@ form.addEventListener(
                 attendance,
 
 
+            residence_type:
+
+                residenceTypeSelect
+                    .value,
+
+
+            residence_city:
+
+                document
+                    .getElementById(
+                        "residenceCity"
+                    )
+                    .value
+                    .trim(),
+
+
+            residence_country:
+
+                residenceTypeSelect.value === "morocco"
+
+                    ? "Maroc"
+
+                    : residenceCountryInput
+                        .value
+                        .trim(),
+
+
             availability:
 
                 [],
@@ -1955,7 +2117,13 @@ form.addEventListener(
 
             !payload.phone ||
 
-            !payload.whatsapp
+            !payload.whatsapp ||
+
+            !payload.residence_type ||
+
+            !payload.residence_city ||
+
+            !payload.residence_country
 
         ) {
 
