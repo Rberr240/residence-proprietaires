@@ -4290,8 +4290,12 @@
     let currentOwnerWhatsapp =
       "";
 
+    // "sw.js" (App Shell PWA), pas "OneSignalSDKWorker.js" : ce fichier
+    // importe déjà le SDK OneSignal (voir son en-tête) pour que les deux
+    // fonctionnalités partagent un seul service worker à la racine du
+    // site — deux workers séparés ne peuvent pas contrôler la même scope.
     const ONESIGNAL_SERVICE_WORKER_PATH =
-      "OneSignalSDKWorker.js";
+      "sw.js";
 
     function getDeployedBasePath() {
       // Dérivé de l'URL réelle plutôt que codé en dur : reste correct

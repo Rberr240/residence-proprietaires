@@ -3218,6 +3218,8 @@
 
                             <th>WhatsApp</th>
 
+                            <th>Résidence</th>
+
                             <th>Réunion</th>
 
                             <th>Statut</th>
@@ -3781,6 +3783,19 @@
                 </span>
 
                 <strong id="modalEmail">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span>
+                    Résidence
+                </span>
+
+                <strong id="modalResidence">
                     —
                 </strong>
 
@@ -5204,6 +5219,59 @@ function attendanceClass(
 
 
 
+function residenceSummary(
+    owner
+) {
+
+    if (
+        !owner.residence_type
+    ) {
+        return "—";
+    }
+
+    const flag =
+        owner.residence_type === "morocco"
+            ? "🇲🇦"
+            : "🌍";
+
+    const city =
+        owner.residence_city ||
+        "—";
+
+    return `${flag} ${city}`;
+
+}
+
+
+
+function residenceFullAddress(
+    owner
+) {
+
+    const cityLine =
+        [
+            owner.residence_postal_code,
+            owner.residence_city
+        ]
+            .filter(Boolean)
+            .join(" ");
+
+    const parts =
+        [
+            owner.residence_address,
+            cityLine,
+            owner.residence_country
+        ]
+            .filter(Boolean);
+
+    return parts.length
+        ? parts.join(", ")
+        : "—";
+
+}
+
+
+
 function statusLabel(
     value
 ) {
@@ -5416,6 +5484,10 @@ function renderOwners() {
 
             <td>
                 ${escapeHtml(owner.whatsapp || "—")}
+            </td>
+
+            <td>
+                ${escapeHtml(residenceSummary(owner))}
             </td>
 
             <td class="${attendanceClass(owner.attendance)}">
@@ -5637,6 +5709,16 @@ function showOwner(
 
     document
         .getElementById(
+            "modalResidence"
+        )
+        .textContent =
+            residenceFullAddress(
+                owner
+            );
+
+
+    document
+        .getElementById(
             "modalAttendance"
         )
         .textContent =
@@ -5797,6 +5879,11 @@ async function loadOwners() {
                 whatsapp,
                 email,
                 attendance,
+                residence_type,
+                residence_address,
+                residence_city,
+                residence_postal_code,
+                residence_country,
                 status,
                 created_at
                 `
