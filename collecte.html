@@ -1431,6 +1431,38 @@
 
 </div>
 
+<div class="collection-grid">
+
+    <div class="collection-field">
+        <label for="residenceAddress">
+            Adresse de résidence *
+        </label>
+
+        <input
+            id="residenceAddress"
+            type="text"
+            maxlength="255"
+            required
+            autocomplete="street-address"
+            placeholder="Exemple : 15 rue Hassan II, quartier Centre"
+        >
+    </div>
+
+    <div class="collection-field">
+        <label for="residencePostalCode">
+            Code postal
+        </label>
+
+        <input
+            id="residencePostalCode"
+            type="text"
+            maxlength="20"
+            autocomplete="postal-code"
+        >
+    </div>
+
+</div>
+
 <div
     class="collection-field"
     id="residenceCountryContainer"
@@ -2054,6 +2086,16 @@ form.addEventListener(
                     .value,
 
 
+            residence_address:
+
+                document
+                    .getElementById(
+                        "residenceAddress"
+                    )
+                    .value
+                    .trim(),
+
+
             residence_city:
 
                 document
@@ -2062,6 +2104,17 @@ form.addEventListener(
                     )
                     .value
                     .trim(),
+
+
+            residence_postal_code:
+
+                document
+                    .getElementById(
+                        "residencePostalCode"
+                    )
+                    .value
+                    .trim()
+                || null,
 
 
             residence_country:
@@ -2120,6 +2173,8 @@ form.addEventListener(
             !payload.whatsapp ||
 
             !payload.residence_type ||
+
+            !payload.residence_address ||
 
             !payload.residence_city ||
 
